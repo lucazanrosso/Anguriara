@@ -33,6 +33,7 @@
         <item>Novembre</item>
         <item>Dicembre</item>
     </string-array>
+    <string name="close">Chiuso</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
         <item>5</item>
@@ -102,7 +103,7 @@
     </integer-array>
     <string name="event">Evento</string>
     <string-array name="anguriara_events">
-        <item>Demenzioni</item>
+        <item>Banane</item>
         <item>Demenzioni</item>
         <item>Demenzioni</item>
         <item>Demenzioni</item>
@@ -136,6 +137,27 @@
     </string-array>
     <string name="food">Cucina</string>
     <string-array name="anguriara_foods">
+        <item>Banane</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Banana</item>
+        <item>Mela</item>
+        <item>Mela</item>
+        <item>Mela</item>
+        <item>Mela</item>
+        <item>Mela</item>
+        <item>Mela</item>
+        <item>Mela</item>
         <item>Bruschette</item>
         <item>Bruschette</item>
         <item>Bruschette</item>
@@ -145,28 +167,7 @@
         <item>Bruschette</item>
         <item>Bruschette</item>
         <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
-        <item>Bruschette</item>
+        <item>Fragola</item>
     </string-array>
     <string name="june">Giugno</string>
     <string name="july">Luglio</string>

@@ -21,9 +21,6 @@ import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Created by Luca on 11/09/2015.
- */
 public class CalendarFragment extends Fragment {
 
     View view;
@@ -53,7 +50,7 @@ public class CalendarFragment extends Fragment {
         this.anguriaraFoods = getResources().getStringArray(R.array.anguriara_foods);
 
 
-//        File file = new File(this.context.getFilesDir(), this.fileName);
+        File file = new File(this.context.getFilesDir(), this.fileName);
 //        if (file.exists()) {
 //            this.calendar = deserializeCalendar();
 //        } else {
@@ -124,7 +121,7 @@ public class CalendarFragment extends Fragment {
             button.setVisibility(View.VISIBLE);
         } else {
             imageView.setImageResource(R.drawable.close);
-            subTitleTextView.setText("Chiuso");
+            subTitleTextView.setText(getResources().getString(R.string.close));
             button.setVisibility(View.GONE);
         }
     }
@@ -141,6 +138,6 @@ public class CalendarFragment extends Fragment {
         args.putInt("month", month);
         args.putSerializable("calendar", monthCalendar);
         monthFragment.setArguments(args);
-        getFragmentManager().beginTransaction().add(frameLayoutId, monthFragment).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().add(frameLayoutId, monthFragment).commit();
     }
 }

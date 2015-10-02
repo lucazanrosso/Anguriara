@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,16 +20,15 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Created by Luca on 23/08/2015.
- */
 public class MonthFragment extends Fragment{
 
     View view;
-    Map<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar;
-    int month;
-    Calendar date;
-    String[] months;
+    private Map<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar;
+    private int month;
+    private Calendar date;
+    private String[] months;
+    private String food;
+//    private DayFragment dayFragment = new DayFragment();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MonthFragment extends Fragment{
 
         Iterator iterator = this.monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
-            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry) iterator.next();
+            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
 
             textView.setText(months[month]);
             for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
@@ -64,14 +64,15 @@ public class MonthFragment extends Fragment{
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
+
+                            final Bundle dayArgs = new Bundle();
+                            dayArgs.putSerializable("date", date);
+                            dayArgs.putSerializable("day", monthCalendar.get(date));
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Fragment dayFragment = new DayFragment();
-                                    Bundle args = new Bundle();
-                                    args.putSerializable("date", date);
-                                    args.putSerializable("day", monthCalendar.get(date));
-                                    dayFragment.setArguments(args);
+                                    DayFragment dayFragment = new DayFragment();
+                                    dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_container, dayFragment);
                                     transaction.addToBackStack(null);
@@ -79,7 +80,7 @@ public class MonthFragment extends Fragment{
                                 }
                             });
                             if (iterator.hasNext()) {
-                                entry = (Map.Entry) iterator.next();
+                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
                             }
                         } else {
                             button.setEnabled(false);

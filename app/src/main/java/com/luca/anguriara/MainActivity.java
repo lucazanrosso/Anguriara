@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
                 View child = rv.findChildViewUnder(e.getX(),e.getY());
 
-
-
                 if(child!=null && mGestureDetector.onTouchEvent(e)){
 
                     mDrawer.closeDrawers();
@@ -75,11 +73,8 @@ public class MainActivity extends AppCompatActivity {
 //                    transaction.addToBackStack(null);
 //                    transaction.commit();
                     Toast.makeText(MainActivity.this,"The Item Clicked is: "+rv.getChildPosition(child), Toast.LENGTH_SHORT).show();
-
                     return true;
-
                 }
-
                 return false;
             }
 
