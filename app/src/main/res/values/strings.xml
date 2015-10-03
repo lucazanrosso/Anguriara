@@ -169,6 +169,7 @@
         <item>Bruschette</item>
         <item>Fragola</item>
     </string-array>
+    <string name="openingTime">Orario di apertura</string>
     <string name="june">Giugno</string>
     <string name="july">Luglio</string>
     <string name="sunday">D</string>
@@ -178,4 +179,5 @@
     <string name="thursday">G</string>
     <string name="friday">V</string>
     <string name="saturday">S</string>
+
 </resources>
