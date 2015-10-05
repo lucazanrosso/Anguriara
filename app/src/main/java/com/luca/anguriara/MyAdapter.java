@@ -17,6 +17,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private static final int TYPE_DIVIDER = 2;
     private static boolean isDrawer = false;
 
+    private String[] titles;
     private String[] menuString;
     private int[] menuIcons;
     private int headerImage;
@@ -29,6 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // each data item is just a string in this case
         int holderId;
 
+        public TextView mTitleTextView;
         public TextView mTextView;
         public ImageView mImageView;
         public ImageView mHeaderImageView;
@@ -53,6 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
             else {
                 if (viewType == TYPE_ITEM) {
+                    mTitleTextView = (TextView) v.findViewById(R.id.day_title);
                     mTextView = (TextView) v.findViewById(R.id.day_text);
                     mImageView = (ImageView) v.findViewById(R.id.day_image);
                     mImageView.setColorFilter(Color.parseColor("#757575"));
@@ -73,9 +76,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         this.isDrawer = true;
     }
 
-    public MyAdapter(String[] menuString, int [] menuIcons) {
-        this.menuString = menuString;
-        this.menuIcons = menuIcons;
+    public MyAdapter(String[] titles, String[] text, int [] icons) {
+        this.titles = titles;
+        this.menuString = text;
+        this.menuIcons = icons;
         this.isDrawer = false;
     }
 
@@ -127,6 +131,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             specialType++;
         }
         if (holder.holderId == 1) {
+            if (! isDrawer) {
+                holder.mTitleTextView.setText(titles[position - specialType]);
+            }
             holder.mTextView.setText(menuString[position - specialType]);
             holder.mImageView.setImageResource(menuIcons[position - specialType]);
         }

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -26,18 +27,19 @@ public class MonthFragment extends Fragment{
     private Map<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar;
     private int month;
     private Calendar date;
+    private String[] daysOfWeek;
     private String[] months;
-    private String food;
-//    private DayFragment dayFragment = new DayFragment();
+    private String toolbarTitle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_month, container, false);
+        this.view = inflater.inflate(R.layout.fragment_month, container, false);
         Bundle args = this.getArguments();
         this.monthCalendar = (Map<GregorianCalendar, LinkedHashMap<String, String>>) args.getSerializable("calendar");
         this.month = args.getInt("month");
         this.date = new GregorianCalendar(2015, this.month, 1);
-        months = getResources().getStringArray(R.array.months);
+        this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+        this.months = getResources().getStringArray(R.array.months);
 
         LinearLayout calendarLinearLayout = (LinearLayout) view.findViewById(R.id.calendar_layout);
         LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
@@ -65,12 +67,18 @@ public class MonthFragment extends Fragment{
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
 
+                            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+                            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                            String thisMonth = months[date.get(Calendar.MONTH)];
+                            this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+
                             final Bundle dayArgs = new Bundle();
                             dayArgs.putSerializable("date", date);
                             dayArgs.putSerializable("day", monthCalendar.get(date));
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    MainActivity.toolbar.setTitle(toolbarTitle);
                                     DayFragment dayFragment = new DayFragment();
                                     dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();

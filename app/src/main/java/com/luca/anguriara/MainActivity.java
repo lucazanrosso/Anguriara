@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
+    public static Toolbar toolbar;
 
-    private String[] menu;
+    private static String[] menu;
     private int[] icons = {R.drawable.ic_today_black_24dp,
             R.drawable.ic_place_black_24dp,
             R.drawable.ic_people_black_24dp,
@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        MainActivity.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
         menu = getResources().getStringArray(R.array.menu);

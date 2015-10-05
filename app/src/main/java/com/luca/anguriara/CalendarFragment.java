@@ -34,20 +34,23 @@ public class CalendarFragment extends Fragment {
     private String[] months;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
-    private String[] anguriaraEvents;
-    private String[] anguriaraFoods;
-    private String[] anguriaraOpeningTimes;
+    private String[] dayEvents;
+    private String[] dayFoods;
+    private String[] OpeningTimes;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
         this.context = view.getContext();
+
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
+
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
         this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
         this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
-        this.anguriaraEvents = getResources().getStringArray(R.array.anguriara_events);
-        this.anguriaraFoods = getResources().getStringArray(R.array.anguriara_foods);
+        this.dayEvents = getResources().getStringArray(R.array.day_events);
+        this.dayFoods = getResources().getStringArray(R.array.day_foods);
 
 
         File file = new File(this.context.getFilesDir(), this.fileName);
@@ -69,8 +72,9 @@ public class CalendarFragment extends Fragment {
         Map<GregorianCalendar, Map<String, String>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
             Map<String, String> eveningMap = new LinkedHashMap<>();
-            eveningMap.put("event", anguriaraEvents[i]);
-            eveningMap.put("food", anguriaraFoods[i]);
+            eveningMap.put("event", dayEvents[i]);
+            eveningMap.put("food", dayFoods[i]);
+            eveningMap.put("openingTime", "8:30");
             calendar.put(new GregorianCalendar(YEAR, anguriaraMonths[i], anguriaraDaysOfMonth[i]), eveningMap);
         }
         return calendar;

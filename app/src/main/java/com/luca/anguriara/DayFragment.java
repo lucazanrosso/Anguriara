@@ -18,9 +18,11 @@ public class DayFragment extends Fragment{
     private Calendar date;
     private Map<String, String> day;
 
-    private String[] dayString;
+    private String[] dayTitle;
+    private String[] dayText;
     private int[] dayIcons = {R.drawable.ic_music_note_black_24dp,
-            R.drawable.ic_local_pizza_black_24dp};
+            R.drawable.ic_local_pizza_black_24dp,
+            R.drawable.ic_access_time_black_24dp};
 
     private RecyclerView dayRecyclerView;
     private RecyclerView.Adapter dayAdapter;
@@ -33,20 +35,24 @@ public class DayFragment extends Fragment{
         this.date = (Calendar) args.getSerializable("date");
         this.day = (Map<String, String>) args.getSerializable("day");
 
-        this.dayString = new String[this.day.size()];
+        this.dayTitle = getResources().getStringArray(R.array.day_titles);
 
-        this.dayString[0] = getResources().getString(R.string.event) + this.day.get("event");
-        this.dayString[1] = getResources().getString(R.string.food) + "\n" + this.day.get("food");
+        this.dayText = new String[this.day.size()];
 
-//        Log.d("day", "day: " + dayString[0] + dayString[1]);
+        this.dayText[0] = this.day.get("event");
+//        Log.d("food_conains", "food_contains: " + this.day.get("food"));
+        if (! this.day.get("food").isEmpty()) {
+            this.dayText[1] = this.day.get("food") + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods);
+        } else {
+            this.dayText[1] = getResources().getString(R.string.standard_foods);
+        }
+        this.dayText[2] = this.day.get("openingTime");
 
         dayRecyclerView = (RecyclerView) view.findViewById(R.id.day_recycler_view);
-        dayAdapter = new MyAdapter(dayString, dayIcons);
+        dayAdapter = new MyAdapter(dayTitle, dayText, dayIcons);
         dayRecyclerView.setAdapter(dayAdapter);
-
         dayLayoutManager = new LinearLayoutManager(getContext());
         dayRecyclerView.setLayoutManager(dayLayoutManager);
-
 
         return view;
     }
