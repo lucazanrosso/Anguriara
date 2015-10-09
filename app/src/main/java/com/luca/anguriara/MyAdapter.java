@@ -157,7 +157,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             if (position == 0) {
                 return TYPE_HEADER;
             }
-            if (position == 4) {
+            if (position == 5) {
                 return TYPE_DIVIDER;
             }
         } else if ((position % 2) == 1) {

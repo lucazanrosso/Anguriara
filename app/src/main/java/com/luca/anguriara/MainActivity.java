@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int[] icons = {R.drawable.ic_today_black_24dp,
             R.drawable.ic_place_black_24dp,
             R.drawable.ic_people_black_24dp,
+            R.drawable.ic_store_black_24dp,
             R.drawable.ic_settings_black_24dp};
     private int drawerHeaderImage = R.drawable.logo;
     //private Fragment[] fragments = {new CalendarFragment(), new CalendarFragment(), new CalendarFragment()};
