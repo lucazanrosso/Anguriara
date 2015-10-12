@@ -35,18 +35,24 @@ public class DayFragment extends Fragment{
         this.date = (Calendar) args.getSerializable("date");
         this.day = (Map<String, String>) args.getSerializable("day");
 
-        this.dayTitle = getResources().getStringArray(R.array.day_titles);
+        this.dayTitle = new String[3];
+        this.dayTitle[0] = getResources().getString(R.string.event);
+        this.dayTitle[1] = getResources().getString(R.string.food);
+        this.dayTitle[2] = getResources().getString(R.string.opening_time);
 
-        this.dayText = new String[this.day.size()];
-
-        this.dayText[0] = this.day.get("event");
+        this.dayText = new String[3];
+        this.dayText[0] = this.day.get("event") + " " + this.day.get("event_details");
 //        Log.d("food_conains", "food_contains: " + this.day.get("food"));
         if (! this.day.get("food").isEmpty()) {
             this.dayText[1] = this.day.get("food") + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods);
         } else {
             this.dayText[1] = getResources().getString(R.string.standard_foods);
         }
-        this.dayText[2] = this.day.get("openingTime");
+        if (! this.day.get("openingTime").isEmpty()) {
+            this.dayText[2] = this.day.get("openingTime");
+        } else {
+            this.dayText[2] = getResources().getString(R.string.standard_opening_time);
+        }
 
         dayRecyclerView = (RecyclerView) view.findViewById(R.id.day_recycler_view);
         dayAdapter = new MyAdapter(dayTitle, dayText, dayIcons);

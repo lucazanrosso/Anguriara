@@ -3,6 +3,7 @@ package com.luca.anguriara;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,17 +27,19 @@ public class CalendarFragment extends Fragment {
     View view;
     Context context;
     private String fileName = "anguriara.ser";
-    private Map<GregorianCalendar, Map<String, String>> calendar = new LinkedHashMap<>();
+    private Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
     final static int YEAR = 2015;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
-    private Calendar today = new GregorianCalendar();
+    private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
     private String[] months;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
+    private String[] dayEventsDetails;
     private String[] dayFoods;
-    private String[] OpeningTimes;
+    private String[] dayOpeningTimes;
+    private String cardViewTitle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +53,9 @@ public class CalendarFragment extends Fragment {
         this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
         this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
         this.dayEvents = getResources().getStringArray(R.array.day_events);
+        this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
+        this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
 
         File file = new File(this.context.getFilesDir(), this.fileName);
@@ -68,19 +73,20 @@ public class CalendarFragment extends Fragment {
         return this.view;
     }
 
-    public Map<GregorianCalendar, Map<String, String>> setCalendar() {
-        Map<GregorianCalendar, Map<String, String>> calendar = new LinkedHashMap<>();
+    public Map<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
+        Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
-            Map<String, String> eveningMap = new LinkedHashMap<>();
+            LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", dayEvents[i]);
+            eveningMap.put("event_details", dayEventsDetails[i]);
             eveningMap.put("food", dayFoods[i]);
-            eveningMap.put("openingTime", "8:30");
+            eveningMap.put("openingTime", dayOpeningTimes[i]);
             calendar.put(new GregorianCalendar(YEAR, anguriaraMonths[i], anguriaraDaysOfMonth[i]), eveningMap);
         }
         return calendar;
     }
 
-    public void serializeCalendar(Map<GregorianCalendar, Map<String, String>> calendar) {
+    public void serializeCalendar(Map<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
         try {
             File file = new File(this.context.getFilesDir(), this.fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -93,13 +99,13 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public Map<GregorianCalendar, Map<String, String>> deserializeCalendar(){
-        Map<GregorianCalendar, Map<String, String>> calendar = new LinkedHashMap<>();
+    public Map<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
+        Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
             File file = new File(this.context.getFilesDir(), this.fileName);
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            calendar = (LinkedHashMap<GregorianCalendar, Map<String, String>>) objectInputStream.readObject();
+            calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
         } catch (Exception e) {
@@ -117,11 +123,28 @@ public class CalendarFragment extends Fragment {
         String thisDayOfWeek = daysOfWeek[today.get(Calendar.DAY_OF_WEEK) - 1];
         int thisDayOfMonth = today.get(Calendar.DAY_OF_MONTH);
         String thisMonth = months[today.get(Calendar.MONTH)];
-        titleTextView.setText(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
+        this.cardViewTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+        titleTextView.setText(this.cardViewTitle);
 
         if (this.calendar.containsKey(this.today)) {
             imageView.setImageResource(R.drawable.open);
-            subTitleTextView.setText("Testo da inserire");
+            subTitleTextView.setText(getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food"));
+
+            final Bundle dayArgs = new Bundle();
+            dayArgs.putSerializable("date", today);
+            dayArgs.putSerializable("day", calendar.get(today));
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity.toolbar.setTitle(cardViewTitle);
+                    DayFragment dayFragment = new DayFragment();
+                    dayFragment.setArguments(dayArgs);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, dayFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
             button.setVisibility(View.VISIBLE);
         } else {
             imageView.setImageResource(R.drawable.close);
@@ -132,7 +155,7 @@ public class CalendarFragment extends Fragment {
 
     public void setMonthCalendar(int month, int frameLayoutId) {
         LinkedHashMap<GregorianCalendar, Map<String, String>> monthCalendar = new LinkedHashMap<>();
-        for (LinkedHashMap.Entry<GregorianCalendar, Map<String, String>> entry : this.calendar.entrySet()) {
+        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
                 monthCalendar.put(entry.getKey(), entry.getValue());
             }

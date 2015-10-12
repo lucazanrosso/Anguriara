@@ -103,38 +103,79 @@
         <item>6</item>
         <item>6</item>
     </integer-array>
+    <string name="event">Evento</string>
+    <string name="food">Cucina</string>
+    <string name="opening_time">Orario di apertura</string>
+    <string-array name="day_titles">
+        <item>E</item>
+        <item>E</item>
+        <item>E</item>
+    </string-array>
     <string-array name="day_events">
-        <item>Ladies, Craic &amp; Pints \nGenere: rock, folk</item>
-        <item>Big opening party con Dj Stefano Conti, Pietri vocalist e Marco alle percussioni\nGenere: disco music</item>
-        <item>I cari estinti con Michele Franceschi\nGenere: animali che hanno conosciuto l\'uomo e sono morti</item>
-        <item>Serate vinile con Pilo Dj\nGenere: Woodstock al centro del mondo</item>
-        <item>Sand Castle Empire\nGenere: country blues acustico</item>
-        <item>Red Cadillac\nGenere: rockability, rock\'n\'roll</item>
-        <item>Farfalle dei nostri prati con Daniela Serafin\nGenere: </item>
-        <item>Canta che ti passa con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>Karavan Capez\nGenere: Creedence - Jj, Chash - Elvis</item>
-        <item>Ac/Dshow\nGenere: AC/DC tribute</item>
+        <item>Ladies, Craic &amp; Pints</item>
+        <item>Big opening party</item>
+        <item>I cari estinti</item>
+        <item>Serate vinile</item>
+        <item>Sand Castle Empire</item>
+        <item>Red Cadillac</item>
+        <item>Farfalle dei nostri prati</item>
+        <item>Canta che ti passa</item>
+        <item>Karavan Capez</item>
+        <item>Ac/Dshow</item>
         <item></item>
-        <item>Paolo Aste racconta le sue avventure di ultracycling e i suoi record</item>
-        <item>Outsider\nGenere: rock &amp; blues under 18</item>
-        <item>Enigma\nGenere: rock internazionale anni 70-90</item>
+        <item>Paolo Aste</item>
+        <item>Outsider</item>
+        <item>Enigma</item>
         <item></item>
-        <item>Canta che ti passa con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>Mushuppers\nGenere: pop acustico</item>
-        <item>Steel Nylon &amp; Wood\nGenere: rock blues cover band</item>
+        <item>Canta che ti passa</item>
+        <item>Mushuppers</item>
+        <item>Steel Nylon &amp; Wood</item>
         <item>Il ritorno del lupo in Lessina</item>
-        <item>Città della speranza con tombola e frittelle</item>
-        <item>Beat Forever\nGenere: Nomadi, New Trolls, Pooh\n\nAnguriarun: corsa podistica</item>
-        <item>Virna Marangoni\nGenere: rock\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
-        <item>Ciuchinando per l\'Anguriara: passeggiate pomeridiane con gli asini per i più piccoli\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
-        <item>Anguriara con delitto: perdere la vita e il nome (Alessandro Boarin)</item>
-        <item>Canta che ti passa con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>Blue Karmina\nGenere: acustico pop &amp; rock</item>
-        <item>Demenzioni\nGenere: rock demenziale</item>
-        <item>Mieli e confetture, di-gustarceli per una vita intera (Enrico Dolgan)</item>
-        <item>Serata Vinile con Pilo Dj e Paolo Dj\nGenere: afro e disco music 70-90</item>
-        <item>Teamline live band\nGenere: pop &amp; soul</item>
-        <item>Grande chiusura con Paolo Pj &amp; Pietri vocalist\nGenere: disco music</item>
+        <item>Città della speranza</item>
+        <item>Beat Forever</item>
+        <item>Virna Marangoni</item>
+        <item>Ciuchinando per l\'Anguriara</item>
+        <item>Anguriara con delitto</item>
+        <item>Canta che ti passa</item>
+        <item>Blue Karmina</item>
+        <item>Demenzioni</item>
+        <item>Mieli e confetture</item>
+        <item>Serata Vinile</item>
+        <item>Teamline live band</item>
+        <item>Grande chiusura</item>
+    </string-array>
+    <string-array name="day_event_details">
+        <item>\nGenere: rock, folk</item>
+        <item>con Dj Stefano Conti, Pietri vocalist e Marco alle percussioni\nGenere: disco music</item>
+        <item>con Michele Franceschi\nGenere: animali che hanno conosciuto l\'uomo e sono morti</item>
+        <item>con Pilo Dj\nGenere: Woodstock al centro del mondo</item>
+        <item>\nGenere: country blues acustico</item>
+        <item>\nGenere: rockability, rock\'n\'roll</item>
+        <item>con Daniela Serafin</item>
+        <item>con Dj Stefano Conti\nGenere: karaoke</item>
+        <item>\nGenere: Creedence - Jj, Chash - Elvis</item>
+        <item>\nGenere: AC/DC tribute</item>
+        <item></item>
+        <item>racconta le sue avventure di ultracycling e i suoi record</item>
+        <item>\nGenere: rock &amp; blues under 18</item>
+        <item>\nGenere: rock internazionale anni 70-90</item>
+        <item></item>
+        <item>con Dj Stefano Conti\nGenere: karaoke</item>
+        <item>\nGenere: pop acustico</item>
+        <item>\nGenere: rock blues cover band</item>
+        <item></item>
+        <item>con tombola e frittelle</item>
+        <item>\nGenere: Nomadi, New Trolls, Pooh\n\nAnguriarun: corsa podistica</item>
+        <item>\nGenere: rock\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
+        <item>: passeggiate pomeridiane con gli asini per i più piccoli\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
+        <item>: perdere la vita e il nome (Alessandro Boarin)</item>
+        <item>con Dj Stefano Conti\nGenere: karaoke</item>
+        <item>\nGenere: acustico pop &amp; rock</item>
+        <item>\nGenere: rock demenziale</item>
+        <item>: di-gustarceli per una vita intera (Enrico Dolgan)</item>
+        <item>con Pilo Dj e Paolo Dj\nGenere: afro e disco music 70-90</item>
+        <item>\nGenere: pop &amp; soul</item>
+        <item>con Paolo Pj &amp; Pietri vocalist\nGenere: disco music</item>
     </string-array>
     <string-array name="day_foods">
         <item>Sandwitch</item>
@@ -171,11 +212,40 @@
     </string-array>
     <string name="day_food">(piatto della serata)</string>
     <string name="standard_foods">Panini vegetariani\nPanini con sopressa\nPatatine Fritte</string>
-    <string-array name="day_titles">
-        <item>Evento</item>
-        <item>Cucina</item>
-        <item>Orario di apertura</item>
+    <string-array name="day_opening_time">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
+    <string name="standard_opening_time">20:30</string>
     <string name="june">Giugno</string>
     <string name="july">Luglio</string>
     <string name="sunday">D</string>
