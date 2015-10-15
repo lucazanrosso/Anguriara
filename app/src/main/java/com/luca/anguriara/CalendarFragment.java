@@ -1,9 +1,14 @@
 package com.luca.anguriara;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -67,6 +74,7 @@ public class CalendarFragment extends Fragment {
 //        }
 
         thisDay();
+//      Calendars Fragment maybe have some problems. Move from portrait to landscape add many fragments.
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
         setMonthCalendar(Calendar.JULY, R.id.july_calendar);
 
@@ -136,6 +144,19 @@ public class CalendarFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    Intent resultIntent = new Intent();
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
+                            .setSmallIcon(R.drawable.notification)
+                            .setContentTitle("Questa sera")
+                            .setContentText(getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food"));
+                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getActivity(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    mBuilder.setContentIntent(resultPendingIntent);
+                    int mNotificationId = 001;
+                    NotificationManager mNotifyMgr =
+                            (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
+                    mNotifyMgr.notify(mNotificationId,mBuilder.build());
+
                     MainActivity.toolbar.setTitle(cardViewTitle);
                     DayFragment dayFragment = new DayFragment();
                     dayFragment.setArguments(dayArgs);
