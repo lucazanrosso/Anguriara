@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 /**
  * Created by Luca on 19/09/2015.
  */
@@ -21,6 +23,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private String[] menuString;
     private int[] menuIcons;
     private int headerImage;
+    private Integer[] dividersPosition;
     private int specialType = 0;
 
     // Provide a reference to the views for each data item
@@ -69,10 +72,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] menuString, int [] menuIcons, int headerImage) {
+    public MyAdapter(String[] menuString, int[] menuIcons, int headerImage, Integer[] dividersPosition) {
         this.menuString = menuString;
         this.menuIcons = menuIcons;
         this.headerImage = headerImage;
+        this.dividersPosition = dividersPosition;
         this.isDrawer = true;
     }
 
@@ -157,7 +161,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             if (position == 0) {
                 return TYPE_HEADER;
             }
-            if (position == 5) {
+            if (Arrays.asList(dividersPosition).contains(new Integer(position))) {
                 return TYPE_DIVIDER;
             }
         } else if ((position % 2) == 1) {

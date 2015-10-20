@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_store_black_24dp,
             R.drawable.ic_settings_black_24dp};
     private int drawerHeaderImage = R.drawable.logo;
+    private Integer[] drawerDividersPosition = {5};
     //private Fragment[] fragments = {new CalendarFragment(), new CalendarFragment(), new CalendarFragment()};
 
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 //        mRecyclerView.setLayoutParams(recyclerViewParams);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new MyAdapter(menu, icons, drawerHeaderImage);
+        mAdapter = new MyAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
         mRecyclerView.setAdapter(mAdapter);
 
         final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
