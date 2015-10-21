@@ -1,4 +1,4 @@
-package com.luca.anguriara;
+package com.lucazanrosso.anguriara;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;

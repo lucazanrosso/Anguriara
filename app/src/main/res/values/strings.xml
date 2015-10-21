@@ -255,5 +255,5 @@
     <string name="thursday">G</string>
     <string name="friday">V</string>
     <string name="saturday">S</string>
-
+    <string name="this_evening">Questa sera</string>
 </resources>

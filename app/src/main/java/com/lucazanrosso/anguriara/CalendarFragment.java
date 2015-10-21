@@ -1,5 +1,6 @@
-package com.luca.anguriara;
+package com.lucazanrosso.anguriara;
 
+import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -8,16 +9,12 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -136,7 +133,8 @@ public class CalendarFragment extends Fragment {
 
         if (this.calendar.containsKey(this.today)) {
             imageView.setImageResource(R.drawable.open);
-            subTitleTextView.setText(getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food"));
+            String dayEventAndFood = getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food");
+            subTitleTextView.setText(dayEventAndFood);
 
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", today);
@@ -144,19 +142,6 @@ public class CalendarFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Intent resultIntent = new Intent();
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity())
-                            .setSmallIcon(R.drawable.notification)
-                            .setContentTitle("Questa sera")
-                            .setContentText(getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food"));
-                    PendingIntent resultPendingIntent = PendingIntent.getActivity(getActivity(), 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    mBuilder.setContentIntent(resultPendingIntent);
-                    int mNotificationId = 001;
-                    NotificationManager mNotifyMgr =
-                            (NotificationManager) getContext().getSystemService(getContext().NOTIFICATION_SERVICE);
-                    mNotifyMgr.notify(mNotificationId,mBuilder.build());
-
                     MainActivity.toolbar.setTitle(cardViewTitle);
                     DayFragment dayFragment = new DayFragment();
                     dayFragment.setArguments(dayArgs);
@@ -167,6 +152,17 @@ public class CalendarFragment extends Fragment {
                 }
             });
             button.setVisibility(View.VISIBLE);
+
+            Calendar alarmTime = Calendar.getInstance();
+            alarmTime.setTimeInMillis(System.currentTimeMillis());
+            alarmTime.set(Calendar.HOUR_OF_DAY, 22);
+            alarmTime.set(Calendar.MINUTE, 05);
+            alarmTime.set(Calendar.SECOND, 10);
+            Intent intent = new Intent(getActivity(), MyNotification.class);
+            intent.putExtra("notification_text", dayEventAndFood);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
         } else {
             imageView.setImageResource(R.drawable.close);
             subTitleTextView.setText(getResources().getString(R.string.close));
