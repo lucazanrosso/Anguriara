@@ -3,8 +3,10 @@ package com.lucazanrosso.anguriara;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -153,21 +155,23 @@ public class CalendarFragment extends Fragment {
             });
             button.setVisibility(View.VISIBLE);
 
-            Calendar alarmTime = Calendar.getInstance();
-            alarmTime.setTimeInMillis(System.currentTimeMillis());
-            alarmTime.set(Calendar.HOUR_OF_DAY, 22);
-            alarmTime.set(Calendar.MINUTE, 05);
-            alarmTime.set(Calendar.SECOND, 10);
-            Intent intent = new Intent(getActivity(), MyNotification.class);
-            intent.putExtra("notification_text", dayEventAndFood);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
+//            ComponentName receiver = new ComponentName(context, MyNotification.class);
+//            PackageManager pm = context.getPackageManager();
+//
+//            pm.setComponentEnabledSetting(receiver,
+//                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+//                    PackageManager.DONT_KILL_APP);
+
         } else {
             imageView.setImageResource(R.drawable.close);
             subTitleTextView.setText(getResources().getString(R.string.close));
             button.setVisibility(View.GONE);
         }
+
+//        Intent intent = new Intent(getContext(), MyNotification.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
+//        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
     }
 
     public void setMonthCalendar(int month, int frameLayoutId) {

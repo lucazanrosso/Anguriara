@@ -17,6 +17,9 @@ public class MyNotification extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
+//        Intent service = new Intent(context, MyService.class);
+//        context.startService(service);
+
         this.notificationTitle = context.getResources().getString(R.string.this_evening);
         this.notificationText = intent.getStringExtra("notification_text");
         this.notificationIcon = R.drawable.notification;
