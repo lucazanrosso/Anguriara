@@ -86,7 +86,7 @@ public class CalendarFragment extends Fragment {
         alarmIsSet = false;
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
 
-        if (! alarmIsSet)
+//        if (! alarmIsSet)
             setAlarm();
 //        cancelAlarm();
 
@@ -191,19 +191,22 @@ public class CalendarFragment extends Fragment {
     }
 
     public void setAlarm() {
-        for (int i = 0; i < 10; i++) {
+//        int i = 0;
+//        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
+        for (int i = 0; i < 5; i++) {
             this.notificationIntent = new Intent(getContext(), MyNotification.class);
             this.notificationIntent.putExtra("notification_text", "BlaBla");
             this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
             this.alarmTime = Calendar.getInstance();
             this.alarmTime.setTimeInMillis(System.currentTimeMillis());
-            this.alarmTime.set(Calendar.HOUR_OF_DAY, 16);
-            this.alarmTime.set(Calendar.MINUTE, 20 + i);
+            this.alarmTime.set(Calendar.HOUR_OF_DAY, 20);
+            this.alarmTime.set(Calendar.MINUTE, 50 + i);
             this.alarmTime.set(Calendar.SECOND, 0);
             if (! (this.alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
                 this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis(), this.notificationPendingIntent);
             }
+//            i++;
         }
         alarmIsSet = true;
         this.editor = sharedPreferences.edit();
