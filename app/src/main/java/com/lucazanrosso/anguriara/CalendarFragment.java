@@ -1,17 +1,13 @@
 package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,24 +82,13 @@ public class CalendarFragment extends Fragment {
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
         setMonthCalendar(Calendar.JULY, R.id.july_calendar);
 
-
-
-
-
         this.sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         alarmIsSet = false;
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
 
-        this.notificationIntent = new Intent(getContext(), MyNotification.class);
-        this.notificationIntent.putExtra("notification_text", "BlaBla");
-        this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), 0, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         if (! alarmIsSet)
             setAlarm();
 //        cancelAlarm();
-
-
-        Log.d("sharedP", "" + alarmIsSet);
 
         return this.view;
     }
@@ -182,24 +167,12 @@ public class CalendarFragment extends Fragment {
                 }
             });
             button.setVisibility(View.VISIBLE);
-
-//            ComponentName receiver = new ComponentName(context, MyNotification.class);
-//            PackageManager pm = context.getPackageManager();
-//
-//            pm.setComponentEnabledSetting(receiver,
-//                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-//                    PackageManager.DONT_KILL_APP);
-
         } else {
             imageView.setImageResource(R.drawable.close);
             subTitleTextView.setText(getResources().getString(R.string.close));
             button.setVisibility(View.GONE);
         }
 
-//        Intent this.notificationIntent = new Intent(getContext(), MyNotification.class);
-//        PendingIntent this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), 0, this.notificationIntent, 0);
-//        AlarmManager this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-//        this.notificationAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, this.notificationPendingIntent);
     }
 
     public void setMonthCalendar(int month, int frameLayoutId) {
@@ -218,20 +191,27 @@ public class CalendarFragment extends Fragment {
     }
 
     public void setAlarm() {
-        this.alarmTime = Calendar.getInstance();
-        this.alarmTime.setTimeInMillis(System.currentTimeMillis());
-        this.alarmTime.set(Calendar.HOUR_OF_DAY, 15);
-        this.alarmTime.set(Calendar.MINUTE, 48);
-        this.alarmTime.set(Calendar.SECOND, 30);
-        int addTime = 0;
-        if (this.alarmTime.getTimeInMillis() < System.currentTimeMillis()) {
-            addTime = (24*60*60*1000);
+        for (int i = 0; i < 10; i++) {
+            this.notificationIntent = new Intent(getContext(), MyNotification.class);
+            this.notificationIntent.putExtra("notification_text", "BlaBla");
+            this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+            this.alarmTime = Calendar.getInstance();
+            this.alarmTime.setTimeInMillis(System.currentTimeMillis());
+            this.alarmTime.set(Calendar.HOUR_OF_DAY, 16);
+            this.alarmTime.set(Calendar.MINUTE, 5 + i);
+            this.alarmTime.set(Calendar.SECOND, 0);
+            int addTime = 0;
+            //IT NO DELETE ALARM IF TIME IS PASSED
+            if (this.alarmTime.getTimeInMillis() < System.currentTimeMillis()) {
+                addTime = (24 * 60 * 60 * 1000);
+            }
+            this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis() + addTime, this.notificationPendingIntent);
         }
-        this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis() + addTime, this.notificationPendingIntent);
         alarmIsSet = true;
         this.editor = sharedPreferences.edit();
         editor.putBoolean("alarm", alarmIsSet);
-        editor.commit();
+        editor.apply();
     }
 
     public void cancelAlarm() {
@@ -239,6 +219,6 @@ public class CalendarFragment extends Fragment {
         this.alarmIsSet = false;
         this.editor = sharedPreferences.edit();
         editor.putBoolean("alarm", alarmIsSet);
-        editor.commit();
+        editor.apply();
     }
 }

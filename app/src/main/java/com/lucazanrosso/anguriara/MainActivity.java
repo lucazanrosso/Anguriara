@@ -23,8 +23,6 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    public boolean alarmIsSet = false;
-
     public static Toolbar toolbar;
 
     private static String[] menu;
@@ -48,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        if (savedInstanceState != null) {
-//            alarmIsSet = savedInstanceState.getBoolean("STATE_ALARM");
-//        }
 
         setContentView(R.layout.activity_main);
         MainActivity.toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -136,16 +130,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_container, calendarFragment).commit();
         }
-
-//        if (! alarmIsSet) {
-
-
-
-//        }
-            //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
-//            alarmIsSet = true;
-//            savedInstanceState.putBoolean("STATE_ALARM", alarmIsSet);
-//        }
     }
 
     @Override

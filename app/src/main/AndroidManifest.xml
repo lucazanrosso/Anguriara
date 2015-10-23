@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <receiver android:name=".MyNotification" />
-        <service android:name=".MyService" android:enabled="true" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
