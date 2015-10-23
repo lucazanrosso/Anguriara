@@ -25,7 +25,7 @@ public class MyNotification extends BroadcastReceiver{
         this.notificationIcon = R.drawable.notification;
 
         Intent notificationIntent = new Intent(context, MainActivity.class);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        //notificationIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)

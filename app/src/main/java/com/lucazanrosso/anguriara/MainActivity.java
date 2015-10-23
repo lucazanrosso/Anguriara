@@ -18,6 +18,7 @@ import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -139,19 +140,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (! alarmIsSet) {
 
 
-//            alarmTime.setTimeInMillis(System.currentTimeMillis());
-            Calendar alarmTime = Calendar.getInstance();
-            alarmTime.set(Calendar.HOUR_OF_DAY, 22);
-            alarmTime.set(Calendar.MINUTE, 28);
-            alarmTime.set(Calendar.SECOND, 10);
-            Intent intent = new Intent(this, MyNotification.class);
-//        if (PendingIntent.getBroadcast(this, 0, intent, 0) == null) {
 
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            intent.putExtra("notification_text", "BlaBla");
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-            alarmManager.cancel(pendingIntent);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
 //        }
             //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
 //            alarmIsSet = true;

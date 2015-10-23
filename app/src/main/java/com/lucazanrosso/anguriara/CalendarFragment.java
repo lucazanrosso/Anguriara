@@ -6,11 +6,13 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +48,13 @@ public class CalendarFragment extends Fragment {
     private String[] dayFoods;
     private String[] dayOpeningTimes;
     private String cardViewTitle;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private boolean alarmIsSet;
+    Calendar alarmTime;
+    private Intent notificationIntent;
+    private PendingIntent notificationPendingIntent;
+    private AlarmManager notificationAlarmManager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,6 +85,25 @@ public class CalendarFragment extends Fragment {
 //      Calendars Fragment maybe have some problems. Move from portrait to landscape add many fragments.
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
         setMonthCalendar(Calendar.JULY, R.id.july_calendar);
+
+
+
+
+
+        this.sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        alarmIsSet = false;
+        alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
+
+        this.notificationIntent = new Intent(getContext(), MyNotification.class);
+        this.notificationIntent.putExtra("notification_text", "BlaBla");
+        this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), 0, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+        if (! alarmIsSet)
+            setAlarm();
+//        cancelAlarm();
+
+
+        Log.d("sharedP", "" + alarmIsSet);
 
         return this.view;
     }
@@ -168,10 +196,10 @@ public class CalendarFragment extends Fragment {
             button.setVisibility(View.GONE);
         }
 
-//        Intent intent = new Intent(getContext(), MyNotification.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(), 0, intent, 0);
-//        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, pendingIntent);
+//        Intent this.notificationIntent = new Intent(getContext(), MyNotification.class);
+//        PendingIntent this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), 0, this.notificationIntent, 0);
+//        AlarmManager this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+//        this.notificationAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, this.notificationPendingIntent);
     }
 
     public void setMonthCalendar(int month, int frameLayoutId) {
@@ -187,5 +215,30 @@ public class CalendarFragment extends Fragment {
         args.putSerializable("calendar", monthCalendar);
         monthFragment.setArguments(args);
         getActivity().getSupportFragmentManager().beginTransaction().add(frameLayoutId, monthFragment).commit();
+    }
+
+    public void setAlarm() {
+        this.alarmTime = Calendar.getInstance();
+        this.alarmTime.setTimeInMillis(System.currentTimeMillis());
+        this.alarmTime.set(Calendar.HOUR_OF_DAY, 15);
+        this.alarmTime.set(Calendar.MINUTE, 48);
+        this.alarmTime.set(Calendar.SECOND, 30);
+        int addTime = 0;
+        if (this.alarmTime.getTimeInMillis() < System.currentTimeMillis()) {
+            addTime = (24*60*60*1000);
+        }
+        this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis() + addTime, this.notificationPendingIntent);
+        alarmIsSet = true;
+        this.editor = sharedPreferences.edit();
+        editor.putBoolean("alarm", alarmIsSet);
+        editor.commit();
+    }
+
+    public void cancelAlarm() {
+        this.notificationAlarmManager.cancel(this.notificationPendingIntent);
+        this.alarmIsSet = false;
+        this.editor = sharedPreferences.edit();
+        editor.putBoolean("alarm", alarmIsSet);
+        editor.commit();
     }
 }
