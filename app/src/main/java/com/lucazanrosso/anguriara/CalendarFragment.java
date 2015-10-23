@@ -199,14 +199,11 @@ public class CalendarFragment extends Fragment {
             this.alarmTime = Calendar.getInstance();
             this.alarmTime.setTimeInMillis(System.currentTimeMillis());
             this.alarmTime.set(Calendar.HOUR_OF_DAY, 16);
-            this.alarmTime.set(Calendar.MINUTE, 5 + i);
+            this.alarmTime.set(Calendar.MINUTE, 20 + i);
             this.alarmTime.set(Calendar.SECOND, 0);
-            int addTime = 0;
-            //IT NO DELETE ALARM IF TIME IS PASSED
-            if (this.alarmTime.getTimeInMillis() < System.currentTimeMillis()) {
-                addTime = (24 * 60 * 60 * 1000);
+            if (! (this.alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
+                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis(), this.notificationPendingIntent);
             }
-            this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis() + addTime, this.notificationPendingIntent);
         }
         alarmIsSet = true;
         this.editor = sharedPreferences.edit();
