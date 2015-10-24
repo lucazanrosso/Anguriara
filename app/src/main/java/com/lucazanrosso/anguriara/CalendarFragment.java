@@ -2,9 +2,11 @@ package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -31,7 +33,7 @@ public class CalendarFragment extends Fragment {
     View view;
     Context context;
     private String fileName = "anguriara.ser";
-    private Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    private LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
     final static int YEAR = 2015;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     private Calendar today = new GregorianCalendar(2015, 5, 5);
@@ -86,15 +88,15 @@ public class CalendarFragment extends Fragment {
         alarmIsSet = false;
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
 
-//        if (! alarmIsSet)
+        if (! alarmIsSet)
             setAlarm();
 //        cancelAlarm();
 
         return this.view;
     }
 
-    public Map<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
-        Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
+        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
             LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", dayEvents[i]);
@@ -106,7 +108,7 @@ public class CalendarFragment extends Fragment {
         return calendar;
     }
 
-    public void serializeCalendar(Map<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
+    public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
         try {
             File file = new File(this.context.getFilesDir(), this.fileName);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -119,8 +121,8 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public Map<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
-        Map<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
+        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
             File file = new File(this.context.getFilesDir(), this.fileName);
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -193,15 +195,15 @@ public class CalendarFragment extends Fragment {
     public void setAlarm() {
 //        int i = 0;
 //        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             this.notificationIntent = new Intent(getContext(), MyNotification.class);
-            this.notificationIntent.putExtra("notification_text", "BlaBla");
+            this.notificationIntent.putExtra("notification_text", "Bla");
             this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
             this.alarmTime = Calendar.getInstance();
             this.alarmTime.setTimeInMillis(System.currentTimeMillis());
-            this.alarmTime.set(Calendar.HOUR_OF_DAY, 20);
-            this.alarmTime.set(Calendar.MINUTE, 50 + i);
+            this.alarmTime.set(Calendar.HOUR_OF_DAY, 22);
+            this.alarmTime.set(Calendar.MINUTE, 45 + i);
             this.alarmTime.set(Calendar.SECOND, 0);
             if (! (this.alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
                 this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis(), this.notificationPendingIntent);
@@ -212,6 +214,17 @@ public class CalendarFragment extends Fragment {
         this.editor = sharedPreferences.edit();
         editor.putBoolean("alarm", alarmIsSet);
         editor.apply();
+
+//        Intent intentBootReceiver = new Intent(getContext(), BootReceiver.class);
+//        intentBootReceiver.putExtra("calendar", calendar);
+//        getContext().sendBroadcast(intentBootReceiver);
+
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
     }
 
     public void cancelAlarm() {
@@ -220,5 +233,12 @@ public class CalendarFragment extends Fragment {
         this.editor = sharedPreferences.edit();
         editor.putBoolean("alarm", alarmIsSet);
         editor.apply();
+
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
+
+        pm.setComponentEnabledSetting(receiver,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
     }
 }
