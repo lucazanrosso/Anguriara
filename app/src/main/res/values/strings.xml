@@ -104,6 +104,7 @@
         <item>6</item>
     </integer-array>
     <string name="event">Evento</string>
+    <string name="open">Aperto</string>
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
     <string-array name="day_titles">
@@ -182,11 +183,11 @@
         <item>Hot dog</item>
         <item></item>
         <item></item>
-        <item>Panino con porcheta</item>
-        <item>Pizza</item>
+        <item>Panini con porcheta</item>
+        <item>Pizze</item>
         <item></item>
         <item></item>
-        <item>Salsiccia e fagioli</item>
+        <item>Salsiccie e fagioli</item>
         <item>Paella</item>
         <item></item>
         <item></item>
@@ -198,8 +199,8 @@
         <item>Costine e polenta</item>
         <item></item>
         <item></item>
-        <item>Salsiccia e fagioli</item>
-        <item>Galletto</item>
+        <item>Salsiccie e fagioli</item>
+        <item>Galletti</item>
         <item></item>
         <item></item>
         <item></item>
@@ -207,7 +208,7 @@
         <item>Bruschette</item>
         <item></item>
         <item></item>
-        <item>Pizza</item>
+        <item>Pizze</item>
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
@@ -246,6 +247,7 @@
         <item></item>
     </string-array>
     <string name="standard_opening_time">20:30</string>
+    <string name="and_much_more">e molto altro ancora</string>
     <string name="june">Giugno</string>
     <string name="july">Luglio</string>
     <string name="sunday">D</string>

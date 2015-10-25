@@ -21,7 +21,14 @@ public class BootReceiver extends BroadcastReceiver {
             LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = deserializeCalendar(context);
             int i = 0;
             for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
-                String notificationText = context.getResources().getString(R.string.event) + ": " + entry.getValue().get("event") + ", " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
+                String notificationText;
+                if (! entry.getValue().get("event").isEmpty()) {
+                    notificationText = entry.getValue().get("event");
+                    if (!entry.getValue().get("food").isEmpty())
+                        notificationText += ", " + entry.getValue().get("food");
+                    notificationText +=  " " + context.getResources().getString(R.string.and_much_more);
+                } else
+                    notificationText = context.getResources().getString(R.string.open);
                 Intent notificationIntent = new Intent(context, MyNotification.class);
                 notificationIntent.putExtra("notification_text", notificationText);
                 PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -30,7 +37,7 @@ public class BootReceiver extends BroadcastReceiver {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //                alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2015, 9, 25, 6, i + 25);
+                alarmTime.set(2015, 9, 25, 20, i);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
                     notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), notificationPendingIntent);
                 }

@@ -85,7 +85,6 @@ public class CalendarFragment extends Fragment {
         this.sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         alarmIsSet = false;
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
-
         if (! alarmIsSet)
             setAlarm();
 //        cancelAlarm();
@@ -193,7 +192,14 @@ public class CalendarFragment extends Fragment {
     public void setAlarm() {
         int i = 0;
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
-            String notificationText = getResources().getString(R.string.event) + ": " + entry.getValue().get("event") + ", " + getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
+            String notificationText;
+            if (! entry.getValue().get("event").isEmpty()) {
+                notificationText = entry.getValue().get("event");
+                if (!entry.getValue().get("food").isEmpty())
+                    notificationText += ", " + entry.getValue().get("food");
+                notificationText +=  " " + getResources().getString(R.string.and_much_more);
+            } else
+                notificationText = getResources().getString(R.string.open);
             Intent notificationIntent = new Intent(getContext(), MyNotification.class);
             notificationIntent.putExtra("notification_text", notificationText);
             this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -202,10 +208,9 @@ public class CalendarFragment extends Fragment {
             alarmTime.setTimeInMillis(System.currentTimeMillis());
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
             //Test
-            alarmTime.set(2015, 9, 25, 18, i + 25);
-            if (! (alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
+            alarmTime.set(2015, 9, 25, 21, i + 10);
+            if (! (alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                 this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
-            }
             i++;
         }
         alarmIsSet = true;
