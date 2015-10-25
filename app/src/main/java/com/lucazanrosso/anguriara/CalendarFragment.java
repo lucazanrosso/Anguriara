@@ -49,8 +49,6 @@ public class CalendarFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private boolean alarmIsSet;
-    Calendar alarmTime;
-    private Intent notificationIntent;
     private PendingIntent notificationPendingIntent;
     private AlarmManager notificationAlarmManager;
 
@@ -193,31 +191,27 @@ public class CalendarFragment extends Fragment {
     }
 
     public void setAlarm() {
-//        int i = 0;
-//        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
-        for (int i = 0; i < 10; i++) {
-            this.notificationIntent = new Intent(getContext(), MyNotification.class);
-            this.notificationIntent.putExtra("notification_text", "Bla");
-            this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        int i = 0;
+        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
+            String notificationText = getResources().getString(R.string.event) + ": " + entry.getValue().get("event") + ", " + getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
+            Intent notificationIntent = new Intent(getContext(), MyNotification.class);
+            notificationIntent.putExtra("notification_text", notificationText);
+            this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-            this.alarmTime = Calendar.getInstance();
-            this.alarmTime.setTimeInMillis(System.currentTimeMillis());
-            this.alarmTime.set(Calendar.HOUR_OF_DAY, 22);
-            this.alarmTime.set(Calendar.MINUTE, 45 + i);
-            this.alarmTime.set(Calendar.SECOND, 0);
-            if (! (this.alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
-                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis(), this.notificationPendingIntent);
+            Calendar alarmTime = Calendar.getInstance();
+            alarmTime.setTimeInMillis(System.currentTimeMillis());
+//           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
+            //Test
+            alarmTime.set(2015, 9, 25, 18, i + 25);
+            if (! (alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
+                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
             }
-//            i++;
+            i++;
         }
         alarmIsSet = true;
         this.editor = sharedPreferences.edit();
         editor.putBoolean("alarm", alarmIsSet);
         editor.apply();
-
-//        Intent intentBootReceiver = new Intent(getContext(), BootReceiver.class);
-//        intentBootReceiver.putExtra("calendar", calendar);
-//        getContext().sendBroadcast(intentBootReceiver);
 
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
         PackageManager pm = context.getPackageManager();

@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,47 +13,37 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
-/**
- * Created by Luca on 23/10/2015.
- */
 public class BootReceiver extends BroadcastReceiver {
-
-    Context context;
-    private String fileName = "anguriara.ser";
-    private LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar;
-    Calendar alarmTime;
-    private Intent notificationIntent;
-    private PendingIntent notificationPendingIntent;
-    private AlarmManager notificationAlarmManager;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-//            this.calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) intent.getSerializableExtra("calendar");
-
-            this.context = context;
-            this.calendar = deserializeCalendar();
-            //Log.d("calendar", calendar.get(new GregorianCalendar(2015, 5, 5)).get("event"));
-            for (int i = 0; i < 10; i++) {
-                this.notificationIntent = new Intent(context, MyNotification.class);
-                this.notificationIntent.putExtra("notification_text", calendar.get(new GregorianCalendar(2015, 5, 5)).get("event"));
-                this.notificationPendingIntent = PendingIntent.getBroadcast(context, i, this.notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                this.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                this.alarmTime = Calendar.getInstance();
-                this.alarmTime.setTimeInMillis(System.currentTimeMillis());
-                this.alarmTime.set(Calendar.HOUR_OF_DAY, 22);
-                this.alarmTime.set(Calendar.MINUTE, 45 + i);
-                this.alarmTime.set(Calendar.SECOND, 0);
-                if (!(this.alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
-                    this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, this.alarmTime.getTimeInMillis(), this.notificationPendingIntent);
+            LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = deserializeCalendar(context);
+            int i = 0;
+            for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
+                String notificationText = context.getResources().getString(R.string.event) + ": " + entry.getValue().get("event") + ", " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
+                Intent notificationIntent = new Intent(context, MyNotification.class);
+                notificationIntent.putExtra("notification_text", notificationText);
+                PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                Calendar alarmTime = Calendar.getInstance();
+                alarmTime.setTimeInMillis(System.currentTimeMillis());
+//                alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
+                //Test
+                alarmTime.set(2015, 9, 25, 6, i + 25);
+                if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis())) {
+                    notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), notificationPendingIntent);
                 }
+                i++;
             }
         }
     }
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
+
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(Context context){
+        String fileName = "anguriara.ser";
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
-            File file = new File(context.getFilesDir(), this.fileName);
+            File file = new File(context.getFilesDir(), fileName);
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
