@@ -55,13 +55,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
         mRecyclerView.setAdapter(mAdapter);
 
-        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
+        final GestureDetector mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
                 return true;
             }
         });
-
         mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
