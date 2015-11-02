@@ -15,9 +15,10 @@
         android:id="@+id/drawer_row_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
         android:textSize="16sp"
-        android:textStyle="bold"
+        android:textColor="@color/text"
         android:paddingLeft="72dp"
-        android:paddingTop="12dp" />
+        android:paddingTop="13dp" />
 
 </RelativeLayout>
