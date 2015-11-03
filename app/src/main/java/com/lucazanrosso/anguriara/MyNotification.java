@@ -20,18 +20,18 @@ public class MyNotification extends BroadcastReceiver{
             this.notificationText = intent.getStringExtra("notification_text");
             this.notificationIcon = R.drawable.notification;
 
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
-                    .setSmallIcon(this.notificationIcon)
-                    .setContentTitle(this.notificationTitle)
-                    .setContentText(this.notificationText);
-            Intent resultIntent = new Intent(context, MainActivity.class);
-            //resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            mBuilder.setContentIntent(resultPendingIntent);
-            mBuilder.setDefaults(Notification.DEFAULT_SOUND);
-            mBuilder.setAutoCancel(true);
-            NotificationManager mNotificationManager =
-                    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.notify(1, mBuilder.build());
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+                .setSmallIcon(this.notificationIcon)
+                .setContentTitle(this.notificationTitle)
+                .setContentText(this.notificationText);
+        Intent resultIntent = new Intent(context, MainActivity.class);
+        //resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.setDefaults(Notification.DEFAULT_SOUND);
+        mBuilder.setAutoCancel(true);
+        NotificationManager mNotificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1, mBuilder.build());
     }
 }

@@ -78,7 +78,6 @@ public class CalendarFragment extends Fragment {
 //        }
 
         thisDay();
-//      Calendars Fragment maybe have some problems. Move from portrait to landscape add many fragments.
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
         setMonthCalendar(Calendar.JULY, R.id.july_calendar);
 
@@ -87,7 +86,6 @@ public class CalendarFragment extends Fragment {
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
         if (! alarmIsSet)
             setAlarm();
-//        cancelAlarm();
 
         return this.view;
     }
@@ -186,7 +184,7 @@ public class CalendarFragment extends Fragment {
         args.putInt("month", month);
         args.putSerializable("calendar", monthCalendar);
         monthFragment.setArguments(args);
-        getActivity().getSupportFragmentManager().beginTransaction().add(frameLayoutId, monthFragment).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(frameLayoutId, monthFragment).commit();
     }
 
     public void setAlarm() {
