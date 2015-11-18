@@ -1,6 +1,8 @@
 package com.lucazanrosso.anguriara;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_settings_black_24dp};
     private int drawerHeaderImage = R.drawable.logo;
     private Integer[] drawerDividersPosition = {5};
-    //private Fragment[] fragments = {new CalendarFragment(), new CalendarFragment(), new CalendarFragment()};
+    private Fragment[] fragments = {null,
+            new CalendarFragment(),
+            new CalendarFragment(),
+            new CalendarFragment(),
+            new CalendarFragment(),
+            null,
+            new SettingsFragment()};
 
 
     private RecyclerView mRecyclerView;
@@ -66,16 +74,16 @@ public class MainActivity extends AppCompatActivity {
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
                 View child = rv.findChildViewUnder(e.getX(),e.getY());
 
-                if(child!=null && mGestureDetector.onTouchEvent(e)){
+                if(child != null && mGestureDetector.onTouchEvent(e)){
 
-                    mDrawer.closeDrawers();
-//                    Fragment calendarFragment = fragments[rv.getChildPosition(child)];
-//                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.frame_container, calendarFragment);
-//                    transaction.addToBackStack(null);
-//                    transaction.commit();
-                    Toast.makeText(MainActivity.this,"The Item Clicked is: "+rv.getChildPosition(child), Toast.LENGTH_SHORT).show();
-                    return true;
+                    if (fragments[rv.getChildAdapterPosition(child)] != null) {
+                        mDrawer.closeDrawers();
+                        Fragment calendarFragment = fragments[rv.getChildAdapterPosition(child)];
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_container, calendarFragment);
+                        transaction.commit();
+                        return true;
+                    }
                 }
                 return false;
             }
