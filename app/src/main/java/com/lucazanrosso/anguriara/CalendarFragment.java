@@ -70,12 +70,12 @@ public class CalendarFragment extends Fragment {
 
 
         File file = new File(this.context.getFilesDir(), this.fileName);
-//        if (file.exists()) {
-//            this.calendar = deserializeCalendar();
-//        } else {
+        if (file.exists()) {
+            this.calendar = deserializeCalendar();
+        } else {
             this.calendar = setCalendar();
             serializeCalendar(this.calendar);
-//        }
+        }
 
         thisDay();
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
