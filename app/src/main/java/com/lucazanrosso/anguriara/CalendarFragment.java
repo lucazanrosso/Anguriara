@@ -1,12 +1,5 @@
 package com.lucazanrosso.anguriara;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -22,11 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -36,26 +24,19 @@ import java.util.Map;
 public class CalendarFragment extends Fragment {
 
     View view;
-    Context context;
 
     private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
     private String[] months;
 
     private String cardViewTitle;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-    private boolean alarmIsSet;
-    private PendingIntent notificationPendingIntent;
-    private AlarmManager notificationAlarmManager;
 
-//    private Calendar date;
-//    private String toolbarTitle;
+    private Calendar date;
+    private String toolbarTitle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        this.context = view.getContext();
 
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
 
@@ -65,12 +46,6 @@ public class CalendarFragment extends Fragment {
         thisDay();
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
         setMonthCalendar(Calendar.JULY, R.id.july_calendar);
-
-        this.sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        alarmIsSet = false;
-        alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
-        if (! alarmIsSet)
-            setAlarm();
 
         return this.view;
     }
@@ -132,20 +107,24 @@ public class CalendarFragment extends Fragment {
         args.putSerializable("calendar", monthCalendar);
         monthFragment.setArguments(args);
         getActivity().getSupportFragmentManager().beginTransaction().replace(frameLayoutId, monthFragment).commit();
+
+
+//        LayoutInflater inflater = LayoutInflater.from(getContext());
+//        View monthView = inflater.inflate(R.layout.fragment_month, null, false);
 //        this.date = new GregorianCalendar(2015, month, 1);
 //
-//        LinearLayout calendarLinearLayout = (LinearLayout) view.findViewById(R.id.calendar_layout);
+//        LinearLayout calendarLinearLayout = (LinearLayout) monthView.findViewById(R.id.calendar_layout);
 //        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
 //                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
 //                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-//        TextView textView = (TextView) view.findViewById(R.id.month);
+//        TextView textView = (TextView) monthView.findViewById(R.id.month);
 //
 //        Iterator iterator = monthCalendar.entrySet().iterator();
 //        if (iterator.hasNext()) {
 //            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
 //
-//            textView.setText("Bla");
+//        textView.setText(months[month]);
 //            for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
 //                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
 //                weekLinearLayout.setLayoutParams(weekLayoutParams);
@@ -194,57 +173,6 @@ public class CalendarFragment extends Fragment {
 //                calendarLinearLayout.addView(weekLinearLayout);
 //            }
 //        }
-    }
-
-    public void setAlarm() {
-        int i = 0;
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
-            String notificationText;
-            if (! entry.getValue().get("event").isEmpty()) {
-                notificationText = entry.getValue().get("event");
-                if (!entry.getValue().get("food").isEmpty())
-                    notificationText += ", " + entry.getValue().get("food");
-                notificationText +=  " " + getResources().getString(R.string.and_much_more);
-            } else
-                notificationText = getResources().getString(R.string.open);
-            Intent notificationIntent = new Intent(getContext(), MyNotification.class);
-            notificationIntent.putExtra("notification_text", notificationText);
-            this.notificationPendingIntent = PendingIntent.getBroadcast(getContext(), i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            this.notificationAlarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-            Calendar alarmTime = Calendar.getInstance();
-            alarmTime.setTimeInMillis(System.currentTimeMillis());
-//           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
-            //Test
-            alarmTime.set(2015, 9, 25, 21, i + 10);
-            if (! (alarmTime.getTimeInMillis() < System.currentTimeMillis()))
-                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
-            i++;
-        }
-        alarmIsSet = true;
-        this.editor = sharedPreferences.edit();
-        editor.putBoolean("alarm", alarmIsSet);
-        editor.apply();
-
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
-    }
-
-    public void cancelAlarm() {
-        this.notificationAlarmManager.cancel(this.notificationPendingIntent);
-        this.alarmIsSet = false;
-        this.editor = sharedPreferences.edit();
-        editor.putBoolean("alarm", alarmIsSet);
-        editor.apply();
-
-        ComponentName receiver = new ComponentName(context, BootReceiver.class);
-        PackageManager pm = context.getPackageManager();
-
-        pm.setComponentEnabledSetting(receiver,
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP);
+//        return monthView;
     }
 }
