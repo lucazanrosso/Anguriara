@@ -7,15 +7,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
@@ -25,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -32,25 +37,20 @@ public class CalendarFragment extends Fragment {
 
     View view;
     Context context;
-    private String fileName = "anguriara.ser";
-    private LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
-    final static int YEAR = 2015;
-    final static int ANGURIARA_NUMBER_OF_DAYS = 31;
+
     private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
     private String[] months;
-    private int[] anguriaraMonths;
-    private int[] anguriaraDaysOfMonth;
-    private String[] dayEvents;
-    private String[] dayEventsDetails;
-    private String[] dayFoods;
-    private String[] dayOpeningTimes;
+
     private String cardViewTitle;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private boolean alarmIsSet;
     private PendingIntent notificationPendingIntent;
     private AlarmManager notificationAlarmManager;
+
+//    private Calendar date;
+//    private String toolbarTitle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,21 +61,6 @@ public class CalendarFragment extends Fragment {
 
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
-        this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
-        this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
-        this.dayEvents = getResources().getStringArray(R.array.day_events);
-        this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
-        this.dayFoods = getResources().getStringArray(R.array.day_foods);
-        this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
-
-
-        File file = new File(this.context.getFilesDir(), this.fileName);
-        if (file.exists()) {
-            this.calendar = deserializeCalendar();
-        } else {
-            this.calendar = setCalendar();
-            serializeCalendar(this.calendar);
-        }
 
         thisDay();
         setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
@@ -90,47 +75,6 @@ public class CalendarFragment extends Fragment {
         return this.view;
     }
 
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
-        for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
-            LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
-            eveningMap.put("event", dayEvents[i]);
-            eveningMap.put("event_details", dayEventsDetails[i]);
-            eveningMap.put("food", dayFoods[i]);
-            eveningMap.put("openingTime", dayOpeningTimes[i]);
-            calendar.put(new GregorianCalendar(YEAR, anguriaraMonths[i], anguriaraDaysOfMonth[i]), eveningMap);
-        }
-        return calendar;
-    }
-
-    public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
-        try {
-            File file = new File(this.context.getFilesDir(), this.fileName);
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(calendar);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
-        try {
-            File file = new File(this.context.getFilesDir(), this.fileName);
-            FileInputStream fileInputStream = new FileInputStream(file);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return calendar;
-    }
-
     public void thisDay () {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
@@ -143,14 +87,17 @@ public class CalendarFragment extends Fragment {
         this.cardViewTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
         titleTextView.setText(this.cardViewTitle);
 
-        if (this.calendar.containsKey(this.today)) {
+        if (MainActivity.calendar.containsKey(this.today)) {
             imageView.setImageResource(R.drawable.open);
-            String dayEventAndFood = getResources().getString(R.string.event) + ": " + calendar.get(today).get("event") + "\n" + getResources().getString(R.string.food) + ": " + calendar.get(today).get("food");
+            String dayEventAndFood = getResources().getString(R.string.event) + ": " +
+                    MainActivity.calendar.get(today).get("event") + "\n" +
+                    getResources().getString(R.string.food) + ": " +
+                    MainActivity.calendar.get(today).get("food");
             subTitleTextView.setText(dayEventAndFood);
 
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", today);
-            dayArgs.putSerializable("day", calendar.get(today));
+            dayArgs.putSerializable("day", MainActivity.calendar.get(today));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -173,8 +120,8 @@ public class CalendarFragment extends Fragment {
     }
 
     public void setMonthCalendar(int month, int frameLayoutId) {
-        LinkedHashMap<GregorianCalendar, Map<String, String>> monthCalendar = new LinkedHashMap<>();
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
+        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
+        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
                 monthCalendar.put(entry.getKey(), entry.getValue());
             }
@@ -185,11 +132,73 @@ public class CalendarFragment extends Fragment {
         args.putSerializable("calendar", monthCalendar);
         monthFragment.setArguments(args);
         getActivity().getSupportFragmentManager().beginTransaction().replace(frameLayoutId, monthFragment).commit();
+//        this.date = new GregorianCalendar(2015, month, 1);
+//
+//        LinearLayout calendarLinearLayout = (LinearLayout) view.findViewById(R.id.calendar_layout);
+//        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
+//                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+//        TextView textView = (TextView) view.findViewById(R.id.month);
+//
+//        Iterator iterator = monthCalendar.entrySet().iterator();
+//        if (iterator.hasNext()) {
+//            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+//
+//            textView.setText("Bla");
+//            for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
+//                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
+//                weekLinearLayout.setLayoutParams(weekLayoutParams);
+//                for (int j = 0; j <= 6; j++) {
+//                    Button button = new Button(getActivity());
+//                    button.setLayoutParams(dayLayoutParams);
+//                    button.setBackgroundResource(0);
+//                    if (((this.date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && this.date.get(Calendar.MONTH) == month) {
+//                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+//                        button.setText(Integer.toString(this.date.get(Calendar.DAY_OF_MONTH)));
+//                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
+//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
+//                            button.setTypeface(null, Typeface.BOLD);
+//
+//                            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+//                            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+//                            String thisMonth = months[date.get(Calendar.MONTH)];
+//                            this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+//
+//                            final Bundle dayArgs = new Bundle();
+//                            dayArgs.putSerializable("date", date);
+//                            dayArgs.putSerializable("day", monthCalendar.get(date));
+//                            button.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    MainActivity.toolbar.setTitle(toolbarTitle);
+//                                    DayFragment dayFragment = new DayFragment();
+//                                    dayFragment.setArguments(dayArgs);
+//                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                    transaction.replace(R.id.frame_container, dayFragment);
+//                                    transaction.addToBackStack(null);
+//                                    transaction.commit();
+//                                }
+//                            });
+//                            if (iterator.hasNext()) {
+//                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+//                            }
+//                        } else {
+//                            button.setEnabled(false);
+//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
+//                        }
+//                        this.date.add(Calendar.DAY_OF_YEAR, 1);
+//                    }
+//                    weekLinearLayout.addView(button);
+//                }
+//                calendarLinearLayout.addView(weekLinearLayout);
+//            }
+//        }
     }
 
     public void setAlarm() {
         int i = 0;
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : this.calendar.entrySet()) {
+        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             String notificationText;
             if (! entry.getValue().get("event").isEmpty()) {
                 notificationText = entry.getValue().get("event");

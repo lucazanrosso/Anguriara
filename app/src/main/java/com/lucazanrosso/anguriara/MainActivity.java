@@ -14,7 +14,14 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.GregorianCalendar;
+import java.util.LinkedHashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout mDrawer;
     ActionBarDrawerToggle mDrawerToggle;
 
+    private String fileName = "anguriara.ser";
+    public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    final static int YEAR = 2015;
+    final static int ANGURIARA_NUMBER_OF_DAYS = 31;
+    private int[] anguriaraMonths;
+    private int[] anguriaraDaysOfMonth;
+    private String[] dayEvents;
+    private String[] dayEventsDetails;
+    private String[] dayFoods;
+    private String[] dayOpeningTimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         menu = getResources().getStringArray(R.array.menu);
 
-//        RecyclerView.LayoutParams recyclerViewParams  = new RecyclerView.LayoutParams(
-//                        RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.MATCH_PARENT );
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//        mRecyclerView.setLayoutParams(recyclerViewParams);
         mRecyclerView.setHasFixedSize(true);
         mAdapter = new MyAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
         mRecyclerView.setAdapter(mAdapter);
@@ -72,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                View child = rv.findChildViewUnder(e.getX(),e.getY());
+                View child = rv.findChildViewUnder(e.getX(), e.getY());
 
-                if(child != null && mGestureDetector.onTouchEvent(e)){
+                if (child != null && mGestureDetector.onTouchEvent(e)) {
 
                     if (fragments[rv.getChildAdapterPosition(child)] != null) {
                         mDrawer.closeDrawers();
@@ -117,6 +131,21 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
+        this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
+        this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
+        this.dayEvents = getResources().getStringArray(R.array.day_events);
+        this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
+        this.dayFoods = getResources().getStringArray(R.array.day_foods);
+        this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
+
+        File file = new File(this.getFilesDir(), this.fileName);
+        if (file.exists()) {
+            this.calendar = deserializeCalendar();
+        } else {
+            this.calendar = setCalendar();
+            serializeCalendar(this.calendar);
+        }
+
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
         if (findViewById(R.id.frame_container) != null) {
@@ -149,6 +178,47 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
+        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+        for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
+            LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
+            eveningMap.put("event", this.dayEvents[i]);
+            eveningMap.put("event_details", this.dayEventsDetails[i]);
+            eveningMap.put("food", this.dayFoods[i]);
+            eveningMap.put("openingTime", this.dayOpeningTimes[i]);
+            calendar.put(new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
+        }
+        return calendar;
+    }
+
+    public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
+        try {
+            File file = new File(this.getFilesDir(), this.fileName);
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(calendar);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
+        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+        try {
+            File file = new File(this.getFilesDir(), this.fileName);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
+            objectInputStream.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return calendar;
     }
 
 }
