@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_container, calendarFragment).commit();
-            //getSupportFragmentManager().add
         }
     }
 
@@ -300,11 +299,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
+        if (getSupportFragmentManager().findFragmentById(R.id.frame_container) instanceof CalendarFragment)
+            finish();
         getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        if (!(getSupportFragmentManager().findFragmentById(R.id.frame_container) instanceof CalendarFragment)) {
-            return;
-        } else {
-            super.onBackPressed();
-        }
     }
 }
