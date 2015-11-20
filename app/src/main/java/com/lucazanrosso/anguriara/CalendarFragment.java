@@ -38,14 +38,16 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
+        LinearLayout calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
+
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
 
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
         thisDay();
-        setMonthCalendar(Calendar.JUNE, R.id.june_calendar);
-        setMonthCalendar(Calendar.JULY, R.id.july_calendar);
+        calendarLayout.addView(setMonthCalendar(Calendar.JUNE));
+        calendarLayout.addView(setMonthCalendar(Calendar.JULY));
 
         return this.view;
     }
@@ -94,85 +96,78 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    public void setMonthCalendar(int month, int frameLayoutId) {
+    public View setMonthCalendar(int month) {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
                 monthCalendar.put(entry.getKey(), entry.getValue());
             }
         }
-        MonthFragment monthFragment = new MonthFragment();
-        Bundle args = new Bundle();
-        args.putInt("month", month);
-        args.putSerializable("calendar", monthCalendar);
-        monthFragment.setArguments(args);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(frameLayoutId, monthFragment).commit();
 
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View monthView = inflater.inflate(R.layout.fragment_month, null, false);
+        this.date = new GregorianCalendar(2015, month, 1);
 
-//        LayoutInflater inflater = LayoutInflater.from(getContext());
-//        View monthView = inflater.inflate(R.layout.fragment_month, null, false);
-//        this.date = new GregorianCalendar(2015, month, 1);
-//
-//        LinearLayout calendarLinearLayout = (LinearLayout) monthView.findViewById(R.id.calendar_layout);
-//        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
-//                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-//        TextView textView = (TextView) monthView.findViewById(R.id.month);
-//
-//        Iterator iterator = monthCalendar.entrySet().iterator();
-//        if (iterator.hasNext()) {
-//            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
-//
-//        textView.setText(months[month]);
-//            for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
-//                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
-//                weekLinearLayout.setLayoutParams(weekLayoutParams);
-//                for (int j = 0; j <= 6; j++) {
-//                    Button button = new Button(getActivity());
-//                    button.setLayoutParams(dayLayoutParams);
-//                    button.setBackgroundResource(0);
-//                    if (((this.date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && this.date.get(Calendar.MONTH) == month) {
-//                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-//                        button.setText(Integer.toString(this.date.get(Calendar.DAY_OF_MONTH)));
-//                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
-//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
-//                            button.setTypeface(null, Typeface.BOLD);
-//
-//                            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-//                            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-//                            String thisMonth = months[date.get(Calendar.MONTH)];
-//                            this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-//
-//                            final Bundle dayArgs = new Bundle();
-//                            dayArgs.putSerializable("date", date);
-//                            dayArgs.putSerializable("day", monthCalendar.get(date));
-//                            button.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    MainActivity.toolbar.setTitle(toolbarTitle);
-//                                    DayFragment dayFragment = new DayFragment();
-//                                    dayFragment.setArguments(dayArgs);
-//                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                                    transaction.replace(R.id.frame_container, dayFragment);
-//                                    transaction.addToBackStack(null);
-//                                    transaction.commit();
-//                                }
-//                            });
-//                            if (iterator.hasNext()) {
-//                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
-//                            }
-//                        } else {
-//                            button.setEnabled(false);
-//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
-//                        }
-//                        this.date.add(Calendar.DAY_OF_YEAR, 1);
-//                    }
-//                    weekLinearLayout.addView(button);
-//                }
-//                calendarLinearLayout.addView(weekLinearLayout);
-//            }
-//        }
-//        return monthView;
+        LinearLayout calendarLinearLayout = (LinearLayout) monthView.findViewById(R.id.month_layout);
+        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+        TextView textView = (TextView) monthView.findViewById(R.id.month);
+
+        Iterator iterator = monthCalendar.entrySet().iterator();
+        if (iterator.hasNext()) {
+            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+
+        textView.setText(months[month]);
+            for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
+                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
+                weekLinearLayout.setLayoutParams(weekLayoutParams);
+                for (int j = 0; j <= 6; j++) {
+                    Button button = new Button(getActivity());
+                    button.setLayoutParams(dayLayoutParams);
+                    button.setBackgroundResource(0);
+                    if (((this.date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && this.date.get(Calendar.MONTH) == month) {
+                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                        button.setText(Integer.toString(this.date.get(Calendar.DAY_OF_MONTH)));
+                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
+                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
+                            button.setTypeface(null, Typeface.BOLD);
+
+                            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+                            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                            String thisMonth = months[date.get(Calendar.MONTH)];
+                            this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+
+                            final Bundle dayArgs = new Bundle();
+                            dayArgs.putSerializable("date", date);
+                            dayArgs.putSerializable("day", monthCalendar.get(date));
+                            button.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    MainActivity.toolbar.setTitle(toolbarTitle);
+                                    DayFragment dayFragment = new DayFragment();
+                                    dayFragment.setArguments(dayArgs);
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_container, dayFragment);
+                                    transaction.addToBackStack(null);
+                                    transaction.commit();
+                                }
+                            });
+                            if (iterator.hasNext()) {
+                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+                            }
+                        } else {
+                            button.setEnabled(false);
+                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
+                        }
+                        this.date.add(Calendar.DAY_OF_YEAR, 1);
+                    }
+                    weekLinearLayout.addView(button);
+                }
+                calendarLinearLayout.addView(weekLinearLayout);
+            }
+        }
+        return monthView;
     }
 }
