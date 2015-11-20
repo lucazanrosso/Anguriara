@@ -9,12 +9,14 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -109,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         Fragment calendarFragment = fragments[rv.getChildAdapterPosition(child)];
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_container, calendarFragment);
+                        transaction.addToBackStack("secondary");
                         transaction.commit();
                         return true;
                     }
@@ -136,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
             }
+
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -154,16 +158,16 @@ public class MainActivity extends AppCompatActivity {
 
         File file = new File(this.getFilesDir(), this.fileName);
         if (file.exists()) {
-            this.calendar = deserializeCalendar();
+            MainActivity.calendar = deserializeCalendar();
         } else {
-            this.calendar = setCalendar();
-            serializeCalendar(this.calendar);
+            MainActivity.calendar = setCalendar();
+            serializeCalendar(MainActivity.calendar);
         }
 
         this.sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         alarmIsSet = false;
         alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
-        if (! alarmIsSet)
+        if (!alarmIsSet)
             setAlarm();
 
         // Check that the activity is using the layout version with
@@ -178,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_container, calendarFragment).commit();
+            //getSupportFragmentManager().add
         }
     }
 
@@ -208,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
             eveningMap.put("event_details", this.dayEventsDetails[i]);
             eveningMap.put("food", this.dayFoods[i]);
             eveningMap.put("openingTime", this.dayOpeningTimes[i]);
-            calendar.put(new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
+            calendar.put(new GregorianCalendar(MainActivity.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
         }
         return calendar;
     }
@@ -226,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(){
+    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar() {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
             File file = new File(this.getFilesDir(), this.fileName);
@@ -245,11 +250,11 @@ public class MainActivity extends AppCompatActivity {
         int i = 0;
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             String notificationText;
-            if (! entry.getValue().get("event").isEmpty()) {
+            if (!entry.getValue().get("event").isEmpty()) {
                 notificationText = entry.getValue().get("event");
                 if (!entry.getValue().get("food").isEmpty())
                     notificationText += ", " + entry.getValue().get("food");
-                notificationText +=  " " + getResources().getString(R.string.and_much_more);
+                notificationText += " " + getResources().getString(R.string.and_much_more);
             } else
                 notificationText = getResources().getString(R.string.open);
             Intent notificationIntent = new Intent(this, MyNotification.class);
@@ -261,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
             //Test
             alarmTime.set(2015, 9, 25, 21, i + 10);
-            if (! (alarmTime.getTimeInMillis() < System.currentTimeMillis()))
+            if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                 this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
             i++;
         }
@@ -293,4 +298,13 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.DONT_KILL_APP);
     }
 
+    @Override
+    public void onBackPressed(){
+        getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        if (!(getSupportFragmentManager().findFragmentById(R.id.frame_container) instanceof CalendarFragment)) {
+            return;
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

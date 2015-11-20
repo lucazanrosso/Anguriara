@@ -83,7 +83,7 @@ public class CalendarFragment extends Fragment {
                     dayFragment.setArguments(dayArgs);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_container, dayFragment);
-                    transaction.addToBackStack(null);
+                    transaction.addToBackStack("secondary");
                     transaction.commit();
                 }
             });
@@ -120,14 +120,15 @@ public class CalendarFragment extends Fragment {
             Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
 
         textView.setText(months[month]);
-            for (int i = 1; i <= this.date.get(Calendar.DAY_OF_MONTH); i++) {
+            while (month == this.date.get(Calendar.MONTH)) {
                 LinearLayout weekLinearLayout = new LinearLayout(getActivity());
                 weekLinearLayout.setLayoutParams(weekLayoutParams);
                 for (int j = 0; j <= 6; j++) {
-                    Button button = new Button(getActivity());
-                    button.setLayoutParams(dayLayoutParams);
-                    button.setBackgroundResource(0);
                     if (((this.date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && this.date.get(Calendar.MONTH) == month) {
+                        Button button = new Button(getActivity());
+                        button.setLayoutParams(dayLayoutParams);
+                        button.setBackgroundResource(0);
+                        button.setText("ciao");
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                         button.setText(Integer.toString(this.date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
@@ -150,20 +151,23 @@ public class CalendarFragment extends Fragment {
                                     dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_container, dayFragment);
-                                    transaction.addToBackStack(null);
+                                    transaction.addToBackStack("secondary");
                                     transaction.commit();
                                 }
                             });
-                            if (iterator.hasNext()) {
+                            if (iterator.hasNext())
                                 entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
-                            }
                         } else {
                             button.setEnabled(false);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
                         }
+                        weekLinearLayout.addView(button);
                         this.date.add(Calendar.DAY_OF_YEAR, 1);
+                    } else {
+                        View voidView = new View(getActivity());
+                        voidView.setLayoutParams(dayLayoutParams);
+                        weekLinearLayout.addView(voidView);
                     }
-                    weekLinearLayout.addView(button);
                 }
                 calendarLinearLayout.addView(weekLinearLayout);
             }
