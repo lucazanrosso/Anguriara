@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/month"
+            <Spinner
+                android:id="@+id/month_spinner"
                 style="@style/title"
                 android:textColor="@color/white"
                 android:background="@color/primary"

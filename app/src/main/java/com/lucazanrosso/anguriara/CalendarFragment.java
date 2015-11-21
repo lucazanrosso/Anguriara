@@ -10,10 +10,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -22,11 +24,12 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
     View view;
+    View monthView;
 
-//    ScrollView scrollView;
+    LinearLayout calendarLayout;
 
     private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
@@ -40,10 +43,9 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        this.monthView = inflater.inflate(R.layout.fragment_month, null, false);
 
-//        this.scrollView = (ScrollView) view.findViewById(R.id.calendar_scroll_view);
-
-        LinearLayout calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
+        this.calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
 
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
 
@@ -51,36 +53,20 @@ public class CalendarFragment extends Fragment {
         this.months = getResources().getStringArray(R.array.months);
 
         thisDay();
+
+        Spinner monthSpinner = (Spinner) monthView.findViewById(R.id.month_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.anguriara_months_activity, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner.setAdapter(adapter);
+
+        monthSpinner.setOnItemSelectedListener(this);
+
         calendarLayout.addView(setMonthCalendar(Calendar.JUNE));
-        calendarLayout.addView(setMonthCalendar(Calendar.JULY));
+//        calendarLayout.addView(setMonthCalendar(Calendar.JULY));
 
         return this.view;
     }
-
-//    //  two static variable,
-//    public static int scrollX = 0;
-//    public static int scrollY = -1;
-//
-//    //update & save their value on onPause & onResume.
-//    @Override
-//    public void onPause()
-//    {
-//        super.onPause();
-//        scrollX = scrollView.getScrollX();
-//        scrollY = scrollView.getScrollY();
-//    }
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-////this is important. scrollTo doesn't work in main thread.
-//        scrollView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                scrollView.scrollTo(scrollX, scrollY);
-//            }
-//        });
-//    }
 
     public void thisDay () {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
@@ -134,22 +120,19 @@ public class CalendarFragment extends Fragment {
             }
         }
 
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View monthView = inflater.inflate(R.layout.fragment_month, null, false);
         this.date = new GregorianCalendar(2015, month, 1);
 
-        LinearLayout calendarLinearLayout = (LinearLayout) monthView.findViewById(R.id.month_layout);
+        LinearLayout monthLayout= (LinearLayout) monthView.findViewById(R.id.month_layout);
+        monthLayout.removeAllViews();
+
         LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        TextView textView = (TextView) monthView.findViewById(R.id.month);
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
             Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
-
-        textView.setText(months[month]);
             while (month == this.date.get(Calendar.MONTH)) {
                 LinearLayout weekLinearLayout = new LinearLayout(getActivity());
                 weekLinearLayout.setLayoutParams(weekLayoutParams);
@@ -199,9 +182,23 @@ public class CalendarFragment extends Fragment {
                         weekLinearLayout.addView(voidView);
                     }
                 }
-                calendarLinearLayout.addView(weekLinearLayout);
+                monthLayout.addView(weekLinearLayout);
             }
         }
         return monthView;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        calendarLayout.removeView(monthView);
+        if (position == 0)
+            calendarLayout.addView(setMonthCalendar(Calendar.JUNE));
+        if (position == 1)
+            calendarLayout.addView(setMonthCalendar(Calendar.JULY));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

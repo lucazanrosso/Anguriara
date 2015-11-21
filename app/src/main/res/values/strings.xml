@@ -35,6 +35,10 @@
         <item>Novembre</item>
         <item>Dicembre</item>
     </string-array>
+    <string-array name="anguriara_months_activity">
+        <item>Giugno</item>
+        <item>Luglio</item>
+    </string-array>
     <string name="close">Chiuso</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
