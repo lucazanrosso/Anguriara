@@ -15,12 +15,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <Spinner
-                android:id="@+id/month_spinner"
-                style="@style/title"
-                android:textColor="@color/white"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/primary"
-                android:paddingBottom="8dp"/>
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/june_button"
+                    android:layout_gravity="bottom"
+                    android:background="@null"
+                    android:src="@drawable/ic_chevron_left_white_24dp"
+                    android:paddingBottom="2dp" />
+                <TextView
+                    android:id="@+id/month"
+                    style="@style/title"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:gravity="center"
+                    android:textColor="@color/white" />
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/july_button"
+                    android:layout_gravity="bottom"
+                    android:background="@null"
+                    android:src="@drawable/ic_chevron_right_white_24dp"
+                    android:paddingBottom="2dp" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -39,6 +39,9 @@
         <item name="android:background">@null</item>
         <item name="android:layout_margin">4dp</item>
     </style>
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+
+    </style>
     <style name="week_day" parent="@android:style/TextAppearance">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
