@@ -5,7 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/calendar_scroll_view">
         <LinearLayout
             android:id="@+id/calendar_layout"
             android:layout_width="match_parent"

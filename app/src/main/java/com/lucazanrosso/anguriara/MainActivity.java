@@ -299,8 +299,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
-        if (getSupportFragmentManager().findFragmentById(R.id.frame_container) instanceof CalendarFragment)
+        Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+        if (fm instanceof CalendarFragment)
             finish();
-        getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        else if (!(fm instanceof DayFragment))
+            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        else
+            getSupportFragmentManager().popBackStack();
     }
 }

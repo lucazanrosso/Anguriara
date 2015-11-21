@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class CalendarFragment extends Fragment {
 
     View view;
+
+//    ScrollView scrollView;
 
     private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
@@ -38,6 +41,8 @@ public class CalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
+//        this.scrollView = (ScrollView) view.findViewById(R.id.calendar_scroll_view);
+
         LinearLayout calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
 
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
@@ -51,6 +56,31 @@ public class CalendarFragment extends Fragment {
 
         return this.view;
     }
+
+//    //  two static variable,
+//    public static int scrollX = 0;
+//    public static int scrollY = -1;
+//
+//    //update & save their value on onPause & onResume.
+//    @Override
+//    public void onPause()
+//    {
+//        super.onPause();
+//        scrollX = scrollView.getScrollX();
+//        scrollY = scrollView.getScrollY();
+//    }
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+////this is important. scrollTo doesn't work in main thread.
+//        scrollView.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                scrollView.scrollTo(scrollX, scrollY);
+//            }
+//        });
+//    }
 
     public void thisDay () {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
@@ -83,7 +113,7 @@ public class CalendarFragment extends Fragment {
                     dayFragment.setArguments(dayArgs);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_container, dayFragment);
-                    transaction.addToBackStack("secondary");
+                    transaction.addToBackStack(null);
                     transaction.commit();
                 }
             });
@@ -151,7 +181,7 @@ public class CalendarFragment extends Fragment {
                                     dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_container, dayFragment);
-                                    transaction.addToBackStack("secondary");
+                                    transaction.addToBackStack(null);
                                     transaction.commit();
                                 }
                             });
