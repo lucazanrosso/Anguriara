@@ -2,6 +2,7 @@ package com.lucazanrosso.anguriara;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,6 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
-/**
- * Created by Luca on 19/09/2015.
- */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
@@ -48,7 +46,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 if (viewType == TYPE_ITEM) {
                     mTextView = (TextView) v.findViewById(R.id.drawer_row_text);
                     mImageView = (ImageView) v.findViewById(R.id.drawer_row_image);
-                    //mImageView.setColorFilter(R.color.secondary_text);
                     mImageView.setColorFilter(Color.parseColor("#757575"));
                     holderId = 1;
                 }
@@ -58,6 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
             else {
                 if (viewType == TYPE_ITEM) {
+                    Log.d("title", "count ***");
                     mTitleTextView = (TextView) v.findViewById(R.id.day_title);
                     mTextView = (TextView) v.findViewById(R.id.day_text);
                     mImageView = (ImageView) v.findViewById(R.id.day_image);
@@ -81,6 +79,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public MyAdapter(String[] titles, String[] text, int [] icons) {
+        Log.d("title", "title" + titles[0]);
+        Log.d("title", "title" + titles[1]);
+        Log.d("title", "title" + titles[2]);
+        Log.d("title", "text" + text[0]);
+        Log.d("title", "text" + text[1]);
+        Log.d("title", "text" + text[2]);
         this.titles = titles;
         this.menuString = text;
         this.menuIcons = icons;
@@ -136,7 +140,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
         if (holder.holderId == 1) {
             if (! MyAdapter.isDrawer) {
-                holder.mTitleTextView.setText(titles[position - specialType]);
+                Log.d("title", "position " + position);
+                Log.d("title", "special " + specialType);
+                try {
+                    holder.mTitleTextView.setText(titles[position - specialType]);
+                } catch (NullPointerException e) {
+
+                }
+
             }
             holder.mTextView.setText(menuString[position - specialType]);
             holder.mImageView.setImageResource(menuIcons[position - specialType]);

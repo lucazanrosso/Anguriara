@@ -28,14 +28,13 @@ public class DayFragment extends Fragment{
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_day, container, false);
 
-        if (savedInstanceState != null) {
-            this.day = (LinkedHashMap<String, String>) savedInstanceState.getSerializable("day");
-            this.dayTitle = savedInstanceState.getStringArray("dayTitle");
-            Log.d("title", "title" + dayTitle[0]);
-            this.dayText = savedInstanceState.getStringArray("dayText");
-            this.dayIcons = savedInstanceState.getIntArray("dayIcons");
-            Log.d("prova", "0");
-        } else {
+//        if (savedInstanceState != null) {
+//            this.day = (LinkedHashMap<String, String>) savedInstanceState.getSerializable("day");
+//            this.dayTitle = savedInstanceState.getStringArray("dayTitle");
+//            this.dayText = savedInstanceState.getStringArray("dayText");
+//            this.dayIcons = savedInstanceState.getIntArray("dayIcons");
+//            Log.d("prova", "0");
+//        } else {
             Bundle args = this.getArguments();
             this.day = (LinkedHashMap<String, String>) args.getSerializable("day");
 
@@ -58,7 +57,7 @@ public class DayFragment extends Fragment{
             else
                 this.dayText[2] = getResources().getString(R.string.standard_opening_time);
             Log.d("prova", "1");
-        }
+//        }
 
         RecyclerView dayRecyclerView = (RecyclerView) view.findViewById(R.id.day_recycler_view);
         RecyclerView.Adapter dayAdapter = new MyAdapter(dayTitle, dayText, dayIcons);
@@ -69,12 +68,12 @@ public class DayFragment extends Fragment{
         return view;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("day", day);
-        outState.putStringArray("dayTitle", dayTitle);
-        outState.putStringArray("dayText", dayText);
-        outState.putIntArray("dayIcons", dayIcons);
-    }
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putSerializable("day", day);
+//        outState.putStringArray("dayTitle", dayTitle);
+//        outState.putStringArray("dayText", dayText);
+//        outState.putIntArray("dayIcons", dayIcons);
+//    }
 }
