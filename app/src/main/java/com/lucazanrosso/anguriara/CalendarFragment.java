@@ -190,6 +190,7 @@ public class CalendarFragment extends Fragment {
                             this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
 
                             final Bundle dayArgs = new Bundle();
+                            dayArgs.putSerializable("date", date);
                             dayArgs.putSerializable("day", monthCalendar.get(date));
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
