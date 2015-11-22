@@ -166,7 +166,7 @@ public class CalendarFragment extends Fragment {
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
-            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+            LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
 
             textView.setText(months[month]);
             while (month == this.date.get(Calendar.MONTH)) {
@@ -184,18 +184,12 @@ public class CalendarFragment extends Fragment {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
 
-                            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-                            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                            String thisMonth = months[date.get(Calendar.MONTH)];
-                            this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-
                             final Bundle dayArgs = new Bundle();
-                            dayArgs.putSerializable("date", date);
-                            dayArgs.putSerializable("day", monthCalendar.get(date));
+                            dayArgs.putSerializable("date", entry.getKey());
+                            dayArgs.putSerializable("day", entry.getValue());
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    MainActivity.toolbar.setTitle(toolbarTitle);
                                     DayFragment dayFragment = new DayFragment();
                                     dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -205,7 +199,7 @@ public class CalendarFragment extends Fragment {
                                 }
                             });
                             if (iterator.hasNext())
-                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+                                entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
                         } else {
                             button.setEnabled(false);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
