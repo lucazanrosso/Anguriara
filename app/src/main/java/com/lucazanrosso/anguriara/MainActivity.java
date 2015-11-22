@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
                     if (fragments[rv.getChildAdapterPosition(child)] != null) {
                         mDrawer.closeDrawers();
-                        Fragment calendarFragment = fragments[rv.getChildAdapterPosition(child)];
+                        Fragment fragment = fragments[rv.getChildAdapterPosition(child)];
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_container, calendarFragment);
+                        transaction.replace(R.id.frame_container, fragment);
                         transaction.addToBackStack("secondary");
                         transaction.commit();
                         return true;
@@ -199,6 +199,11 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            SettingsFragment settingsFragment = new SettingsFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_container, settingsFragment);
+            transaction.addToBackStack("secondary");
+            transaction.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

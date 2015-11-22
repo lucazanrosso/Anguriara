@@ -77,20 +77,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         this.menuIcons = menuIcons;
         this.headerImage = headerImage;
         this.dividersPosition = dividersPosition;
-        this.isDrawer = true;
+        MyAdapter.isDrawer = true;
     }
 
     public MyAdapter(String[] titles, String[] text, int [] icons) {
         this.titles = titles;
         this.menuString = text;
         this.menuIcons = icons;
-        this.isDrawer = false;
+        MyAdapter.isDrawer = false;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (isDrawer) {
+        if (MyAdapter.isDrawer) {
             if (viewType == TYPE_HEADER) {
                 View v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.drawer_header, parent, false);
@@ -135,7 +135,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             specialType++;
         }
         if (holder.holderId == 1) {
-            if (! isDrawer) {
+            if (! MyAdapter.isDrawer) {
                 holder.mTitleTextView.setText(titles[position - specialType]);
             }
             holder.mTextView.setText(menuString[position - specialType]);
@@ -149,7 +149,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        if (isDrawer) {
+        if (MyAdapter.isDrawer) {
             return menuString.length + 2;
         }
         return menuString.length * 2 - 1;
@@ -157,7 +157,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (isDrawer) {
+        if (MyAdapter.isDrawer) {
             if (position == 0) {
                 return TYPE_HEADER;
             }

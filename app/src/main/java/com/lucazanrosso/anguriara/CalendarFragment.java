@@ -1,7 +1,6 @@
 package com.lucazanrosso.anguriara;
 
 import android.graphics.Typeface;
-import android.media.Image;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -26,7 +25,6 @@ import java.util.Map;
 public class CalendarFragment extends Fragment {
 
     View view;
-    View monthView;
     LinearLayout calendarLayout;
 
     private Calendar today = new GregorianCalendar();
@@ -38,10 +36,12 @@ public class CalendarFragment extends Fragment {
     private Calendar date;
     private String toolbarTitle;
 
+    private int monthSelected = -1;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        this.monthView = inflater.inflate(R.layout.fragment_month, null, false);
 
         this.calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
 
@@ -52,42 +52,57 @@ public class CalendarFragment extends Fragment {
 
         thisDay();
 
-        final ImageButton juneButton = (ImageButton) monthView.findViewById(R.id.june_button);
-        final ImageButton julyButton = (ImageButton) monthView.findViewById(R.id.july_button);
+        final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
+        final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
         juneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarLayout.removeView(monthView);
-                calendarLayout.addView(setMonthCalendar(Calendar.JUNE));
+                setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
                 julyButton.setVisibility(View.VISIBLE);
+                monthSelected = 5;
             }
         });
         julyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarLayout.removeView(monthView);
-                calendarLayout.addView(setMonthCalendar(Calendar.JULY));
+                setMonthCalendar(Calendar.JULY);
                 julyButton.setVisibility(View.INVISIBLE);
                 juneButton.setVisibility(View.VISIBLE);
+                monthSelected = 6;
             }
         });
 
-        if (today.get(Calendar.MONTH) < 6) {
-            calendarLayout.addView(setMonthCalendar(Calendar.JUNE));
-            juneButton.setVisibility(View.INVISIBLE);
-            julyButton.setVisibility(View.VISIBLE);
-        }
-        else {
-            calendarLayout.addView(setMonthCalendar(Calendar.JULY));
-            julyButton.setVisibility(View.INVISIBLE);
-            juneButton.setVisibility(View.VISIBLE);
+        if (monthSelected != -1) {
+            if (monthSelected == 5) {
+                setMonthCalendar(Calendar.JUNE);
+                juneButton.setVisibility(View.INVISIBLE);
+                julyButton.setVisibility(View.VISIBLE);
+                monthSelected = 5;
+            } else if (monthSelected == 6) {
+                setMonthCalendar(Calendar.JULY);
+                julyButton.setVisibility(View.INVISIBLE);
+                juneButton.setVisibility(View.VISIBLE);
+                monthSelected = 6;
+            }
+        } else {
+            if (today.get(Calendar.MONTH) < 6) {
+                setMonthCalendar(Calendar.JUNE);
+                juneButton.setVisibility(View.INVISIBLE);
+                julyButton.setVisibility(View.VISIBLE);
+                monthSelected = 5;
+            } else {
+                setMonthCalendar(Calendar.JULY);
+                julyButton.setVisibility(View.INVISIBLE);
+                juneButton.setVisibility(View.VISIBLE);
+                monthSelected = 6;
+            }
         }
 
         return this.view;
     }
 
-    public void thisDay () {
+    private void thisDay () {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
@@ -131,7 +146,7 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    public View setMonthCalendar(int month) {
+    private void setMonthCalendar(int month) {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
@@ -141,13 +156,13 @@ public class CalendarFragment extends Fragment {
 
         this.date = new GregorianCalendar(2015, month, 1);
 
-        LinearLayout monthLayout = (LinearLayout) monthView.findViewById(R.id.month_layout);
+        LinearLayout monthLayout = (LinearLayout) view.findViewById(R.id.month_layout);
         monthLayout.removeAllViews();
         LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        TextView textView = (TextView) monthView.findViewById(R.id.month);
+        TextView textView = (TextView) view.findViewById(R.id.month);
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
@@ -175,7 +190,6 @@ public class CalendarFragment extends Fragment {
                             this.toolbarTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
 
                             final Bundle dayArgs = new Bundle();
-                            dayArgs.putSerializable("date", date);
                             dayArgs.putSerializable("day", monthCalendar.get(date));
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -206,6 +220,5 @@ public class CalendarFragment extends Fragment {
                 monthLayout.addView(weekLinearLayout);
             }
         }
-        return monthView;
     }
 }
