@@ -20,23 +20,18 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class CalendarFragment extends Fragment {
 
     View view;
     LinearLayout calendarLayout;
 
+    private int monthSelected = -1;
+
     private Calendar today = new GregorianCalendar();
     private String[] daysOfWeek;
     private String[] months;
-
     private String cardViewTitle;
-
-    private Calendar date;
-    private String toolbarTitle;
-
-    private int monthSelected = -1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +68,7 @@ public class CalendarFragment extends Fragment {
             }
         });
 
+        //Try to improve
         if (monthSelected != -1) {
             if (monthSelected == 5) {
                 setMonthCalendar(Calendar.JUNE);
@@ -154,7 +150,7 @@ public class CalendarFragment extends Fragment {
             }
         }
 
-        this.date = new GregorianCalendar(2015, month, 1);
+        Calendar date = new GregorianCalendar(2015, month, 1);
 
         LinearLayout monthLayout = (LinearLayout) view.findViewById(R.id.month_layout);
         monthLayout.removeAllViews();
@@ -169,18 +165,17 @@ public class CalendarFragment extends Fragment {
             LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
 
             textView.setText(months[month]);
-            while (month == this.date.get(Calendar.MONTH)) {
+            while (month == date.get(Calendar.MONTH)) {
                 LinearLayout weekLinearLayout = new LinearLayout(getActivity());
                 weekLinearLayout.setLayoutParams(weekLayoutParams);
                 for (int j = 0; j <= 6; j++) {
-                    if (((this.date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && this.date.get(Calendar.MONTH) == month) {
+                    if (((date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && date.get(Calendar.MONTH) == month) {
                         Button button = new Button(getActivity());
                         button.setLayoutParams(dayLayoutParams);
                         button.setBackgroundResource(0);
-                        button.setText("ciao");
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                        button.setText(Integer.toString(this.date.get(Calendar.DAY_OF_MONTH)));
-                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == this.date.get(Calendar.DAY_OF_YEAR)) {
+                        button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
+                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
 
@@ -205,7 +200,7 @@ public class CalendarFragment extends Fragment {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
                         }
                         weekLinearLayout.addView(button);
-                        this.date.add(Calendar.DAY_OF_YEAR, 1);
+                        date.add(Calendar.DAY_OF_YEAR, 1);
                     } else {
                         View voidView = new View(getActivity());
                         voidView.setLayoutParams(dayLayoutParams);
