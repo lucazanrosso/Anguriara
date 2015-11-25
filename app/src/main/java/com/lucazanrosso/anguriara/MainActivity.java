@@ -16,6 +16,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -70,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayFoods;
     private String[] dayOpeningTimes;
 
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
-    private boolean alarmIsSet;
-    private PendingIntent notificationPendingIntent;
-    private AlarmManager notificationAlarmManager;
+    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
+    private static boolean firstStart;
+    private static PendingIntent notificationPendingIntent;
+    private static AlarmManager notificationAlarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,24 +165,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        alarmIsSet = false;
-        alarmIsSet = sharedPreferences.getBoolean("alarm", alarmIsSet);
-        if (!alarmIsSet)
-            setAlarm();
-
-        // Check that the activity is using the layout version with
-        // the fragment_container FrameLayout
-        if (findViewById(R.id.frame_container) != null) {
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
-            if (savedInstanceState != null) {
-                return;
-            }
-            CalendarFragment calendarFragment = new CalendarFragment();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.frame_container, calendarFragment).commit();
+        firstStart = false;
+        firstStart = sharedPreferences.getBoolean("firstStart", firstStart);
+        if (!firstStart) {
+            setAlarm(this);
+            MainActivity.editor = sharedPreferences.edit();
+            editor.putBoolean("firstStart", true);
+            editor.apply();
+            Log.d("succede", "succede");
         }
+
+        CalendarFragment calendarFragment = new CalendarFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.frame_container, calendarFragment).commit();
     }
 
     @Override
@@ -249,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void setAlarm() {
+    public static void setAlarm(Context context) {
         int i = 0;
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             String notificationText;
@@ -257,44 +253,44 @@ public class MainActivity extends AppCompatActivity {
                 notificationText = entry.getValue().get("event");
                 if (!entry.getValue().get("food").isEmpty())
                     notificationText += ", " + entry.getValue().get("food");
-                notificationText += " " + getResources().getString(R.string.and_much_more);
+                notificationText += " " + context.getResources().getString(R.string.and_much_more);
             } else
-                notificationText = getResources().getString(R.string.open);
-            Intent notificationIntent = new Intent(this, MyNotification.class);
+                notificationText = context.getResources().getString(R.string.open);
+            Intent notificationIntent = new Intent(context, MyNotification.class);
             notificationIntent.putExtra("notification_text", notificationText);
-            this.notificationPendingIntent = PendingIntent.getBroadcast(this, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            this.notificationAlarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+            MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Calendar alarmTime = Calendar.getInstance();
             alarmTime.setTimeInMillis(System.currentTimeMillis());
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
             //Test
-            alarmTime.set(2015, 9, 25, 21, i + 10);
+            alarmTime.set(2015, 10, 25, 22, i);
             if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
-                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
+                MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
             i++;
         }
-        alarmIsSet = true;
-        this.editor = sharedPreferences.edit();
-        editor.putBoolean("alarm", alarmIsSet);
+
+        MainActivity.editor = sharedPreferences.edit();
+        editor.putBoolean("alarmIsSet", true);
         editor.apply();
 
-        ComponentName receiver = new ComponentName(this, BootReceiver.class);
-        PackageManager pm = this.getPackageManager();
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
 
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
 
-    public void cancelAlarm() {
-        this.notificationAlarmManager.cancel(this.notificationPendingIntent);
-        this.alarmIsSet = false;
-        this.editor = sharedPreferences.edit();
-        editor.putBoolean("alarm", alarmIsSet);
+    public static void cancelAlarm(Context context) {
+        MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
+
+        MainActivity.editor = sharedPreferences.edit();
+        editor.putBoolean("alarmIsSet", false);
         editor.apply();
 
-        ComponentName receiver = new ComponentName(this, BootReceiver.class);
-        PackageManager pm = this.getPackageManager();
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
 
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
