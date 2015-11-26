@@ -158,17 +158,17 @@ public class MainActivity extends AppCompatActivity {
 
         File file = new File(this.getFilesDir(), this.fileName);
         if (file.exists()) {
-            MainActivity.calendar = deserializeCalendar();
+            MainActivity.calendar = deserializeCalendar(this);
         } else {
             MainActivity.calendar = setCalendar();
             serializeCalendar(MainActivity.calendar);
         }
 
-        MainActivity.sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         firstStart = false;
         firstStart = sharedPreferences.getBoolean("firstStart", firstStart);
         if (!firstStart) {
-            MainActivity.setAlarm(this, true);
+            MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
             editor.putBoolean("firstStart", true);
             editor.apply();
@@ -231,10 +231,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar() {
+    public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(Context context) {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
-            File file = new File(this.getFilesDir(), this.fileName);
+            File file = new File(context.getFilesDir(), "anguriara.ser");
             FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
@@ -246,9 +246,9 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public static void setAlarm(Context context, boolean setAlarm) {
+    public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
+        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
             String notificationText;
             if (!entry.getValue().get("event").isEmpty()) {
                 notificationText = entry.getValue().get("event");
@@ -267,17 +267,21 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2015, 10, 26, 17, i);
+                alarmTime.set(2015, 10, 26, 18, i);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
-                MainActivity.editor = MainActivity.sharedPreferences.edit();
-                editor.putBoolean("alarmIsSet", true);
-                editor.apply();
+                if (!isBootReceiver) {
+                    MainActivity.editor = MainActivity.sharedPreferences.edit();
+                    editor.putBoolean("alarmIsSet", true);
+                    editor.apply();
+                }
             } else {
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
-                MainActivity.editor = MainActivity.sharedPreferences.edit();
-                editor.putBoolean("alarmIsSet", false);
-                editor.apply();
+                if (!isBootReceiver) {
+                    MainActivity.editor = MainActivity.sharedPreferences.edit();
+                    editor.putBoolean("alarmIsSet", false);
+                    editor.apply();
+                }
             }
             i++;
         }

@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment {
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MainActivity.setAlarm(getContext(), isChecked);
+                MainActivity.setAlarm(getContext(), MainActivity.calendar, isChecked, false);
             }
         });
         return view;
