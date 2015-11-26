@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
             null,
             new SettingsFragment()};
 
-
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
-    private boolean firstStart;
     private static PendingIntent notificationPendingIntent;
     private static AlarmManager notificationAlarmManager;
 
@@ -165,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        firstStart = false;
-        firstStart = sharedPreferences.getBoolean("firstStart", firstStart);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
         if (!firstStart) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
@@ -178,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
         CalendarFragment calendarFragment = new CalendarFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frame_container, calendarFragment).commit();
+                .replace(R.id.frame_container, calendarFragment).commit();
     }
 
     @Override
@@ -288,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
 
         ComponentName receiver = new ComponentName(context, BootReceiver.class);
         PackageManager pm = context.getPackageManager();
-
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
