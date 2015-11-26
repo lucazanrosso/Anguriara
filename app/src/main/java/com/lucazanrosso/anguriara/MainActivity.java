@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayFoods;
     private String[] dayOpeningTimes;
 
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    public static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
     private boolean firstStart;
-    private PendingIntent notificationPendingIntent;
-    private AlarmManager notificationAlarmManager;
+    private static PendingIntent notificationPendingIntent;
+    private static AlarmManager notificationAlarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,11 +164,14 @@ public class MainActivity extends AppCompatActivity {
             serializeCalendar(MainActivity.calendar);
         }
 
-        this.sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        MainActivity.sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         firstStart = false;
         firstStart = sharedPreferences.getBoolean("firstStart", firstStart);
         if (!firstStart) {
-            setAlarm();
+            MainActivity.setAlarm(this, true);
+            MainActivity.editor = MainActivity.sharedPreferences.edit();
+            editor.putBoolean("firstStart", true);
+            editor.apply();
 
             Log.d("succede", "succede");
         }
@@ -243,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void setAlarm() {
+    public static void setAlarm(Context context, boolean setAlarm) {
         int i = 0;
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             String notificationText;
@@ -251,36 +254,41 @@ public class MainActivity extends AppCompatActivity {
                 notificationText = entry.getValue().get("event");
                 if (!entry.getValue().get("food").isEmpty())
                     notificationText += ", " + entry.getValue().get("food");
-                notificationText += " " + getResources().getString(R.string.and_much_more);
+                notificationText += " " + context.getResources().getString(R.string.and_much_more);
             } else
-                notificationText = getResources().getString(R.string.open);
-            Intent notificationIntent = new Intent(this, MyNotification.class);
+                notificationText = context.getResources().getString(R.string.open);
+            Intent notificationIntent = new Intent(context, MyNotification.class);
             notificationIntent.putExtra("notification_text", notificationText);
-            this.notificationPendingIntent = PendingIntent.getBroadcast(this, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            this.notificationAlarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-            Calendar alarmTime = Calendar.getInstance();
-            alarmTime.setTimeInMillis(System.currentTimeMillis());
+            MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+            if (setAlarm) {
+                Calendar alarmTime = Calendar.getInstance();
+                alarmTime.setTimeInMillis(System.currentTimeMillis());
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
-            //Test
-            alarmTime.set(2015, 10, 25, 23, i);
-            if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
-                this.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), this.notificationPendingIntent);
+                //Test
+                alarmTime.set(2015, 10, 26, 17, i);
+                if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
+                    MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
+                MainActivity.editor = MainActivity.sharedPreferences.edit();
+                editor.putBoolean("alarmIsSet", true);
+                editor.apply();
+            } else {
+                MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
+                MainActivity.editor = MainActivity.sharedPreferences.edit();
+                editor.putBoolean("alarmIsSet", false);
+                editor.apply();
+            }
             i++;
         }
 
-        this.editor = sharedPreferences.edit();
-        this.editor.putBoolean("firstStart", true);
-        this.editor.apply();
-
-        ComponentName receiver = new ComponentName(this, BootReceiver.class);
-        PackageManager pm = this.getPackageManager();
+        ComponentName receiver = new ComponentName(context, BootReceiver.class);
+        PackageManager pm = context.getPackageManager();
 
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
-
-
 
     @Override
     public void onBackPressed(){
