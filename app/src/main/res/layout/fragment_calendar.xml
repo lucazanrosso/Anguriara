@@ -35,7 +35,10 @@
                     android:orientation="vertical">
                         <TextView
                             android:id="@+id/card_view_title"
-                            style="@style/title" />
+                            style="@style/title"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:paddingTop="16dp" />
                         <TextView
                             android:id="@+id/card_view_sub_title"
                             style="@style/subtitle" />
@@ -60,34 +63,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/primary"
-                        android:paddingBottom="8dp"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp">
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp" >
                         <ImageButton
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/june_button"
-                            android:layout_gravity="bottom"
                             android:background="@null"
                             android:src="@drawable/ic_chevron_left_white_24dp"
-                            android:paddingBottom="2dp" />
+                            android:paddingLeft="16dp"
+                            android:paddingTop="5dp" />
                         <TextView
                             android:id="@+id/month"
                             style="@style/title"
                             android:layout_width="0dp"
                             android:layout_weight="5"
-                            android:gravity="center"
+                            android:gravity="center|center_horizontal"
                             android:textColor="@color/white" />
                         <ImageButton
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/july_button"
-                            android:layout_gravity="bottom"
                             android:background="@null"
                             android:src="@drawable/ic_chevron_right_white_24dp"
-                            android:paddingBottom="2dp" />
+                            android:paddingRight="16dp"
+                            android:paddingTop="5dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"

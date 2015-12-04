@@ -263,4 +263,10 @@
     <string name="saturday">S</string>
     <string name="this_evening">Questa sera</string>
     <string name="notifications">Notifiche</string>
+    <string-array name="sponsor_title">
+        <item>Macelleria Peron</item>
+    </string-array>
+    <string-array name="sponsor_sub_title">
+        <item>di Peron Claudio</item>
+    </string-array>
 </resources>

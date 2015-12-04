@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             new CalendarFragment(),
             new CalendarFragment(),
             new CalendarFragment(),
-            new CalendarFragment(),
+            new SponsorFragment(),
             null,
             new SettingsFragment()};
 
@@ -69,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayEventsDetails;
     private String[] dayFoods;
     private String[] dayOpeningTimes;
+
+    public static LinkedHashMap<String, LinkedHashMap<String, String>> sponsor = new LinkedHashMap<>();
+    private String[] sponsorTitle;
+    private String[] sponsorSubTitle;
 
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
@@ -153,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
+        this.sponsorTitle = getResources().getStringArray(R.array.sponsor_title);
+        this.sponsorSubTitle = getResources().getStringArray(R.array.sponsor_sub_title);
 
         File file = new File(this.getFilesDir(), this.fileName);
         if (file.exists()) {
@@ -161,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.calendar = setCalendar();
             serializeCalendar(MainActivity.calendar);
         }
+        sponsor = setSponsor();
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
@@ -169,8 +176,6 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.editor = MainActivity.sharedPreferences.edit();
             editor.putBoolean("firstStart", true);
             editor.apply();
-
-            Log.d("succede", "succede");
         }
 
         CalendarFragment calendarFragment = new CalendarFragment();
@@ -213,6 +218,17 @@ public class MainActivity extends AppCompatActivity {
             calendar.put(new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
         }
         return calendar;
+    }
+
+    public LinkedHashMap<String, LinkedHashMap<String, String>> setSponsor() {
+        LinkedHashMap<String, LinkedHashMap<String, String>> sponsor = new LinkedHashMap<>();
+        for (int i = 0; i < sponsorTitle.length; i++) {
+            LinkedHashMap<String, String> sponsorMap = new LinkedHashMap<>();
+            sponsorMap.put("title", this.sponsorTitle[i]);
+            sponsorMap.put("subtitle", this.sponsorSubTitle[i]);
+            sponsor.put("sponsor", sponsorMap);
+        }
+        return sponsor;
     }
 
     public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
