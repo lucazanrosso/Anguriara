@@ -2,14 +2,12 @@ package com.lucazanrosso.anguriara;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
 public class SponsorFragment extends Fragment {
@@ -19,8 +17,9 @@ public class SponsorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_sponsor, container, false);
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.sponsor));
 
+        view = inflater.inflate(R.layout.fragment_sponsor, container, false);
         LinearLayout sponsorLayout = (LinearLayout) view.findViewById(R.id.sponsor_layout);
 
         for (LinkedHashMap.Entry<String, LinkedHashMap<String, String>> entry : MainActivity.sponsor.entrySet()) {
@@ -37,10 +36,8 @@ public class SponsorFragment extends Fragment {
         TextView sponsorTitle = (TextView) sponsorCard.findViewById(R.id.sponsor_title);
         TextView sponsorSubTitle = (TextView) sponsorCard.findViewById(R.id.sponsor_sub_title);
 
-        sponsorTitle.setText(sponsor.get("sponsor_title"));
-        sponsorSubTitle.setText(sponsor.get("sponsor__sub_title"));
-
-        Log.d("dai", "dai");
+        sponsorTitle.setText(sponsor.get("title"));
+        sponsorSubTitle.setText(sponsor.get("sub_title"));
 
         return sponsorCard;
     }

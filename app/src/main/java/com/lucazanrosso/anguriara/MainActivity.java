@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.calendar = setCalendar();
             serializeCalendar(MainActivity.calendar);
         }
-        sponsor = setSponsor();
+        MainActivity.sponsor = setSponsor();
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
@@ -225,8 +225,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < sponsorTitle.length; i++) {
             LinkedHashMap<String, String> sponsorMap = new LinkedHashMap<>();
             sponsorMap.put("title", this.sponsorTitle[i]);
-            sponsorMap.put("subtitle", this.sponsorSubTitle[i]);
-            sponsor.put("sponsor", sponsorMap);
+            sponsorMap.put("sub_title", this.sponsorSubTitle[i]);
+            sponsor.put("" + i, sponsorMap);
         }
         return sponsor;
     }
