@@ -17,6 +17,8 @@ public class SponsorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        super.onCreateView(inflater,container,savedInstanceState);
+
         MainActivity.toolbar.setTitle(getResources().getString(R.string.sponsor));
 
         view = inflater.inflate(R.layout.fragment_sponsor, container, false);

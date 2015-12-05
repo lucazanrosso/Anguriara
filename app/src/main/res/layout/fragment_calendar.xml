@@ -25,7 +25,7 @@
                 card_view:cardUseCompatPadding="true">
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="148dp"
+                    android:layout_height="150dp"
                     android:id="@+id/card_view_image"
                     android:layout_gravity="end"
                     android:adjustViewBounds="true" />
