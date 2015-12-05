@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="124dp"
-        android:id="@+id/sponsor_image"
+        android:id="@+id/sponsor_logo"
         android:layout_gravity="end"
         android:adjustViewBounds="true" />
     <LinearLayout
@@ -24,11 +24,7 @@
             android:paddingRight="16dp"
             android:paddingTop="16dp" />
         <TextView
-            android:id="@+id/sponsor_sub_title"
+            android:id="@+id/sponsor_text"
             style="@style/subtitle" />
-        <Button
-            android:id="@+id/sponsor_button"
-            style="@style/action"
-            android:text="@string/details" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -178,6 +178,9 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
 
+        if (savedInstanceState != null) {
+            return;
+        }
         CalendarFragment calendarFragment = new CalendarFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_container, calendarFragment).commit();

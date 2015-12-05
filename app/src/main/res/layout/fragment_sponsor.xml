@@ -3,19 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sponsor_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/sponsor_scroll_view">
-        <LinearLayout
-            android:id="@+id/sponsor_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:orientation="vertical">
-        </LinearLayout>
-    </ScrollView>
+        android:layout_gravity="start"
+        android:scrollbars="vertical"
+        android:background="@color/white"/>
 </RelativeLayout>

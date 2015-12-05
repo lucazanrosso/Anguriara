@@ -181,7 +181,6 @@ public class CalendarFragment extends Fragment {
 
                             final Bundle dayArgs = new Bundle();
                             dayArgs.putSerializable("date", entry.getKey());
-                            dayArgs.putSerializable("day", entry.getValue());
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {

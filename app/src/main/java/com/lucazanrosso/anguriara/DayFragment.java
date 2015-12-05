@@ -27,7 +27,7 @@ public class DayFragment extends Fragment{
 
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
-        LinkedHashMap<String, String> day = (LinkedHashMap<String, String>) args.getSerializable("day");
+        LinkedHashMap<String, String> day = MainActivity.calendar.get(date);
 
         String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         String[] months = getResources().getStringArray(R.array.months);
