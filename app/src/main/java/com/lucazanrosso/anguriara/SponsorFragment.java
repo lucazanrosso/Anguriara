@@ -7,10 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import java.util.LinkedHashMap;
 
 public class SponsorFragment extends Fragment {
 
@@ -38,25 +34,6 @@ public class SponsorFragment extends Fragment {
         RecyclerView.LayoutManager dayLayoutManager = new LinearLayoutManager(getContext());
         sponsorRecyclerView.setLayoutManager(dayLayoutManager);
 
-//        LinearLayout sponsorLayout = (LinearLayout) view.findViewById(R.id.sponsor_layout);
-//
-//        for (LinkedHashMap.Entry<String, LinkedHashMap<String, String>> entry : MainActivity.sponsor.entrySet()) {
-//            sponsorLayout.addView(addCard(entry.getValue()));
-//        }
         return view;
     }
-
-//    public View addCard(LinkedHashMap<String, String> sponsor) {
-//
-//        LayoutInflater inflater = LayoutInflater.from(getContext());
-//        View sponsorCard = inflater.inflate(R.layout.sponsor_card, null, false);
-//
-//        TextView sponsorTitle = (TextView) sponsorCard.findViewById(R.id.sponsor_title);
-//        TextView sponsorSubTitle = (TextView) sponsorCard.findViewById(R.id.sponsor_text);
-//
-//        sponsorTitle.setText(sponsor.get("title"));
-//        sponsorSubTitle.setText(sponsor.get("sub_title"));
-//
-//        return sponsorCard;
-//    }
 }

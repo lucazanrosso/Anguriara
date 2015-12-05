@@ -266,17 +266,13 @@
 
     <string name="sponsor">Sponsor</string>
     <string-array name="sponsor_title">
-        <item>Macelleria Peron</item>
         <item>Giardineria Drago</item>
-        <item>C3</item>
-        <item>D4</item>
-        <item>E5</item>
+        <item>F.lli Passarella</item>
+        <item>Piero Lovato</item>
     </string-array>
     <string-array name="sponsor_sub_title">
-        <item>di Peron Claudio\n ciao \n ciao \n ciao</item>
-        <item>di Giardineria Drago</item>
-        <item>C3</item>
-        <item>D4</item>
-        <item>E5</item>
+        <item></item>
+        <item>Distribuzione bevande\n\nVia Molin Barbiero, 12 Valli del Pasubio\nTel 0445 630151\nVia Riva del Cristo, 9 Schio\nTel 0445 570469</item>
+        <item>Tel 0445 673250, Fax 0445 294574</item>
     </string-array>
 </resources>
