@@ -14,7 +14,11 @@ public class SponsorFragment extends Fragment {
 
     private String[] sponsorTitles;
     private String[] sponsorTexts;
-    private int[] sponsorLogos = {R.drawable.open, R.drawable.open, R.drawable.open, R.drawable.open, R.drawable.open};
+    private int[] sponsorLogos = {R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
