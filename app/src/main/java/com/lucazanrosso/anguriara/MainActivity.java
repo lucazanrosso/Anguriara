@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment[] fragments = {null,
             new CalendarFragment(),
             new CalendarFragment(),
-            new CalendarFragment(),
+            new WhoWeAreFragment(),
             new SponsorFragment(),
             null,
             new SettingsFragment()};
