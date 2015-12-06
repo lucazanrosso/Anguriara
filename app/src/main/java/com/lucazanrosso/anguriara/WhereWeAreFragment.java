@@ -6,11 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class WhoWeAreFragment extends Fragment{
+public class WhereWeAreFragment extends Fragment {
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.who_we_are));
-        return inflater.inflate(R.layout.fragment_who_we_are, container, false);
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.where_we_are));
+        return inflater.inflate(R.layout.fragment_where_we_are, container, false);
     }
 }

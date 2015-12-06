@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Integer[] drawerDividersPosition = {5};
     private Fragment[] fragments = {null,
             new CalendarFragment(),
-            new CalendarFragment(),
+            new WhereWeAreFragment(),
             new WhoWeAreFragment(),
             new SponsorFragment(),
             null,
