@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayEventsDetails;
     private String[] dayFoods;
     private String[] dayOpeningTimes;
+
+    public static ArrayList<GregorianCalendar> days = new ArrayList<>(31);
 
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
@@ -153,13 +156,14 @@ public class MainActivity extends AppCompatActivity {
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
+        //TESTING
         File file = new File(this.getFilesDir(), this.fileName);
-        if (file.exists()) {
-            MainActivity.calendar = deserializeCalendar(this);
-        } else {
+//        if (file.exists()) {
+//            MainActivity.calendar = deserializeCalendar(this);
+//        } else {
             MainActivity.calendar = setCalendar();
-            serializeCalendar(MainActivity.calendar);
-        }
+//            serializeCalendar(MainActivity.calendar);
+//        }
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
@@ -211,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
             eveningMap.put("food", this.dayFoods[i]);
             eveningMap.put("openingTime", this.dayOpeningTimes[i]);
             calendar.put(new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
+            days.add(i, new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]));
         }
         return calendar;
     }

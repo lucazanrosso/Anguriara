@@ -119,11 +119,9 @@ public class CalendarFragment extends Fragment {
 
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", today);
-            dayArgs.putSerializable("day", MainActivity.calendar.get(today));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.toolbar.setTitle(cardViewTitle);
                     DayFragment dayFragment = new DayFragment();
                     dayFragment.setArguments(dayArgs);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -183,11 +181,12 @@ public class CalendarFragment extends Fragment {
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    DayFragment dayFragment = new DayFragment();
+//                                    DayFragment dayFragment = new DayFragment();
+                                    PagerAdapterFragment dayFragment = new PagerAdapterFragment();
                                     dayFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_container, dayFragment);
-                                    transaction.addToBackStack(null);
+                                    transaction.addToBackStack("secondary");
                                     transaction.commit();
                                 }
                             });

@@ -6,24 +6,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PagerAdapterFragment extends Fragment {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
-    private static final int DAYS = 31;
-    private ViewPager mPager;
-    private PagerAdapter mPagerAdapter;
+public class PagerAdapterFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_where_we_are, container, false);
+        View view =  inflater.inflate(R.layout.pager_adapter, container, false);
 
-        mPager = (ViewPager) view.findViewById(R.id.pager);
+        Bundle args = this.getArguments();
+        GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
 
-        mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+        ViewPager mPager = (ViewPager) view.findViewById(R.id.pager);
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setCurrentItem(MainActivity.days.indexOf(date));
 
         return view;
     }
@@ -35,12 +39,28 @@ public class PagerAdapterFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return new DayFragment();
+            Log.d("pos", "pos: " + position);
+
+//            GregorianCalendar date = MainActivity.days.get(position);
+//
+//            String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+//            String[] months = getResources().getStringArray(R.array.months);
+//
+//            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+//            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+//            String thisMonth = months[date.get(Calendar.MONTH)];
+//            MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
+
+            final Bundle dayArgs = new Bundle();
+            dayArgs.putSerializable("date", MainActivity.days.get(position));
+            DayFragment dayFragment = new DayFragment();
+            dayFragment.setArguments(dayArgs);
+            return dayFragment;
         }
 
         @Override
         public int getCount() {
-            return DAYS;
+            return MainActivity.ANGURIARA_NUMBER_OF_DAYS;
         }
     }
 }
