@@ -28,7 +28,7 @@ public class CalendarFragment extends Fragment {
 
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar(2015, 05, 05);
+    private Calendar today = new GregorianCalendar(2015, 6, 8);
     private String[] daysOfWeek;
     private String[] months;
     private String cardViewTitle;
@@ -112,10 +112,9 @@ public class CalendarFragment extends Fragment {
 
         if (MainActivity.calendar.containsKey(this.today)) {
             imageView.setImageResource(R.drawable.open);
-            String dayEventAndFood = getResources().getString(R.string.event) + ": " +
-                    MainActivity.calendar.get(today).get("event") + "\n" +
-                    getResources().getString(R.string.food) + ": " +
-                    MainActivity.calendar.get(today).get("food");
+            String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(today).get("event") + "\n";
+            if (! MainActivity.calendar.get(today).get("food").isEmpty())
+                dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(today).get("food");
             subTitleTextView.setText(dayEventAndFood);
 
             final Bundle dayArgs = new Bundle();

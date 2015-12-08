@@ -268,7 +268,7 @@
 
     <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_text">L\'Anguriara nasce nel 1999 dall\'idea originale di giovani giavenalesi intenzionati a creare un ambiente divertente e innovativo,
-        adatto a piccoli e grandi! Il gruppo è che la gestisce è formato da interamente da volontari, animatori, animati e catechisti, che si dedicano con amore e passione a quest\'attività
+        adatto a piccoli e grandi! Il gruppo che la gestisce è formato interamente da volontari, animatori, animati e catechisti, che si dedicano con amore e passione a quest\'attività
         per sostenere e finanziare le spese sociali del paesello: ristrutturazione dell\'asilo, della chiesa e del centro parrocchiale, campeggi estivi, carro di carnevale del quartiere, caritas e chi più ne ha più ne metta!
         \n\nTutto questo è possibile grazie alla splendida famiglia che ogni anno ospita l\'Anguriara mettendo a disposizione il terreno senza volere nulla in cambio.</string>
 
@@ -281,6 +281,6 @@
     <string-array name="sponsor_sub_title">
         <item>Giardineria\n\nStrada Maranese, Schio\nTel 0445 673250\nFax 0445294574\nwww.giardineriadrago.com</item>
         <item>Distribuzione bevande\n\nVia Molin Barbiero, 12 Valli del Pasubio\nTel 0445 630151\nVia Riva del Cristo, 9 Schio\nTel 0445 570469</item>
-        <item>Ferramenta, utensileria, giardinaggio, colori</item>
+        <item>Ferramenta, utensileria, giardinaggio, colori, elettrodomestici</item>
     </string-array>
 </resources>
