@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +25,12 @@ public class CalendarFragment extends Fragment {
     View view;
     LinearLayout calendarLayout;
 
+    //TO IMPROVE
     private int monthSelected = -1;
 
     private Calendar today = new GregorianCalendar(2015, 6, 8);
     private String[] daysOfWeek;
     private String[] months;
-    private String cardViewTitle;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-        //Try to improve
+        //TO IMPROVE
         if (monthSelected != -1) {
             if (monthSelected == 5) {
                 setMonthCalendar(Calendar.JUNE);
@@ -82,7 +81,7 @@ public class CalendarFragment extends Fragment {
                 monthSelected = 6;
             }
         } else {
-            if (today.get(Calendar.MONTH) < 6) {
+            if (this.today.get(Calendar.MONTH) < 6) {
                 setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
                 julyButton.setVisibility(View.VISIBLE);
@@ -104,29 +103,29 @@ public class CalendarFragment extends Fragment {
         TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
         Button button = (Button) this.view.findViewById(R.id.card_view_button);
 
-        String thisDayOfWeek = daysOfWeek[today.get(Calendar.DAY_OF_WEEK) - 1];
-        int thisDayOfMonth = today.get(Calendar.DAY_OF_MONTH);
-        String thisMonth = months[today.get(Calendar.MONTH)];
-        this.cardViewTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-        titleTextView.setText(this.cardViewTitle);
+        String thisDayOfWeek = daysOfWeek[this.today.get(Calendar.DAY_OF_WEEK) - 1];
+        int thisDayOfMonth = this.today.get(Calendar.DAY_OF_MONTH);
+        String thisMonth = months[this.today.get(Calendar.MONTH)];
+        String cardViewTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+        titleTextView.setText(cardViewTitle);
 
         if (MainActivity.calendar.containsKey(this.today)) {
             imageView.setImageResource(R.drawable.open);
-            String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(today).get("event") + "\n";
-            if (! MainActivity.calendar.get(today).get("food").isEmpty())
-                dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(today).get("food");
+            String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
+            if (! MainActivity.calendar.get(this.today).get("food").isEmpty())
+                dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
             subTitleTextView.setText(dayEventAndFood);
 
             final Bundle dayArgs = new Bundle();
-            dayArgs.putSerializable("date", today);
+            dayArgs.putSerializable("date", this.today);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DayFragment dayFragment = new DayFragment();
-                    dayFragment.setArguments(dayArgs);
+                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                    dayScreenSlidePagerFragment.setArguments(dayArgs);
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_container, dayFragment);
-                    transaction.addToBackStack(null);
+                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+                    transaction.addToBackStack("secondary");
                     transaction.commit();
                 }
             });
@@ -136,7 +135,6 @@ public class CalendarFragment extends Fragment {
             subTitleTextView.setText(getResources().getString(R.string.close));
             button.setVisibility(View.GONE);
         }
-
     }
 
     private void setMonthCalendar(int month) {
@@ -181,11 +179,10 @@ public class CalendarFragment extends Fragment {
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-//                                    DayFragment dayFragment = new DayFragment();
-                                    PagerAdapterFragment dayFragment = new PagerAdapterFragment();
-                                    dayFragment.setArguments(dayArgs);
+                                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                                    dayScreenSlidePagerFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_container, dayFragment);
+                                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
                                     transaction.addToBackStack("secondary");
                                     transaction.commit();
                                 }

@@ -10,5 +10,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/notifications_switch"
         android:text="@string/notifications"
+        android:textColor="@color/text"
         android:textSize="16sp" />
 </RelativeLayout>

@@ -53,14 +53,12 @@ public class MainActivity extends AppCompatActivity {
             null,
             new SettingsFragment()};
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     DrawerLayout mDrawer;
     ActionBarDrawerToggle mDrawerToggle;
 
     private String fileName = "anguriara.ser";
     public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public static ArrayList<GregorianCalendar> days;
     final static int YEAR = 2015;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     private int[] anguriaraMonths;
@@ -69,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayEventsDetails;
     private String[] dayFoods;
     private String[] dayOpeningTimes;
-
-    public static ArrayList<GregorianCalendar> days = new ArrayList<>(31);
 
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
@@ -88,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
         menu = getResources().getStringArray(R.array.menu);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new DrawerAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
+        RecyclerView.Adapter mAdapter = new DrawerAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
         mRecyclerView.setAdapter(mAdapter);
 
         final GestureDetector mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -156,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-        //TESTING
         File file = new File(this.getFilesDir(), this.fileName);
-//        if (file.exists()) {
-//            MainActivity.calendar = deserializeCalendar(this);
-//        } else {
+        if (file.exists()) {
+            MainActivity.calendar = deserializeCalendar(this);
+        } else {
             MainActivity.calendar = setCalendar();
-//            serializeCalendar(MainActivity.calendar);
-//        }
+            serializeCalendar(MainActivity.calendar);
+        }
+        days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
@@ -214,8 +210,7 @@ public class MainActivity extends AppCompatActivity {
             eveningMap.put("event_details", this.dayEventsDetails[i]);
             eveningMap.put("food", this.dayFoods[i]);
             eveningMap.put("openingTime", this.dayOpeningTimes[i]);
-            calendar.put(new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
-            days.add(i, new GregorianCalendar(this.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]));
+            calendar.put(new GregorianCalendar(MainActivity.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
         }
         return calendar;
     }
