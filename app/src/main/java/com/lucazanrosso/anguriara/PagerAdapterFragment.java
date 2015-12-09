@@ -24,10 +24,42 @@ public class PagerAdapterFragment extends Fragment {
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
 
+        String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+        String[] months = getResources().getStringArray(R.array.months);
+
+        String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+        String thisMonth = months[date.get(Calendar.MONTH)];
+        MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
+
         ViewPager mPager = (ViewPager) view.findViewById(R.id.pager);
         PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(MainActivity.days.indexOf(date));
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                GregorianCalendar date = MainActivity.days.get(position);
+
+                String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+                String[] months = getResources().getStringArray(R.array.months);
+
+                String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+                int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+                String thisMonth = months[date.get(Calendar.MONTH)];
+                MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         return view;
     }
@@ -39,18 +71,6 @@ public class PagerAdapterFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            Log.d("pos", "pos: " + position);
-
-//            GregorianCalendar date = MainActivity.days.get(position);
-//
-//            String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
-//            String[] months = getResources().getStringArray(R.array.months);
-//
-//            String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-//            int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-//            String thisMonth = months[date.get(Calendar.MONTH)];
-//            MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
-
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", MainActivity.days.get(position));
             DayFragment dayFragment = new DayFragment();

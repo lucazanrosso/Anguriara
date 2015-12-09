@@ -29,13 +29,13 @@ public class DayFragment extends Fragment{
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
         LinkedHashMap<String, String> day = MainActivity.calendar.get(date);
 
-        String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
-        String[] months = getResources().getStringArray(R.array.months);
-
-        String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-        String thisMonth = months[date.get(Calendar.MONTH)];
-        MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
+//        String[] daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+//        String[] months = getResources().getStringArray(R.array.months);
+//
+//        String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+//        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+//        String thisMonth = months[date.get(Calendar.MONTH)];
+//        MainActivity.toolbar.setTitle(thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth);
 
         String[] dayTitle = new String[3];
         if (!day.get("event").isEmpty())
