@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,7 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar(2015, 6, 8);
+    private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
     private String[] months;
 
@@ -101,7 +102,7 @@ public class CalendarFragment extends Fragment {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
-        Button button = (Button) this.view.findViewById(R.id.card_view_button);
+        CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
 
         String thisDayOfWeek = daysOfWeek[this.today.get(Calendar.DAY_OF_WEEK) - 1];
         int thisDayOfMonth = this.today.get(Calendar.DAY_OF_MONTH);
@@ -118,7 +119,7 @@ public class CalendarFragment extends Fragment {
 
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", this.today);
-            button.setOnClickListener(new View.OnClickListener() {
+            thisDayCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
@@ -129,11 +130,9 @@ public class CalendarFragment extends Fragment {
                     transaction.commit();
                 }
             });
-            button.setVisibility(View.VISIBLE);
         } else {
             imageView.setImageResource(R.drawable.close);
             subTitleTextView.setText(getResources().getString(R.string.close));
-            button.setVisibility(View.GONE);
         }
     }
 
