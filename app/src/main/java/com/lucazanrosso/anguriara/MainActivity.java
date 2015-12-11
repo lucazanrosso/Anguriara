@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayFoods;
     private String[] dayOpeningTimes;
 
+    public static String[] sponsorTitles;
+    public static String[] sponsorTexts;
+    public static int[] sponsorLogos = {R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo,
+            R.drawable.sponsor_logo};
+
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
     private static PendingIntent notificationPendingIntent;
@@ -151,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
+        MainActivity.sponsorTitles = getResources().getStringArray(R.array.sponsor_title);
+        MainActivity.sponsorTexts = getResources().getStringArray(R.array.sponsor_sub_title);
 
         File file = new File(this.getFilesDir(), this.fileName);
         if (file.exists()) {

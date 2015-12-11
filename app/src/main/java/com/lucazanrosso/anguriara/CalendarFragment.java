@@ -24,7 +24,6 @@ import java.util.LinkedHashMap;
 public class CalendarFragment extends Fragment {
 
     View view;
-    LinearLayout calendarLayout;
 
     //TO IMPROVE
     private int monthSelected = -1;
@@ -36,16 +35,14 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
-
-        this.calendarLayout = (LinearLayout) this.view.findViewById(R.id.calendar_layout);
-
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
+
+        this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
-        thisDay();
+        setThisDay();
 
         final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
         final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
@@ -98,7 +95,7 @@ public class CalendarFragment extends Fragment {
         return this.view;
     }
 
-    private void thisDay () {
+    private void setThisDay () {
         ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);

@@ -8,7 +8,7 @@
         <item>Calendario</item>
         <item>Dove siamo</item>
         <item>Chi siamo</item>
-        <item>I nostri sponsor</item>
+        <item>Gli sponsor dell\'app</item>
         <item>Impostazioni</item>
     </string-array>
     <string name="calendar">Calendario</string>
@@ -279,8 +279,13 @@
         <item>Piero Lovato</item>
     </string-array>
     <string-array name="sponsor_sub_title">
-        <item>Giardineria\n\nStrada Maranese, Schio\nTel 0445 673250\nFax 0445294574\nwww.giardineriadrago.com</item>
-        <item>Distribuzione bevande\n\nVia Molin Barbiero, 12 Valli del Pasubio\nTel 0445 630151\nVia Riva del Cristo, 9 Schio\nTel 0445 570469</item>
+        <item>Giardineria</item>
+        <item>Distribuzione bevande</item>
         <item>Ferramenta, utensileria, giardinaggio, colori, elettrodomestici</item>
     </string-array>
+    <!--<string-array name="sponsor_sub_title">-->
+        <!--<item>Giardineria\n\nStrada Maranese, Schio\nTel 0445 673250\nFax 0445294574\nwww.giardineriadrago.com</item>-->
+        <!--<item>Distribuzione bevande\n\nVia Molin Barbiero, 12 Valli del Pasubio\nTel 0445 630151\nVia Riva del Cristo, 9 Schio\nTel 0445 570469</item>-->
+        <!--<item>Ferramenta, utensileria, giardinaggio, colori, elettrodomestici</item>-->
+    <!--</string-array>-->
 </resources>
