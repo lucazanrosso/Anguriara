@@ -57,16 +57,6 @@ public class DayFragment extends Fragment{
         RecyclerView.LayoutManager dayLayoutManager = new LinearLayoutManager(getContext());
         dayRecyclerView.setLayoutManager(dayLayoutManager);
 
-        TextView sponsorTitle = (TextView) view.findViewById(R.id.sponsor_title);
-        TextView sponsorText = (TextView) view.findViewById(R.id.sponsor_text);
-        ImageView sponsorLogo = (ImageView) view.findViewById(R.id.sponsor_logo);
-
-        int sponsorPosition = new Random().nextInt(MainActivity.sponsorTitles.length);
-
-        sponsorTitle.setText(MainActivity.sponsorTitles[sponsorPosition]);
-        sponsorText.setText(MainActivity.sponsorTexts[sponsorPosition]);
-        sponsorLogo.setImageResource(MainActivity.sponsorLogos[sponsorPosition]);
-
         return view;
     }
 }

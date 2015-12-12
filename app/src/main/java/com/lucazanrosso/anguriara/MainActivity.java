@@ -37,26 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static Toolbar toolbar;
 
-    private static String[] menu;
-    private int[] icons = {R.drawable.ic_today_black_24dp,
-            R.drawable.ic_place_black_24dp,
-            R.drawable.ic_people_black_24dp,
-            R.drawable.ic_store_black_24dp,
-            R.drawable.ic_settings_black_24dp};
-    private int drawerHeaderImage = R.drawable.logo;
-    private Integer[] drawerDividersPosition = {5};
-    private Fragment[] fragments = {null,
-            new CalendarFragment(),
-            new WhereWeAreFragment(),
-            new WhoWeAreFragment(),
-            new SponsorFragment(),
-            null,
-            new SettingsFragment()};
-
-    DrawerLayout mDrawer;
-    ActionBarDrawerToggle mDrawerToggle;
-
-    private String fileName = "anguriara.ser";
     public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
     public static ArrayList<GregorianCalendar> days;
     final static int YEAR = 2015;
@@ -67,12 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayEventsDetails;
     private String[] dayFoods;
     private String[] dayOpeningTimes;
-
-    public static String[] sponsorTitles;
-    public static String[] sponsorTexts;
-    public static int[] sponsorLogos = {R.drawable.sponsor_logo,
-            R.drawable.sponsor_logo,
-            R.drawable.sponsor_logo};
 
     public static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
@@ -88,12 +62,43 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
-        menu = getResources().getStringArray(R.array.menu);
+        String[] menu = getResources().getStringArray(R.array.menu);
+        int[] icons = {R.drawable.ic_today_black_24dp,
+                R.drawable.ic_place_black_24dp,
+                R.drawable.ic_people_black_24dp,
+                R.drawable.ic_settings_black_24dp};
+        int drawerHeaderImage = R.drawable.logo;
+        Integer[] drawerDividersPosition = {4};
+        final Fragment[] fragments = {null,
+                new CalendarFragment(),
+                new WhereWeAreFragment(),
+                new WhoWeAreFragment(),
+                null,
+                new SettingsFragment()};
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.Adapter mAdapter = new DrawerAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
         mRecyclerView.setAdapter(mAdapter);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        final DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };
+
+        mDrawer.setDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
 
         final GestureDetector mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
@@ -132,35 +137,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };
-
-        mDrawer.setDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
         this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
         this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
         this.dayEvents = getResources().getStringArray(R.array.day_events);
         this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
-        MainActivity.sponsorTitles = getResources().getStringArray(R.array.sponsor_title);
-        MainActivity.sponsorTexts = getResources().getStringArray(R.array.sponsor_sub_title);
 
-        File file = new File(this.getFilesDir(), this.fileName);
+
+        File file = new File(this.getFilesDir(), "anguriara.ser");
         if (file.exists()) {
             MainActivity.calendar = deserializeCalendar(this);
         } else {
@@ -225,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
         try {
-            File file = new File(this.getFilesDir(), this.fileName);
+            File file = new File(this.getFilesDir(), "anguriara.ser");
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(calendar);
