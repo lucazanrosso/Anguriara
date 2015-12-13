@@ -91,7 +91,6 @@ public class CalendarFragment extends Fragment {
                 monthSelected = 6;
             }
         }
-
         return this.view;
     }
 

@@ -15,9 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.Random;
 
-public class DayFragment extends Fragment{
-
-    View view;
+public class DayFragment extends Fragment {
 
     private int[] dayIcons = {R.drawable.ic_music_note_black_24dp,
             R.drawable.ic_local_pizza_black_24dp,
@@ -25,8 +23,7 @@ public class DayFragment extends Fragment{
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_day, container, false);
-        RelativeLayout dayLayout = (RelativeLayout) view.findViewById(R.id.day_layout);
+        View view = inflater.inflate(R.layout.fragment_day, container, false);
 
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
