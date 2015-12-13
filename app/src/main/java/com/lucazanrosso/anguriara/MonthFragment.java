@@ -47,7 +47,7 @@ public class MonthFragment extends Fragment {
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
-            Map.Entry<GregorianCalendar, Map<String, String>> entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+            LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
 
             textView.setText(months[month]);
             for (int i = 1; i <= date.get(Calendar.DAY_OF_MONTH); i++) {
@@ -65,20 +65,20 @@ public class MonthFragment extends Fragment {
                             button.setTypeface(null, Typeface.BOLD);
 
                             final Bundle dayArgs = new Bundle();
-                            dayArgs.putSerializable("date", date);
+                            dayArgs.putSerializable("date", entry.getKey());
                             button.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    DayFragment dayFragment = new DayFragment();
-                                    dayFragment.setArguments(dayArgs);
+                                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                                    dayScreenSlidePagerFragment.setArguments(dayArgs);
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_container, dayFragment);
-                                    transaction.addToBackStack(null);
+                                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+                                    transaction.addToBackStack("secondary");
                                     transaction.commit();
                                 }
                             });
                             if (iterator.hasNext()) {
-                                entry = (Map.Entry<GregorianCalendar, Map<String, String>>) iterator.next();
+                                entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
                             }
                         } else {
                             button.setEnabled(false);
