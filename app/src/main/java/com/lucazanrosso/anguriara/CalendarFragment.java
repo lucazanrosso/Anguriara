@@ -3,9 +3,14 @@ package com.lucazanrosso.anguriara;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +37,8 @@ public class CalendarFragment extends Fragment {
     private String[] daysOfWeek;
     private String[] months;
 
+    public int[] anguriaraMonths = {5, 6};
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -42,55 +49,73 @@ public class CalendarFragment extends Fragment {
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
-        setThisDay();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+                setThisDay();
+//            }
+//        }).start();
 
-        final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
-        final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
-        juneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
-            }
-        });
-        julyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
-            }
-        });
+//        MonthScreenSlidePagerFragment dayScreenSlidePagerFragment = new MonthScreenSlidePagerFragment();
+//        MonthFragment dayScreenSlidePagerFragment = new MonthFragment();
+//        Bundle dayArgs = new Bundle();
+//        dayArgs.putInt("month", 6);
+//        dayScreenSlidePagerFragment.setArguments(dayArgs);
+//        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.pager, dayScreenSlidePagerFragment).commit();
 
-        //TO IMPROVE
-        if (monthSelected != -1) {
-            if (monthSelected == 5) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
-            } else if (monthSelected == 6) {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
-            }
-        } else {
-            if (this.today.get(Calendar.MONTH) < 6) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
-            } else {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
-            }
-        }
+//        final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
+//        final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
+//        juneButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setMonthCalendar(Calendar.JUNE);
+//                juneButton.setVisibility(View.INVISIBLE);
+//                julyButton.setVisibility(View.VISIBLE);
+//                monthSelected = 5;
+//            }
+//        });
+//        julyButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setMonthCalendar(Calendar.JULY);
+//                julyButton.setVisibility(View.INVISIBLE);
+//                juneButton.setVisibility(View.VISIBLE);
+//                monthSelected = 6;
+//            }
+//        });
+//
+//        //TO IMPROVE
+//        if (monthSelected != -1) {
+//            if (monthSelected == 5) {
+//                setMonthCalendar(Calendar.JUNE);
+//                juneButton.setVisibility(View.INVISIBLE);
+//                julyButton.setVisibility(View.VISIBLE);
+//                monthSelected = 5;
+//            } else if (monthSelected == 6) {
+//                setMonthCalendar(Calendar.JULY);
+//                julyButton.setVisibility(View.INVISIBLE);
+//                juneButton.setVisibility(View.VISIBLE);
+//                monthSelected = 6;
+//            }
+//        } else {
+//            if (this.today.get(Calendar.MONTH) < 6) {
+//                setMonthCalendar(Calendar.JUNE);
+//                juneButton.setVisibility(View.INVISIBLE);
+//                julyButton.setVisibility(View.VISIBLE);
+//                monthSelected = 5;
+//            } else {
+//                setMonthCalendar(Calendar.JULY);
+//                julyButton.setVisibility(View.INVISIBLE);
+//                juneButton.setVisibility(View.VISIBLE);
+//                monthSelected = 6;
+//            }
+//        }
+
+        ViewPager mPager = (ViewPager) view.findViewById(R.id.pager);
+        PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
+        mPager.setCurrentItem(1);
+        Log.d("month", "month");
 
         return this.view;
     }
@@ -133,72 +158,93 @@ public class CalendarFragment extends Fragment {
         }
     }
 
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Log.d("month", "month2");
+            Bundle dayArgs = new Bundle();
+            dayArgs.putInt("month", anguriaraMonths[position]);
+            MonthFragment monthFragment = new MonthFragment();
+            monthFragment.setArguments(dayArgs);
+            return monthFragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    }
+
     private void setMonthCalendar(int month) {
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
-            if (entry.getKey().get(Calendar.MONTH) == month) {
-                monthCalendar.put(entry.getKey(), entry.getValue());
-            }
-        }
-
-        Calendar date = new GregorianCalendar(2015, month, 1);
-
-        LinearLayout monthLayout = (LinearLayout) view.findViewById(R.id.month_layout);
-        monthLayout.removeAllViews();
-        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
-                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-        TextView textView = (TextView) view.findViewById(R.id.month);
-
-        Iterator iterator = monthCalendar.entrySet().iterator();
-        if (iterator.hasNext()) {
-            LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
-
-            textView.setText(months[month]);
-            while (month == date.get(Calendar.MONTH)) {
-                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
-                weekLinearLayout.setLayoutParams(weekLayoutParams);
-                for (int j = 0; j <= 6; j++) {
-                    if (((date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && date.get(Calendar.MONTH) == month) {
-                        Button button = new Button(getActivity());
-                        button.setLayoutParams(dayLayoutParams);
-                        button.setBackgroundResource(0);
-                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                        button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
-                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
-                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
-                            button.setTypeface(null, Typeface.BOLD);
-
-                            final Bundle dayArgs = new Bundle();
-                            dayArgs.putSerializable("date", entry.getKey());
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-                                    dayScreenSlidePagerFragment.setArguments(dayArgs);
-                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                                    transaction.addToBackStack("secondary");
-                                    transaction.commit();
-                                }
-                            });
-                            if (iterator.hasNext())
-                                entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
-                        } else {
-                            button.setEnabled(false);
-                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
-                        }
-                        weekLinearLayout.addView(button);
-                        date.add(Calendar.DAY_OF_YEAR, 1);
-                    } else {
-                        View voidView = new View(getActivity());
-                        voidView.setLayoutParams(dayLayoutParams);
-                        weekLinearLayout.addView(voidView);
-                    }
-                }
-                monthLayout.addView(weekLinearLayout);
-            }
-        }
+//        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
+//        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
+//            if (entry.getKey().get(Calendar.MONTH) == month) {
+//                monthCalendar.put(entry.getKey(), entry.getValue());
+//            }
+//        }
+//
+//        Calendar date = new GregorianCalendar(2015, month, 1);
+//
+//        LinearLayout monthLayout = (LinearLayout) view.findViewById(R.id.month_layout);
+//        monthLayout.removeAllViews();
+//        LinearLayout.LayoutParams weekLayoutParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        LinearLayout.LayoutParams dayLayoutParams = new LinearLayout.LayoutParams(
+//                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+//        TextView textView = (TextView) view.findViewById(R.id.month);
+//
+//        Iterator iterator = monthCalendar.entrySet().iterator();
+//        if (iterator.hasNext()) {
+//            LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
+//
+//            textView.setText(months[month]);
+//            while (month == date.get(Calendar.MONTH)) {
+//                LinearLayout weekLinearLayout = new LinearLayout(getActivity());
+//                weekLinearLayout.setLayoutParams(weekLayoutParams);
+//                for (int j = 0; j <= 6; j++) {
+//                    if (((date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && date.get(Calendar.MONTH) == month) {
+//                        Button button = new Button(getActivity());
+//                        button.setLayoutParams(dayLayoutParams);
+//                        button.setBackgroundResource(0);
+//                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+//                        button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
+//                        if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
+//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
+//                            button.setTypeface(null, Typeface.BOLD);
+//
+//                            final Bundle dayArgs = new Bundle();
+//                            dayArgs.putSerializable("date", entry.getKey());
+//                            button.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+//                                    dayScreenSlidePagerFragment.setArguments(dayArgs);
+//                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+//                                    transaction.addToBackStack("secondary");
+//                                    transaction.commit();
+//                                }
+//                            });
+//                            if (iterator.hasNext())
+//                                entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
+//                        } else {
+//                            button.setEnabled(false);
+//                            button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
+//                        }
+//                        weekLinearLayout.addView(button);
+//                        date.add(Calendar.DAY_OF_YEAR, 1);
+//                    } else {
+//                        View voidView = new View(getActivity());
+//                        voidView.setLayoutParams(dayLayoutParams);
+//                        weekLinearLayout.addView(voidView);
+//                    }
+//                }
+//                monthLayout.addView(weekLinearLayout);
+//            }
+//        }
     }
 }

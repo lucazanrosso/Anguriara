@@ -70,7 +70,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            final Bundle dayArgs = new Bundle();
+            Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", MainActivity.days.get(position));
             DayFragment dayFragment = new DayFragment();
             dayFragment.setArguments(dayArgs);

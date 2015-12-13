@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         int drawerHeaderImage = R.drawable.logo;
         Integer[] drawerDividersPosition = {4};
         final Fragment[] fragments = {null,
-                new CalendarFragment(),
+                new MonthScreenSlidePagerFragment(),
                 new WhereWeAreFragment(),
                 new WhoWeAreFragment(),
                 null,

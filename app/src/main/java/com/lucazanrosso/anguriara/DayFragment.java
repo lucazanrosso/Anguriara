@@ -7,15 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
-import java.util.Random;
 
-public class DayFragment extends Fragment{
+public class DayFragment extends Fragment {
 
     View view;
 
@@ -26,7 +22,6 @@ public class DayFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_day, container, false);
-        RelativeLayout dayLayout = (RelativeLayout) view.findViewById(R.id.day_layout);
 
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");

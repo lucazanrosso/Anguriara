@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/month"
+        style="@style/title"
+        android:gravity="center|center_horizontal"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/card_view_margin"
+        android:paddingRight="@dimen/card_view_margin"
+        android:paddingTop="@dimen/card_view_top_margin"
+        android:paddingBottom="@dimen/card_view_margin">
+        <TextView
+            style="@style/week_day"
+            android:text="@string/monday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/tuesday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/wednesday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/thursday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/friday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/saturday" />
+        <TextView
+            style="@style/week_day"
+            android:text="@string/sunday" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/month_layout"
+        android:padding="@dimen/card_view_margin">
+    </LinearLayout>
+</LinearLayout>
