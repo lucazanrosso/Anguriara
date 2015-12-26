@@ -141,6 +141,8 @@ public class CalendarFragment extends Fragment {
         }
 
         Calendar date = new GregorianCalendar(2015, month, 1);
+        int dateMonth = month;
+        int dateDay = date.get(Calendar.DAY_OF_WEEK);
 
         LinearLayout monthLayout = (LinearLayout) view.findViewById(R.id.month_layout);
         monthLayout.removeAllViews();
@@ -155,17 +157,19 @@ public class CalendarFragment extends Fragment {
             LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
 
             textView.setText(months[month]);
-            while (month == date.get(Calendar.MONTH)) {
+            while (month == dateMonth) {
                 LinearLayout weekLinearLayout = new LinearLayout(getActivity());
                 weekLinearLayout.setLayoutParams(weekLayoutParams);
                 for (int j = 0; j <= 6; j++) {
-                    if (((date.get(Calendar.DAY_OF_WEEK) + 5) % 7) == j && date.get(Calendar.MONTH) == month) {
+                    if (((dateDay + 5) % 7) == j && dateMonth == month) {
                         Button button = new Button(getActivity());
                         button.setLayoutParams(dayLayoutParams);
                         button.setBackgroundResource(0);
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                         button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
+                            if (today.get(Calendar.DAY_OF_YEAR) == entry.getKey().get(Calendar.DAY_OF_YEAR))
+                                button.setBackgroundResource(R.drawable.round_button);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
 
@@ -190,6 +194,8 @@ public class CalendarFragment extends Fragment {
                         }
                         weekLinearLayout.addView(button);
                         date.add(Calendar.DAY_OF_YEAR, 1);
+                        dateMonth = date.get(Calendar.MONTH);
+                        dateDay = date.get(Calendar.DAY_OF_WEEK);
                     } else {
                         View voidView = new View(getActivity());
                         voidView.setLayoutParams(dayLayoutParams);
