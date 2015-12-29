@@ -168,11 +168,8 @@ public class CalendarFragment extends Fragment {
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                         button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
-                            if (today.get(Calendar.DAY_OF_YEAR) == entry.getKey().get(Calendar.DAY_OF_YEAR))
-                                button.setBackgroundResource(R.drawable.round_button);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);
-
                             final Bundle dayArgs = new Bundle();
                             dayArgs.putSerializable("date", entry.getKey());
                             button.setOnClickListener(new View.OnClickListener() {
