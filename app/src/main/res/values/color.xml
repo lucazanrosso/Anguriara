@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffffff</color>
+    <color name="white">#ffffff</color>
     <color name="text">#de000000</color>
     <color name="secondary_text">#8a000000</color>
     <color name="disabled_text">#57000000</color>
     <color name="dividers">#1f000000</color>
-    <color name="primary">#ff43a047</color>
+    <color name="primary">#43a047</color>
     <!--<color name="primary">#1f9f3f</color>-->
     <color name="primary_dark">#2e7d32</color>
     <color name="accent">#ff5252</color>
-    <color name="blue">#9FA8DA</color>
-    <color name="blue_dark">#00003f</color>
-    <color name="green">#E8F5E9</color>
 </resources>
