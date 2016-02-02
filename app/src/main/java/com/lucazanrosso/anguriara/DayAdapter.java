@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
-    private static final int TYPE_ITEM = 1;
 
     private String[] titles;
     private String[] menuString;
@@ -55,10 +54,5 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return menuString.length;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return TYPE_ITEM;
     }
 }

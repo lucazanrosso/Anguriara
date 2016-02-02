@@ -9,4 +9,5 @@
     <!--<color name="primary">#1f9f3f</color>-->
     <color name="primary_dark">#2e7d32</color>
     <color name="accent">#ff5252</color>
+    <color name="this_day">#3f51b5</color>
 </resources>
