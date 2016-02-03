@@ -28,7 +28,7 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar(2015, 5, 5);
+    private Calendar today = new GregorianCalendar();
     private String[] daysOfWeek;
     private String[] months;
 
