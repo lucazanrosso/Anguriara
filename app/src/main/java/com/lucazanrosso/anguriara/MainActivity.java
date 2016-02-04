@@ -23,6 +23,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -33,7 +40,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public static Toolbar toolbar;
 
@@ -69,12 +76,23 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.ic_settings_black_24dp};
         int drawerHeaderImage = R.drawable.logo;
         Integer[] drawerDividersPosition = {4};
-        final Fragment[] fragments = {null,
+        SupportMapFragment mMapFragment = SupportMapFragment.newInstance();
+        mMapFragment.getMapAsync(this);
+        final Fragment[] fragments = {
+                null,
                 new CalendarFragment(),
-                new WhereWeAreFragment(),
+                mMapFragment,
                 new WhoWeAreFragment(),
                 null,
                 new SettingsFragment()};
+        final String[] titles = {
+                null,
+                getResources().getString(R.string.calendar),
+                getResources().getString(R.string.where_we_are),
+                getResources().getString(R.string.who_we_are),
+                null,
+                getResources().getString(R.string.settings)
+        };
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -120,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         transaction.replace(R.id.frame_container, fragment);
                         transaction.addToBackStack("secondary");
                         transaction.commit();
+                        MainActivity.toolbar.setTitle(titles[rv.getChildAdapterPosition(child)]);
                         return true;
                     }
                 }
@@ -281,6 +300,14 @@ public class MainActivity extends AppCompatActivity {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        GoogleMap mMap = googleMap;
+        LatLng anguriaraLatLng = new LatLng(45.7053472, 11.393271);
+        mMap.addMarker(new MarkerOptions().position(anguriaraLatLng).title("Anguriara"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(anguriaraLatLng, 14));
     }
 
     @Override

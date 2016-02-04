@@ -35,8 +35,6 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
-
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);

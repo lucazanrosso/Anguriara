@@ -16,8 +16,6 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        MainActivity.toolbar.setTitle(view.getResources().getString(R.string.settings));
-
         SwitchCompat notificationSwitch = (SwitchCompat) view.findViewById(R.id.notifications_switch);
         notificationSwitch.setChecked(MainActivity.sharedPreferences.getBoolean("alarmIsSet", false));
         notificationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
