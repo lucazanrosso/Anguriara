@@ -23,13 +23,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -76,12 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.ic_settings_black_24dp};
         int drawerHeaderImage = R.drawable.logo;
         Integer[] drawerDividersPosition = {4};
-//        SupportMapFragment mMapFragment = SupportMapFragment.newInstance();
-//        if (savedInstanceState == null) {
-//            // First incarnation of this activity.
-//            mMapFragment.setRetainInstance(true);
-//        }
-//        mMapFragment.getMapAsync(this);
         final Fragment[] fragments = {
                 null,
                 new CalendarFragment(),
@@ -89,14 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 new WhoWeAreFragment(),
                 null,
                 new SettingsFragment()};
-        final String[] titles = {
-                null,
-                getResources().getString(R.string.calendar),
-                getResources().getString(R.string.where_we_are),
-                getResources().getString(R.string.who_we_are),
-                null,
-                getResources().getString(R.string.settings)
-        };
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -137,12 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (fragments[rv.getChildAdapterPosition(child)] != null) {
                         mDrawer.closeDrawers();
-                        Fragment fragment = fragments[rv.getChildAdapterPosition(child)];
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_container, fragment);
-                        transaction.addToBackStack("secondary");
-                        transaction.commit();
-                        MainActivity.toolbar.setTitle(titles[rv.getChildAdapterPosition(child)]);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragments[rv.getChildAdapterPosition(child)]).addToBackStack("secondary").commit();
                         return true;
                     }
                 }
@@ -304,14 +278,6 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.DONT_KILL_APP);
     }
 
-//    @Override
-//    public void onMapReady(GoogleMap googleMap) {
-//        GoogleMap mMap = googleMap;
-//        LatLng anguriaraLatLng = new LatLng(45.7053472, 11.393271);
-//        mMap.addMarker(new MarkerOptions().position(anguriaraLatLng).title("Anguriara"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(anguriaraLatLng, 15));
-//    }
-
     @Override
     public void onBackPressed(){
         Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
@@ -321,6 +287,5 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
         else
             getSupportFragmentManager().popBackStack();
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
     }
 }

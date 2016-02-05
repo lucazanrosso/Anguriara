@@ -14,6 +14,9 @@ public class SettingsFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.settings));
+
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         SwitchCompat notificationSwitch = (SwitchCompat) view.findViewById(R.id.notifications_switch);

@@ -19,6 +19,8 @@ public class WhereWeAreFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.where_we_are));
+
         View view = inflater.inflate(R.layout.fragment_where_we_are, container, false);
 
         SupportMapFragment mMapFragment = SupportMapFragment.newInstance();
@@ -36,4 +38,3 @@ public class WhereWeAreFragment extends Fragment {
         return view;
     }
 }
-
