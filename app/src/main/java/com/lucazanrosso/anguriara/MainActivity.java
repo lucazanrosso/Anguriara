@@ -40,7 +40,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity {
 
     public static Toolbar toolbar;
 
@@ -76,12 +76,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 R.drawable.ic_settings_black_24dp};
         int drawerHeaderImage = R.drawable.logo;
         Integer[] drawerDividersPosition = {4};
-        SupportMapFragment mMapFragment = SupportMapFragment.newInstance();
-        mMapFragment.getMapAsync(this);
+//        SupportMapFragment mMapFragment = SupportMapFragment.newInstance();
+//        if (savedInstanceState == null) {
+//            // First incarnation of this activity.
+//            mMapFragment.setRetainInstance(true);
+//        }
+//        mMapFragment.getMapAsync(this);
         final Fragment[] fragments = {
                 null,
                 new CalendarFragment(),
-                mMapFragment,
+                new WhereWeAreFragment(),
                 new WhoWeAreFragment(),
                 null,
                 new SettingsFragment()};
@@ -163,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-
         File file = new File(this.getFilesDir(), "anguriara.ser");
         if (file.exists()) {
             MainActivity.calendar = deserializeCalendar(this);
@@ -182,12 +185,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             editor.apply();
         }
 
-        if (savedInstanceState != null) {
-            return;
+        if (savedInstanceState == null) {
+            CalendarFragment calendarFragment = new CalendarFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_container, calendarFragment).commit();
         }
-        CalendarFragment calendarFragment = new CalendarFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_container, calendarFragment).commit();
     }
 
     @Override
@@ -302,13 +304,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 PackageManager.DONT_KILL_APP);
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
-        LatLng anguriaraLatLng = new LatLng(45.7053472, 11.393271);
-        mMap.addMarker(new MarkerOptions().position(anguriaraLatLng).title("Anguriara"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(anguriaraLatLng, 14));
-    }
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        GoogleMap mMap = googleMap;
+//        LatLng anguriaraLatLng = new LatLng(45.7053472, 11.393271);
+//        mMap.addMarker(new MarkerOptions().position(anguriaraLatLng).title("Anguriara"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(anguriaraLatLng, 15));
+//    }
 
     @Override
     public void onBackPressed(){
@@ -319,5 +321,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
         else
             getSupportFragmentManager().popBackStack();
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
     }
 }
