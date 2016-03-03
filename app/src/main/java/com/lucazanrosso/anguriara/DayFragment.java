@@ -2,18 +2,13 @@ package com.lucazanrosso.anguriara;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
-import java.util.Random;
 
 public class DayFragment extends Fragment {
 
@@ -29,30 +24,21 @@ public class DayFragment extends Fragment {
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
         LinkedHashMap<String, String> day = MainActivity.calendar.get(date);
 
-        String[] dayTitle = new String[3];
-        if (!day.get("event").isEmpty())
-            dayTitle[0] = getResources().getString(R.string.event);
-        else
-            dayTitle[0] = getResources().getString(R.string.open);
-        dayTitle[1] = getResources().getString(R.string.food);
-        dayTitle[2] = getResources().getString(R.string.opening_time);
+        TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
+        TextView eventText = (TextView) view.findViewById(R.id.event_text);
+        if (day.get("event").isEmpty())
+            eventTitle.setText(getResources().getString(R.string.open));
+        eventText.setText(day.get("event") + " " + day.get("event_details"));
 
-        String[] dayText = new String[3];
-        dayText[0] = day.get("event") + " " + day.get("event_details");
-        if (!day.get("food").isEmpty())
-            dayText[1] = day.get("food") + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods);
+        TextView foodText = (TextView) view.findViewById(R.id.food_text);
+        if (day.get("food").isEmpty())
+            foodText.setText(getResources().getString(R.string.standard_foods));
         else
-            dayText[1] = getResources().getString(R.string.standard_foods);
+            foodText.setText(day.get("food") + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods));
+
+        TextView openingTimeText = (TextView) view.findViewById(R.id.opening_time_text);
         if (!day.get("openingTime").isEmpty())
-            dayText[2] = day.get("openingTime");
-        else
-            dayText[2] = getResources().getString(R.string.standard_opening_time);
-
-        RecyclerView dayRecyclerView = (RecyclerView) view.findViewById(R.id.day_recycler_view);
-        RecyclerView.Adapter dayAdapter = new DayAdapter(dayTitle, dayText, dayIcons);
-        dayRecyclerView.setAdapter(dayAdapter);
-        RecyclerView.LayoutManager dayLayoutManager = new LinearLayoutManager(getContext());
-        dayRecyclerView.setLayoutManager(dayLayoutManager);
+            openingTimeText.setText(day.get("openingTime"));
 
         return view;
     }
