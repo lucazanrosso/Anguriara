@@ -5,4 +5,5 @@
     <dimen name="drawer_row">48dp</dimen>
     <dimen name="card_view_margin">8dp</dimen>
     <dimen name="card_view_top_margin">16dp</dimen>
+    <dimen name="card_view_width">-1dp</dimen>
 </resources>

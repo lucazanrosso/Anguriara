@@ -7,53 +7,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/calendar_scroll_view">
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/calendar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:orientation="vertical">
+            android:paddingBottom="@dimen/activity_vertical_margin">
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardBackgroundColor="@color/this_day"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardUseCompatPadding="true">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:id="@+id/card_view_image"
-                    android:layout_gravity="end"
-                    android:adjustViewBounds="true" />
-                <LinearLayout
+                style="@style/card_view"
+                card_view:cardBackgroundColor="@color/this_day">
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-                        <TextView
-                            android:id="@+id/card_view_title"
-                            style="@style/title"
-                            android:textColor="@color/white"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:paddingTop="16dp" />
-                        <TextView
-                            android:id="@+id/card_view_sub_title"
-                            style="@style/subtitle"
-                            android:textColor="@color/white"
-                            android:paddingBottom="8dp"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="100dp"
+                        android:id="@+id/card_view_image"
+                        android:adjustViewBounds="true"
+                        android:layout_alignParentRight="true" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                            <TextView
+                                android:id="@+id/card_view_title"
+                                style="@style/title"
+                                android:textColor="@color/white"
+                                android:paddingLeft="16dp"
+                                android:paddingRight="16dp"
+                                android:paddingTop="16dp" />
+                            <TextView
+                                android:id="@+id/card_view_sub_title"
+                                style="@style/subtitle"
+                                android:textColor="@color/white"
+                                android:paddingBottom="8dp"/>
+                    </LinearLayout>
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                card_view:cardCornerRadius="4dp"
-                card_view:cardUseCompatPadding="true">
+                style="@style/card_view"
+                android:layout_below="@+id/card_view">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,6 +125,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
