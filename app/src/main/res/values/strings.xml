@@ -6,6 +6,7 @@
     <string name="drawer_close">close drawer</string>
     <string-array name="menu">
         <item>Calendario</item>
+        <item>Pravolley</item>
         <item>Dove siamo</item>
         <item>Chi siamo</item>
         <item>Impostazioni</item>
@@ -262,29 +263,42 @@
     <string name="saturday">S</string>
     <string name="this_evening">Questa sera</string>
     <string name="notifications">Notifiche</string>
-
+    <string name="pravolley">Pravolley</string>
+    <string name="schedule">Programma</string>
+    <string name="pravolley_schedule">Sabato 11 luglio
+        \n\u2022 13:15 - 13:30 Accettazione scquadre
+        \n\u2022 13:45 Inizio gare
+        \n\u2022 19:00 Fine gare
+        \n\u2022 19:30 Apertura serale con galletto + live show di Virna Marangoni
+        \n\nDomenica 12 luglio
+        \n\u2022 8:30 colazione
+        \n\u2022 9:00 Inizio gare
+        \n\u2022 12:00 - 13:00 Pausa pranzo con panini con porchetta
+        \n\u2022 15:30 Finali
+        \n\u2022 18:30 Premiazioni
+    </string>
+    <string name="regulation">Regolamento</string>
+    <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso
+        \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e se non possibile 1 ragazza e solo 2 maschi
+        \n\u2022 Ogni squadra dovr\u00e0 portarsi un pallone da pallavolo
+        \n\u2022 Le squadra inoltre dovranno arbitrare a rotazione
+        \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break
+        \n\u2022 Il punteggio durante i gironi corrisponder\u00e0 al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti
+    </string>
+    <string name="inscriptions">Iscrizioni</string>
+    <string name="pravolley_inscriptions">Apertura isrizioni: venerd\u00ec 12 giugno
+        \nChiusura iscrizioni: mercoled\u00ec 1 luglio
+        \nNumero squadre: 21
+        \nIscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e inviandolo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
+        \nIl costo di iscrizione \u00e8 di 10 euro, comprensivi di un buono colazione (caff\u00e8 + brioche) e della maglietta del pravolley!
+    </string>
     <string name="where_we_are">Dove Siamo</string>
-
     <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_text">L\'Anguriara nasce nel 1999 dall\'idea originale di giovani giavenalesi intenzionati a creare un ambiente divertente e innovativo,
         adatto a piccoli e grandi! Il gruppo che la gestisce è formato interamente da volontari, animatori, animati e catechisti, che si dedicano con amore e passione a quest\'attività
         per sostenere e finanziare le spese sociali del paesello: ristrutturazione dell\'asilo, della chiesa e del centro parrocchiale, campeggi estivi, carro di carnevale del quartiere, caritas e chi più ne ha più ne metta!
-        \n\nTutto questo è possibile grazie alla splendida famiglia che ogni anno ospita l\'Anguriara mettendo a disposizione il terreno senza volere nulla in cambio.</string>
-
-    <string name="sponsor">Sponsor</string>
-    <string-array name="sponsor_title">
-        <item>Giardineria Drago</item>
-        <item>F.lli Passarella</item>
-        <item>Piero Lovato</item>
-    </string-array>
-    <string-array name="sponsor_sub_title">
-        <item>Giardineria</item>
-        <item>Distribuzione bevande</item>
-        <item>Ferramenta, utensileria, giardinaggio, colori, elettrodomestici</item>
-    </string-array>
-    <!--<string-array name="sponsor_sub_title">-->
-        <!--<item>Giardineria\n\nStrada Maranese, Schio\nTel 0445 673250\nFax 0445294574\nwww.giardineriadrago.com</item>-->
-        <!--<item>Distribuzione bevande\n\nVia Molin Barbiero, 12 Valli del Pasubio\nTel 0445 630151\nVia Riva del Cristo, 9 Schio\nTel 0445 570469</item>-->
-        <!--<item>Ferramenta, utensileria, giardinaggio, colori, elettrodomestici</item>-->
-    <!--</string-array>-->
+        \n\nTutto questo è possibile grazie alla splendida famiglia che ogni anno ospita l\'Anguriara mettendo a disposizione il terreno senza volere nulla in cambio.
+        \n\nVi aspettiamo a Giavenale di Schio(VI), in un campo lungo Via Giavenale di Sopra, dal mercoled\u00ec al sabato.
+        \nPer contattarci puoi scrivere un\'email all\'indirizzo anguriara@gmail.com oppure puoi venire a trovarci direttamente sul posto nel periodo in cui siamo aperti per parlate di persona, chiedendo del \"Mais\" o di \"Salvia\".
+    </string>
 </resources>

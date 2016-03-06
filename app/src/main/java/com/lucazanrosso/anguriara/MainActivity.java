@@ -64,14 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
         String[] menu = getResources().getStringArray(R.array.menu);
         int[] icons = {R.drawable.ic_today_black_24dp,
+                R.drawable.ic_local_florist_black_24dp,
                 R.drawable.ic_place_black_24dp,
                 R.drawable.ic_people_black_24dp,
                 R.drawable.ic_settings_black_24dp};
         int drawerHeaderImage = R.drawable.logo;
-        Integer[] drawerDividersPosition = {4};
+        Integer[] drawerDividersPosition = {5};
         final Fragment[] fragments = {
                 null,
                 new CalendarFragment(),
+                new PravolleyFragment(),
                 new WhereWeAreFragment(),
                 new WhoWeAreFragment(),
                 null,
