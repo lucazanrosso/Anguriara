@@ -43,8 +43,7 @@
                             <TextView
                                 android:id="@+id/card_view_sub_title"
                                 style="@style/subtitle"
-                                android:textColor="@color/white"
-                                android:paddingBottom="8dp"/>
+                                android:textColor="@color/white" />
                     </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>

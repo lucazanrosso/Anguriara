@@ -10,4 +10,7 @@
     <color name="primary_dark">#2e7d32</color>
     <color name="accent">#ff5252</color>
     <color name="this_day">#3f51b5</color>
+    <color name="event">#673ab7</color>
+    <color name="food">#f44336</color>
+    <color name="opening_time">#009688</color>
 </resources>
