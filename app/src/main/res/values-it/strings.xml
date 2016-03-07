@@ -1,45 +1,45 @@
 <resources>
     <string name="app_name">Anguriara</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Impostazioni</string>
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
     <string-array name="menu">
-        <item>Calendar</item>
+        <item>Calendario</item>
         <item>Pravolley</item>
-        <item>Where we are</item>
-        <item>Who we are</item>
-        <item>Settings</item>
+        <item>Dove siamo</item>
+        <item>Chi siamo</item>
+        <item>Impostazioni</item>
     </string-array>
-    <string name="calendar">Calendar</string>
+    <string name="calendar">Calendario</string>
     <string-array name="days_of_week">
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
+        <item>Domenica</item>
+        <item>Lunedì</item>
+        <item>Martedì</item>
+        <item>Mercoledì</item>
+        <item>Giovedì</item>
+        <item>Venerdì</item>
+        <item>Sabato</item>
     </string-array>
     <string-array name="months">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
+        <item>Gennaio</item>
+        <item>Febbraio</item>
+        <item>Marzo</item>
+        <item>Aprile</item>
+        <item>Maggio</item>
+        <item>Giugno</item>
+        <item>Luglio</item>
+        <item>Agosto</item>
+        <item>Settembre</item>
+        <item>Ottobre</item>
+        <item>Novembre</item>
+        <item>Dicembre</item>
     </string-array>
     <string-array name="anguriara_months_activity">
-        <item>June</item>
-        <item>July</item>
+        <item>Giugno</item>
+        <item>Luglio</item>
     </string-array>
-    <string name="close">Close</string>
-    <string name="details">DETAILS</string>
+    <string name="close">Chiuso</string>
+    <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
         <item>5</item>
         <item>6</item>
@@ -106,10 +106,10 @@
         <item>6</item>
         <item>6</item>
     </integer-array>
-    <string name="event">Event</string>
-    <string name="open">Open</string>
-    <string name="food">Kitchen</string>
-    <string name="opening_time">Opening time</string>
+    <string name="event">Evento</string>
+    <string name="open">Aperto</string>
+    <string name="food">Cucina</string>
+    <string name="opening_time">Orario di apertura</string>
     <string-array name="day_events">
         <item>Ladies, Craic &amp; Pints</item>
         <item>Big opening party</item>
@@ -246,19 +246,19 @@
     </string-array>
     <string name="standard_opening_time">20:30</string>
     <string name="and_much_more">e molto altro</string>
-    <string name="june">June</string>
-    <string name="july">July</string>
-    <string name="sunday">S</string>
-    <string name="monday">M</string>
-    <string name="tuesday">T</string>
-    <string name="wednesday">W</string>
-    <string name="thursday">T</string>
-    <string name="friday">F</string>
+    <string name="june">Giugno</string>
+    <string name="july">Luglio</string>
+    <string name="sunday">D</string>
+    <string name="monday">L</string>
+    <string name="tuesday">M</string>
+    <string name="wednesday">M</string>
+    <string name="thursday">G</string>
+    <string name="friday">V</string>
     <string name="saturday">S</string>
-    <string name="this_evening">This evening</string>
-    <string name="notifications">Notification</string>
+    <string name="this_evening">Questa sera</string>
+    <string name="notifications">Notifiche</string>
     <string name="pravolley">Pravolley</string>
-    <string name="schedule">Schedule</string>
+    <string name="schedule">Programma</string>
     <string name="pravolley_schedule">Sabato 11 luglio
         \n\u2022 13:15 - 13:30 Accettazione scquadre
         \n\u2022 13:45 Inizio gare
@@ -271,7 +271,7 @@
         \n\u2022 15:30 Finali
         \n\u2022 18:30 Premiazioni
     </string>
-    <string name="regulation">Regulation</string>
+    <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso
         \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e se non possibile 1 ragazza e solo 2 maschi
         \n\u2022 Ogni squadra dovr\u00e0 portarsi un pallone da pallavolo
@@ -279,15 +279,15 @@
         \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break
         \n\u2022 Il punteggio durante i gironi corrisponder\u00e0 al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti
     </string>
-    <string name="inscriptions">Inscriptions</string>
+    <string name="inscriptions">Iscrizioni</string>
     <string name="pravolley_inscriptions">Apertura isrizioni: venerd\u00ec 12 giugno
         \nChiusura iscrizioni: mercoled\u00ec 1 luglio
         \nNumero squadre: 21
         \nIscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e inviandolo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
         \nIl costo di iscrizione \u00e8 di 10 euro, comprensivi di un buono colazione (caff\u00e8 + brioche) e della maglietta del pravolley!
     </string>
-    <string name="where_we_are">Where we are</string>
-    <string name="who_we_are">Who we are</string>
+    <string name="where_we_are">Dove Siamo</string>
+    <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_text">L\'Anguriara nasce nel 1999 dall\'idea originale di giovani giavenalesi intenzionati a creare un ambiente divertente e innovativo,
         adatto a piccoli e grandi! Il gruppo che la gestisce è formato interamente da volontari, animatori, animati e catechisti, che si dedicano con amore e passione a quest\'attività
         per sostenere e finanziare le spese sociali del paesello: ristrutturazione dell\'asilo, della chiesa e del centro parrocchiale, campeggi estivi, carro di carnevale del quartiere, caritas e chi più ne ha più ne metta!

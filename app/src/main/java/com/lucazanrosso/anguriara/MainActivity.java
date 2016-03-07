@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        mDrawer.setDrawerListener(mDrawerToggle);
+        mDrawer.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
         final GestureDetector mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
