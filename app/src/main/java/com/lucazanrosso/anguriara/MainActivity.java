@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2016, 1, 8, 21, i);
+                alarmTime.set(2016, 2, 11, 18, i + 20);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
