@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'AnguriaraKey'
+            keyPassword 'Anguriara2016'
+            storeFile file('C:/Users/Luca/keystores/anguriara.jks')
+            storePassword 'ZannaRossa26061994'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '24.0.0 rc1'
-
     defaultConfig {
         applicationId "com.lucazanrosso.anguriara"
         minSdkVersion 11
@@ -21,10 +28,13 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:cardview-v7:23.2.0'
-    compile 'com.android.support:recyclerview-v7:23.2.0'
+    compile 'com.android.support:appcompat-v7:23+'
+    compile 'com.android.support:cardview-v7:23+'
+    compile 'com.android.support:recyclerview-v7:23+'
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:support-v4:23+'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
 }

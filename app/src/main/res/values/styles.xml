@@ -6,12 +6,6 @@
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/text</item>
     </style>
-    <style name="EveningTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
-        <item name="android:textColor">@color/text</item>
-    </style>
     <style name="title" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -34,9 +28,6 @@
         <item name="android:textColor">@color/accent</item>
         <item name="android:background">@null</item>
         <item name="android:layout_margin">4dp</item>
-    </style>
-    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
-
     </style>
     <style name="week_day" parent="@android:style/TextAppearance">
         <item name="android:layout_weight">1</item>
