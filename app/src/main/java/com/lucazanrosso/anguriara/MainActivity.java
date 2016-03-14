@@ -61,22 +61,6 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
-//        final ActionBar actionBar = getSupportActionBar();
-//        actionBar.setHomeAsUpIndicator(R.drawable.ic_chevron_left_white_24dp);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-//           @Override
-//           public void onDrawerOpened(View drawerView) {
-//               super.onDrawerOpened(drawerView);
-//           }
-//
-//           @Override
-//           public void onDrawerClosed(View drawerView) {
-//               super.onDrawerClosed(drawerView);
-//           }
-//        });
         this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle drawerLayoutToggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -168,14 +152,10 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        switch (id) {
-            case R.id.action_settings:
-                SettingsFragment settingsFragment = new SettingsFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, settingsFragment).addToBackStack("secondary").commit();
-                return true;
-//            case android.R.id.home:
-//                drawerLayout.openDrawer(GravityCompat.START);
-//                return true;
+        if (id == R.id.action_settings) {
+            SettingsFragment settingsFragment = new SettingsFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, settingsFragment).addToBackStack("secondary").commit();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -240,9 +220,9 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-//           alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
+//              alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2016, 2, 11, 18, i + 20);
+                alarmTime.set(2016, 2, i, 18, 0);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
