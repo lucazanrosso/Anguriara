@@ -8,18 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
@@ -36,6 +32,9 @@ import java.util.LinkedHashMap;
 public class MainActivity extends AppCompatActivity {
 
     public static Toolbar toolbar;
+
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
     public static ArrayList<GregorianCalendar> days;
@@ -62,33 +61,24 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
-        String[] menu = getResources().getStringArray(R.array.menu);
-        int[] icons = {R.drawable.ic_today_black_24dp,
-                R.drawable.ic_local_florist_black_24dp,
-                R.drawable.ic_place_black_24dp,
-                R.drawable.ic_people_black_24dp,
-                R.drawable.ic_settings_black_24dp};
-        int drawerHeaderImage = R.drawable.logo;
-        Integer[] drawerDividersPosition = {5};
-        final Fragment[] fragments = {
-                null,
-                new CalendarFragment(),
-                new PravolleyFragment(),
-                new WhereWeAreFragment(),
-                new WhoWeAreFragment(),
-                null,
-                new SettingsFragment()};
-
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        RecyclerView.Adapter mAdapter = new DrawerAdapter(menu, icons, drawerHeaderImage, drawerDividersPosition);
-        mRecyclerView.setAdapter(mAdapter);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        final DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
+//        final ActionBar actionBar = getSupportActionBar();
+//        actionBar.setHomeAsUpIndicator(R.drawable.ic_chevron_left_white_24dp);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//
+//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+//           @Override
+//           public void onDrawerOpened(View drawerView) {
+//               super.onDrawerOpened(drawerView);
+//           }
+//
+//           @Override
+//           public void onDrawerClosed(View drawerView) {
+//               super.onDrawerClosed(drawerView);
+//           }
+//        });
+        this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle drawerLayoutToggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -99,40 +89,37 @@ public class MainActivity extends AppCompatActivity {
                 super.onDrawerClosed(drawerView);
             }
         };
+        this.drawerLayout.addDrawerListener(drawerLayoutToggle);
+        drawerLayoutToggle.syncState();
 
-        mDrawer.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-        final GestureDetector mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+        this.navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                return true;
-            }
-        });
-        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                View child = rv.findChildViewUnder(e.getX(), e.getY());
-
-                if (child != null && mGestureDetector.onTouchEvent(e)) {
-
-                    if (fragments[rv.getChildAdapterPosition(child)] != null) {
-                        mDrawer.closeDrawers();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragments[rv.getChildAdapterPosition(child)]).addToBackStack("secondary").commit();
-                        return true;
-                    }
+            public boolean onNavigationItemSelected(MenuItem item) {
+                final int itemId = item.getItemId();
+                final Fragment fragment;
+                switch (itemId) {
+                    case R.id.calendar:
+                        fragment = new CalendarFragment();
+                        break;
+                    case R.id.pravolley:
+                        fragment = new PravolleyFragment();
+                        break;
+                    case R.id.where_we_are:
+                        fragment = new WhereWeAreFragment();
+                        break;
+                    case R.id.who_we_are:
+                        fragment = new WhoWeAreFragment();
+                        break;
+                    case R.id.settings:
+                        fragment = new SettingsFragment();
+                        break;
+                    default:
+                        throw new IllegalArgumentException("No Fragment for the given item");
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack("secondary").commit();
+                drawerLayout.closeDrawer(navigationView);
                 return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
             }
         });
 
@@ -181,13 +168,14 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            SettingsFragment settingsFragment = new SettingsFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_container, settingsFragment);
-            transaction.addToBackStack("secondary");
-            transaction.commit();
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                SettingsFragment settingsFragment = new SettingsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, settingsFragment).addToBackStack("secondary").commit();
+                return true;
+//            case android.R.id.home:
+//                drawerLayout.openDrawer(GravityCompat.START);
+//                return true;
         }
         return super.onOptionsItemSelected(item);
     }
