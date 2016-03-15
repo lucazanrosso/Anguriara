@@ -124,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart", false);
-        if (!firstStart) {
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2015", true);
+        boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
+        if (firstStart && alarmisSet) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
-            editor.putBoolean("firstStart", true);
-            editor.apply();
+            editor.putBoolean("firstStart2015", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
+        editor = MainActivity.sharedPreferences.edit();
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
             String notificationText;
             if (!entry.getValue().get("event").isEmpty()) {
@@ -222,20 +223,16 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //              alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2016, 2, i, 18, 0);
+                alarmTime.set(2016, 2, 15, 21, i);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
-                    MainActivity.editor = MainActivity.sharedPreferences.edit();
-                    editor.putBoolean("alarmIsSet", true);
-                    editor.apply();
+                    editor.putBoolean("alarmIsSet", true).apply();
                 }
             } else {
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
-                    MainActivity.editor = MainActivity.sharedPreferences.edit();
-                    editor.putBoolean("alarmIsSet", false);
-                    editor.apply();
+                    editor.putBoolean("alarmIsSet", false).apply();
                 }
             }
             i++;
