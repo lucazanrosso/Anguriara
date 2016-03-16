@@ -124,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2015", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2015-5", true);
         boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
         if (firstStart && alarmisSet) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
-            editor.putBoolean("firstStart2015", false).apply();
+            editor.putBoolean("firstStart2015-5", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //              alarmTime.set(CalendarFragment.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-                alarmTime.set(2016, 2, 15, 21, i);
+                alarmTime.set(2016, 2, 16, 23, i);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
