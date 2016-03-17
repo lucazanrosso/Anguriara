@@ -23,7 +23,8 @@ public class MyNotification extends BroadcastReceiver{
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(this.notificationIcon)
                 .setContentTitle(this.notificationTitle)
-                .setContentText(this.notificationText);
+                .setContentText(this.notificationText)
+                .setColor(context.getResources().getColor(R.color.accent));
         Intent resultIntent = new Intent(context, MainActivity.class);
         //resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
