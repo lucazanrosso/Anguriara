@@ -28,7 +28,7 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar();
+    private Calendar today = new GregorianCalendar(2015, 5, 5);
     private String[] daysOfWeek;
     private String[] months;
 
@@ -164,6 +164,7 @@ public class CalendarFragment extends Fragment {
                     if (((dateDay + 5) % 7) == j && dateMonth == month) {
                         Button button = new Button(getActivity());
                         button.setLayoutParams(dayLayoutParams);
+                        button.setPadding(0, 0, 0, 0);
                         button.setBackgroundResource(0);
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                         button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));

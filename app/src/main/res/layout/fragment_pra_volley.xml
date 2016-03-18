@@ -1,127 +1,85 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin">
-            <ImageView
-                android:layout_width="@dimen/card_view_width"
-                android:layout_height="wrap_content"
-                android:id="@+id/pravolley_logo"
-                android:src="@drawable/pravolley"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true" />
-            <android.support.v7.widget.CardView
-                android:id="@+id/schedule_card_view"
-                style="@style/card_view"
-                android:layout_below="@+id/pravolley_logo">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp" >
-                    <ImageView
-                        android:id="@+id/schedule_icon"
-                        style="@style/card_view_icon"
-                        android:src="@drawable/ic_event_black_24dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/schedule_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:text="@string/schedule"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                        <TextView
-                            android:id="@+id/schedule_text"
-                            style="@style/text"
-                            android:text="@string/pravolley_schedule"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:id="@+id/regulation_card_view"
-                style="@style/card_view"
-                android:layout_below="@+id/schedule_card_view">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp" >
-                    <ImageView
-                        android:id="@+id/regulation_icon"
-                        style="@style/card_view_icon"
-                        android:src="@drawable/ic_assignment_black_24dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/regulation_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:text="@string/regulation"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                        <TextView
-                            android:id="@+id/regulation_text"
-                            style="@style/text"
-                            android:text="@string/pravolley_ragulation"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:id="@+id/inscriptions_card_view"
-                style="@style/card_view"
-                android:layout_below="@+id/regulation_card_view">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp" >
-                    <ImageView
-                        android:id="@+id/inscriptions_icon"
-                        style="@style/card_view_icon"
-                        android:src="@drawable/ic_mail_black_24dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/inscriptions_title"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:text="@string/inscriptions"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                        <TextView
-                            android:id="@+id/inscriptions_text"
-                            style="@style/text"
-                            android:text="@string/pravolley_inscriptions"
-                            android:paddingLeft="56dp"
-                            android:paddingRight="8dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+        <ImageView
+            android:layout_width="@dimen/card_view_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/pravolley_logo"
+            android:src="@drawable/pravolley"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/schedule_card_view"
+            style="@style/card_view"
+            android:layout_below="@+id/pravolley_logo">
+            <RelativeLayout
+                style="@style/card_view_layout" >
+                <ImageView
+                    android:id="@+id/schedule_icon"
+                    style="@style/card_view_icon"
+                    android:src="@drawable/ic_event_black_24dp" />
+                    <TextView
+                        android:id="@+id/schedule_title"
+                        style="@style/card_view_title"
+                        android:text="@string/schedule" />
+                    <TextView
+                        android:id="@+id/schedule_text"
+                        style="@style/card_view_text"
+                        android:layout_below="@id/schedule_title"
+                        android:text="@string/pravolley_schedule" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/regulation_card_view"
+            style="@style/card_view"
+            android:layout_below="@+id/schedule_card_view">
+            <RelativeLayout
+                style="@style/card_view_layout" >
+                <ImageView
+                    android:id="@+id/regulation_icon"
+                    style="@style/card_view_icon"
+                    android:src="@drawable/ic_assignment_black_24dp" />
+                    <TextView
+                        android:id="@+id/regulation_title"
+                        style="@style/card_view_title"
+                        android:text="@string/regulation" />
+                    <TextView
+                        android:id="@+id/regulation_text"
+                        style="@style/card_view_text"
+                        android:layout_below="@id/regulation_title"
+                        android:text="@string/pravolley_ragulation" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/inscriptions_card_view"
+            style="@style/card_view"
+            android:layout_below="@+id/regulation_card_view">
+            <RelativeLayout
+                style="@style/card_view_layout" >
+                <ImageView
+                    android:id="@+id/inscriptions_icon"
+                    style="@style/card_view_icon"
+                    android:src="@drawable/ic_mail_black_24dp" />
+                <TextView
+                    android:id="@+id/inscriptions_title"
+                    style="@style/card_view_title"
+                    android:text="@string/inscriptions" />
+                <TextView
+                    android:id="@+id/inscriptions_text"
+                    style="@style/card_view_text"
+                    android:layout_below="@+id/inscriptions_title"
+                    android:text="@string/pravolley_inscriptions" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</ScrollView>
