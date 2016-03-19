@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         this.drawerLayout.addDrawerListener(drawerLayoutToggle);
+        this.drawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         drawerLayoutToggle.syncState();
 
         this.navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -245,14 +247,14 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.DONT_KILL_APP);
     }
 
-    @Override
-    public void onBackPressed(){
-        Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
-        if (fm instanceof CalendarFragment)
-            finish();
-        else if (!(fm instanceof DayFragment))
-            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        else
-            getSupportFragmentManager().popBackStack();
-    }
+//    @Override
+//    public void onBackPressed(){
+//        Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+//        if (fm instanceof CalendarFragment)
+//            finish();
+//        else if (!(fm instanceof DayFragment))
+//            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        else
+//            getSupportFragmentManager().popBackStack();
+//    }
 }
