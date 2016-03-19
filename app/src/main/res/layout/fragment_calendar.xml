@@ -28,10 +28,9 @@
                     android:layout_below="@id/card_view_title"
                     android:textColor="@color/white" />
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="51dp"
                     android:layout_height="68dp"
                     android:id="@+id/card_view_image"
-                    android:adjustViewBounds="true"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true" />
