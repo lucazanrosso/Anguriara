@@ -247,14 +247,14 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.DONT_KILL_APP);
     }
 
-//    @Override
-//    public void onBackPressed(){
-//        Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
-//        if (fm instanceof CalendarFragment)
-//            finish();
-//        else if (!(fm instanceof DayFragment))
-//            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//        else
-//            getSupportFragmentManager().popBackStack();
-//    }
+    @Override
+    public void onBackPressed(){
+        Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
+        if (fm instanceof CalendarFragment)
+            finish();
+        else if (!(fm instanceof DayFragment))
+            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        else
+            getSupportFragmentManager().popBackStack();
+    }
 }
