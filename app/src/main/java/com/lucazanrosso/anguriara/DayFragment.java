@@ -24,7 +24,7 @@ public class DayFragment extends Fragment {
         TextView eventText = (TextView) view.findViewById(R.id.event_text);
         if (!day.get("event").isEmpty()) {
             eventTitle.setText(getResources().getString(R.string.event));
-            eventText.setText(day.get("event") + " " + day.get("event_details"));
+            eventText.setText(day.get("event") + day.get("event_details"));
         } else {
             eventTitle.setText(getResources().getString(R.string.open));
             ((ViewGroup) eventText.getParent()).removeView(eventText);

@@ -205,14 +205,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
-        editor = MainActivity.sharedPreferences.edit();
         for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
             String notificationText;
             if (!entry.getValue().get("event").isEmpty()) {
-                notificationText = entry.getValue().get("event");
+                notificationText = context.getResources().getString(R.string.event) + ": " + entry.getValue().get("event");
                 if (!entry.getValue().get("food").isEmpty())
-                    notificationText += ", " + entry.getValue().get("food");
-                notificationText += " " + context.getResources().getString(R.string.and_much_more);
+                    notificationText += ". " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
             } else
                 notificationText = context.getResources().getString(R.string.open);
             Intent notificationIntent = new Intent(context, MyNotification.class);
@@ -229,11 +227,13 @@ public class MainActivity extends AppCompatActivity {
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
+                    editor = MainActivity.sharedPreferences.edit();
                     editor.putBoolean("alarmIsSet", true).apply();
                 }
             } else {
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
+                    editor = MainActivity.sharedPreferences.edit();
                     editor.putBoolean("alarmIsSet", false).apply();
                 }
             }
