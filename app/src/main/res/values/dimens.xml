@@ -8,4 +8,5 @@
     <dimen name="card_view_top_margin">16dp</dimen>
     <dimen name="card_view_width">-1dp</dimen>
     <dimen name="fab_margin">0dp</dimen>
+    <dimen name="pravolley_logo">-1dp</dimen>
 </resources>

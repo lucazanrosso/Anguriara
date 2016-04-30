@@ -10,7 +10,7 @@
         android:paddingTop="@dimen/activity_horizontal_margin_with_card_view"
         android:paddingBottom="@dimen/activity_horizontal_margin_with_card_view">
         <ImageView
-            android:layout_width="@dimen/card_view_width"
+            android:layout_width="@dimen/pravolley_logo"
             android:layout_height="wrap_content"
             android:id="@+id/pravolley_logo"
             android:src="@drawable/pravolley"
