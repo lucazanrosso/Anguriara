@@ -16,7 +16,7 @@ public class PravolleyFragment extends Fragment {
 
         MainActivity.toolbar.setTitle(getResources().getString(R.string.pravolley));
 
-        View view = inflater.inflate(R.layout.fragment_pra_volley, container, false);
+        View view = inflater.inflate(R.layout.fragment_pravolley, container, false);
         TextView inscriptionsText = (TextView) view.findViewById(R.id.inscriptions_text);
         inscriptionsText.setMovementMethod(LinkMovementMethod.getInstance());
         return view;
