@@ -15,7 +15,14 @@
             android:background="@color/primary"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/toolbar"
+                android:paddingTop="20dp"
+                android:paddingBottom="12dp" />
+            </android.support.v7.widget.Toolbar>
         <FrameLayout
             android:id="@+id/frame_container"
             android:layout_width="match_parent"

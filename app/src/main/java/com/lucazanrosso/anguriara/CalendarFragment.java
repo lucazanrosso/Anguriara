@@ -164,9 +164,9 @@ public class CalendarFragment extends Fragment {
                     if (((dateDay + 5) % 7) == j && dateMonth == month) {
                         Button button = new Button(getActivity());
                         button.setLayoutParams(dayLayoutParams);
-                        button.setPadding(0, 0, 0, 0);
+                        button.setPadding(0, 16, 0, 16);
                         button.setBackgroundResource(0);
-                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                        button.setTextSize(14);
                         button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
