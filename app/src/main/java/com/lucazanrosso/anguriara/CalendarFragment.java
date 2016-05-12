@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +35,7 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-        MainActivity.toolbar.setLogo(R.drawable.toolbar8);
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
@@ -166,9 +164,9 @@ public class CalendarFragment extends Fragment {
                     if (((dateDay + 5) % 7) == j && dateMonth == month) {
                         Button button = new Button(getActivity());
                         button.setLayoutParams(dayLayoutParams);
-                        button.setPadding(0, 16, 0, 16);
+                        button.setPadding(0, 0, 0, 0);
                         button.setBackgroundResource(0);
-                        button.setTextSize(14);
+                        button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
                         button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));

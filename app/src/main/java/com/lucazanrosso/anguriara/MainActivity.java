@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         MainActivity.toolbar = (Toolbar) findViewById(R.id.toolbar);
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
         this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

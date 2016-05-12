@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +43,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
         this.thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
         this.thisMonth = months[date.get(Calendar.MONTH)];
         title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
         MainActivity.toolbar.setTitle(title);
-        MainActivity.toolbar.setLogo(null);
 
         this.title += " " + getResources().getString(R.string.share_title);
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -57,6 +54,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
         } else
             title += "\n" + getResources().getString(R.string.open);
         title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
+        Log.d("package",getContext().getPackageName().toString());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
