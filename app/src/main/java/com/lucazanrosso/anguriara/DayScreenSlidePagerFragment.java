@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
     String[] daysOfWeek;
     String[] months;
-    String thisDayOfWeek;
-    int thisDayOfMonth;
-    String thisMonth;
     String title;
 
     FloatingActionButton fab;
@@ -35,35 +31,12 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
+        this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
-        this.thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-        this.thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-        this.thisMonth = months[date.get(Calendar.MONTH)];
-        title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-        MainActivity.toolbar.setTitle(title);
-
-        this.title += " " + getResources().getString(R.string.share_title);
-        this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
-            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
-            if (! MainActivity.calendar.get(date).get("food").isEmpty())
-                title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
-        } else
-            title += "\n" + getResources().getString(R.string.open);
-        title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
-        Log.d("package",getContext().getPackageName().toString());
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, title);
-                sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+        setTitleAndFab(date);
 //                Uri imageUri = Uri.parse("file//res/drawable/logo.png");
 //                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://"
 //                        + getContext().getPackageName() + "/"
@@ -78,8 +51,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
 //                } catch (android.content.ActivityNotFoundException anfe) {
 //                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
 //                }
-            }
-        });
 
         ViewPager mPager = (ViewPager) view.findViewById(R.id.pager);
         PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
@@ -93,36 +64,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                GregorianCalendar date = MainActivity.days.get(position);
-
-                daysOfWeek = getResources().getStringArray(R.array.days_of_week);
-                months = getResources().getStringArray(R.array.months);
-
-                thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-                thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-                thisMonth = months[date.get(Calendar.MONTH)];
-                title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-                MainActivity.toolbar.setTitle(title);
-
-                title += " " + getResources().getString(R.string.share_title);
-                if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
-                    title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
-                    if (! MainActivity.calendar.get(date).get("food").isEmpty())
-                        title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
-                } else
-                    title += "\n" + getResources().getString(R.string.open);
-                title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
-
-                fab.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, title);
-                        sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
-                    }
-                });
+                setTitleAndFab(MainActivity.days.get(position));
             }
 
             @Override
@@ -152,5 +94,33 @@ public class DayScreenSlidePagerFragment extends Fragment {
         public int getCount() {
             return MainActivity.ANGURIARA_NUMBER_OF_DAYS;
         }
+    }
+
+    public void setTitleAndFab(GregorianCalendar date) {
+        String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+        String thisMonth = months[date.get(Calendar.MONTH)];
+        this.title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+        MainActivity.toolbar.setTitle(title);
+
+        title += " " + getResources().getString(R.string.share_title);
+        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
+            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
+            if (! MainActivity.calendar.get(date).get("food").isEmpty())
+                title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+        } else
+            title += "\n" + getResources().getString(R.string.open);
+        title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, title);
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
     }
 }
