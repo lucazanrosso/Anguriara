@@ -41,37 +41,37 @@
     <string name="close">Chiuso</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
-        <item>5</item>
-        <item>6</item>
         <item>10</item>
         <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
         <item>15</item>
         <item>16</item>
         <item>17</item>
         <item>18</item>
+        <item>19</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
         <item>25</item>
+        <item>30</item>
+        <item>1</item>
+        <item>2</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
     </integer-array>
     <integer-array name="anguriara_months">
         <item>5</item>
@@ -86,8 +86,8 @@
         <item>5</item>
         <item>5</item>
         <item>5</item>
-        <item>5</item>
-        <item>5</item>
+        <item>6</item>
+        <item>6</item>
         <item>6</item>
         <item>6</item>
         <item>6</item>
@@ -111,106 +111,106 @@
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
     <string-array name="day_events">
-        <item>Ladies, Craic &amp; Pints</item>
-        <item>Big opening party</item>
-        <item>I cari estinti</item>
-        <item>Serate vinile</item>
-        <item>Sand Castle Empire</item>
-        <item>Red Cadillac</item>
-        <item>Farfalle dei nostri prati</item>
-        <item>Canta che ti passa</item>
-        <item>Karavan Capez</item>
-        <item>Ac/Dshow</item>
-        <item></item>
-        <item>Paolo Aste</item>
-        <item>Outsider</item>
-        <item>Enigma</item>
-        <item></item>
-        <item>Canta che ti passa</item>
-        <item>Mushuppers</item>
-        <item>Steel Nylon &amp; Wood</item>
-        <item>Il ritorno del lupo in Lessina</item>
-        <item>Città della speranza</item>
-        <item>Beat Forever</item>
-        <item>Virna Marangoni</item>
-        <item>Ciuchinando per l\'Anguriara</item>
-        <item>Anguriara con delitto</item>
-        <item>Canta che ti passa</item>
-        <item>Blue Karmina</item>
+        <item>Lucky Luke</item>
+        <item>Outsiders</item>
+        <item>GiavenalFood</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>SHB</item>
+        <item>Old Virginia</item>
+        <item>L\'aperitivo anguriaro</item>
+        <item>GiavenalFood</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>Acustic Fun</item>
         <item>Demenzioni</item>
-        <item>Mieli e confetture</item>
-        <item>Serata Vinile</item>
-        <item>Teamline live band</item>
-        <item>Grande chiusura</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>Mashuppers</item>
+        <item>Virna Marangoni</item>
+        <item>GiavenalFood</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>A Bassa Voce</item>
+        <item>Beer Brothers</item>
+        <item>L\'aperitivo anguriaro</item>
+        <item>GiavenalFood</item>
+        <item>Anguriarun 9.0</item>
+        <item>Dallas</item>
+        <item>Flash Player</item>
+        <item>GiavenalFood</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>Black betty</item>
+        <item>Trixy</item>
+        <item>GiavenalFood</item>
+        <item>I giovedì dell\'Hdemia</item>
+        <item>Lady Rock</item>
+        <item>Dj Battle</item>
     </string-array>
     <string-array name="day_event_details">
-        <item>\nGenere: rock, folk</item>
-        <item>&#160;con Dj Stefano Conti, Pietri vocalist e Marco alle percussioni\nGenere: disco music</item>
-        <item>&#160;con Michele Franceschi\nGenere: animali che hanno conosciuto l\'uomo e sono morti</item>
-        <item>&#160;con Pilo Dj\nGenere: Woodstock al centro del mondo</item>
-        <item>\nGenere: country blues acustico</item>
-        <item>\nGenere: rockability, rock\'n\'roll</item>
-        <item>&#160;con Daniela Serafin</item>
-        <item>&#160;con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>\nGenere: Creedence - Jj, Chash - Elvis</item>
-        <item>\nGenere: AC/DC tribute</item>
+        <item>\nGenere: Balli di gruppo e tormentoni</item>
+        <item>\nGenere: Rock &amp; Blues</item>
+        <item>&#160;con succo e verdure di Alessando</item>
         <item></item>
-        <item>&#160;racconta le sue avventure di ultracycling e i suoi record</item>
-        <item>\nGenere: rock &amp; blues under 18</item>
-        <item>\nGenere: rock internazionale anni 70-90</item>
+        <item>\nGenere: Rock anni \'70-80</item>
+        <item>\nGenere: Country rock</item>
         <item></item>
-        <item>&#160;con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>\nGenere: pop acustico</item>
-        <item>\nGenere: rock blues cover band</item>
+        <item>&#160;con gli ortaggi di Stefano</item>
         <item></item>
-        <item>&#160;con tombola e frittelle</item>
-        <item>\nGenere: Nomadi, New Trolls, Pooh\n\nAnguriarun: corsa podistica</item>
-        <item>\nGenere: rock\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
-        <item>: passeggiate pomeridiane con gli asini per i più piccoli\n\nTorneo Pravolley: pallavolo 4 contro 4</item>
-        <item>: perdere la vita e il nome (Alessandro Boarin)</item>
-        <item>&#160;con Dj Stefano Conti\nGenere: karaoke</item>
-        <item>\nGenere: acustico pop &amp; rock</item>
-        <item>\nGenere: rock demenziale</item>
-        <item>: di-gustarceli per una vita intera (Enrico Dolgan)</item>
-        <item>&#160;con Pilo Dj e Paolo Dj\nGenere: afro e disco music 70-90</item>
-        <item>\nGenere: pop &amp; soul</item>
-        <item>&#160;con Paolo Pj &amp; Pietri vocalist\nGenere: disco music</item>
+        <item>\nGenere: Pop-rock acustico</item>
+        <item>\nGenere: Musica demenziale</item>
+        <item></item>
+        <item>\nGenere: Pop acustico</item>
+        <item>\nGenere: Rock a 360°</item>
+        <item>&#160;con le verdure di Luisella e Pino</item>
+        <item></item>
+        <item>\nGenere: Duo acustico - jazz</item>
+        <item>\nGenere: AC/DC tribute band</item>
+        <item></item>
+        <item>&#160;con miele e confetture di Enrico</item>
+        <item>\nCorsa podistica + serata a cura della "Città della speranza"</item>
+        <item>\nGenere: Best old &amp; new pop/rock MTV hits</item>
+        <item>\nGenere: Rock classico</item>
+        <item>&#160;con la carne di Davide</item>
+        <item></item>
+        <item>\nGenere: Soul moderno</item>
+        <item>\nGenere: Musica italiana e non, dagli anni \'70 ad oggi</item>
+        <item>&#160;- Cena su prenotazione</item>
+        <item></item>
+        <item>\nGenere: Rock blues cover band</item>
+        <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
     <string-array name="day_foods">
-        <item>Sandwitch</item>
+        <item>Club Sandwitch</item>
         <item>Hot dog</item>
         <item></item>
         <item></item>
-        <item>Panini con porchetta</item>
-        <item>Pizze</item>
+        <item>Grigliata mista</item>
+        <item>Pizza</item>
         <item></item>
         <item></item>
-        <item>Salsiccie e fagioli</item>
+        <item></item>
+        <item>Panino facciavista</item>
         <item>Paella</item>
         <item></item>
-        <item></item>
-        <item>Gianburger</item>
-        <item>Bruschette</item>
-        <item></item>
-        <item></item>
-        <item>Sandwitch</item>
-        <item>Costine e polenta</item>
+        <item>Piatto wurstel e patate</item>
+        <item>Bruschetta</item>
         <item></item>
         <item></item>
-        <item>Salsiccie e fagioli</item>
-        <item>Galletti</item>
+        <item>Club Sandwitch</item>
+        <item>Pizza</item>
         <item></item>
         <item></item>
         <item></item>
-        <item>Wustel, crauti e patate</item>
-        <item>Bruschette</item>
+        <item>Menù a sorpresa</item>
+        <item>Bruschetta</item>
         <item></item>
         <item></item>
-        <item>Pizze</item>
+        <item>Panino con porchetta</item>
+        <item>Galletto e patate</item>
+        <item></item>
+        <item></item>
+        <item>Menù a sorpresa</item>
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <string name="standard_foods">Panini vegetariani\nPanini con sopressa\nPatatine Fritte</string>
+    <string name="standard_foods">Panino vegetariano\nPanino con sopressa\nPatatine Fritte</string>
     <string-array name="day_opening_time">
         <item></item>
         <item></item>
@@ -218,15 +218,7 @@
         <item></item>
         <item></item>
         <item>19:30</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item>19:30</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>dalle 18:00 alle 21:00</item>
         <item></item>
         <item></item>
         <item></item>
@@ -235,6 +227,14 @@
         <item></item>
         <item>19:30</item>
         <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
+        <item>dalle 18:00 alle 21:00</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>19:30</item>
         <item></item>
         <item></item>
         <item></item>

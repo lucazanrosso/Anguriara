@@ -140,7 +140,7 @@ public class CalendarFragment extends Fragment {
             }
         }
 
-        Calendar date = new GregorianCalendar(2015, month, 1);
+        Calendar date = new GregorianCalendar(MainActivity.YEAR, month, 1);
         int dateMonth = month;
         int dateDay = date.get(Calendar.DAY_OF_WEEK);
 

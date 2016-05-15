@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
     public static ArrayList<GregorianCalendar> days;
-    final static int YEAR = 2015;
+    final static int YEAR = 2016;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
