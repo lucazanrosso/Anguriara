@@ -85,6 +85,12 @@ public class DayScreenSlidePagerFragment extends Fragment {
         public Fragment getItem(int position) {
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", MainActivity.days.get(position));
+            boolean isWednesday;
+            if (MainActivity.days.get(position).get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
+                isWednesday = true;
+            else
+                isWednesday = false;
+            dayArgs.putBoolean("isWednesday", isWednesday);
             DayFragment dayFragment = new DayFragment();
             dayFragment.setArguments(dayArgs);
             return dayFragment;
