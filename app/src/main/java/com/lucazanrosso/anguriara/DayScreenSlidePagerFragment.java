@@ -18,8 +18,7 @@ import java.util.GregorianCalendar;
 
 public class DayScreenSlidePagerFragment extends Fragment {
 
-    String[] daysOfWeek;
-    String[] months;
+
     String title;
 
     FloatingActionButton fab;
@@ -32,10 +31,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
         Bundle args = this.getArguments();
         GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
-
-        this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
-        this.months = getResources().getStringArray(R.array.months);
-
         setTitleAndFab(date);
 //                Uri imageUri = Uri.parse("file//res/drawable/logo.png");
 //                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://"
@@ -105,11 +100,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
     }
 
     public void setTitleAndFab(GregorianCalendar date) {
-        String thisDayOfWeek = daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-        String thisMonth = months[date.get(Calendar.MONTH)];
-        this.title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-        MainActivity.toolbar.setTitle(title);
+        MainActivity.toolbar.setTitle(MainActivity.setDateTitle(date));
 
         title += " " + getResources().getString(R.string.share_title);
         if (! MainActivity.calendar.get(date).get("event").isEmpty()) {

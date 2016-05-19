@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<GregorianCalendar> days;
     final static int YEAR = 2016;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
+    public static String[] daysOfWeek;
+    public static String[] months;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
@@ -109,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        MainActivity.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
+        MainActivity.months = getResources().getStringArray(R.array.months);
         this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
         this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
         this.dayEvents = getResources().getStringArray(R.array.day_events);
@@ -246,6 +251,21 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
     }
+
+    public static String setDateTitle(GregorianCalendar date) {
+        String thisDayOfWeek = MainActivity.daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+        String thisMonth = MainActivity.months[date.get(Calendar.MONTH)];
+        String title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+        return title;
+    }
+
+//    public static String setDateTExt(GregorianCalendar date) {
+//        String dayEventAndFood = getContext().getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
+//        if (! MainActivity.calendar.get(this.today).get("food").isEmpty())
+//            dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
+//        return  dayEventAndFood;
+//    }
 
     @Override
     public void onBackPressed(){
