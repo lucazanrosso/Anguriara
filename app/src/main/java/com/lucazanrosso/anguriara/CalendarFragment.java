@@ -28,7 +28,7 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar(2016, 06, 10);
+    private Calendar today = new GregorianCalendar();
     private String[] daysOfWeek;
     private String[] months;
 
@@ -44,7 +44,7 @@ public class CalendarFragment extends Fragment {
 
         setThisDay();
 
-        setNextEvening(inflater, container);
+//        setNextEvening(inflater, container);
 
         final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
         final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
@@ -134,58 +134,58 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    private void setNextEvening(LayoutInflater inflater, ViewGroup container) {
-
-//        Resources r = getActivity().getResources();
-//        int px = (int) TypedValue.applyDimension(
-//                TypedValue.COMPLEX_UNIT_DIP,
-//                84,
-//                r.getDisplayMetrics()
-//        );
+//    private void setNextEvening(LayoutInflater inflater, ViewGroup container) {
 //
-        LinearLayout nextEvening = (LinearLayout) view.findViewById(R.id.next_evening_layout);
-
-//        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
-//                500, px);
-//        cardLayoutParams.setMargins(16, 8, 16, 32);
-
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet())
-            if (entry.getKey().get(Calendar.DAY_OF_YEAR) > today.get(Calendar.DAY_OF_YEAR)) {
-
-                View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
-                TextView nextEveningTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
-                TextView nextEveningText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
-                nextEveningTitle.setText(MainActivity.setDateTitle(entry.getKey()));
-                String nextEveningContent = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(entry.getKey()).get("event") + "\n";
-                if (! MainActivity.calendar.get(entry.getKey()).get("food").isEmpty())
-                    nextEveningContent += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(entry.getKey()).get("food");
-                nextEveningText.setText(nextEveningContent);
-                nextEvening.addView(nextEveningCard);
-                final Bundle dayArgs = new Bundle();
-                dayArgs.putSerializable("date", entry.getKey());
-                nextEveningCard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-                        dayScreenSlidePagerFragment.setArguments(dayArgs);
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                        transaction.addToBackStack("secondary");
-                        transaction.commit();
-                    }
-                });
-
-//                CardView cardView = new CardView(getActivity());
-//                TextView textView = new TextView(getActivity());
-//                textView.setText("ciao");
-//                cardView.setLayoutParams(cardLayoutParams);
-//                cardView.setCardBackgroundColor(R.color.accent);
-//                cardView.addView(textView);
-//                cardView.setRadius(8);
-//                nextEvening.addView(cardView);
-//                Log.d("ciao", "ciao");
-            }
-    }
+////        Resources r = getActivity().getResources();
+////        int px = (int) TypedValue.applyDimension(
+////                TypedValue.COMPLEX_UNIT_DIP,
+////                84,
+////                r.getDisplayMetrics()
+////        );
+////
+////        LinearLayout nextEvening = (LinearLayout) view.findViewById(R.id.next_evening_layout);
+////
+////        LinearLayout.LayoutParams cardLayoutParams = new LinearLayout.LayoutParams(
+////                500, px);
+////        cardLayoutParams.setMargins(16, 8, 16, 32);
+//
+//        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet())
+//            if (entry.getKey().get(Calendar.DAY_OF_YEAR) > today.get(Calendar.DAY_OF_YEAR)) {
+//
+//                View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
+//                TextView nextEveningTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
+//                TextView nextEveningText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
+//                nextEveningTitle.setText(MainActivity.setDateTitle(entry.getKey()));
+//                String nextEveningContent = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(entry.getKey()).get("event") + "\n";
+//                if (! MainActivity.calendar.get(entry.getKey()).get("food").isEmpty())
+//                    nextEveningContent += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(entry.getKey()).get("food");
+//                nextEveningText.setText(nextEveningContent);
+//                nextEvening.addView(nextEveningCard);
+//                final Bundle dayArgs = new Bundle();
+//                dayArgs.putSerializable("date", entry.getKey());
+//                nextEveningCard.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+//                        dayScreenSlidePagerFragment.setArguments(dayArgs);
+//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                        transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+//                        transaction.addToBackStack("secondary");
+//                        transaction.commit();
+//                    }
+//                });
+//
+////                CardView cardView = new CardView(getActivity());
+////                TextView textView = new TextView(getActivity());
+////                textView.setText("ciao");
+////                cardView.setLayoutParams(cardLayoutParams);
+////                cardView.setCardBackgroundColor(R.color.accent);
+////                cardView.addView(textView);
+////                cardView.setRadius(8);
+////                nextEvening.addView(cardView);
+////                Log.d("ciao", "ciao");
+//            }
+//    }
 
     private void setMonthCalendar(int month) {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
