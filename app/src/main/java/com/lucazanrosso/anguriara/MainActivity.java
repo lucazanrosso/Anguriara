@@ -20,9 +20,6 @@ import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -46,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
+    public static boolean badWeather = false;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
@@ -114,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         MainActivity.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         MainActivity.months = getResources().getStringArray(R.array.months);
         this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
@@ -147,10 +144,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
         }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Hello, World!");
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -28,7 +36,7 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar();
+    private Calendar today = new GregorianCalendar(2016,5,10);
     private String[] daysOfWeek;
     private String[] months;
 
@@ -42,6 +50,8 @@ public class CalendarFragment extends Fragment {
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
+        if (savedInstanceState == null)
+            getFirebaseDatabase();
         setThisDay();
 
 //        setNextEvening(inflater, container);
@@ -109,25 +119,30 @@ public class CalendarFragment extends Fragment {
         titleTextView.setText(cardViewTitle);
 
         if (MainActivity.calendar.containsKey(this.today)) {
-            imageView.setImageResource(R.drawable.open);
-            String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
-            if (! MainActivity.calendar.get(this.today).get("food").isEmpty())
-                dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
-            subTitleTextView.setText(dayEventAndFood);
+            if(MainActivity.badWeather) {
+                imageView.setImageResource(R.drawable.close);
+                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
+            } else {
+                imageView.setImageResource(R.drawable.open);
+                String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
+                if (!MainActivity.calendar.get(this.today).get("food").isEmpty())
+                    dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
+                subTitleTextView.setText(dayEventAndFood);
 
-            final Bundle dayArgs = new Bundle();
-            dayArgs.putSerializable("date", this.today);
-            thisDayCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-                    dayScreenSlidePagerFragment.setArguments(dayArgs);
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                    transaction.addToBackStack("secondary");
-                    transaction.commit();
-                }
-            });
+                final Bundle dayArgs = new Bundle();
+                dayArgs.putSerializable("date", this.today);
+                thisDayCardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                        dayScreenSlidePagerFragment.setArguments(dayArgs);
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+                        transaction.addToBackStack("secondary");
+                        transaction.commit();
+                    }
+                });
+            }
         } else {
             imageView.setImageResource(R.drawable.close);
             subTitleTextView.setText(getResources().getString(R.string.close));
@@ -258,5 +273,29 @@ public class CalendarFragment extends Fragment {
                 monthLayout.addView(weekLinearLayout);
             }
         }
+    }
+
+    public void getFirebaseDatabase() {
+        final ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
+        final TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("bad_weather");
+//        myRef.setValue("Ciao, Mondo!");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
+                Log.d("Ciao", "Value is: " + value);
+                MainActivity.badWeather = value.equals("Y");
+                imageView.setImageResource(R.drawable.close);
+                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

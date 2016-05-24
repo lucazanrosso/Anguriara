@@ -39,6 +39,7 @@
         <item>@string/july</item>
     </string-array>
     <string name="close">Chiuso</string>
+    <string name="bad_weather">Chiuso causa maltempo</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
         <item>10</item>
