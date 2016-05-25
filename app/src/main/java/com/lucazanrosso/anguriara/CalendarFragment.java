@@ -16,8 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +40,9 @@ public class CalendarFragment extends Fragment {
     private String[] daysOfWeek;
     private String[] months;
 
+    public static ImageView thisDayImage;
+    public static TextView thisDayText;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -50,8 +53,8 @@ public class CalendarFragment extends Fragment {
         this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         this.months = getResources().getStringArray(R.array.months);
 
-        if (savedInstanceState == null)
-            getFirebaseDatabase();
+//        if (savedInstanceState == null)
+//            getFirebaseDatabase();
         setThisDay();
 
 //        setNextEvening(inflater, container);
@@ -107,9 +110,9 @@ public class CalendarFragment extends Fragment {
     }
 
     private void setThisDay () {
-        ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
+        CalendarFragment.thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
-        TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
+        CalendarFragment.thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
         CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
 
         String thisDayOfWeek = daysOfWeek[this.today.get(Calendar.DAY_OF_WEEK) - 1];
@@ -119,15 +122,15 @@ public class CalendarFragment extends Fragment {
         titleTextView.setText(cardViewTitle);
 
         if (MainActivity.calendar.containsKey(this.today)) {
-            if(MainActivity.badWeather) {
-                imageView.setImageResource(R.drawable.close);
-                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
+            if(MainActivity.badDay != null && MainActivity.today.get(Calendar.DAY_OF_MONTH) == MainActivity.badDay.get(Calendar.DAY_OF_MONTH) && MainActivity.today.get(Calendar.MONTH) == MainActivity.badDay.get(Calendar.MONTH) && MainActivity.today.get(Calendar.YEAR) == MainActivity.badDay.get(Calendar.YEAR)) {
+                CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+                CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
             } else {
-                imageView.setImageResource(R.drawable.open);
+                CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
                 String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
                 if (!MainActivity.calendar.get(this.today).get("food").isEmpty())
                     dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
-                subTitleTextView.setText(dayEventAndFood);
+                CalendarFragment.thisDayText.setText(dayEventAndFood);
 
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", this.today);
@@ -144,8 +147,8 @@ public class CalendarFragment extends Fragment {
                 });
             }
         } else {
-            imageView.setImageResource(R.drawable.close);
-            subTitleTextView.setText(getResources().getString(R.string.close));
+            CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+            CalendarFragment.thisDayText.setText(getResources().getString(R.string.close));
         }
     }
 
@@ -275,27 +278,64 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public void getFirebaseDatabase() {
-        final ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
-        final TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("bad_weather");
-//        myRef.setValue("Ciao, Mondo!");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
-                Log.d("Ciao", "Value is: " + value);
-                MainActivity.badWeather = value.equals("Y");
-                imageView.setImageResource(R.drawable.close);
-                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    public void getFirebaseDatabase() {
+////        final ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
+////        final TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("bad_weather");
+////        myRef.setValue(today);
+//        myRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                Log.d("Ciao", "onChildChanged:" + dataSnapshot.getKey() + " " + dataSnapshot.getValue(Long.class));
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                Log.d("day", "day" + dataSnapshot.child("day").getValue());
+//                CalendarFragment.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+////                Log.d("day", "day" + MainActivity.badDay.toString());
+//                if(CalendarFragment.badDay != null && today.get(Calendar.DAY_OF_MONTH) == CalendarFragment.badDay.get(Calendar.DAY_OF_MONTH) && today.get(Calendar.MONTH) == CalendarFragment.badDay.get(Calendar.MONTH) && today.get(Calendar.YEAR) == CalendarFragment.badDay.get(Calendar.YEAR)) {
+//                    CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+//                    CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
+//                }
+////                CalendarFragment calendarFragment = new CalendarFragment();
+////                getSupportFragmentManager().beginTransaction()
+////                        .replace(R.id.frame_container, calendarFragment).commit();
+////                Map<String, Long> map = dataSnapshot.getValue(Map.class<String.class, Long.class>);
+////                Log.d("ciao", "ciao"  + dataSnapshot.getValue());
+////                Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
+////                Log.d("Ciao", "Value is: " + value);
+////                MainActivity.badWeather = value.equals("Y");
+////                imageView.setImageResource(R.drawable.close);
+////                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 }

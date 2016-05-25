@@ -20,6 +20,12 @@ import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -43,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static boolean badWeather = false;
+    public static GregorianCalendar today = new GregorianCalendar(2016, 5, 10);
+    public static GregorianCalendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
@@ -143,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
+            getFirebaseDatabase();
         }
     }
 
@@ -206,6 +214,27 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return calendar;
+    }
+
+
+    public void getFirebaseDatabase() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("bad_weather");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                if(MainActivity.badDay != null && MainActivity.today.get(Calendar.DAY_OF_MONTH) == MainActivity.badDay.get(Calendar.DAY_OF_MONTH) && MainActivity.today.get(Calendar.MONTH) == MainActivity.badDay.get(Calendar.MONTH) && MainActivity.today.get(Calendar.YEAR) == MainActivity.badDay.get(Calendar.YEAR)) {
+                    CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+                    CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
