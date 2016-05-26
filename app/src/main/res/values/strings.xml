@@ -274,27 +274,39 @@
         \n\u2022 18:30 Premiazioni
     </string>
     <string name="regulation">Regolamento</string>
-    <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso
-        \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi
-        \n\u2022 Ogni squadra dovr\u00e0 portarsi un pallone da pallavolo
-        \n\u2022 Le squadra inoltre dovranno arbitrare a rotazione
-        \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break
-        \n\u2022 Il punteggio durante i gironi corrisponder\u00e0 al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti
+    <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
+        \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi;
+        \n\u2022 Ogni squadra dovrà portarsi un pallone da pallavolo;
+        \n\u2022 Le squadra inoltre dovranno arbitrare a rotazione;
+        \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break;
+        \n\u2022 Il punteggio durante i gironi corrisponderà al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti.
     </string>
     <string name="inscriptions">Iscrizioni</string>
-    <string name="pravolley_inscriptions">Apertura isrizioni: venerd\u00ec 12 giugno
-        \nChiusura iscrizioni: mercoled\u00ec 1 luglio
-        \nNumero squadre: 21
-        \nIscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e inviandolo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
-        \nIl costo di iscrizione \u00e8 di 10 euro, comprensivi di un buono colazione (caff\u00e8 + brioche) e della maglietta del pravolley!
+    <string name="pravolley_inscriptions">\u2022 Apertura isrizioni: venerdì 15 giugno
+        \n\u2022 Chiusura iscrizioni: mercoledì 30 giugno
+        \n\u2022 Numero squadre: 21
+        \n\u2022 Iscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e inviandolo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
+        \n\u2022 Il costo di iscrizione è di 10 euro, comprensivi di un buono colazione (caffè + brioche) e della maglietta del pravolley!
     </string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
-    <string name="who_we_are_text">L\'Anguriara nasce nel 1999 dall\'idea originale di giovani giavenalesi intenzionati a creare un ambiente divertente e innovativo,
-        adatto a piccoli e grandi! Il gruppo che la gestisce è formato interamente da volontari, animatori, animati e catechisti, che si dedicano con amore e passione a quest\'attività
-        per sostenere e finanziare le spese sociali del paesello: ristrutturazione dell\'asilo, della chiesa e del centro parrocchiale, campeggi estivi, carro di carnevale del quartiere, caritas e chi più ne ha più ne metta!
-        \n\nTutto questo è possibile grazie alla splendida famiglia che ogni anno ospita l\'Anguriara mettendo a disposizione il terreno senza volere nulla in cambio.
-        \n\nTi aspettiamo a Giavenale di Schio(VI), in un campo lungo Via Giavenale di Sopra, dal mercoled\u00ec al sabato. Per contattarci puoi scrivere un\'email all\'indirizzo anguriara@gmail.com oppure puoi venire a trovarci direttamente sul posto nel periodo in cui siamo aperti per parlare di persona, chiedendo del \"Mais\" o di \"Salvia\".
+    <string name="who_we_are_text">L\' Anguriara nasce nel \"lontano\" 1999 nel nostro caro paesino di Giavenale (frazione del comune di Schio).
+        \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.
+        \nEra un periodo un buio di stagnazione in paese, e le giovani generazioni cominciavano a prendere strade un po\' rischiose.
+
+        \n\nCosì, durante una sera di quel 1999 un po\' di gente si stava s-cervellando per inventarsi qualcosa che desse una svolta alla situazione, quando tra i \"cossa podarissimo fare\", Guglielmo (nella sezione foto c\'è) sparò la cazzata di turno: un\'Anguriara.
+
+        \n\nE così la facemmo. Semplice, no?
+
+        \n\nOk, i primi anni era una cosa piccola. Quattro tavole, un po\' di anguria e aranciate.
+        \nUn paio di concerti durante l\'estate se ci andava bene.
+        \nPoi, visto che evidentemente era originale, crebbe.
+        \nCi spostammo da un campo all\'altro, in cerca di uno spazio rurale all\'aperto sufficientemente lontano dalle case e da qualche anno ci siamo fermati e ci siamo un po\' ingranditi.
+        \nAttualmente offriamo ogni sera o un concerto o una serata culturale. Apriamo per tutto il mese di giugno e di luglio e offriamo panini, bruschette, bibite, birra alla spina, sangria, vino sia alla spina che in bottiglia.
+        \nOvviamente il tutto racchiuso in un ambiente semplice ma originale, completo di aiuole floreale e originalissime luci soffuse.
+        \nDev\'essere chiaro che il tutto è costruito da giovani del paese , senza alcuna remunerazione e sfruttando un po\' dei soldini guadagnati nell\'anno precedente.
+
+        \n\nSiamo gente molto pratica, usualmente cominciamo in marzo con picco, badile, seghe, trattori, saldatrici, telefonate e burocrazia e in giugno apriamo la baracca.
     </string>
     <string name="download"></string>
 </resources>

@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static GregorianCalendar today = new GregorianCalendar(2016, 5, 10);
-    public static GregorianCalendar badDay;
+    public static Calendar today = new GregorianCalendar(2016, 5, 10);
+    public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
@@ -223,11 +223,13 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-                if(MainActivity.badDay != null && MainActivity.today.get(Calendar.DAY_OF_MONTH) == MainActivity.badDay.get(Calendar.DAY_OF_MONTH) && MainActivity.today.get(Calendar.MONTH) == MainActivity.badDay.get(Calendar.MONTH) && MainActivity.today.get(Calendar.YEAR) == MainActivity.badDay.get(Calendar.YEAR)) {
-                    CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-                    CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
-                }
+//                if (MainActivity.badDay == null) {
+                    MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                    if (MainActivity.today.equals(MainActivity.badDay)) {
+                        CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+                        CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
+                    }
+//                }
             }
 
             @Override
@@ -235,6 +237,35 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void serializeBadDay() {
+        try {
+            File file = new File(this.getFilesDir(), "bad_day.ser");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(MainActivity.badDay);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static GregorianCalendar deserializeBadDay(Context context) {
+        GregorianCalendar badDay = new GregorianCalendar();
+        try {
+            File file = new File(context.getFilesDir(), "bad_day.ser");
+            FileInputStream fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            badDay = (GregorianCalendar) objectInputStream.readObject();
+            objectInputStream.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return badDay;
     }
 
     public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
@@ -281,12 +312,11 @@ public class MainActivity extends AppCompatActivity {
                 PackageManager.DONT_KILL_APP);
     }
 
-    public static String setDateTitle(GregorianCalendar date) {
+    public static String setDateTitle(Calendar date) {
         String thisDayOfWeek = MainActivity.daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
         int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
         String thisMonth = MainActivity.months[date.get(Calendar.MONTH)];
-        String title = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-        return title;
+        return thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
     }
 
 //    public static String setDateTExt(GregorianCalendar date) {

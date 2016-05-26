@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +15,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -115,14 +107,10 @@ public class CalendarFragment extends Fragment {
         CalendarFragment.thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
         CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
 
-        String thisDayOfWeek = daysOfWeek[this.today.get(Calendar.DAY_OF_WEEK) - 1];
-        int thisDayOfMonth = this.today.get(Calendar.DAY_OF_MONTH);
-        String thisMonth = months[this.today.get(Calendar.MONTH)];
-        String cardViewTitle = thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-        titleTextView.setText(cardViewTitle);
+        titleTextView.setText(MainActivity.setDateTitle(MainActivity.today));
 
         if (MainActivity.calendar.containsKey(this.today)) {
-            if(MainActivity.badDay != null && MainActivity.today.get(Calendar.DAY_OF_MONTH) == MainActivity.badDay.get(Calendar.DAY_OF_MONTH) && MainActivity.today.get(Calendar.MONTH) == MainActivity.badDay.get(Calendar.MONTH) && MainActivity.today.get(Calendar.YEAR) == MainActivity.badDay.get(Calendar.YEAR)) {
+            if(MainActivity.today.equals(MainActivity.badDay)) {
                 CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
                 CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
             } else {

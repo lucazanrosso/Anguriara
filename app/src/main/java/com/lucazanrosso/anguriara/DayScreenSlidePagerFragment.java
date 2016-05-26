@@ -29,7 +29,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
         View view =  inflater.inflate(R.layout.pager_adapter, container, false);
 
         Bundle args = this.getArguments();
-        GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
+        Calendar date = (GregorianCalendar) args.getSerializable("date");
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
         setTitleAndFab(date);
 //                Uri imageUri = Uri.parse("file//res/drawable/logo.png");
@@ -99,7 +99,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
         }
     }
 
-    public void setTitleAndFab(GregorianCalendar date) {
+    public void setTitleAndFab(Calendar date) {
         MainActivity.toolbar.setTitle(MainActivity.setDateTitle(date));
 
         title += " " + getResources().getString(R.string.share_title);
