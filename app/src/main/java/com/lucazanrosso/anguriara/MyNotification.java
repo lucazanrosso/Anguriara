@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 
 public class MyNotification extends BroadcastReceiver{
 
@@ -24,7 +25,7 @@ public class MyNotification extends BroadcastReceiver{
                 .setSmallIcon(this.notificationIcon)
                 .setContentTitle(this.notificationTitle)
                 .setContentText(this.notificationText)
-                .setColor(context.getResources().getColor(R.color.accent));
+                .setColor(ContextCompat.getColor(context, R.color.accent));
         Intent resultIntent = new Intent(context, MainActivity.class);
         //resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
