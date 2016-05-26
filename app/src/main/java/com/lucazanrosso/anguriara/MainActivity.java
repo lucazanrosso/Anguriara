@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar today = new GregorianCalendar();
+    public static Calendar today = new GregorianCalendar(2016,5,10);
     public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
@@ -239,7 +239,8 @@ public class MainActivity extends AppCompatActivity {
                     badDay = null;
                     new File(getFilesDir(), "bad_day.ser").delete();
                 }
-                CalendarFragment.setDataText(today, context);
+                CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
+                CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setDateImage(MainActivity.today));
             }
 
             @Override

@@ -98,7 +98,8 @@ public class CalendarFragment extends Fragment {
 
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
-        setDataText(MainActivity.today, getContext());
+        CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, getContext()));
+        CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setDateImage(MainActivity.today));
 
         if (MainActivity.calendar.containsKey(MainActivity.today)) {
             CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
@@ -251,21 +252,30 @@ public class CalendarFragment extends Fragment {
         return thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
     }
 
-    public static void setDataText(Calendar date, Context context) {
-        if (MainActivity.calendar.containsKey(MainActivity.today)) {
-            if(MainActivity.today.equals(MainActivity.badDay)) {
-                CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-                CalendarFragment.thisDayText.setText(context.getResources().getString(R.string.bad_weather));
+    public static String setDateText(Calendar date, Context context) {
+        if (MainActivity.calendar.containsKey(date)) {
+            if(date.equals(MainActivity.badDay)) {
+                return context.getResources().getString(R.string.bad_weather);
             } else {
-                CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
-                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(MainActivity.today).get("event") + "\n";
-                if (!MainActivity.calendar.get(MainActivity.today).get("food").isEmpty())
-                    dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(MainActivity.today).get("food");
-                CalendarFragment.thisDayText.setText(dayEventAndFood);
+                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event") + "\n";
+                if (!MainActivity.calendar.get(date).get("food").isEmpty())
+                    dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+                return  dayEventAndFood;
             }
         } else {
-            CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-            CalendarFragment.thisDayText.setText(context.getResources().getString(R.string.close));
+            return context.getResources().getString(R.string.close);
+        }
+    }
+
+    public static int setDateImage(Calendar date) {
+        if (MainActivity.calendar.containsKey(date)) {
+            if(date.equals(MainActivity.badDay)) {
+               return R.drawable.close;
+            } else {
+                return R.drawable.open;
+            }
+        } else {
+            return R.drawable.close;
         }
     }
 }
