@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar today = new GregorianCalendar(2016, 5, 10);
+    public static Calendar today = new GregorianCalendar();
     public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
@@ -227,29 +227,19 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (MainActivity.badDay == null && dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
+                boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
+                if (isBadDay) {
                     MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
                     serializeBadDay();
-                    if (MainActivity.today.equals(MainActivity.badDay)) {
-                        CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-                        CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
-                    } else {
+                    if (! MainActivity.today.equals(MainActivity.badDay)) {
                         badDay = null;
                         new File(getFilesDir(), "bad_day.ser").delete();
-                        CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
-                        CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
                     }
-                } else if (MainActivity.badDay != null && (! dataSnapshot.child("bad_weather").getValue(Boolean.class))) {
+                } else if (MainActivity.badDay != null) {
                     badDay = null;
                     new File(getFilesDir(), "bad_day.ser").delete();
-                    CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
-                    CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
-                } else if (MainActivity.badDay != null && dataSnapshot.child("bad_weather").getValue(Boolean.class) && ! MainActivity.today.equals(new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class)))) {
-                    badDay = null;
-                    new File(getFilesDir(), "bad_day.ser").delete();
-                    CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
-                    CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
                 }
+                CalendarFragment.setDataText(today, context);
             }
 
             @Override
@@ -328,20 +318,6 @@ public class MainActivity extends AppCompatActivity {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
-    }
-
-    public static String setDateTitle(Calendar date) {
-        String thisDayOfWeek = MainActivity.daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
-        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
-        String thisMonth = MainActivity.months[date.get(Calendar.MONTH)];
-        return thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
-    }
-
-    public static String setDateText(Calendar date, Context context) {
-        String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event") + "\n";
-        if (! MainActivity.calendar.get(date).get("food").isEmpty())
-            dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
-        return  dayEventAndFood;
     }
 
     @Override

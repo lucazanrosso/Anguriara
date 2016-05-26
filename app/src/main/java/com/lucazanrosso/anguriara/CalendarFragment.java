@@ -1,5 +1,6 @@
 package com.lucazanrosso.anguriara;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -28,10 +29,6 @@ public class CalendarFragment extends Fragment {
     //TO IMPROVE
     private int monthSelected = -1;
 
-    private Calendar today = new GregorianCalendar(2016,5,10);
-    private String[] daysOfWeek;
-    private String[] months;
-
     public static ImageView thisDayImage;
     public static TextView thisDayText;
 
@@ -42,14 +39,10 @@ public class CalendarFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        this.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
-        this.months = getResources().getStringArray(R.array.months);
+        CalendarFragment.thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
+        CalendarFragment.thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
 
-//        if (savedInstanceState == null)
-//            getFirebaseDatabase();
         setThisDay();
-
-//        setNextEvening(inflater, container);
 
         final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
         final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
@@ -86,7 +79,7 @@ public class CalendarFragment extends Fragment {
                 monthSelected = 6;
             }
         } else {
-            if (this.today.get(Calendar.MONTH) < 6) {
+            if (MainActivity.today.get(Calendar.MONTH) < 6) {
                 setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
                 julyButton.setVisibility(View.VISIBLE);
@@ -102,41 +95,26 @@ public class CalendarFragment extends Fragment {
     }
 
     private void setThisDay () {
-        CalendarFragment.thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
+
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
-        CalendarFragment.thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
-        CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
+        titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
+        setDataText(MainActivity.today, getContext());
 
-        titleTextView.setText(MainActivity.setDateTitle(MainActivity.today));
-
-        if (MainActivity.calendar.containsKey(this.today)) {
-            if(MainActivity.today.equals(MainActivity.badDay)) {
-                CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-                CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
-            } else {
-                CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
-                String dayEventAndFood = getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
-                if (!MainActivity.calendar.get(this.today).get("food").isEmpty())
-                    dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
-                CalendarFragment.thisDayText.setText(dayEventAndFood);
-
-                final Bundle dayArgs = new Bundle();
-                dayArgs.putSerializable("date", this.today);
-                thisDayCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-                        dayScreenSlidePagerFragment.setArguments(dayArgs);
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                        transaction.addToBackStack("secondary");
-                        transaction.commit();
-                    }
-                });
-            }
-        } else {
-            CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-            CalendarFragment.thisDayText.setText(getResources().getString(R.string.close));
+        if (MainActivity.calendar.containsKey(MainActivity.today)) {
+            CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
+            final Bundle dayArgs = new Bundle();
+            dayArgs.putSerializable("date", MainActivity.today);
+            thisDayCardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                    dayScreenSlidePagerFragment.setArguments(dayArgs);
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
+                    transaction.addToBackStack("secondary");
+                    transaction.commit();
+                }
+            });
         }
     }
 
@@ -217,7 +195,7 @@ public class CalendarFragment extends Fragment {
         if (iterator.hasNext()) {
             LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
 
-            textView.setText(months[month]);
+            textView.setText(MainActivity.months[month]);
             while (month == dateMonth) {
                 LinearLayout weekLinearLayout = new LinearLayout(getActivity());
                 weekLinearLayout.setLayoutParams(weekLayoutParams);
@@ -266,64 +244,28 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-//    public void getFirebaseDatabase() {
-////        final ImageView imageView = (ImageView) this.view.findViewById(R.id.card_view_image);
-////        final TextView subTitleTextView = (TextView) this.view.findViewById(R.id.card_view_sub_title);
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("bad_weather");
-////        myRef.setValue(today);
-//        myRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                Log.d("Ciao", "onChildChanged:" + dataSnapshot.getKey() + " " + dataSnapshot.getValue(Long.class));
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-////                Log.d("day", "day" + dataSnapshot.child("day").getValue());
-//                CalendarFragment.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-////                Log.d("day", "day" + MainActivity.badDay.toString());
-//                if(CalendarFragment.badDay != null && today.get(Calendar.DAY_OF_MONTH) == CalendarFragment.badDay.get(Calendar.DAY_OF_MONTH) && today.get(Calendar.MONTH) == CalendarFragment.badDay.get(Calendar.MONTH) && today.get(Calendar.YEAR) == CalendarFragment.badDay.get(Calendar.YEAR)) {
-//                    CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
-//                    CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
-//                }
-////                CalendarFragment calendarFragment = new CalendarFragment();
-////                getSupportFragmentManager().beginTransaction()
-////                        .replace(R.id.frame_container, calendarFragment).commit();
-////                Map<String, Long> map = dataSnapshot.getValue(Map.class<String.class, Long.class>);
-////                Log.d("ciao", "ciao"  + dataSnapshot.getValue());
-////                Toast.makeText(getContext(), value, Toast.LENGTH_SHORT).show();
-////                Log.d("Ciao", "Value is: " + value);
-////                MainActivity.badWeather = value.equals("Y");
-////                imageView.setImageResource(R.drawable.close);
-////                subTitleTextView.setText(getResources().getString(R.string.bad_weather));
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    public static String setDateTitle(Calendar date) {
+        String thisDayOfWeek = MainActivity.daysOfWeek[date.get(Calendar.DAY_OF_WEEK) - 1];
+        int thisDayOfMonth = date.get(Calendar.DAY_OF_MONTH);
+        String thisMonth = MainActivity.months[date.get(Calendar.MONTH)];
+        return thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
+    }
+
+    public static void setDataText(Calendar date, Context context) {
+        if (MainActivity.calendar.containsKey(MainActivity.today)) {
+            if(MainActivity.today.equals(MainActivity.badDay)) {
+                CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+                CalendarFragment.thisDayText.setText(context.getResources().getString(R.string.bad_weather));
+            } else {
+                CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
+                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(MainActivity.today).get("event") + "\n";
+                if (!MainActivity.calendar.get(MainActivity.today).get("food").isEmpty())
+                    dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(MainActivity.today).get("food");
+                CalendarFragment.thisDayText.setText(dayEventAndFood);
+            }
+        } else {
+            CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
+            CalendarFragment.thisDayText.setText(context.getResources().getString(R.string.close));
+        }
+    }
 }
