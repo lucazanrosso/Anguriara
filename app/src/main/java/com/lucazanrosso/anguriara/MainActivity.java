@@ -128,9 +128,16 @@ public class MainActivity extends AppCompatActivity {
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-        File file = new File(this.getFilesDir(), "anguriara.ser");
-        if (file.exists()) {
+        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
             MainActivity.calendar = deserializeCalendar(this);
+        } else {
+            MainActivity.calendar = setCalendar();
+            serializeCalendar(MainActivity.calendar);
+        }
+        days = new ArrayList<>(calendar.keySet());
+
+        if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
+            MainActivity.badDay = deserializeBadDay(this);
         } else {
             MainActivity.calendar = setCalendar();
             serializeCalendar(MainActivity.calendar);
@@ -150,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
-            getFirebaseDatabase();
+            getFirebaseDatabase(this);
         }
     }
 
@@ -190,8 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
         try {
-            File file = new File(this.getFilesDir(), "anguriara.ser");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(this.getFilesDir(), "anguriara.ser"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(calendar);
             objectOutputStream.close();
@@ -204,8 +210,7 @@ public class MainActivity extends AppCompatActivity {
     public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(Context context) {
         LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
-            File file = new File(context.getFilesDir(), "anguriara.ser");
-            FileInputStream fileInputStream = new FileInputStream(file);
+            FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "anguriara.ser"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
             objectInputStream.close();
@@ -216,20 +221,35 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-
-    public void getFirebaseDatabase() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("bad_weather");
+    public void getFirebaseDatabase(final Context context) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("bad_day");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (MainActivity.badDay == null) {
+                if (MainActivity.badDay == null && dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
                     MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                    serializeBadDay();
                     if (MainActivity.today.equals(MainActivity.badDay)) {
                         CalendarFragment.thisDayImage.setImageResource(R.drawable.close);
                         CalendarFragment.thisDayText.setText(getResources().getString(R.string.bad_weather));
+                    } else {
+                        badDay = null;
+                        new File(getFilesDir(), "bad_day.ser").delete();
+                        CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
+                        CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
                     }
-//                }
+                } else if (MainActivity.badDay != null && (! dataSnapshot.child("bad_weather").getValue(Boolean.class))) {
+                    badDay = null;
+                    new File(getFilesDir(), "bad_day.ser").delete();
+                    CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
+                    CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
+                } else if (MainActivity.badDay != null && dataSnapshot.child("bad_weather").getValue(Boolean.class) && ! MainActivity.today.equals(new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class)))) {
+                    badDay = null;
+                    new File(getFilesDir(), "bad_day.ser").delete();
+                    CalendarFragment.thisDayImage.setImageResource(R.drawable.open);
+                    CalendarFragment.thisDayText.setText(MainActivity.setDateText(today, context));
+                }
             }
 
             @Override
@@ -241,8 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void serializeBadDay() {
         try {
-            File file = new File(this.getFilesDir(), "bad_day.ser");
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(getFilesDir(), "bad_day.ser"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(MainActivity.badDay);
             objectOutputStream.close();
@@ -255,8 +274,7 @@ public class MainActivity extends AppCompatActivity {
     public static GregorianCalendar deserializeBadDay(Context context) {
         GregorianCalendar badDay = new GregorianCalendar();
         try {
-            File file = new File(context.getFilesDir(), "bad_day.ser");
-            FileInputStream fileInputStream = new FileInputStream(file);
+            FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "bad_day.ser"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             badDay = (GregorianCalendar) objectInputStream.readObject();
@@ -319,12 +337,12 @@ public class MainActivity extends AppCompatActivity {
         return thisDayOfWeek + " " + thisDayOfMonth + " " + thisMonth;
     }
 
-//    public static String setDateTExt(GregorianCalendar date) {
-//        String dayEventAndFood = getContext().getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(this.today).get("event") + "\n";
-//        if (! MainActivity.calendar.get(this.today).get("food").isEmpty())
-//            dayEventAndFood += getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(this.today).get("food");
-//        return  dayEventAndFood;
-//    }
+    public static String setDateText(Calendar date, Context context) {
+        String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event") + "\n";
+        if (! MainActivity.calendar.get(date).get("food").isEmpty())
+            dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+        return  dayEventAndFood;
+    }
 
     @Override
     public void onBackPressed(){

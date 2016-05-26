@@ -100,8 +100,8 @@ public class DayScreenSlidePagerFragment extends Fragment {
     }
 
     public void setTitleAndFab(Calendar date) {
-        MainActivity.toolbar.setTitle(MainActivity.setDateTitle(date));
-
+        title = MainActivity.setDateTitle(date);
+        MainActivity.toolbar.setTitle(title);
         title += " " + getResources().getString(R.string.share_title);
         if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
             title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
