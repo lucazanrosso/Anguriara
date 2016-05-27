@@ -256,9 +256,9 @@ public class CalendarFragment extends Fragment {
             if(date.equals(MainActivity.badDay)) {
                 return context.getResources().getString(R.string.bad_weather);
             } else {
-                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event") + "\n";
+                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
                 if (!MainActivity.calendar.get(date).get("food").isEmpty())
-                    dayEventAndFood += context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+                    dayEventAndFood += "\n" + context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
                 return  dayEventAndFood;
             }
         } else {

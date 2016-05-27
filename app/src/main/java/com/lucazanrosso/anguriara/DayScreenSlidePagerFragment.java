@@ -103,12 +103,14 @@ public class DayScreenSlidePagerFragment extends Fragment {
         title = CalendarFragment.setDateTitle(date);
         MainActivity.toolbar.setTitle(title);
         title += " " + getResources().getString(R.string.share_title);
-        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
-            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
-            if (! MainActivity.calendar.get(date).get("food").isEmpty())
-                title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
-        } else
-            title += "\n" + getResources().getString(R.string.open);
+        title += "\n" + CalendarFragment.setDateText(date, getContext());
+
+//        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
+//            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
+//            if (! MainActivity.calendar.get(date).get("food").isEmpty())
+//                title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+//        } else
+//            title += "\n" + getResources().getString(R.string.open);
         title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
 
         fab.setOnClickListener(new View.OnClickListener() {
