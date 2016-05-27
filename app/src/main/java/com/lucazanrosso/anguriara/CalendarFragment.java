@@ -95,11 +95,10 @@ public class CalendarFragment extends Fragment {
     }
 
     private void setThisDay () {
-
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
         CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, getContext()));
-        CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setDateImage(MainActivity.today));
+        CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
 
         if (MainActivity.calendar.containsKey(MainActivity.today)) {
             CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
@@ -267,10 +266,10 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    public static int setDateImage(Calendar date) {
+    public static int setThisDayImage(Calendar date) {
         if (MainActivity.calendar.containsKey(date)) {
             if(date.equals(MainActivity.badDay)) {
-               return R.drawable.close;
+               return R.drawable.rain;
             } else {
                 return R.drawable.open;
             }

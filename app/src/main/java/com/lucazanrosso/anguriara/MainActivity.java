@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                     new File(getFilesDir(), "bad_day.ser").delete();
                 }
                 CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
-                CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setDateImage(MainActivity.today));
+                CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
             }
 
             @Override

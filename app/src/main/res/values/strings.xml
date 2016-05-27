@@ -277,7 +277,7 @@
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
         \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi;
         \n\u2022 Ogni squadra dovrà portarsi un pallone da pallavolo;
-        \n\u2022 Le squadra inoltre dovranno arbitrare a rotazione;
+        \n\u2022 Le squadre inoltre dovranno arbitrare a rotazione;
         \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break;
         \n\u2022 Il punteggio durante i gironi corrisponderà al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti.
     </string>
@@ -308,5 +308,4 @@
 
         \n\nSiamo gente molto pratica, usualmente cominciamo in marzo con picco, badile, seghe, trattori, saldatrici, telefonate e burocrazia e in giugno apriamo la baracca.
     </string>
-    <string name="download"></string>
 </resources>
