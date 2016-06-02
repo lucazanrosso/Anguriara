@@ -29,18 +29,18 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.VIEW" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<category android:name="android.intent.category.BROWSABLE" />-->
-                <!--&lt;!&ndash; Accepts URIs that begin with "http://www.example.com/gizmos” &ndash;&gt;-->
-                <!--<data android:scheme="http" android:host="anguriara.it" />-->
-                <!--&lt;!&ndash; note that the leading "/" is required for pathPrefix&ndash;&gt;-->
-                <!--&lt;!&ndash; Accepts URIs that begin with "example://gizmos” &ndash;&gt;-->
-                <!--&lt;!&ndash;<data android:scheme="example"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:host="com.lucazanrosso.anguriara" />&ndash;&gt;-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http" android:host="anguriara.it" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <!--<data android:scheme="example"-->
+                    <!--android:host="com.lucazanrosso.anguriara" />-->
 
-            <!--</intent-filter>-->
+            </intent-filter>
         </activity>
         <receiver android:name=".MyNotification" />
         <receiver android:name=".BootReceiver" android:enabled="true">
