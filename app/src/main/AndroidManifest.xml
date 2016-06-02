@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lucazanrosso.anguriara" >
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
@@ -27,6 +29,18 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="android.intent.category.BROWSABLE" />-->
+                <!--&lt;!&ndash; Accepts URIs that begin with "http://www.example.com/gizmos” &ndash;&gt;-->
+                <!--<data android:scheme="http" android:host="anguriara.it" />-->
+                <!--&lt;!&ndash; note that the leading "/" is required for pathPrefix&ndash;&gt;-->
+                <!--&lt;!&ndash; Accepts URIs that begin with "example://gizmos” &ndash;&gt;-->
+                <!--&lt;!&ndash;<data android:scheme="example"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:host="com.lucazanrosso.anguriara" />&ndash;&gt;-->
+
+            <!--</intent-filter>-->
         </activity>
         <receiver android:name=".MyNotification" />
         <receiver android:name=".BootReceiver" android:enabled="true">
@@ -35,7 +49,4 @@
             </intent-filter>
         </receiver>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 </manifest>

@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class DayScreenSlidePagerFragment extends Fragment {
 
@@ -29,7 +28,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
         View view =  inflater.inflate(R.layout.pager_adapter, container, false);
 
         Bundle args = this.getArguments();
-        Calendar date = (GregorianCalendar) args.getSerializable("date");
+        Calendar date = (Calendar) args.getSerializable("date");
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
         setTitleAndFab(date);
 //                Uri imageUri = Uri.parse("file//res/drawable/logo.png");

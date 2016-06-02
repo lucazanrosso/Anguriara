@@ -172,8 +172,8 @@ public class CalendarFragment extends Fragment {
 //    }
 
     private void setMonthCalendar(int month) {
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
+        LinkedHashMap<Calendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
                 monthCalendar.put(entry.getKey(), entry.getValue());
             }
@@ -193,7 +193,7 @@ public class CalendarFragment extends Fragment {
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
-            LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
+            LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>>) iterator.next();
 
             textView.setText(MainActivity.months[month]);
             while (month == dateMonth) {
@@ -224,7 +224,7 @@ public class CalendarFragment extends Fragment {
                                 }
                             });
                             if (iterator.hasNext())
-                                entry = (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>>) iterator.next();
+                                entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>>) iterator.next();
                         } else {
                             button.setEnabled(false);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
@@ -256,7 +256,7 @@ public class CalendarFragment extends Fragment {
             if(date.equals(MainActivity.badDay)) {
                 return context.getResources().getString(R.string.bad_weather);
             } else {
-                String dayEventAndFood = context.getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
+                String dayEventAndFood = MainActivity.calendar.get(date).get("event");
                 if (!MainActivity.calendar.get(date).get("food").isEmpty())
                     dayEventAndFood += "\n" + context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
                 return  dayEventAndFood;

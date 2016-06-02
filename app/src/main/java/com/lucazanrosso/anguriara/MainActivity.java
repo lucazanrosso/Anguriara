@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
-    public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
-    public static ArrayList<GregorianCalendar> days;
+    public static LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public static ArrayList<Calendar> days;
     final static int YEAR = 2016;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar today = new GregorianCalendar();
+    public static Calendar today = new GregorianCalendar(2016,5,10);
     public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
@@ -145,12 +145,12 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-2", true);
         boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
         if (firstStart && alarmisSet) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
-            editor.putBoolean("firstStart2016", false).apply();
+            editor.putBoolean("firstStart2016-2", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -182,8 +182,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> setCalendar() {
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public LinkedHashMap<Calendar, LinkedHashMap<String, String>> setCalendar() {
+        LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
             LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", this.dayEvents[i]);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void serializeCalendar(LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar) {
+    public void serializeCalendar(LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(this.getFilesDir(), "anguriara.ser"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -207,12 +207,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> deserializeCalendar(Context context) {
-        LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public static LinkedHashMap<Calendar, LinkedHashMap<String, String>> deserializeCalendar(Context context) {
+        LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "anguriara.ser"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            calendar = (LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
+            calendar = (LinkedHashMap<Calendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
         } catch (Exception e) {
@@ -267,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "bad_day.ser"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
             badDay = (GregorianCalendar) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
@@ -277,16 +276,12 @@ public class MainActivity extends AppCompatActivity {
         return badDay;
     }
 
-    public static void setAlarm(Context context, LinkedHashMap<GregorianCalendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
+    public static void setAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
-        for (LinkedHashMap.Entry<GregorianCalendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
-            String notificationText;
-            if (!entry.getValue().get("event").isEmpty()) {
-                notificationText = context.getResources().getString(R.string.event) + ": " + entry.getValue().get("event");
-                if (!entry.getValue().get("food").isEmpty())
-                    notificationText += ". " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
-            } else
-                notificationText = context.getResources().getString(R.string.open);
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
+            String notificationText = entry.getValue().get("event");
+            if (!entry.getValue().get("food").isEmpty())
+                notificationText += ". " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
             Intent notificationIntent = new Intent(context, MyNotification.class);
             notificationIntent.putExtra("notification_text", notificationText);
             MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -297,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
                 alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
                 //Test
-//                alarmTime.set(2016, 4, 28, 13, i);
+//                alarmTime.set(2016, 5, 2, 11, i + 20);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
