@@ -26,7 +26,6 @@ public class CalendarFragment extends Fragment {
 
     View view;
 
-    //TO IMPROVE
     private int monthSelected = -1;
 
     public static ImageView thisDayImage;
@@ -65,26 +64,25 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-//        TO IMPROVE
-        if (monthSelected != -1) {
-            if (monthSelected == 5) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
-            } else if (monthSelected == 6) {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
-            }
-        } else {
+        if (monthSelected == -1) {
             if (MainActivity.today.get(Calendar.MONTH) < 6) {
                 setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
                 julyButton.setVisibility(View.VISIBLE);
                 monthSelected = 5;
             } else {
+                setMonthCalendar(Calendar.JULY);
+                julyButton.setVisibility(View.INVISIBLE);
+                juneButton.setVisibility(View.VISIBLE);
+                monthSelected = 6;
+            }
+        } else {
+            if (monthSelected == 5) {
+                setMonthCalendar(Calendar.JUNE);
+                juneButton.setVisibility(View.INVISIBLE);
+                julyButton.setVisibility(View.VISIBLE);
+                monthSelected = 5;
+            } else if (monthSelected == 6) {
                 setMonthCalendar(Calendar.JULY);
                 julyButton.setVisibility(View.INVISIBLE);
                 juneButton.setVisibility(View.VISIBLE);
