@@ -137,7 +137,7 @@
         <item>Gruppo: Flash Player</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: Black betty</item>
+        <item>Gruppo: Black Betty</item>
         <item>Gruppo: Trixy</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
@@ -145,42 +145,42 @@
         <item>Dj Battle</item>
     </string-array>
     <string-array name="day_event_details">
-        <item>\nGenere: Balli di gruppo e tormentoni</item>
-        <item>\nGenere: Rock &amp; Blues</item>
-        <item>&#160;con succo e verdure di Alessando</item>
+        <item>\nGenere: balli di gruppo e tormentoni</item>
+        <item>\nGenere: rock &amp; blues</item>
+        <item>&#160;con il succo e le verdure di Alessandro</item>
         <item></item>
-        <item>\nGenere: Rock anni \'70-80</item>
-        <item>\nGenere: Country rock</item>
+        <item>\nGenere: rock anni \'70-80</item>
+        <item>\nGenere: country rock</item>
         <item></item>
         <item>&#160;con gli ortaggi di Stefano</item>
         <item></item>
-        <item>\nGenere: Pop-rock acustico</item>
-        <item>\nGenere: Musica demenziale</item>
+        <item>\nGenere: pop - rock acustico</item>
+        <item>\nGenere: beach party and live</item>
         <item></item>
-        <item>\nGenere: Pop acustico</item>
-        <item>\nGenere: Rock a 360°</item>
+        <item>\nGenere: pop acustico</item>
+        <item>\nGenere: rock a 360°</item>
         <item>&#160;con le verdure di Luisella e Pino</item>
         <item></item>
-        <item>\nGenere: Duo acustico - jazz</item>
-        <item>\nGenere: AC/DC tribute band</item>
+        <item>\nGenere: duo acustico - jazz</item>
+        <item>\nGenere: AC/DC tribute band\n\nTorneo Pravolley</item>
+        <item>\n\nTorneo Pravolley</item>
+        <item>&#160;con il miele e le confetture di Enrico</item>
+        <item>\nCorsa podistica dalle ore 18:00 con la Fondazione Città della Speranza</item>
+        <item>\nGenere: best old &amp; new pop/rock MTV hits</item>
+        <item>\nGenere: rock classico</item>
+        <item>&#160;con la carne e il succo di Davide</item>
         <item></item>
-        <item>&#160;con miele e confetture di Enrico</item>
-        <item>\nCorsa podistica + serata a cura della "Città della speranza"</item>
-        <item>\nGenere: Best old &amp; new pop/rock MTV hits</item>
-        <item>\nGenere: Rock classico</item>
-        <item>&#160;con la carne di Davide</item>
+        <item>\nGenere: Adele, Amy Whinehouse e soul moderno</item>
+        <item>\nGenere: musica dagli anni \'70 ad oggi</item>
+        <item>&#160;- Cena Km 0 su prenotazione</item>
         <item></item>
-        <item>\nGenere: Soul moderno</item>
-        <item>\nGenere: Musica italiana e non, dagli anni \'70 ad oggi</item>
-        <item>&#160;- Cena su prenotazione</item>
-        <item></item>
-        <item>\nGenere: Rock blues cover band</item>
+        <item>\nGenere: rock blues cover band</item>
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
     <string-array name="day_foods">
-        <item>Club Sandwitch</item>
+        <item>Club Sandwich</item>
         <item>Hot dog</item>
-        <item>Piatto a sorpresa con le verdure di Alessandro</item>
+        <item>Piatto a sorpresa con il succo e le verdure di Alessandro</item>
         <item></item>
         <item>Grigliata mista</item>
         <item>Pizza</item>
@@ -194,24 +194,24 @@
         <item>Bruschetta</item>
         <item>Piatto a sorpresa con le verdure di Luisella e Pino</item>
         <item></item>
-        <item>Club Sandwitch</item>
+        <item>Club Sandwich</item>
         <item>Pizza</item>
         <item></item>
         <item>Piatto a sorpresa con il miele e le confetture di Enrico</item>
         <item></item>
         <item>Menù a sorpresa</item>
         <item>Bruschetta</item>
-        <item>Piatto a sorpresa con la carne di Davide</item>
+        <item>Piatto a sorpresa con la carne e il succo di Davide</item>
         <item></item>
         <item>Panino con porchetta</item>
         <item>Galletto e patate</item>
-        <item>Cena a sorpresa cucinata dalle persone del GiavenalFood</item>
+        <item>Cena Km 0 preparata dalle persone del GiavenalFood</item>
         <item></item>
         <item>Menù a sorpresa</item>
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <string name="standard_foods">Panino vegetariano\nPanino rustico\nPanino con sopressa\nPatatine fritte\nFetta d\'anguria</string>
+    <string name="standard_foods">Panino vegetariano\nPanino rustego\nPanino con sopressa\nPatatine fritte\nFetta d\'anguria</string>
     <string-array name="day_opening_time">
         <item></item>
         <item></item>
@@ -223,7 +223,7 @@
         <item></item>
         <item></item>
         <item></item>
-        <item></item>
+        <item>19:30</item>
         <item></item>
         <item></item>
         <item>19:30</item>
@@ -243,7 +243,7 @@
         <item></item>
         <item></item>
         <item></item>
-        <item></item>
+        <item>19:30</item>
     </string-array>
     <string name="standard_opening_time">20:30</string>
     <string name="june">Giugno</string>
@@ -273,6 +273,9 @@
         \n\u2022 15:30 Finali
         \n\u2022 18:30 Premiazioni
     </string>
+    <string name="pravolley_schedule_2016">Sabato 11 luglio
+        \nDomenica 12 luglio
+    </string>
     <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
         \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi;
@@ -282,11 +285,12 @@
         \n\u2022 Il punteggio durante i gironi corrisponderà al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti.
     </string>
     <string name="inscriptions">Iscrizioni</string>
-    <string name="pravolley_inscriptions">\u2022 Apertura isrizioni: venerdì 15 giugno
+    <string name="pravolley_inscriptions">\u2022 Apertura iscrizioni: venerdì 15 giugno
         \n\u2022 Chiusura iscrizioni: mercoledì 30 giugno
         \n\u2022 Numero squadre: 21
-        \n\u2022 Iscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e inviandolo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
+        \n\u2022 Iscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e invialo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
         \n\u2022 Il costo di iscrizione è di 10 euro, comprensivi di un buono colazione (caffè + brioche) e della maglietta del pravolley!
+        \n\u2022 Premi per i prime tre classificati!
     </string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
@@ -294,7 +298,7 @@
         \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.
         \nEra un periodo buio di stagnazione in paese, e le giovani generazioni cominciavano a prendere strade un po\' rischiose.
 
-        \n\nCosì, durante una sera di quel 1999 un po\' di gente si stava s-cervellando per inventarsi qualcosa che desse una svolta alla situazione, quando tra i \"cossa podarissimo fare\", Guglielmo (nella sezione foto c\'è) sparò la cazzata di turno: un\'Anguriara.
+        \n\nCosì, durante una sera di quel 1999 un po\' di gente si stava s-cervellando per inventarsi qualcosa che desse una svolta alla situazione, quando tra i \"cossa podarissimo fare\", Guglielmo sparò la cazzata di turno: un\'Anguriara.
 
         \n\nE così la facemmo. Semplice, no?
 
@@ -303,8 +307,8 @@
         \nPoi, visto che evidentemente era originale, crebbe.
         \nCi spostammo da un campo all\'altro, in cerca di uno spazio rurale all\'aperto sufficientemente lontano dalle case e da qualche anno ci siamo fermati e ci siamo un po\' ingranditi.
         \nAttualmente offriamo ogni sera o un concerto o una serata culturale. Apriamo per tutto il mese di giugno e di luglio e offriamo panini, bruschette, bibite, birra alla spina, sangria, vino sia alla spina che in bottiglia.
-        \nOvviamente il tutto racchiuso in un ambiente semplice ma originale, completo di aiuole floreale e originalissime luci soffuse.
-        \nDev\'essere chiaro che il tutto è costruito da giovani del paese , senza alcuna remunerazione e sfruttando un po\' dei soldini guadagnati nell\'anno precedente.
+        \nOvviamente il tutto racchiuso in un ambiente semplice ma originale, completo di aiuole floreali e originalissime luci soffuse.
+        \nDev\'essere chiaro che il tutto è costruito da giovani del paese, senza alcuna remunerazione e sfruttando un po\' dei soldini guadagnati nell\'anno precedente.
 
         \n\nSiamo gente molto pratica, usualmente cominciamo in marzo con picco, badile, seghe, trattori, saldatrici, telefonate e burocrazia e in giugno apriamo la baracca.
 
