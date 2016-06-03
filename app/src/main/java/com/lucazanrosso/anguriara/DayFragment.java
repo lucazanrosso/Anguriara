@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 
 public class DayFragment extends Fragment {
@@ -17,7 +17,7 @@ public class DayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
 
         Bundle args = this.getArguments();
-        GregorianCalendar date = (GregorianCalendar) args.getSerializable("date");
+        Calendar date = (Calendar) args.getSerializable("date");
         boolean isWednesday = args.getBoolean("isWednesday");
         boolean isSunday = args.getBoolean("isSunday");
         LinkedHashMap<String, String> day = MainActivity.calendar.get(date);

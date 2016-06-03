@@ -128,7 +128,7 @@
         <item>Cantante: Virna Marangoni</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>A Bassa Voce</item>
+        <item>Gruppo: A Bassa Voce</item>
         <item>Gruppo: Beer Brothers</item>
         <item>L\'aperitivo anguriaro</item>
         <item>GiavenalFood</item>
@@ -211,7 +211,7 @@
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <string name="standard_foods">Panino vegetariano\nPanino rustico\nPanino con sopressa\nPatatine Fritte\nFetta d\'anguria</string>
+    <string name="standard_foods">Panino vegetariano\nPanino rustico\nPanino con sopressa\nPatatine fritte\nFetta d\'anguria</string>
     <string-array name="day_opening_time">
         <item></item>
         <item></item>
