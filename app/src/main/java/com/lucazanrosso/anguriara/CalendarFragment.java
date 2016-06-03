@@ -64,7 +64,7 @@ public class CalendarFragment extends Fragment {
             }
         });
 
-        if (monthSelected == -1) {
+        if (monthSelected == -1 && savedInstanceState == null) {
             if (MainActivity.today.get(Calendar.MONTH) < 6) {
                 setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
@@ -77,6 +77,8 @@ public class CalendarFragment extends Fragment {
                 monthSelected = 6;
             }
         } else {
+            if (savedInstanceState != null)
+                monthSelected = savedInstanceState.getInt("monthSelected");
             if (monthSelected == 5) {
                 setMonthCalendar(Calendar.JUNE);
                 juneButton.setVisibility(View.INVISIBLE);
@@ -274,5 +276,11 @@ public class CalendarFragment extends Fragment {
         } else {
             return R.drawable.close;
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("monthSelected", monthSelected);
     }
 }
