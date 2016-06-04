@@ -18,8 +18,6 @@ public class DayFragment extends Fragment {
 
         Bundle args = this.getArguments();
         Calendar date = (Calendar) args.getSerializable("date");
-        boolean isWednesday = args.getBoolean("isWednesday");
-        boolean isSunday = args.getBoolean("isSunday");
         LinkedHashMap<String, String> day = MainActivity.calendar.get(date);
 
         TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
@@ -33,10 +31,12 @@ public class DayFragment extends Fragment {
         }
 
         TextView foodText = (TextView) view.findViewById(R.id.food_text);
-        if (isSunday)
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
             foodText.setText(getResources().getString(R.string.close));
+        else if(date.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+            foodText.setText(getResources().getString(R.string.rustic_sandwich) + "\n" + getResources().getString(R.string.standard_foods));
         else if (!day.get("food").isEmpty()) {
-            if (isWednesday)
+            if (date.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
                 foodText.setText(day.get("food") + " " + getResources().getString(R.string.day_food));
             else
                 foodText.setText(day.get("food") + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods));

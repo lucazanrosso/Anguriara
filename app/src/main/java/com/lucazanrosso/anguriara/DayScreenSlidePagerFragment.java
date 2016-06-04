@@ -17,7 +17,6 @@ import java.util.Calendar;
 
 public class DayScreenSlidePagerFragment extends Fragment {
 
-
     String title;
 
     FloatingActionButton fab;
@@ -31,20 +30,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
         Calendar date = (Calendar) args.getSerializable("date");
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
         setTitleAndFab(date);
-//                Uri imageUri = Uri.parse("file//res/drawable/logo.png");
-//                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://"
-//                        + getContext().getPackageName() + "/"
-//                        + R.drawable.logo));
-//                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse("android.resource://com.lucazanrosso.anguriara/drawable/logo"));
-//                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getResources().getResourcePackageName(R.drawable.logo) + '/' + getResources().getResourceTypeName(R.drawable.logo) + '/' + getResources().getResourceEntryName(R.drawable.logo)));
-//                sendIntent.setType("image/png");
-
-//                startActivity(Intent.createChooser(sendIntent, "image"));
-//                try {
-//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getContext().getPackageName())));
-//                } catch (android.content.ActivityNotFoundException anfe) {
-//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
-//                }
 
         ViewPager mPager = (ViewPager) view.findViewById(R.id.pager);
         PagerAdapter mPagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
@@ -79,14 +64,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
         public Fragment getItem(int position) {
             final Bundle dayArgs = new Bundle();
             dayArgs.putSerializable("date", MainActivity.days.get(position));
-            boolean isWednesday = false;
-            boolean isSunday = false;
-            if (MainActivity.days.get(position).get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
-                isWednesday = true;
-            else if (MainActivity.days.get(position).get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
-                isSunday = true;
-            dayArgs.putBoolean("isSunday", isSunday);
-            dayArgs.putBoolean("isWednesday", isWednesday);
             DayFragment dayFragment = new DayFragment();
             dayFragment.setArguments(dayArgs);
             return dayFragment;
@@ -101,16 +78,13 @@ public class DayScreenSlidePagerFragment extends Fragment {
     public void setTitleAndFab(Calendar date) {
         title = CalendarFragment.setDateTitle(date);
         MainActivity.toolbar.setTitle(title);
-        title += " " + getResources().getString(R.string.share_title);
-        title += "\n" + CalendarFragment.setDateText(date, getContext());
-
+        title += " " + getResources().getString(R.string.share_title) + "\n" + CalendarFragment.setDateText(date, getContext()) + "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
 //        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
 //            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");
 //            if (! MainActivity.calendar.get(date).get("food").isEmpty())
 //                title += "\n" + getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
 //        } else
 //            title += "\n" + getResources().getString(R.string.open);
-        title += "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
