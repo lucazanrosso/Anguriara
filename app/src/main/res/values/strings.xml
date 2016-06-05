@@ -262,20 +262,20 @@
     <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2016 dell\'Anguriara.</string>
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
-    <string name="pravolley_schedule">Sabato 11 luglio
-        \n\u2022 13:15 - 13:30 Accettazione scquadre
-        \n\u2022 13:45 Inizio gare
-        \n\u2022 19:00 Fine gare
-        \n\u2022 19:30 Apertura serale con galletto + live show di Virna Marangoni
-        \n\nDomenica 12 luglio
-        \n\u2022 8:30 colazione
-        \n\u2022 9:00 Inizio gare
-        \n\u2022 12:00 - 13:00 Pausa pranzo con panini con porchetta
-        \n\u2022 15:30 Finali
-        \n\u2022 18:30 Premiazioni
-    </string>
-    <string name="pravolley_schedule_2016">Sabato 11 luglio
-        \nDomenica 12 luglio
+    <!--<string name="pravolley_schedule">Sabato 11 luglio-->
+        <!--\n\u2022 13:15 - 13:30 Accettazione scquadre-->
+        <!--\n\u2022 13:45 Inizio gare-->
+        <!--\n\u2022 19:00 Fine gare-->
+        <!--\n\u2022 19:30 Apertura serale con galletto + live show di Virna Marangoni-->
+        <!--\n\nDomenica 12 luglio-->
+        <!--\n\u2022 8:30 colazione-->
+        <!--\n\u2022 9:00 Inizio gare-->
+        <!--\n\u2022 12:00 - 13:00 Pausa pranzo con panini con porchetta-->
+        <!--\n\u2022 15:30 Finali-->
+        <!--\n\u2022 18:30 Premiazioni-->
+    <!--</string>-->
+    <string name="pravolley_schedule_2016">Sabato 9 luglio
+        \nDomenica 10 luglio
     </string>
     <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
