@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar today = new GregorianCalendar();
+    public static Calendar todayInstance = new GregorianCalendar();
+    public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
@@ -145,12 +146,12 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-2", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-3", true);
         boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
         if (firstStart && alarmisSet) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
             MainActivity.editor = MainActivity.sharedPreferences.edit();
-            editor.putBoolean("firstStart2016-2", false).apply();
+            editor.putBoolean("firstStart2016-3", false).apply();
         }
 
         if (savedInstanceState == null) {
