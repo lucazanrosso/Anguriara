@@ -1,7 +1,6 @@
 package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -12,8 +11,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 18);
+    public static Calendar todayInstance = new GregorianCalendar();
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
@@ -140,12 +137,9 @@ public class MainActivity extends AppCompatActivity {
         }
         days = new ArrayList<>(calendar.keySet());
 
-        if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
+        if (new File(this.getFilesDir(), "bad_day.ser").exists())
             MainActivity.badDay = deserializeBadDay(this);
-        } else {
-            MainActivity.calendar = setCalendar();
-            serializeCalendar(MainActivity.calendar);
-        }
+
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
@@ -161,7 +155,8 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
-            getFirebaseDatabase(this);
+//            getFirebaseDatabase(this);
+            setBadDayNotification(this);
         }
     }
 
@@ -225,61 +220,69 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void getFirebaseDatabase(final Context context) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("bad_day");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("test").getValue(Boolean.class)) {
-                    NotificationCompat.Builder mBuilder =
-                            new NotificationCompat.Builder(context)
-                                    .setSmallIcon(R.drawable.notification)
-                                    .setContentTitle(context.getResources().getString(R.string.this_evening))
-                                    .setContentText(context.getResources().getString(R.string.bad_weather));
-                    Intent resultIntent = new Intent(context, MyNotification.class);
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                    stackBuilder.addParentStack(MainActivity.class);
-                    stackBuilder.addNextIntent(resultIntent);
-                    PendingIntent resultPendingIntent =
-                            stackBuilder.getPendingIntent(
-                                    0,
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                            );
-                    mBuilder.setContentIntent(resultPendingIntent);
-                    NotificationManager mNotificationManager =
-                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    mNotificationManager.notify(0, mBuilder.build());
-                } else {
-                    boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
-                    if (isBadDay) {
-                        MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-                        serializeBadDay();
-                        if (!MainActivity.today.equals(MainActivity.badDay)) {
-                            badDay = null;
-                            new File(getFilesDir(), "bad_day.ser").delete();
-                        } else {
-
-                        }
-                    } else if (MainActivity.badDay != null) {
-                        badDay = null;
-                        new File(getFilesDir(), "bad_day.ser").delete();
-                    }
-                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
-                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+    public static void setBadDayNotification(Context context) {
+//        Intent intent = new Intent(context, BadDayNotification.class);
+//        context.sendBroadcast(intent);
+        Intent intent = new Intent(context, BadDayIntentService.class);
+        context.startService(intent);
     }
 
-    public void serializeBadDay() {
+//    public void getFirebaseDatabase(final Context context) {
+//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("bad_day");
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.child("test").getValue(Boolean.class)) {
+////                    NotificationCompat.Builder mBuilder =
+////                            new NotificationCompat.Builder(context)
+////                                    .setSmallIcon(R.drawable.notification)
+////                                    .setContentTitle(context.getResources().getString(R.string.this_evening))
+////                                    .setContentText(context.getResources().getString(R.string.bad_weather));
+////                    Intent resultIntent = new Intent(context, MyNotification.class);
+////                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+////                    stackBuilder.addParentStack(MainActivity.class);
+////                    stackBuilder.addNextIntent(resultIntent);
+////                    PendingIntent resultPendingIntent =
+////                            stackBuilder.getPendingIntent(
+////                                    0,
+////                                    PendingIntent.FLAG_UPDATE_CURRENT
+////                            );
+////                    mBuilder.setContentIntent(resultPendingIntent);
+////                    MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, -1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+////                    NotificationManager mNotificationManager =
+////                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+////                    mNotificationManager.notify(0, mBuilder.build());
+//                } else {
+//                    boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
+//                    if (isBadDay) {
+//                        MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+//                        serializeBadDay();
+//                        if (!MainActivity.today.equals(MainActivity.badDay)) {
+//                            badDay = null;
+//                            new File(getFilesDir(), "bad_day.ser").delete();
+//                        } else {
+//
+//                        }
+//                    } else if (MainActivity.badDay != null) {
+//                        badDay = null;
+//                        new File(getFilesDir(), "bad_day.ser").delete();
+//                    }
+//                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
+//                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+
+    public static void serializeBadDay(Context context) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(getFilesDir(), "bad_day.ser"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(context.getFilesDir(), "bad_day.ser"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(MainActivity.badDay);
             objectOutputStream.close();
@@ -301,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return badDay;
+
     }
 
     public static void setAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
