@@ -1,6 +1,8 @@
 package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -13,6 +15,8 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar();
+    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 11);
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
@@ -160,9 +164,12 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
-            getFirebaseDatabase(this);
+//            getFirebaseDatabase(this);
 //            setBadDayNotification(this);
         }
+
+        Intent intent = new Intent(this, BadDayService.class);
+        startService(intent);
     }
 
     @Override
@@ -225,12 +232,14 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-//    public static void setBadDayNotification(Context context) {
+    public static void setBadDayNotification(Context context) {
 ////        Intent intent = new Intent(context, BadDayNotification.class);
 ////        context.sendBroadcast(intent);
 //        Intent intent = new Intent(context, BadDayIntentService.class);
 //        context.startService(intent);
-//    }
+        Intent intent = new Intent(context, BadDayService.class);
+        context.startService(intent);
+    }
 
 //    @Override
 //    protected void onResume() {
@@ -262,12 +271,17 @@ public class MainActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.child("test").getValue(Boolean.class)) {
+                Intent notificationIntent = new Intent(context, MyNotification.class);
+                notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
+                context.sendBroadcast(notificationIntent);
+
+//                if (dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
 //                    NotificationCompat.Builder mBuilder =
 //                            new NotificationCompat.Builder(context)
 //                                    .setSmallIcon(R.drawable.notification)
 //                                    .setContentTitle(context.getResources().getString(R.string.this_evening))
-//                                    .setContentText(context.getResources().getString(R.string.bad_weather));
+//                                    .setContentText(context.getResources().getString(R.string.bad_weather))
+//                                    .setDefaults(Notification.DEFAULT_SOUND);
 //                    Intent resultIntent = new Intent(context, MyNotification.class);
 //                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
 //                    stackBuilder.addParentStack(MainActivity.class);

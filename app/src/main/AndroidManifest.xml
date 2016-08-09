@@ -44,7 +44,7 @@
         </activity>
 
         <receiver android:name=".MyNotification" />
-        <receiver android:name=".BadDayNotification" />
+        <!--<receiver android:name=".BadDayNotification" />-->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true">
@@ -55,6 +55,9 @@
 
         <service
             android:name=".BadDayIntentService"
+            android:exported="false" />
+        <service
+            android:name=".BadDayService"
             android:exported="false" />
     </application>
 
