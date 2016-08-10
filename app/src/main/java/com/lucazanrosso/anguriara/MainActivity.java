@@ -1,39 +1,24 @@
 package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayOpeningTimes;
 
     public static SharedPreferences sharedPreferences;
-    private static SharedPreferences.Editor editor;
+    public static SharedPreferences.Editor editor;
     private static PendingIntent notificationPendingIntent;
     private static AlarmManager notificationAlarmManager;
 
@@ -164,12 +149,9 @@ public class MainActivity extends AppCompatActivity {
             CalendarFragment calendarFragment = new CalendarFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, calendarFragment).commit();
-//            getFirebaseDatabase(this);
-//            setBadDayNotification(this);
+            Intent intent = new Intent(this, BadDayService.class);
+            startService(intent);
         }
-
-        Intent intent = new Intent(this, BadDayService.class);
-        startService(intent);
     }
 
     @Override
@@ -230,95 +212,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return calendar;
-    }
-
-    public static void setBadDayNotification(Context context) {
-////        Intent intent = new Intent(context, BadDayNotification.class);
-////        context.sendBroadcast(intent);
-//        Intent intent = new Intent(context, BadDayIntentService.class);
-//        context.startService(intent);
-        Intent intent = new Intent(context, BadDayService.class);
-        context.startService(intent);
-    }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        // Register for the particular broadcast based on ACTION string
-//        IntentFilter filter = new IntentFilter(MyTestService.ACTION);
-//        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
-//        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        // Unregister the listener when the application is paused
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
-//        // or `unregisterReceiver(testReceiver)` for a normal broadcast
-//    }
-//
-//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            Toast.makeText(MainActivity.this, "Ciao", Toast.LENGTH_SHORT).show();
-//        }
-//    };
-
-    public void getFirebaseDatabase(final Context context) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("test");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Intent notificationIntent = new Intent(context, MyNotification.class);
-                notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
-                context.sendBroadcast(notificationIntent);
-
-//                if (dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
-//                    NotificationCompat.Builder mBuilder =
-//                            new NotificationCompat.Builder(context)
-//                                    .setSmallIcon(R.drawable.notification)
-//                                    .setContentTitle(context.getResources().getString(R.string.this_evening))
-//                                    .setContentText(context.getResources().getString(R.string.bad_weather))
-//                                    .setDefaults(Notification.DEFAULT_SOUND);
-//                    Intent resultIntent = new Intent(context, MyNotification.class);
-//                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-//                    stackBuilder.addParentStack(MainActivity.class);
-//                    stackBuilder.addNextIntent(resultIntent);
-//                    PendingIntent resultPendingIntent =
-//                            stackBuilder.getPendingIntent(
-//                                    0,
-//                                    PendingIntent.FLAG_UPDATE_CURRENT
-//                            );
-//                    mBuilder.setContentIntent(resultPendingIntent);
-//                    MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, -1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                    NotificationManager mNotificationManager =
-//                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//                    mNotificationManager.notify(0, mBuilder.build());
-//                } else {
-                    boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
-                    if (isBadDay) {
-                        MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-                        serializeBadDay(context);
-                        if (!MainActivity.today.equals(MainActivity.badDay)) {
-                            badDay = null;
-                            new File(getFilesDir(), "bad_day.ser").delete();
-                        }
-                    } else if (MainActivity.badDay != null) {
-                        badDay = null;
-                        new File(getFilesDir(), "bad_day.ser").delete();
-                    }
-                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
-                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
-                }
-//            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     public static void serializeBadDay(Context context) {

@@ -11,15 +11,12 @@ import android.support.v4.content.ContextCompat;
 
 public class MyNotification extends BroadcastReceiver{
 
-    int notificationId;
     String notificationTitle;
     String notificationText;
     int notificationIcon;
-    final static String GROUP_NOTIFICATION = "group_notification";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        this.notificationId = intent.getIntExtra("id", 0);
         this.notificationTitle = context.getResources().getString(R.string.this_evening);
         this.notificationText = intent.getStringExtra("notification_text");
         this.notificationIcon = R.drawable.notification;
@@ -28,17 +25,14 @@ public class MyNotification extends BroadcastReceiver{
                 .setSmallIcon(this.notificationIcon)
                 .setContentTitle(this.notificationTitle)
                 .setContentText(this.notificationText)
-                .setGroup(GROUP_NOTIFICATION)
-                .setGroupSummary(true)
                 .setColor(ContextCompat.getColor(context, R.color.accent))
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);
         Intent resultIntent = new Intent(context, MainActivity.class);
-        //resultIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManagerCompat mNotificationManagerCompat =
                 NotificationManagerCompat.from(context);
-        mNotificationManagerCompat.notify(notificationId, mBuilder.build());
+        mNotificationManagerCompat.notify(0, mBuilder.build());
     }
 }

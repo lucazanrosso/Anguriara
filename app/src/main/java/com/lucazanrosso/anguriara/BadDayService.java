@@ -3,6 +3,7 @@ package com.lucazanrosso.anguriara;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -18,13 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
 import java.util.GregorianCalendar;
 
 public class BadDayService extends Service {
 
     private Looper mServiceLooper;
     private ServiceHandler mServiceHandler;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     // Handler that receives messages from the thread
     private final class ServiceHandler extends Handler {
@@ -48,54 +51,36 @@ public class BadDayService extends Service {
 //            // the service in the middle of handling another job
 //            stopSelf(msg.arg1);
 
+            sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
+            editor = sharedPreferences.edit();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Intent notificationIntent = new Intent(context, MyNotification.class);
-                    notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
-                    notificationIntent.putExtra("id", dataSnapshot.child("id").getValue(Integer.class));
-                    context.sendBroadcast(notificationIntent);
+                    int currentNotificationId = dataSnapshot.child("id").getValue(Integer.class);
+                    int localNotificationId = sharedPreferences.getInt("notificationId", currentNotificationId);
+                    if (localNotificationId < currentNotificationId) {
 
-//                if (dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
-//                    NotificationCompat.Builder mBuilder =
-//                            new NotificationCompat.Builder(context)
-//                                    .setSmallIcon(R.drawable.notification)
-//                                    .setContentTitle(context.getResources().getString(R.string.this_evening))
-//                                    .setContentText(context.getResources().getString(R.string.bad_weather))
-//                                    .setDefaults(Notification.DEFAULT_SOUND);
-//                    Intent resultIntent = new Intent(context, MyNotification.class);
-//                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-//                    stackBuilder.addParentStack(MainActivity.class);
-//                    stackBuilder.addNextIntent(resultIntent);
-//                    PendingIntent resultPendingIntent =
-//                            stackBuilder.getPendingIntent(
-//                                    0,
-//                                    PendingIntent.FLAG_UPDATE_CURRENT
-//                            );
-//                    mBuilder.setContentIntent(resultPendingIntent);
-//                    MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, -1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                    NotificationManager mNotificationManager =
-//                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//                    mNotificationManager.notify(0, mBuilder.build());
-//                } else {
-//                    boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
-//                    if (isBadDay) {
-//                        MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-//                        serializeBadDay(context);
-//                        if (!MainActivity.today.equals(MainActivity.badDay)) {
-//                            badDay = null;
-//                            new File(getFilesDir(), "bad_day.ser").delete();
-//                        }
-//                    } else if (MainActivity.badDay != null) {
-//                        badDay = null;
-//                        new File(getFilesDir(), "bad_day.ser").delete();
-//                    }
+                        editor = sharedPreferences.edit();
+                        editor.putInt("notificationId", currentNotificationId).apply();
+
+                        Intent notificationIntent = new Intent(context, MyNotification.class);
+                        notificationIntent.putExtra("id", currentNotificationId);
+
+                        boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
+                        if (isBadDay) {
+                            MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                            MainActivity.serializeBadDay(context);
+                            notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
+                        } else
+                            notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
+                        if (sharedPreferences.getBoolean("alarmIsSet", true))
+                            context.sendBroadcast(notificationIntent);
 //                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
 //                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
+                    }
                 }
-//            }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -123,7 +108,6 @@ public class BadDayService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
-        Log.d("","service starting");
 
         // For each start request, send a message to start a job and deliver the
         // start ID so we know which request we're stopping when we finish the job
