@@ -25,6 +25,8 @@ public class MyNotification extends BroadcastReceiver{
                 .setSmallIcon(this.notificationIcon)
                 .setContentTitle(this.notificationTitle)
                 .setContentText(this.notificationText)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(notificationText))
                 .setColor(ContextCompat.getColor(context, R.color.accent))
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setAutoCancel(true);

@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class BadDayService extends Service {
@@ -59,18 +59,16 @@ public class BadDayService extends Service {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     int currentNotificationId = dataSnapshot.child("id").getValue(Integer.class);
+                    Calendar notificationDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
                     int localNotificationId = sharedPreferences.getInt("notificationId", currentNotificationId);
-                    if (localNotificationId < currentNotificationId) {
 
-                        editor = sharedPreferences.edit();
-                        editor.putInt("notificationId", currentNotificationId).apply();
-
+                    if (localNotificationId < currentNotificationId || sharedPreferences.getBoolean("firstStartService", true) && MainActivity.today.equals(notificationDay)) {
                         Intent notificationIntent = new Intent(context, MyNotification.class);
                         notificationIntent.putExtra("id", currentNotificationId);
 
                         boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                         if (isBadDay) {
-                            MainActivity.badDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                            MainActivity.badDay = notificationDay;
                             MainActivity.serializeBadDay(context);
                             notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
                         } else
@@ -80,6 +78,9 @@ public class BadDayService extends Service {
 //                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
 //                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
                     }
+                    editor = sharedPreferences.edit();
+                    editor.putInt("notificationId", currentNotificationId).apply();
+                    editor.putBoolean("firstStartService", false).apply();
                 }
 
                 @Override
