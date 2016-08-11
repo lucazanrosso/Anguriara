@@ -70,9 +70,12 @@ public class BadDayService extends Service {
                         if (isBadDay) {
                             MainActivity.badDay = notificationDay;
                             MainActivity.serializeBadDay(context);
+                            notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
                             notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
-                        } else
+                        } else {
+                            notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                             notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
+                        }
                         if (sharedPreferences.getBoolean("alarmIsSet", true))
                             context.sendBroadcast(notificationIntent);
 //                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));

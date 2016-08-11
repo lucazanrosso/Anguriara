@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 11);
+    public static Calendar todayInstance = new GregorianCalendar();
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
@@ -248,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
             if (!entry.getValue().get("food").isEmpty())
                 notificationText += ". " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
             Intent notificationIntent = new Intent(context, MyNotification.class);
+            notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
             notificationIntent.putExtra("notification_text", notificationText);
             MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
