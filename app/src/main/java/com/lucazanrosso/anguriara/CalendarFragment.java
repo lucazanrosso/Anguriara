@@ -28,8 +28,8 @@ public class CalendarFragment extends Fragment {
 
     private int monthSelected = -1;
 
-    public static ImageView thisDayImage;
-    public static TextView thisDayText;
+    public ImageView thisDayImage;
+    public TextView thisDayText;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,8 +38,8 @@ public class CalendarFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-        CalendarFragment.thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
-        CalendarFragment.thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
+        thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
+        thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
 
         setThisDay();
 
@@ -95,8 +95,8 @@ public class CalendarFragment extends Fragment {
     private void setThisDay () {
         TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
         titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
-        CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, getContext()));
-        CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
+        thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, getContext()));
+        thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
 
         if (MainActivity.calendar.containsKey(MainActivity.today)) {
             CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);

@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 final int itemId = item.getItemId();
                 final Fragment fragment;
                 switch (itemId) {
+                    case R.id.home:
+                        fragment = new HomeFragment();
+                        break;
                     case R.id.calendar:
                         fragment = new CalendarFragment();
                         break;
@@ -146,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (savedInstanceState == null) {
-            CalendarFragment calendarFragment = new CalendarFragment();
+            HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_container, calendarFragment).commit();
+                    .replace(R.id.frame_container, homeFragment).commit();
             Intent intent = new Intent(this, BadDayService.class);
             startService(intent);
         }
@@ -285,11 +288,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
-        if (fm instanceof CalendarFragment)
+        System.out.println(fm);
+        if (fm instanceof HomeFragment)
             finish();
-        else if (!(fm instanceof DayFragment))
-            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        else
+        else if (fm instanceof DayScreenSlidePagerFragment)
             getSupportFragmentManager().popBackStack();
+        else
+            getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
     }
 }

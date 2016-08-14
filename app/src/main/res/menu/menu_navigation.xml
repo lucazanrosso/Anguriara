@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/group1" android:checkableBehavior="single">
         <item
+            android:id="@+id/home"
+            android:checkable="true"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:orderInCategory="100"
+            android:title="@string/home" />
+        <item
             android:id="@+id/calendar"
             android:checkable="true"
             android:icon="@drawable/ic_today_black_24dp"
