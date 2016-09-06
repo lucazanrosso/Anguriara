@@ -16,7 +16,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         TextView titleTextView = (TextView) view.findViewById(R.id.this_day_title);
-        titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
+        titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today) + getResources().getString(R.string.home_string));
 
         return view;
     }

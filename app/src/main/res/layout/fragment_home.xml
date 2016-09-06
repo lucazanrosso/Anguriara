@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/calendar_scroll_view">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin" >
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -16,6 +17,30 @@
             android:textSize="24sp"
             android:gravity="center_horizontal"
             android:paddingTop="16dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/event_title"
+            android:text="The Sun"
+            android:textSize="48sp"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_mockup" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_title"
+            android:text="Cucina: Paella"
+            android:textSize="32sp"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_mockup" />
+    </LinearLayout>
 </ScrollView>
