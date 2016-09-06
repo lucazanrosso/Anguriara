@@ -152,8 +152,6 @@ public class MainActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, homeFragment).commit();
-            Intent intent = new Intent(this, BadDayService.class);
-            startService(intent);
         }
     }
 
@@ -283,6 +281,12 @@ public class MainActivity extends AppCompatActivity {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
+
+        Intent intent = new Intent(context, NotificationService.class);
+        if (setAlarm)
+            context.startService(intent);
+        else
+            context.stopService(intent);
     }
 
     @Override

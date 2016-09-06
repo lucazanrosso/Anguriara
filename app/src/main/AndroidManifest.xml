@@ -53,7 +53,7 @@
         </receiver>
 
         <service
-            android:name=".BadDayService"
+            android:name=".NotificationService"
             android:exported="false" />
     </application>
 

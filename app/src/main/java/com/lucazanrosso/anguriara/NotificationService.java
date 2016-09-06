@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class BadDayService extends Service {
+public class NotificationService extends Service {
 
     private Looper mServiceLooper;
     private ServiceHandler mServiceHandler;
@@ -54,7 +54,7 @@ public class BadDayService extends Service {
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("notification");
+            DatabaseReference myRef = database.getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,9 +62,8 @@ public class BadDayService extends Service {
                     Calendar notificationDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
                     int localNotificationId = sharedPreferences.getInt("notificationId", currentNotificationId);
 
-                    if (localNotificationId < currentNotificationId || sharedPreferences.getBoolean("firstStartService", true) && MainActivity.today.equals(notificationDay)) {
+                    if ((localNotificationId < currentNotificationId || sharedPreferences.getBoolean("firstStartService", true)) && MainActivity.today.equals(notificationDay)) {
                         Intent notificationIntent = new Intent(context, MyNotification.class);
-                        notificationIntent.putExtra("id", currentNotificationId);
 
                         boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                         if (isBadDay) {
@@ -111,7 +110,7 @@ public class BadDayService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
         // start ID so we know which request we're stopping when we finish the job
@@ -131,6 +130,6 @@ public class BadDayService extends Service {
 
     @Override
     public void onDestroy() {
-//        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
     }
 }
