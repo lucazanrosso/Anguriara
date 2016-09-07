@@ -117,18 +117,18 @@ public class CalendarFragment extends Fragment {
 //    }
 
     private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
-        LinearLayout nextEvening = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
+        LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
         int i = 0;
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet())
             if (entry.getKey().get(Calendar.DAY_OF_YEAR) > MainActivity.today.get(Calendar.DAY_OF_YEAR) && i < 4) {
                 i++;
                 View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
-                TextView nextEveningTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
-                TextView nextEveningText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
+                TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
+                TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
                 Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
-                nextEveningTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
-                nextEveningText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
-                nextEvening.addView(nextEveningCard);
+                nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
+                nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
+                nextEvenings.addView(nextEveningCard);
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", entry.getKey());
                 detailsButton.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +144,10 @@ public class CalendarFragment extends Fragment {
                 });
                 if (i == 4) break;
             }
+        if (i == 0) {
+            view.findViewById(R.id.next_evenings_title).setVisibility(View.GONE);
+            view.findViewById(R.id.next_evenings).setVisibility(View.GONE);
+        }
     }
 
     private void setMonthCalendar(int month) {
