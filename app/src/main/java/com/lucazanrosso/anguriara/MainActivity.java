@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar();
+    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 9);
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
