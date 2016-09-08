@@ -128,7 +128,6 @@ public class CalendarFragment extends Fragment {
                 Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
                 nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
                 nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
-                nextEvenings.addView(nextEveningCard);
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", entry.getKey());
                 detailsButton.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +141,7 @@ public class CalendarFragment extends Fragment {
                         transaction.commit();
                     }
                 });
+                nextEvenings.addView(nextEveningCard);
                 if (i == 4) break;
             }
         if (i == 0) {
