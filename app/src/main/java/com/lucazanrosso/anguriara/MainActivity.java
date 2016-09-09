@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -37,19 +38,20 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
-    public static LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
     final static int YEAR = 2016;
     final static int ANGURIARA_NUMBER_OF_DAYS = 31;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar(2016, 6, 28);
+    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 10);
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
     private int[] anguriaraMonths;
     private int[] anguriaraDaysOfMonth;
     private String[] dayEvents;
     private String[] dayEventsDetails;
+    private TypedArray dayEventsImages;
     private String[] dayFoods;
     private String[] dayOpeningTimes;
 
@@ -123,15 +125,16 @@ public class MainActivity extends AppCompatActivity {
         this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
         this.dayEvents = getResources().getStringArray(R.array.day_events);
         this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
+        this.dayEventsImages = getResources().obtainTypedArray(R.array.day_event_image);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
-            MainActivity.calendar = deserializeCalendar(this);
-        } else {
+//        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
+//            MainActivity.calendar = deserializeCalendar(this);
+//        } else {
             MainActivity.calendar = setCalendar();
-            serializeCalendar(MainActivity.calendar);
-        }
+//            serializeCalendar(MainActivity.calendar);
+//        }
         days = new ArrayList<>(calendar.keySet());
 
         if (new File(this.getFilesDir(), "bad_day.ser").exists())
@@ -176,12 +179,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public LinkedHashMap<Calendar, LinkedHashMap<String, String>> setCalendar() {
-        LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public LinkedHashMap<Calendar, LinkedHashMap<String, Object>> setCalendar() {
+        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
-            LinkedHashMap<String, String> eveningMap = new LinkedHashMap<>();
+            LinkedHashMap<String, Object> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", this.dayEvents[i]);
             eveningMap.put("event_details", this.dayEventsDetails[i]);
+            eveningMap.put("event_image", dayEventsImages.getResourceId(i, 0));
             eveningMap.put("food", this.dayFoods[i]);
             eveningMap.put("openingTime", this.dayOpeningTimes[i]);
             calendar.put(new GregorianCalendar(MainActivity.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
@@ -189,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void serializeCalendar(LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar) {
+    public void serializeCalendar(LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(this.getFilesDir(), "anguriara.ser"));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -201,12 +205,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static LinkedHashMap<Calendar, LinkedHashMap<String, String>> deserializeCalendar(Context context) {
-        LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar = new LinkedHashMap<>();
+    public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> deserializeCalendar(Context context) {
+        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "anguriara.ser"));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            calendar = (LinkedHashMap<Calendar, LinkedHashMap<String, String>>) objectInputStream.readObject();
+            calendar = (LinkedHashMap<Calendar, LinkedHashMap<String, Object>>) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
         } catch (Exception e) {
@@ -242,12 +246,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void setAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, String>> calendar, boolean setAlarm, boolean isBootReceiver) {
+    public static void setAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
-        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : calendar.entrySet()) {
-            String notificationText = entry.getValue().get("event");
-            if (!entry.getValue().get("food").isEmpty())
-                notificationText += ". " + context.getResources().getString(R.string.food) + ": " + entry.getValue().get("food");
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : calendar.entrySet()) {
+            String notificationText = (String) entry.getValue().get("event");
+            String notificationFood = (String) entry.getValue().get("food");
+            if (! notificationFood.isEmpty())
+                notificationText += ". " + context.getResources().getString(R.string.food) + ": " + notificationFood;
             Intent notificationIntent = new Intent(context, MyNotification.class);
             notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
             notificationIntent.putExtra("notification_text", notificationText);

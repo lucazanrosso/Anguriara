@@ -29,6 +29,8 @@ public class CalendarFragment extends Fragment {
 
     public ImageView thisDayImage;
     public TextView thisDayText;
+    public ImageButton juneButton;
+    public ImageButton julyButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,53 +45,49 @@ public class CalendarFragment extends Fragment {
 //        setThisDay();
         setNextEvenings(inflater, container);
 
-        final ImageButton juneButton = (ImageButton) view.findViewById(R.id.june_button);
-        final ImageButton julyButton = (ImageButton) view.findViewById(R.id.july_button);
+        juneButton = (ImageButton) view.findViewById(R.id.june_button);
+        julyButton = (ImageButton) view.findViewById(R.id.july_button);
         juneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
+                setMonthSelected(5);
             }
         });
         julyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
+                setMonthSelected(6);
             }
         });
-
         if (monthSelected == -1) {
             if (MainActivity.today.get(Calendar.MONTH) < 6) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
+                setMonthSelected(5);
             } else {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
+                setMonthSelected(6);
             }
         } else {
             if (monthSelected == 5) {
-                setMonthCalendar(Calendar.JUNE);
-                juneButton.setVisibility(View.INVISIBLE);
-                julyButton.setVisibility(View.VISIBLE);
-                monthSelected = 5;
+                setMonthSelected(5);
             } else if (monthSelected == 6) {
-                setMonthCalendar(Calendar.JULY);
-                julyButton.setVisibility(View.INVISIBLE);
-                juneButton.setVisibility(View.VISIBLE);
-                monthSelected = 6;
+                setMonthSelected(6);
             }
         }
+
         return this.view;
+    }
+
+    public void setMonthSelected(int month) {
+        if (month == 5) {
+            setMonthCalendar(5);
+            juneButton.setVisibility(View.INVISIBLE);
+            julyButton.setVisibility(View.VISIBLE);
+            monthSelected = 5;
+        } else if (month == 6){
+            setMonthCalendar(6);
+            julyButton.setVisibility(View.INVISIBLE);
+            juneButton.setVisibility(View.VISIBLE);
+            monthSelected = 6;
+        }
     }
 
 //    private void setThisDay () {
@@ -119,7 +117,7 @@ public class CalendarFragment extends Fragment {
     private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
         LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
         int i = 0;
-        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet())
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
             if (entry.getKey().get(Calendar.DAY_OF_YEAR) > MainActivity.today.get(Calendar.DAY_OF_YEAR) && i < 4) {
                 i++;
                 View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
@@ -151,8 +149,8 @@ public class CalendarFragment extends Fragment {
     }
 
     private void setMonthCalendar(int month) {
-        LinkedHashMap<Calendar, LinkedHashMap<String, String>> monthCalendar = new LinkedHashMap<>();
-        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry : MainActivity.calendar.entrySet()) {
+        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> monthCalendar = new LinkedHashMap<>();
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet()) {
             if (entry.getKey().get(Calendar.MONTH) == month) {
                 monthCalendar.put(entry.getKey(), entry.getValue());
             }
@@ -172,7 +170,7 @@ public class CalendarFragment extends Fragment {
 
         Iterator iterator = monthCalendar.entrySet().iterator();
         if (iterator.hasNext()) {
-            LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>> entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>>) iterator.next();
+            LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>>) iterator.next();
 
             textView.setText(MainActivity.months[month]);
             while (month == dateMonth) {
@@ -203,7 +201,7 @@ public class CalendarFragment extends Fragment {
                                 }
                             });
                             if (iterator.hasNext())
-                                entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, String>>) iterator.next();
+                                entry = (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>>) iterator.next();
                         } else {
                             button.setEnabled(false);
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.disabled_text));
@@ -235,8 +233,9 @@ public class CalendarFragment extends Fragment {
             if(date.equals(MainActivity.badDay)) {
                 return context.getResources().getString(R.string.bad_weather);
             } else {
-                String dayEventAndFood = MainActivity.calendar.get(date).get("event");
-                if (!MainActivity.calendar.get(date).get("food").isEmpty())
+                String dayEventAndFood = (String) MainActivity.calendar.get(date).get("event");
+                String dayFood = (String) MainActivity.calendar.get(date).get("food");
+                if (!dayFood.isEmpty())
                     dayEventAndFood += "\n" + context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
                 return  dayEventAndFood;
             }

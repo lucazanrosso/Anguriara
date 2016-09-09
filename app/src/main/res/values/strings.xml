@@ -183,6 +183,39 @@
         <item>\nGenere: rock blues cover band</item>
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
+    <array name="day_event_image">
+        <item>@drawable/lucky_luke</item>
+        <item>@drawable/outsiders</item>
+        <item>@drawable/giavenalfood</item>
+        <item>@drawable/hdemia</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+    </array>
     <string-array name="day_foods">
         <item>Club sandwich</item>
         <item>Hot dog</item>
@@ -322,4 +355,5 @@
         \n\nLo staff Anguriara ti aspetta a Giavenale di Schio(VI), in un campo lungo Via Giavenale di Sopra, dal mercoled\u00ec al sabato.
         \nPer contattarci puoi scrivere un\'email al nostro indirizzo (anguriara@gmail.com), mandare un messaggio alla nostra pagina Facebook oppure venire a trovarci direttamente al rocolo, nel periodo in cui siamo aperti per parlare di persona: potete chiedere di \"Mais\" o \"Salvia\".
     </string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>
