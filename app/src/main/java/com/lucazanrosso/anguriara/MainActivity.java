@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayEventsDetails;
     private TypedArray dayEventsImages;
     private String[] dayFoods;
+    private TypedArray dayFoodsImages;
     private String[] dayOpeningTimes;
 
     public static SharedPreferences sharedPreferences;
@@ -127,14 +128,15 @@ public class MainActivity extends AppCompatActivity {
         this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
         this.dayEventsImages = getResources().obtainTypedArray(R.array.day_event_image);
         this.dayFoods = getResources().getStringArray(R.array.day_foods);
+        this.dayFoodsImages = getResources().obtainTypedArray(R.array.day_food_image);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
-            MainActivity.calendar = deserializeCalendar(this);
-        } else {
+//        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
+//            MainActivity.calendar = deserializeCalendar(this);
+//        } else {
             MainActivity.calendar = setCalendar();
-            serializeCalendar(MainActivity.calendar);
-        }
+//            serializeCalendar(MainActivity.calendar);
+//        }
         days = new ArrayList<>(calendar.keySet());
 
         if (new File(this.getFilesDir(), "bad_day.ser").exists())
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
             eveningMap.put("event_details", this.dayEventsDetails[i]);
             eveningMap.put("event_image", dayEventsImages.getResourceId(i, 0));
             eveningMap.put("food", this.dayFoods[i]);
+            eveningMap.put("food_image", dayFoodsImages.getResourceId(i, 0));
             eveningMap.put("openingTime", this.dayOpeningTimes[i]);
             calendar.put(new GregorianCalendar(MainActivity.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
         }

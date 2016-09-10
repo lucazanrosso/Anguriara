@@ -220,38 +220,77 @@
         <item>Club sandwich</item>
         <item>Hot dog</item>
         <item>Piatto a sorpresa con il succo e le verdure di Alessandro</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Grigliata mista</item>
         <item>Pizza</item>
         <item></item>
         <item>Piatto a sorpresa con gli ortaggi di Stefano</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Panino facciavista</item>
         <item>Paella</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Piatto wurstel e patate</item>
         <item>Bruschetta</item>
         <item>Piatto a sorpresa con le verdure di Luisella e Pino</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Club sandwich</item>
         <item>Pizza</item>
         <item></item>
         <item>Piatto a sorpresa con il miele e le confetture di Enrico</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Menù a sorpresa</item>
         <item>Bruschetta</item>
         <item>Piatto a sorpresa con la carne e il succo di Davide</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Panino con porchetta</item>
         <item>Galletto e patate</item>
         <item>Cena Km 0 preparata dalle persone del GiavenalFood</item>
-        <item></item>
+        <item>Panino rustego</item>
         <item>Menù a sorpresa</item>
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <string name="rustic_sandwich">Panino rustego</string>
-    <string name="standard_foods">Panino vegetariano\nPanino con sopressa\nPatatine fritte\nFetta d\'anguria</string>
+    <!--<string name="rustic_sandwich">Panino rustego</string>-->
+    <string name="standard_foods">Oltre al piatto della serata la cucina propone:
+        \n\u2022 Panino vegetariano
+        \n\u2022 Panino con sopressa
+        \n\u2022 Patatine fritte
+        \n\u2022 Fetta d\'anguria
+        \n\u2022 Gelato
+    </string>
+    <array name="day_food_image">
+        <item>@drawable/club_sandwich</item>
+        <item>@drawable/hot_dog</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup</item>
+    </array>
     <string-array name="day_opening_time">
         <item></item>
         <item></item>

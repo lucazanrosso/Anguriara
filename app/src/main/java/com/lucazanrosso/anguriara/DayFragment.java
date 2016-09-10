@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -36,19 +37,32 @@ public class DayFragment extends Fragment {
         }
 
         TextView foodText = (TextView) view.findViewById(R.id.food_text);
+        TextView foodSubtext = (TextView) view.findViewById(R.id.food_subtext);
+        ImageView foodImage = (ImageView) view.findViewById(R.id.food_image);
         String dayFood = (String) day.get("food");
-        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
+        int dayFoodImage = (int) day.get("food_image");
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             foodText.setText(getResources().getString(R.string.close));
-        else if(date.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
-            foodText.setText(getResources().getString(R.string.rustic_sandwich) + "\n" + getResources().getString(R.string.standard_foods));
-        else if (!dayFood.isEmpty()) {
-            if (date.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
-                foodText.setText(dayFood + " " + getResources().getString(R.string.day_food));
-            else
-                foodText.setText(dayFood + " " + getResources().getString(R.string.day_food) + "\n" + getResources().getString(R.string.standard_foods));
+            ((ViewGroup) foodImage.getParent()).removeView(foodImage);
+            ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title_layout);
+            foodText.setLayoutParams(layoutParams);
+        } else if (!dayFood.isEmpty()) {
+            foodText.setText(dayFood);
+            foodImage.setImageResource(dayFoodImage);
+            if (date.get(Calendar.DAY_OF_WEEK) != Calendar.WEDNESDAY)
+                foodSubtext.setText(getResources().getString(R.string.standard_foods));
+            else {
+                ((ViewGroup) foodImage.getParent()).removeView(foodImage);
+                ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title_layout);
+                foodText.setLayoutParams(layoutParams);
+            }
         }
         else
-            foodText.setText(getResources().getString(R.string.standard_foods));
+            foodSubtext.setText(getResources().getString(R.string.standard_foods));
 
         TextView openingTimeText = (TextView) view.findViewById(R.id.opening_time_text);
         String dayOpeningTime = (String) day.get("openingTime");
