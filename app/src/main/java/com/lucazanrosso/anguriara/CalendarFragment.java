@@ -124,8 +124,11 @@ public class CalendarFragment extends Fragment {
                 TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
                 TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
                 Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
+                ImageView nextEveningImage = (ImageView) nextEveningCard.findViewById(R.id.next_evening_image);
                 nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
                 nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
+                int nextEveniningImageId = (int) entry.getValue().get("event_image");
+                nextEveningImage.setImageResource(nextEveniningImageId);
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", entry.getKey());
                 detailsButton.setOnClickListener(new View.OnClickListener() {

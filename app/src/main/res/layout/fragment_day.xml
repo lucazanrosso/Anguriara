@@ -30,7 +30,6 @@
                 <ImageView
                     android:id="@+id/event_image"
                     style="@style/card_view_image"
-                    android:src="@drawable/lucky_luke"
                     android:adjustViewBounds="true" />
                 <TextView
                     android:id="@+id/event_text"
