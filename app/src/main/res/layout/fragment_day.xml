@@ -57,7 +57,7 @@
                     <ImageView
                         android:id="@+id/food_icon"
                         style="@style/card_view_icon"
-                        android:src="@drawable/ic_local_pizza_black_24dp" />
+                        android:src="@drawable/ic_restaurant_menu_black_24dp" />
                     <TextView
                         android:id="@+id/food_title"
                         style="@style/card_view_title"
