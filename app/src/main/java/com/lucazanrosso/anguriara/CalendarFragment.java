@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -136,10 +135,10 @@ public class CalendarFragment extends Fragment {
                     public void onClick(View v) {
                         DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
                         dayScreenSlidePagerFragment.setArguments(dayArgs);
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                        transaction.addToBackStack("secondary");
-                        transaction.commit();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frame_container, dayScreenSlidePagerFragment)
+                                .addToBackStack("secondary")
+                                .commit();
                     }
                 });
                 nextEvenings.addView(nextEveningCard);
@@ -197,10 +196,10 @@ public class CalendarFragment extends Fragment {
                                 public void onClick(View v) {
                                     DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
                                     dayScreenSlidePagerFragment.setArguments(dayArgs);
-                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-                                    transaction.addToBackStack("secondary");
-                                    transaction.commit();
+                                    getActivity().getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.frame_container, dayScreenSlidePagerFragment)
+                                            .addToBackStack("secondary")
+                                            .commit();
                                 }
                             });
                             if (iterator.hasNext())
@@ -239,7 +238,7 @@ public class CalendarFragment extends Fragment {
                 String dayEventAndFood = (String) MainActivity.calendar.get(date).get("event");
                 String dayFood = (String) MainActivity.calendar.get(date).get("food");
                 if (!dayFood.isEmpty())
-                    dayEventAndFood += "\n" + context.getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(date).get("food");
+                    dayEventAndFood += "\n" + context.getResources().getString(R.string.food) + ": " + dayFood;
                 return  dayEventAndFood;
             }
         } else {

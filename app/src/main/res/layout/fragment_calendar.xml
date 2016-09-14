@@ -78,9 +78,9 @@
             android:layout_below="@id/next_evenings"/>
         <android.support.v7.widget.CardView
             style="@style/card_view"
+            android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin_with_card_view"
             android:layout_marginRight="@dimen/activity_horizontal_margin_with_card_view"
-
             android:layout_marginBottom="@dimen/activity_horizontal_margin_with_card_view"
             android:layout_below="@+id/calendar_title">
             <LinearLayout

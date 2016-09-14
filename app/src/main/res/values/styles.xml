@@ -6,10 +6,20 @@
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/text</item>
     </style>
+    <style name="home_text" parent="@android:style/TextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
     <style name="title" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text</item>
     </style>
     <style name="subtitle" parent="@android:style/TextAppearance">
         <item name="android:layout_width">wrap_content</item>
