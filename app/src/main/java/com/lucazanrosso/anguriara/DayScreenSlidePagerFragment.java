@@ -90,13 +90,13 @@ public class DayScreenSlidePagerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent shareIntent = new Intent();
-                Uri uri = Uri.parse("android.resource://com.lucazanrosso.anguriara/" + R.drawable.outsiders);
+//                Uri uri = Uri.parse("android.resource://com.lucazanrosso.anguriara/" + R.drawable.outsiders);
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, title);
-//                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                shareIntent.setType("image/*");
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                shareIntent.setType("text/plain");
+//                shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//                shareIntent.setType("image/*");
+//                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(shareIntent);
             }
         });
