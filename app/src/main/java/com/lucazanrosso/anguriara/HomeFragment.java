@@ -16,7 +16,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.anguriara));
+        MainActivity.toolbar.setTitle(getResources().getString(R.string.home));
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 

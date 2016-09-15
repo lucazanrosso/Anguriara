@@ -8,7 +8,7 @@ android {
             keyAlias 'AnguriaraKey'
             keyPassword 'Anguriara2016'
             storeFile file('C:/Users/Luca/keystores/anguriara.jks')
-            storePassword 'ZannaRossa26061994'
+            storePassword 'Watermelon2016'
         }
     }
     defaultConfig {
@@ -16,7 +16,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 24
         versionCode 15
-        versionName "1.3.3"
+        versionName "1.5.0"
     }
     buildTypes {
         release {
@@ -28,11 +28,11 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.2.0'
-    compile 'com.android.support:cardview-v7:24.2.0'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.google.android.gms:play-services-maps:9.4.0'
-    compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.android.support:support-v4:24.2.1'
     compile 'com.google.firebase:firebase-database:9.4.0'
 }
 

@@ -12,9 +12,12 @@
         <item>@string/settings</item>
     </string-array>
     <string name="home">Home</string>
-    <string name="anguriara">Anguriara al rocolo</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
     <string name="calendar">Programma 2016</string>
+    <string name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</string>
+    <string name="home_slide2">16 Live show, tutti i venerdì e i sabato.</string>
+    <string name="home_slide3">Ricco menù, scopri gli appuntamenti con la nostra cucina.</string>
+    <string name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</string>
     <string name="next_evenings">Prossime serate</string>
     <string name="complete_calendar">Programma completo</string>
     <string-array name="days_of_week">

@@ -11,10 +11,110 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin_with_card_view"
         android:paddingRight="@dimen/activity_horizontal_margin_with_card_view">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@drawable/home_logo"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+        <TextView
+            style="@style/headline"
+            android:text="Anguriara 2016\nal rocolo di Giavenale,\n nasce una nuova estate!"
+            android:gravity="center_horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"/>
+        <!--<android.support.v7.widget.CardView-->
+            <!--style="@style/card_view">-->
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<ImageView-->
+                <!--style="@style/card_view_image"-->
+                <!--android:src="@drawable/new_summer"-->
+                <!--android:paddingTop="0dp"-->
+                <!--android:paddingBottom="0dp" />-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="75dp"-->
+                    <!--android:src="@drawable/home_logo"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_marginTop="50dp"/>-->
+                <!--<TextView-->
+                    <!--style="@style/title"-->
+                    <!--android:text="Nasce una nuova estate!"-->
+                    <!--android:textSize="30dp"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:paddingBottom="16dp" />-->
+            <!--</RelativeLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+
+        <android.support.v7.widget.CardView
+            style="@style/card_view"
+            android:layout_marginTop="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/home_slide_image"
+                    android:src="@drawable/who_we_are" />
+                <TextView
+                    style="@style/home_slide_text"
+                    android:text="@string/home_slide1"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            style="@style/card_view"
+            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/home_slide_text"
+                    android:text="@string/home_slide2"/>
+                <ImageView
+                    style="@style/home_slide_image"
+                    android:src="@drawable/slide2" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            style="@style/card_view"
+            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/home_slide_image"
+                    android:src="@drawable/slide3" />
+                <TextView
+                    style="@style/home_slide_text"
+                    android:text="@string/home_slide3"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            style="@style/card_view"
+            android:layout_marginTop="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/home_slide_text"
+                    android:text="@string/home_slide4"/>
+                <ImageView
+                    style="@style/home_slide_image"
+                    android:src="@drawable/slide4" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
         <TextView
             style="@style/home_text"
+            android:textSize="24sp"
+            android:textStyle="bold"
             android:text="@string/this_evening"
-            android:paddingTop="360dp" />
+            android:paddingTop="48dp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -67,7 +167,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,6 +177,8 @@
                 android:text="@string/complete_calendar"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
     </LinearLayout>
 </ScrollView>
