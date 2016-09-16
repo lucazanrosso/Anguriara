@@ -7,11 +7,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-        <com.lucazanrosso.anguriara.ImageViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.lucazanrosso.anguriara.ImageViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/circle0"
+                    style="@style/slide_circle"
+                    android:src="@drawable/circle" />
+                <ImageView
+                    android:id="@+id/circle1"
+                    style="@style/slide_circle"
+                    android:src="@drawable/circle" />
+                <ImageView
+                    android:id="@+id/circle2"
+                    style="@style/slide_circle"
+                    android:src="@drawable/circle" />
+                <ImageView
+                    android:id="@+id/circle3"
+                    style="@style/slide_circle"
+                    android:src="@drawable/circle" />
+                <ImageView
+                    android:id="@+id/circle4"
+                    style="@style/slide_circle"
+                    android:src="@drawable/circle" />
+            </LinearLayout>
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:orientation="vertical"

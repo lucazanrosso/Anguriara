@@ -56,7 +56,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+        ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

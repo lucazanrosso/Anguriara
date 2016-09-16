@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,23 +17,49 @@ import android.widget.TextView;
 public class HomeFragment extends Fragment {
 
     View view;
+    ImageView [] slide_circles = new ImageView[5];
+    int currentPosition;
+    int previousPosition;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         MainActivity.toolbar.setTitle(getResources().getString(R.string.home));
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
+        slide_circles[0] = (ImageView) view.findViewById(R.id.circle0);
+        slide_circles[1] = (ImageView) view.findViewById(R.id.circle1);
+        slide_circles[2] = (ImageView) view.findViewById(R.id.circle2);
+        slide_circles[3] = (ImageView) view.findViewById(R.id.circle3);
+        slide_circles[4] = (ImageView) view.findViewById(R.id.circle4);
 
         ImageViewPager mPager = (ImageViewPager) view.findViewById(R.id.pager);
-        PagerAdapter mPagerAdapter = new HomeFragment.ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+        PagerAdapter mPagerAdapter = new HomeFragment.ScreenSlidePagerAdapter(getChildFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPosition = position;
+                slide_circles[position].setImageResource(R.drawable.circle_full);
+                slide_circles[previousPosition].setImageResource(R.drawable.circle);
+                previousPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         getThisDay();
 
         return view;
     }
 
-    public void getThisDay() {
+    private void getThisDay() {
         TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
         ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
         TextView foodTitle = (TextView) view.findViewById(R.id.food_title);
@@ -111,5 +138,11 @@ public class HomeFragment extends Fragment {
         public int getCount() {
             return 5;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        slide_circles[currentPosition].setImageResource(R.drawable.circle_full);
     }
 }
