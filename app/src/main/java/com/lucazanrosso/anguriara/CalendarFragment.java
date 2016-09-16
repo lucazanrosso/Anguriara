@@ -58,19 +58,17 @@ public class CalendarFragment extends Fragment {
                 setMonthSelected(6);
             }
         });
-        if (monthSelected == -1) {
-            if (MainActivity.today.get(Calendar.MONTH) < 6) {
-                setMonthSelected(5);
-            } else {
-                setMonthSelected(6);
+        if (savedInstanceState == null) {
+            if (monthSelected == -1) {
+                if (MainActivity.today.get(Calendar.MONTH) < 6)
+                    monthSelected = 5;
+                else
+                    monthSelected = 6;
             }
         } else {
-            if (monthSelected == 5) {
-                setMonthSelected(5);
-            } else if (monthSelected == 6) {
-                setMonthSelected(6);
-            }
+            monthSelected = savedInstanceState.getInt("month_selected");
         }
+        setMonthSelected(monthSelected);
 
         return this.view;
     }
@@ -246,7 +244,13 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-//    public static int setThisDayImage(Calendar date) {
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("month_selected", monthSelected);
+    }
+
+    //    public static int setThisDayImage(Calendar date) {
 //        if (MainActivity.calendar.containsKey(date)) {
 //            if(date.equals(MainActivity.badDay)) {
 //               return R.drawable.rain;
