@@ -346,16 +346,16 @@
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
     <!--<string name="pravolley_schedule">Sabato 11 luglio-->
-        <!--\n\u2022 13:15 - 13:30 Accettazione scquadre-->
-        <!--\n\u2022 13:45 Inizio gare-->
-        <!--\n\u2022 19:00 Fine gare-->
-        <!--\n\u2022 19:30 Apertura serale con galletto + live show di Virna Marangoni-->
-        <!--\n\nDomenica 12 luglio-->
-        <!--\n\u2022 8:30 colazione-->
-        <!--\n\u2022 9:00 Inizio gare-->
-        <!--\n\u2022 12:00 - 13:00 Pausa pranzo con panini con porchetta-->
-        <!--\n\u2022 15:30 Finali-->
-        <!--\n\u2022 18:30 Premiazioni-->
+    <!--\n\u2022 13:15 - 13:30 Accettazione scquadre-->
+    <!--\n\u2022 13:45 Inizio gare-->
+    <!--\n\u2022 19:00 Fine gare-->
+    <!--\n\u2022 19:30 Apertura serale con galletto + live show di Virna Marangoni-->
+    <!--\n\nDomenica 12 luglio-->
+    <!--\n\u2022 8:30 colazione-->
+    <!--\n\u2022 9:00 Inizio gare-->
+    <!--\n\u2022 12:00 - 13:00 Pausa pranzo con panini con porchetta-->
+    <!--\n\u2022 15:30 Finali-->
+    <!--\n\u2022 18:30 Premiazioni-->
     <!--</string>-->
     <string name="pravolley_schedule_2016">Sabato 9 luglio
         \nDomenica 10 luglio
@@ -400,4 +400,7 @@
         \nPer contattarci puoi scrivere un\'email al nostro indirizzo (anguriara@gmail.com), mandare un messaggio alla nostra pagina Facebook oppure venire a trovarci direttamente al rocolo, nel periodo in cui siamo aperti per parlare di persona: potete chiedere di \"Mais\" o \"Salvia\".
     </string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

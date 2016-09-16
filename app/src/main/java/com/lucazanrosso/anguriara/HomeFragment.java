@@ -2,6 +2,9 @@ package com.lucazanrosso.anguriara;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,10 @@ public class HomeFragment extends Fragment {
         MainActivity.toolbar.setTitle(getResources().getString(R.string.home));
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        ImageViewPager mPager = (ImageViewPager) view.findViewById(R.id.pager);
+        PagerAdapter mPagerAdapter = new HomeFragment.ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager());
+        mPager.setAdapter(mPagerAdapter);
 
         getThisDay();
 
@@ -83,6 +90,26 @@ public class HomeFragment extends Fragment {
             eventImage.setVisibility(View.GONE);
             foodTitle.setVisibility(View.GONE);
             foodImage.setVisibility(View.GONE);
+        }
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            Bundle args = new Bundle();
+            args.putInt("position", position);
+            HomeSlideFragment homeSlideFragment = new HomeSlideFragment();
+            homeSlideFragment.setArguments(args);
+            return homeSlideFragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
         }
     }
 }
