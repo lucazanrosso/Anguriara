@@ -60,30 +60,31 @@ public class HomeFragment extends Fragment {
     }
 
     private void getThisDay() {
-        TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
         ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
-        TextView foodTitle = (TextView) view.findViewById(R.id.food_title);
-        ImageView foodImage = (ImageView) view.findViewById(R.id.food_image);
+        TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
+        TextView eventText = (TextView) view.findViewById(R.id.event_text);
 
         if (MainActivity.calendar.containsKey(MainActivity.today)) {
             if(MainActivity.today.equals(MainActivity.badDay)) {
                 eventTitle.setText(getResources().getString(R.string.bad_weather));
             } else {
                 eventTitle.setText((String) MainActivity.calendar.get(MainActivity.today).get("event"));
+                eventText.setText(getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(MainActivity.today).get("food")
+                + "\n" + getResources().getString(R.string.opening_time) + ": " + MainActivity.calendar.get(MainActivity.today).get("openingTime"));
                 eventImage.setImageResource((int) MainActivity.calendar.get(MainActivity.today).get("event_image"));
                 String dayFood = (String) MainActivity.calendar.get(MainActivity.today).get("food");
                 if (dayFood.isEmpty()) {
-                    foodTitle.setVisibility(View.GONE);
-                    foodImage.setVisibility(View.GONE);
+//                    foodTitle.setVisibility(View.GONE);
+//                    foodImage.setVisibility(View.GONE);
                 } else {
-                    foodTitle.setText(dayFood);
-                    int dayImageId = (int) MainActivity.calendar.get(MainActivity.today).get("food_image");
-                    if (dayImageId == 0) {
-                        CardView foodCard = (CardView) view.findViewById(R.id.food_card);
-                        foodCard.setVisibility(View.GONE);
-                    }
-                    else
-                        foodImage.setImageResource(dayImageId);
+//                    foodTitle.setText(dayFood);
+//                    int dayImageId = (int) MainActivity.calendar.get(MainActivity.today).get("food_image");
+//                    if (dayImageId == 0) {
+//                        CardView foodCard = (CardView) view.findViewById(R.id.food_card);
+//                        foodCard.setVisibility(View.GONE);
+//                    }
+//                    else
+//                        foodImage.setImageResource(dayImageId);
                 }
                 Button detailsButton = (Button) view.findViewById(R.id.details_button);
                 Button scheduleButton = (Button) view.findViewById(R.id.schedule_button);
@@ -115,8 +116,8 @@ public class HomeFragment extends Fragment {
         } else {
             eventTitle.setText(getResources().getString(R.string.close));
             eventImage.setVisibility(View.GONE);
-            foodTitle.setVisibility(View.GONE);
-            foodImage.setVisibility(View.GONE);
+//            foodTitle.setVisibility(View.GONE);
+//            foodImage.setVisibility(View.GONE);
         }
     }
 

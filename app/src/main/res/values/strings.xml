@@ -14,10 +14,13 @@
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
     <string name="calendar">Programma 2016</string>
-    <string name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</string>
-    <string name="home_slide2">16 Live show, tutti i venerdì e i sabato.</string>
-    <string name="home_slide3">Ricco menù, scopri gli appuntamenti con la nostra cucina.</string>
-    <string name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</string>
+    <string-array name="slide_text">
+        <item></item>
+        <item name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</item>
+        <item name="home_slide2">16 Live show, tutti i venerdì e i sabato.</item>
+        <item name="home_slide3">Ricco menù, scopri gli appuntamenti con la nostra cucina.</item>
+        <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
+    </string-array>
     <string name="next_evenings">Prossime serate</string>
     <string name="complete_calendar">Programma completo</string>
     <string-array name="days_of_week">
@@ -189,7 +192,7 @@
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
     <array name="day_event_image">
-        <item>@drawable/lucky_luke</item>
+        <item>@drawable/lucky_luke2</item>
         <item>@drawable/outsiders</item>
         <item>@drawable/giavenalfood</item>
         <item>@drawable/hdemia</item>
@@ -297,36 +300,36 @@
         <item>@drawable/image_mockup</item>
     </array>
     <string-array name="day_opening_time">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
         <item>dalle 18:00 alle 21:00</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
         <item>dalle 18:00 alle 21:00</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item>20:30</item>
+        <item>20:30</item>
+        <item>20:30</item>
         <item>19:30</item>
     </string-array>
     <string name="standard_opening_time">20:30</string>
@@ -339,7 +342,7 @@
     <string name="thursday">G</string>
     <string name="friday">V</string>
     <string name="saturday">S</string>
-    <string name="this_evening">Questa sera in Anguriara:</string>
+    <string name="this_evening">Questa sera</string>
     <string name="notifications">Notifiche</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
     <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2016 dell\'Anguriara.</string>

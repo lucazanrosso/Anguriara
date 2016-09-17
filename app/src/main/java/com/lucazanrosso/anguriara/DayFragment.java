@@ -66,8 +66,7 @@ public class DayFragment extends Fragment {
 
         TextView openingTimeText = (TextView) view.findViewById(R.id.opening_time_text);
         String dayOpeningTime = (String) day.get("openingTime");
-        if (!dayOpeningTime.isEmpty())
-            openingTimeText.setText(dayOpeningTime);
+        openingTimeText.setText(dayOpeningTime);
 
         return view;
     }
