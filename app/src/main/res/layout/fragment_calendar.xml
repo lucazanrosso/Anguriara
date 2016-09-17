@@ -7,50 +7,11 @@
         android:id="@+id/calendar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        <!--<android.support.v7.widget.CardView-->
-            <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-            <!--android:id="@+id/card_view"-->
-            <!--style="@style/card_view"-->
-            <!--android:layout_marginLeft="@dimen/activity_horizontal_margin_with_card_view"-->
-            <!--android:layout_marginRight="@dimen/activity_horizontal_margin_with_card_view"-->
-            <!--android:layout_marginTop="@dimen/activity_horizontal_margin_with_card_view"-->
-
-            <!--card_view:cardBackgroundColor="@color/this_day">-->
-            <!--<RelativeLayout-->
-                <!--style="@style/card_view_layout">-->
-                <!--<TextView-->
-                    <!--android:id="@+id/card_view_title"-->
-                    <!--style="@style/title"-->
-                    <!--android:layout_alignParentLeft="true"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_toStartOf="@+id/card_view_image"-->
-                    <!--android:layout_toLeftOf="@+id/card_view_image"-->
-                    <!--android:textColor="@color/white" />-->
-                <!--<TextView-->
-                    <!--android:id="@+id/card_view_sub_title"-->
-                    <!--style="@style/subtitle"-->
-                    <!--android:layout_below="@id/card_view_title"-->
-                    <!--android:layout_alignParentLeft="true"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_toStartOf="@+id/card_view_image"-->
-                    <!--android:layout_toLeftOf="@+id/card_view_image"-->
-                    <!--android:textColor="@color/white" />-->
-                <!--<ImageView-->
-                    <!--android:layout_width="51dp"-->
-                    <!--android:layout_height="68dp"-->
-                    <!--android:id="@+id/card_view_image"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:layout_alignParentRight="true" />-->
-            <!--</RelativeLayout>-->
-        <!--</android.support.v7.widget.CardView>-->
-
         <TextView
             style="@style/headline"
             android:text="@string/next_evenings"
             android:id="@+id/next_evenings_title"
             android:paddingTop="16dp"
-            android:paddingBottom="8dp"
             android:paddingLeft="@dimen/activity_horizontal_margin" />
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -68,13 +29,11 @@
                 android:orientation="horizontal">
             </LinearLayout>
         </HorizontalScrollView>
-
         <TextView
             android:id="@+id/calendar_title"
             style="@style/headline"
             android:text="@string/complete_calendar"
             android:paddingTop="16dp"
-            android:paddingBottom="8dp"
             android:paddingLeft="16dp"
             android:layout_below="@id/next_evenings"/>
         <android.support.v7.widget.CardView

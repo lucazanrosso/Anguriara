@@ -192,7 +192,7 @@
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
     <array name="day_event_image">
-        <item>@drawable/lucky_luke2</item>
+        <item>@drawable/lucky_luke</item>
         <item>@drawable/outsiders</item>
         <item>@drawable/giavenalfood</item>
         <item>@drawable/hdemia</item>

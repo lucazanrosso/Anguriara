@@ -34,8 +34,9 @@
                         android:src="@drawable/ic_event_black_24dp" />
                         <TextView
                             android:id="@+id/schedule_title"
-                            style="@style/card_view_title"
-                            android:text="@string/schedule" />
+                            style="@style/card_view_subheading"
+                            android:text="@string/schedule"
+                            android:paddingLeft="56dp" />
                         <TextView
                             android:id="@+id/schedule_text"
                             style="@style/card_view_text"
@@ -54,8 +55,9 @@
                         android:src="@drawable/ic_assignment_black_24dp" />
                         <TextView
                             android:id="@+id/regulation_title"
-                            style="@style/card_view_title"
-                            android:text="@string/regulation" />
+                            style="@style/card_view_subheading"
+                            android:text="@string/regulation"
+                            android:paddingLeft="56dp"/>
                         <TextView
                             android:id="@+id/regulation_text"
                             style="@style/card_view_text"
@@ -74,8 +76,9 @@
                         android:src="@drawable/ic_mail_black_24dp" />
                     <TextView
                         android:id="@+id/inscriptions_title"
-                        style="@style/card_view_title"
-                        android:text="@string/inscriptions" />
+                        style="@style/card_view_subheading"
+                        android:text="@string/inscriptions"
+                        android:paddingLeft="56dp"/>
                     <TextView
                         android:id="@+id/inscriptions_text"
                         style="@style/card_view_text"
