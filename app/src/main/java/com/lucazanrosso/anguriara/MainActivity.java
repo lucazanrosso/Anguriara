@@ -130,25 +130,32 @@ public class MainActivity extends AppCompatActivity {
         this.dayFoodsImages = getResources().obtainTypedArray(R.array.day_food_image);
         this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-//        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
-//            MainActivity.calendar = deserializeCalendar(this);
-//        } else {
+        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
+            MainActivity.calendar = deserializeCalendar(this);
+        } else {
             MainActivity.calendar = setCalendar();
-//            serializeCalendar(MainActivity.calendar);
-//        }
+            serializeCalendar(MainActivity.calendar);
+        }
         days = new ArrayList<>(calendar.keySet());
 
-        if (new File(this.getFilesDir(), "bad_day.ser").exists())
+        if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
             MainActivity.badDay = deserializeBadDay(this);
+            if (!badDay.equals(MainActivity.today))
+                new File(this.getFilesDir(), "bad_day.ser").delete();
+        }
 
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-3", true);
-        boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
-        if (firstStart && alarmisSet) {
-            MainActivity.setAlarm(this, MainActivity.calendar, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-3", false).apply();
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-4", true);
+        boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
+        boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
+        if (firstStart) {
+            if (eveningsAlarmIsSet)
+                MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
+            if (firebaseAlarmIsSet)
+                MainActivity.setFirebaseAlarm(this, true, false);
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-4", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -247,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void setAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar, boolean setAlarm, boolean isBootReceiver) {
+    public static void setEveningsAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar, boolean setAlarm, boolean isBootReceiver) {
         int i = 0;
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : calendar.entrySet()) {
             String notificationText = (String) entry.getValue().get("event");
@@ -263,20 +270,15 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
-                //Test
-//                alarmTime.set(2016, 5, 2, 11, i + 20);
+//                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
+//                Test
+                alarmTime.set(2016, 8, 18, 21, i + 20);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
-                if (!isBootReceiver) {
-                    MainActivity.sharedPreferences.edit().putBoolean("alarmIsSet", true).apply();
-                }
-            } else {
+            } else
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
-                if (!isBootReceiver) {
-                    MainActivity.sharedPreferences.edit().putBoolean("alarmIsSet", false).apply();
-                }
-            }
+            if (!isBootReceiver)
+                MainActivity.sharedPreferences.edit().putBoolean("eveningsAlarmIsSet", setAlarm).apply();
             i++;
         }
 
@@ -285,7 +287,11 @@ public class MainActivity extends AppCompatActivity {
         pm.setComponentEnabledSetting(receiver,
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
+    }
 
+    public static void setFirebaseAlarm (Context context, boolean setAlarm, boolean isBootReceiver) {
+        if (!isBootReceiver)
+            MainActivity.sharedPreferences.edit().putBoolean("firebaseAlarmIsSet", setAlarm).apply();
         Intent intent = new Intent(context, NotificationService.class);
         if (setAlarm)
             context.startService(intent);
@@ -303,6 +309,5 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         else
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
     }
 }

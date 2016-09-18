@@ -258,7 +258,6 @@
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <!--<string name="rustic_sandwich">Panino rustego</string>-->
     <string name="standard_foods">Oltre al piatto della serata la cucina propone:
         \n\u2022 Panino vegetariano
         \n\u2022 Panino con sopressa
@@ -344,6 +343,8 @@
     <string name="saturday">S</string>
     <string name="this_evening">Questa sera</string>
     <string name="notifications">Notifiche</string>
+    <string name="evenings_notifications">Notifiche serate</string>
+    <string name="firebase_notifications">Notifiche maltempo e cambiamenti</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
     <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2016 dell\'Anguriara.</string>
     <string name="pravolley">Pravolley</string>
@@ -403,7 +404,4 @@
         \nPer contattarci puoi scrivere un\'email al nostro indirizzo (anguriara@gmail.com), mandare un messaggio alla nostra pagina Facebook oppure venire a trovarci direttamente al rocolo, nel periodo in cui siamo aperti per parlare di persona: potete chiedere di \"Mais\" o \"Salvia\".
     </string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

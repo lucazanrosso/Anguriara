@@ -55,32 +55,25 @@ public class NotificationService extends Service {
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    int currentNotificationId = dataSnapshot.child("id").getValue(Integer.class);
-                    Calendar notificationDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
-                    int localNotificationId = sharedPreferences.getInt("notificationId", currentNotificationId);
-
-                    System.out.println(localNotificationId < currentNotificationId);
-                    System.out.println(sharedPreferences.getBoolean("firstStartService", true));
-                    System.out.println(MainActivity.today.equals(notificationDay));
-
-                    if ((localNotificationId < currentNotificationId || sharedPreferences.getBoolean("firstStartService", true)) && MainActivity.today.equals(notificationDay)) {
-                        Intent notificationIntent = new Intent(context, MyNotification.class);
-
-                        boolean isBadDay = dataSnapshot.child("bad_weather").getValue(Boolean.class);
-                        if (isBadDay) {
-                            MainActivity.badDay = notificationDay;
-                            MainActivity.serializeBadDay(context);
-                            notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
-                            notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
-                        } else {
-                            notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
-                            notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
-                        }
-                        if (sharedPreferences.getBoolean("alarmIsSet", true))
+                    if (sharedPreferences.getBoolean("firebaseAlarmIsSet", true)) {
+                        int currentNotificationId = dataSnapshot.child("id").getValue(Integer.class);
+                        Calendar notificationDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
+                        int localNotificationId = sharedPreferences.getInt("notificationId", 0);
+                        if (localNotificationId < currentNotificationId && MainActivity.today.equals(notificationDay)) {
+                            Intent notificationIntent = new Intent(context, MyNotification.class);
+                            if (dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
+                                MainActivity.badDay = notificationDay;
+                                MainActivity.serializeBadDay(context);
+                                notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
+                                notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
+                            } else {
+                                notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
+                                notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
+                            }
                             context.sendBroadcast(notificationIntent);
+                            sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
+                        }
                     }
-                    sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
-                    sharedPreferences.edit().putBoolean("firstStartService", false).apply();
                 }
 
                 @Override
@@ -108,7 +101,7 @@ public class NotificationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
         // start ID so we know which request we're stopping when we finish the job
@@ -128,6 +121,6 @@ public class NotificationService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
     }
 }
