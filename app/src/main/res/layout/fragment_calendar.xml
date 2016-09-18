@@ -10,9 +10,7 @@
         <TextView
             style="@style/headline"
             android:text="@string/next_evenings"
-            android:id="@+id/next_evenings_title"
-            android:paddingTop="16dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin" />
+            android:id="@+id/next_evenings_title" />
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,8 +31,6 @@
             android:id="@+id/calendar_title"
             style="@style/headline"
             android:text="@string/complete_calendar"
-            android:paddingTop="16dp"
-            android:paddingLeft="16dp"
             android:layout_below="@id/next_evenings"/>
         <android.support.v7.widget.CardView
             style="@style/card_view"
@@ -52,7 +48,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/primary"
                     android:paddingTop="12dp"
-                    android:paddingBottom="12dp" >
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp" >
                     <ImageButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -61,6 +59,7 @@
                         android:background="@null"
                         android:src="@drawable/ic_chevron_left_white_24dp"
                         android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
                         android:layout_gravity="center_vertical" />
                     <TextView
                         android:id="@+id/month"
@@ -77,6 +76,7 @@
                         android:background="@null"
                         android:src="@drawable/ic_chevron_right_white_24dp"
                         android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
                         android:layout_gravity="center_vertical" />
                 </LinearLayout>
                 <LinearLayout

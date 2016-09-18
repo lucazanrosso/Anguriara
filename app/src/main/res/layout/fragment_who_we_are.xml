@@ -15,10 +15,6 @@
             android:adjustViewBounds="true" />
         <TextView
             style="@style/text"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin"
             android:text="@string/who_we_are_text" />
     </LinearLayout>
 </ScrollView>

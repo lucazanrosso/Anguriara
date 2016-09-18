@@ -53,40 +53,42 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        getThisDay();
+        setThisDay();
 
         return view;
     }
 
-    private void getThisDay() {
-        ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
-        TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
-        TextView eventText = (TextView) view.findViewById(R.id.event_text);
+    private void setThisDay() {
+        ImageView todayImage = (ImageView) view.findViewById(R.id.event_image);
+        TextView todayTitle = (TextView) view.findViewById(R.id.event_title);
+        TextView todayText = (TextView) view.findViewById(R.id.event_text);
+        Button detailsButton = (Button) view.findViewById(R.id.details_button);
+        Button scheduleButton = (Button) view.findViewById(R.id.schedule_button);
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_container, new CalendarFragment())
+                        .addToBackStack("secondary")
+                        .commit();
+            }
+        });
 
         if (MainActivity.calendar.containsKey(MainActivity.today)) {
             if(MainActivity.today.equals(MainActivity.badDay)) {
-                eventTitle.setText(getResources().getString(R.string.bad_weather));
+                todayTitle.setText(getResources().getString(R.string.bad_weather));
+                todayImage.setVisibility(View.GONE);
+                todayText.setVisibility(View.GONE);
+                detailsButton.setVisibility(View.GONE);
             } else {
-                eventTitle.setText((String) MainActivity.calendar.get(MainActivity.today).get("event"));
-                eventText.setText(getResources().getString(R.string.food) + ": " + MainActivity.calendar.get(MainActivity.today).get("food")
-                + "\n" + getResources().getString(R.string.opening_time) + ": " + MainActivity.calendar.get(MainActivity.today).get("openingTime"));
-                eventImage.setImageResource((int) MainActivity.calendar.get(MainActivity.today).get("event_image"));
-                String dayFood = (String) MainActivity.calendar.get(MainActivity.today).get("food");
-                if (dayFood.isEmpty()) {
-//                    foodTitle.setVisibility(View.GONE);
-//                    foodImage.setVisibility(View.GONE);
-                } else {
-//                    foodTitle.setText(dayFood);
-//                    int dayImageId = (int) MainActivity.calendar.get(MainActivity.today).get("food_image");
-//                    if (dayImageId == 0) {
-//                        CardView foodCard = (CardView) view.findViewById(R.id.food_card);
-//                        foodCard.setVisibility(View.GONE);
-//                    }
-//                    else
-//                        foodImage.setImageResource(dayImageId);
-                }
-                Button detailsButton = (Button) view.findViewById(R.id.details_button);
-                Button scheduleButton = (Button) view.findViewById(R.id.schedule_button);
+                todayTitle.setText((String) MainActivity.calendar.get(MainActivity.today).get("event"));
+                todayImage.setImageResource((int) MainActivity.calendar.get(MainActivity.today).get("event_image"));
+                String foodString = (String) MainActivity.calendar.get(MainActivity.today).get("food");
+                if (!foodString.isEmpty())
+                    todayText.setText(getResources().getString(R.string.food) + ": " + foodString + "\n" + getResources().getString(R.string.opening_time) + ": " + MainActivity.calendar.get(MainActivity.today).get("openingTime"));
+                else
+                    todayText.setText(getResources().getString(R.string.opening_time) + ": " + MainActivity.calendar.get(MainActivity.today).get("openingTime"));
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", MainActivity.today);
                 detailsButton.setOnClickListener(new View.OnClickListener() {
@@ -101,22 +103,12 @@ public class HomeFragment extends Fragment {
                                 .commit();
                     }
                 });
-                scheduleButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        getActivity().getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.frame_container, new CalendarFragment())
-                                .addToBackStack("secondary")
-                                .commit();
-                    }
-                });
             }
         } else {
-            eventTitle.setText(getResources().getString(R.string.close));
-            eventImage.setVisibility(View.GONE);
-//            foodTitle.setVisibility(View.GONE);
-//            foodImage.setVisibility(View.GONE);
+            todayTitle.setText(getResources().getString(R.string.close));
+            todayImage.setVisibility(View.GONE);
+            todayText.setVisibility(View.GONE);
+            detailsButton.setVisibility(View.GONE);
         }
     }
 

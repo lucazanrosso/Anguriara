@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] dayOpeningTimes;
 
     public static SharedPreferences sharedPreferences;
-    public static SharedPreferences.Editor editor;
     private static PendingIntent notificationPendingIntent;
     private static AlarmManager notificationAlarmManager;
 
@@ -149,8 +148,7 @@ public class MainActivity extends AppCompatActivity {
         boolean alarmisSet = sharedPreferences.getBoolean("alarmIsSet", true);
         if (firstStart && alarmisSet) {
             MainActivity.setAlarm(this, MainActivity.calendar, true, false);
-            MainActivity.editor = MainActivity.sharedPreferences.edit();
-            editor.putBoolean("firstStart2016-3", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-3", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -271,14 +269,12 @@ public class MainActivity extends AppCompatActivity {
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
-                    editor = MainActivity.sharedPreferences.edit();
-                    editor.putBoolean("alarmIsSet", true).apply();
+                    MainActivity.sharedPreferences.edit().putBoolean("alarmIsSet", true).apply();
                 }
             } else {
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
                 if (!isBootReceiver) {
-                    editor = MainActivity.sharedPreferences.edit();
-                    editor.putBoolean("alarmIsSet", false).apply();
+                    MainActivity.sharedPreferences.edit().putBoolean("alarmIsSet", false).apply();
                 }
             }
             i++;

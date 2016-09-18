@@ -23,17 +23,15 @@ import java.util.GregorianCalendar;
 
 public class NotificationService extends Service {
 
-    private Looper mServiceLooper;
     private ServiceHandler mServiceHandler;
 
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
 
     // Handler that receives messages from the thread
     private final class ServiceHandler extends Handler {
         Context context;
 
-        public ServiceHandler(Looper looper, Context context) {
+        private ServiceHandler(Looper looper, Context context) {
             super(looper);
             this.context = context;
         }
@@ -52,7 +50,6 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
@@ -61,6 +58,10 @@ public class NotificationService extends Service {
                     int currentNotificationId = dataSnapshot.child("id").getValue(Integer.class);
                     Calendar notificationDay = new GregorianCalendar(dataSnapshot.child("year").getValue(Integer.class), dataSnapshot.child("month").getValue(Integer.class), dataSnapshot.child("day").getValue(Integer.class));
                     int localNotificationId = sharedPreferences.getInt("notificationId", currentNotificationId);
+
+                    System.out.println(localNotificationId < currentNotificationId);
+                    System.out.println(sharedPreferences.getBoolean("firstStartService", true));
+                    System.out.println(MainActivity.today.equals(notificationDay));
 
                     if ((localNotificationId < currentNotificationId || sharedPreferences.getBoolean("firstStartService", true)) && MainActivity.today.equals(notificationDay)) {
                         Intent notificationIntent = new Intent(context, MyNotification.class);
@@ -77,12 +78,9 @@ public class NotificationService extends Service {
                         }
                         if (sharedPreferences.getBoolean("alarmIsSet", true))
                             context.sendBroadcast(notificationIntent);
-//                    CalendarFragment.thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, context));
-//                    CalendarFragment.thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
                     }
-                    editor = sharedPreferences.edit();
-                    editor.putInt("notificationId", currentNotificationId).apply();
-                    editor.putBoolean("firstStartService", false).apply();
+                    sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
+                    sharedPreferences.edit().putBoolean("firstStartService", false).apply();
                 }
 
                 @Override
@@ -104,13 +102,13 @@ public class NotificationService extends Service {
         thread.start();
 
         // Get the HandlerThread's Looper and use it for our Handler
-        mServiceLooper = thread.getLooper();
+        Looper mServiceLooper = thread.getLooper();
         mServiceHandler = new ServiceHandler(mServiceLooper, this);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
         // start ID so we know which request we're stopping when we finish the job
@@ -130,6 +128,6 @@ public class NotificationService extends Service {
 
     @Override
     public void onDestroy() {
-//        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
     }
 }
