@@ -255,6 +255,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void setEveningsAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar, boolean setAlarm, boolean isBootReceiver) {
+        if (!isBootReceiver)
+            MainActivity.sharedPreferences.edit().putBoolean("eveningsAlarmIsSet", setAlarm).apply();
         int i = 0;
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : calendar.entrySet()) {
             String notificationText = (String) entry.getValue().get("event");
@@ -272,13 +274,11 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
 //                Test
-                alarmTime.set(2016, 8, 18, 21, i + 20);
+                alarmTime.set(2016, 8, 18, 23, i + 20);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
             } else
                 MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
-            if (!isBootReceiver)
-                MainActivity.sharedPreferences.edit().putBoolean("eveningsAlarmIsSet", setAlarm).apply();
             i++;
         }
 

@@ -7,17 +7,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal">
-        <ImageView
-            android:layout_width="@dimen/card_view_width"
-            android:layout_height="wrap_content"
-            android:id="@+id/pravolley_image"
-            android:src="@drawable/pravolley"
-            android:adjustViewBounds="true" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_below="@id/pravolley_image"
             android:gravity="center_horizontal"
             android:paddingLeft="@dimen/activity_horizontal_margin_with_card_view"
             android:paddingRight="@dimen/activity_horizontal_margin_with_card_view"
@@ -32,16 +25,21 @@
                         android:id="@+id/schedule_icon"
                         style="@style/card_view_icon"
                         android:src="@drawable/ic_event_black_24dp" />
-                        <TextView
-                            android:id="@+id/schedule_title"
-                            style="@style/card_view_subheading"
-                            android:text="@string/schedule"
-                            android:paddingLeft="56dp" />
-                        <TextView
-                            android:id="@+id/schedule_text"
-                            style="@style/card_view_text"
-                            android:layout_below="@id/schedule_title"
-                            android:text="@string/pravolley_schedule_2016" />
+                    <TextView
+                        android:id="@+id/schedule_title"
+                        style="@style/card_view_subheading"
+                        android:text="@string/schedule"
+                        android:paddingLeft="56dp" />
+                    <ImageView
+                        android:id="@+id/pravolley_image"
+                        style="@style/card_view_image"
+                        android:src="@drawable/pravolley"
+                        android:layout_below="@id/schedule_title"/>
+                    <TextView
+                        android:id="@+id/schedule_text"
+                        style="@style/card_view_text"
+                        android:layout_below="@id/pravolley_image"
+                        android:text="@string/pravolley_schedule" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
