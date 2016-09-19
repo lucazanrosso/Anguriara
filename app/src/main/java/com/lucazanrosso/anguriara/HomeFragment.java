@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class HomeFragment extends Fragment {
 
     View view;
@@ -25,6 +27,11 @@ public class HomeFragment extends Fragment {
         MainActivity.toolbar.setTitle(getResources().getString(R.string.home));
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        if (MainActivity.days.get(MainActivity.ANGURIARA_NUMBER_OF_DAYS - 1).get(Calendar.DAY_OF_YEAR) < MainActivity.today.get(Calendar.DAY_OF_YEAR)) {
+            ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2016post);
+        }
+
         slide_circles[0] = (ImageView) view.findViewById(R.id.circle0);
         slide_circles[1] = (ImageView) view.findViewById(R.id.circle1);
         slide_circles[2] = (ImageView) view.findViewById(R.id.circle2);

@@ -18,7 +18,8 @@
             android:paddingBottom="@dimen/activity_horizontal_margin_with_card_view" >
             <android.support.v7.widget.CardView
                 android:id="@+id/schedule_card_view"
-                style="@style/card_view" >
+                style="@style/card_view"
+                android:layout_margin="0dp" >
                 <RelativeLayout
                     style="@style/card_view_layout" >
                     <ImageView
