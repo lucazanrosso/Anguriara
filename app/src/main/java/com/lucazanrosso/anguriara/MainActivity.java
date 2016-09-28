@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -47,14 +48,6 @@ public class MainActivity extends AppCompatActivity {
     public static Calendar todayInstance = new GregorianCalendar(2016, 5, 10);
     public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
-    private int[] anguriaraMonths;
-    private int[] anguriaraDaysOfMonth;
-    private String[] dayEvents;
-    private String[] dayEventsDetails;
-    private TypedArray dayEventsImages;
-    private String[] dayFoods;
-    private TypedArray dayFoodsImages;
-    private String[] dayOpeningTimes;
 
     public static SharedPreferences sharedPreferences;
     private static PendingIntent notificationPendingIntent;
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         this.navigationView = (NavigationView) findViewById(R.id.navigation_view);
         this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 final int itemId = item.getItemId();
                 final Fragment fragment;
                 switch (itemId) {
@@ -121,21 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         MainActivity.months = getResources().getStringArray(R.array.months);
-        this.anguriaraMonths = getResources().getIntArray(R.array.anguriara_months);
-        this.anguriaraDaysOfMonth = getResources().getIntArray(R.array.anguriara_days_of_month);
-        this.dayEvents = getResources().getStringArray(R.array.day_events);
-        this.dayEventsDetails = getResources().getStringArray(R.array.day_event_details);
-        this.dayEventsImages = getResources().obtainTypedArray(R.array.day_event_image);
-        this.dayFoods = getResources().getStringArray(R.array.day_foods);
-        this.dayFoodsImages = getResources().obtainTypedArray(R.array.day_food_image);
-        this.dayOpeningTimes = getResources().getStringArray(R.array.day_opening_time);
 
-        if (new File(this.getFilesDir(), "anguriara.ser").exists()) {
-            MainActivity.calendar = deserializeCalendar(this);
-        } else {
-            MainActivity.calendar = setCalendar();
-            serializeCalendar(MainActivity.calendar);
-        }
+        MainActivity.calendar = setCalendar(this);
+
         days = new ArrayList<>(calendar.keySet());
 
         if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
@@ -147,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-4", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-5", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -155,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-4", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-5", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -186,44 +167,28 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public LinkedHashMap<Calendar, LinkedHashMap<String, Object>> setCalendar() {
+    public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> setCalendar(Context context) {
+        int[] anguriaraMonths = context.getResources().getIntArray(R.array.anguriara_months);
+        int[] anguriaraDaysOfMonth = context.getResources().getIntArray(R.array.anguriara_days_of_month);
+        String[] dayEvents = context.getResources().getStringArray(R.array.day_events);
+        String[] dayEventsDetails = context.getResources().getStringArray(R.array.day_event_details);
+        TypedArray dayEventsImages = context.getResources().obtainTypedArray(R.array.day_event_image);
+        String[] dayFoods = context.getResources().getStringArray(R.array.day_foods);
+        TypedArray dayFoodsImages = context.getResources().obtainTypedArray(R.array.day_food_image);
+        String[] dayOpeningTimes = context.getResources().getStringArray(R.array.day_opening_time);
         LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
         for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
             LinkedHashMap<String, Object> eveningMap = new LinkedHashMap<>();
-            eveningMap.put("event", this.dayEvents[i]);
-            eveningMap.put("event_details", this.dayEventsDetails[i]);
+            eveningMap.put("event", dayEvents[i]);
+            eveningMap.put("event_details", dayEventsDetails[i]);
             eveningMap.put("event_image", dayEventsImages.getResourceId(i, 0));
-            eveningMap.put("food", this.dayFoods[i]);
+            eveningMap.put("food", dayFoods[i]);
             eveningMap.put("food_image", dayFoodsImages.getResourceId(i, 0));
-            eveningMap.put("openingTime", this.dayOpeningTimes[i]);
-            calendar.put(new GregorianCalendar(MainActivity.YEAR, this.anguriaraMonths[i], this.anguriaraDaysOfMonth[i]), eveningMap);
+            eveningMap.put("openingTime", dayOpeningTimes[i]);
+            calendar.put(new GregorianCalendar(MainActivity.YEAR, anguriaraMonths[i], anguriaraDaysOfMonth[i]), eveningMap);
         }
-        return calendar;
-    }
-
-    public void serializeCalendar(LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar) {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(this.getFilesDir(), "anguriara.ser"));
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(calendar);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> deserializeCalendar(Context context) {
-        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
-        try {
-            FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "anguriara.ser"));
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            calendar = (LinkedHashMap<Calendar, LinkedHashMap<String, Object>>) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        dayEventsImages.recycle();
+        dayFoodsImages.recycle();
         return calendar;
     }
 
@@ -274,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
 //                Test
-                alarmTime.set(2016, 8, 18, 23, i + 20);
+                alarmTime.set(2016, 8, 28, 12, i + 20);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
             } else

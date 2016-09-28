@@ -13,7 +13,7 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = MainActivity.deserializeCalendar(context);
+        LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = MainActivity.setCalendar(context);
         MainActivity.setEveningsAlarm(context, calendar, sharedPreferences.getBoolean("eveningsAlarmIsSet", false), true);
         MainActivity.setFirebaseAlarm(context, sharedPreferences.getBoolean("firebaseAlarmIsSet", false), true);
     }

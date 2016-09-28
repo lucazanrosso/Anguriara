@@ -25,9 +25,6 @@ public class CalendarFragment extends Fragment {
     View view;
 
     private int monthSelected = -1;
-
-    public ImageView thisDayImage;
-    public TextView thisDayText;
     public ImageButton juneButton;
     public ImageButton julyButton;
 
@@ -38,10 +35,6 @@ public class CalendarFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-//        thisDayImage = (ImageView) this.view.findViewById(R.id.card_view_image);
-//        thisDayText = (TextView) this.view.findViewById(R.id.card_view_sub_title);
-
-//        setThisDay();
         setNextEvenings(inflater, container);
 
         juneButton = (ImageButton) view.findViewById(R.id.june_button);
@@ -86,30 +79,6 @@ public class CalendarFragment extends Fragment {
             monthSelected = 6;
         }
     }
-
-//    private void setThisDay () {
-//        TextView titleTextView = (TextView) this.view.findViewById(R.id.card_view_title);
-//        titleTextView.setText(CalendarFragment.setDateTitle(MainActivity.today));
-//        thisDayText.setText(CalendarFragment.setDateText(MainActivity.today, getContext()));
-//        thisDayImage.setImageResource(CalendarFragment.setThisDayImage(MainActivity.today));
-//
-//        if (MainActivity.calendar.containsKey(MainActivity.today)) {
-//            CardView thisDayCardView = (CardView) this.view.findViewById(R.id.card_view);
-//            final Bundle dayArgs = new Bundle();
-//            dayArgs.putSerializable("date", MainActivity.today);
-//            thisDayCardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-//                    dayScreenSlidePagerFragment.setArguments(dayArgs);
-//                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.frame_container, dayScreenSlidePagerFragment);
-//                    transaction.addToBackStack("secondary");
-//                    transaction.commit();
-//                }
-//            });
-//        }
-//    }
 
     private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
         LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
@@ -249,16 +218,4 @@ public class CalendarFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putInt("month_selected", monthSelected);
     }
-
-    //    public static int setThisDayImage(Calendar date) {
-//        if (MainActivity.calendar.containsKey(date)) {
-//            if(date.equals(MainActivity.badDay)) {
-//               return R.drawable.rain;
-//            } else {
-//                return R.drawable.open;
-//            }
-//        } else {
-//            return R.drawable.close;
-//        }
-//    }
 }
