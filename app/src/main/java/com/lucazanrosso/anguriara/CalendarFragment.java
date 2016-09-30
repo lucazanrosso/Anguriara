@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 public class CalendarFragment extends Fragment {
 
@@ -31,7 +34,11 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
+        setRetainInstance(true);
+
+        ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        if (toolbar != null)
+            toolbar.setTitle(getResources().getString(R.string.calendar));
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
@@ -152,7 +159,7 @@ public class CalendarFragment extends Fragment {
                         button.setPadding(0, 0, 0, 0);
                         button.setBackgroundResource(0);
                         button.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                        button.setText(Integer.toString(date.get(Calendar.DAY_OF_MONTH)));
+                        button.setText(String.format(Locale.getDefault(), "%d", date.get(Calendar.DAY_OF_MONTH)));
                         if (entry.getKey().get(Calendar.DAY_OF_YEAR) == date.get(Calendar.DAY_OF_YEAR)) {
                             button.setTextColor(ContextCompat.getColor(getContext(), R.color.accent));
                             button.setTypeface(null, Typeface.BOLD);

@@ -16,6 +16,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,10 +36,9 @@ import java.util.LinkedHashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static Toolbar toolbar;
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    boolean isDrawerLocked = true;
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
@@ -58,25 +59,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        MainActivity.toolbar = (Toolbar) findViewById(R.id.toolbar);
-        MainActivity.toolbar.setTitle(getResources().getString(R.string.calendar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
-        this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle drawerLayoutToggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
+        Display display=  getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+        float density = getResources().getDisplayMetrics().density;
+        float width = outMetrics.widthPixels/density;
+        if (width < 960) {
+            this.drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle drawerLayoutToggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                }
 
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };
-        this.drawerLayout.addDrawerListener(drawerLayoutToggle);
-        this.drawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
-        drawerLayoutToggle.syncState();
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+                }
+            };
+            this.drawerLayout.addDrawerListener(drawerLayoutToggle);
+            this.drawerLayout.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+            drawerLayoutToggle.syncState();
+            isDrawerLocked = false;
+        }
+
 
         this.navigationView = (NavigationView) findViewById(R.id.navigation_view);
         this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -107,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                         throw new IllegalArgumentException("No Fragment for the given item");
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, fragment).addToBackStack("secondary").commit();
-                drawerLayout.closeDrawer(navigationView);
+                if (! isDrawerLocked)
+                    drawerLayout.closeDrawer(navigationView);
                 return false;
             }
         });
