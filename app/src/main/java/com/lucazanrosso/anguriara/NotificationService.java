@@ -50,8 +50,7 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("notification");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("notification");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

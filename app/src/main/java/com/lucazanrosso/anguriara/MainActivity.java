@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-5", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-6", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-5", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-6", false).apply();
         }
 
         if (savedInstanceState == null) {
