@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
+                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
                         .replace(R.id.frame_container, new CalendarFragment())
                         .addToBackStack("secondary")
                         .commit();
@@ -109,6 +110,7 @@ public class HomeFragment extends Fragment {
                         dayScreenSlidePagerFragment.setArguments(dayArgs);
                         getActivity().getSupportFragmentManager()
                                 .beginTransaction()
+                                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                                 .replace(R.id.frame_container, dayScreenSlidePagerFragment)
                                 .addToBackStack("secondary")
                                 .commit();
