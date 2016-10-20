@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         throw new IllegalArgumentException("No Fragment for the given item");
                 }
                 getSupportFragmentManager().beginTransaction()
-                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+//                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
                         .replace(R.id.frame_container, fragment)
                         .addToBackStack("secondary").commit();
                 if (! isDrawerLocked)
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
-                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
+//                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation)
                     .replace(R.id.frame_container, homeFragment).commit();
         }
     }
