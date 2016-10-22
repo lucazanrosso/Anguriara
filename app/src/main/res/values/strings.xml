@@ -3,14 +3,6 @@
     <string name="settings">Impostazioni</string>
     <string name="drawer_open">open drawer</string>
     <string name="drawer_close">close drawer</string>
-    <string-array name="menu">
-        <item>@string/home</item>
-        <item>@string/calendar</item>
-        <item>@string/pravolley</item>
-        <item>@string/where_we_are</item>
-        <item>@string/who_we_are</item>
-        <item>@string/settings</item>
-    </string-array>
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
     <string name="calendar">Programma 2016</string>
@@ -381,6 +373,7 @@
         \n\u2022 Il costo di iscrizione è di 10 euro, comprensivi di un buono colazione (caffè + brioche) e della maglietta del pravolley!
         \n\u2022 Premi per i prime tre classificati!
     </string>
+    <string name="gallery">Galleria</string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_number_1">17</string>

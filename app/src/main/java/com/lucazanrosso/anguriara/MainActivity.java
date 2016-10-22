@@ -104,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.pravolley:
                         fragment = new PravolleyFragment();
                         break;
+                    case R.id.gallery:
+                        fragment = new GalleryFragment();
+                        break;
                     case R.id.where_we_are:
                         fragment = new WhereWeAreFragment();
                         break;
