@@ -110,6 +110,7 @@ public class CalendarFragment extends Fragment {
                         DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
                         dayScreenSlidePagerFragment.setArguments(dayArgs);
                         getActivity().getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                                 .replace(R.id.frame_container, dayScreenSlidePagerFragment)
                                 .addToBackStack("secondary")
                                 .commit();
@@ -171,6 +172,7 @@ public class CalendarFragment extends Fragment {
                                     DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
                                     dayScreenSlidePagerFragment.setArguments(dayArgs);
                                     getActivity().getSupportFragmentManager().beginTransaction()
+                                            .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                                             .replace(R.id.frame_container, dayScreenSlidePagerFragment)
                                             .addToBackStack("secondary")
                                             .commit();
