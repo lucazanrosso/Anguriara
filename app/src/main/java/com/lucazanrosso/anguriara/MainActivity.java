@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     boolean isDrawerLocked = true;
+//    static int previousFragment;
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(getResources().getString(R.string.calendar));
         setSupportActionBar(toolbar);
 
-        Display display=  getWindowManager().getDefaultDisplay();
+        Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
         display.getMetrics(outMetrics);
         float density = getResources().getDisplayMetrics().density;
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             isDrawerLocked = false;
         }
 
-
         this.navigationView = (NavigationView) findViewById(R.id.navigation_view);
         this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -104,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.pravolley:
                         fragment = new PravolleyFragment();
                         break;
-                    case R.id.gallery:
-                        fragment = new GalleryFragment();
-                        break;
+//                    case R.id.gallery:
+//                        fragment = new GalleryFragment();
+//                        break;
                     case R.id.where_we_are:
                         fragment = new WhereWeAreFragment();
                         break;
@@ -119,9 +119,13 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         throw new IllegalArgumentException("No Fragment for the given item");
                 }
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_container, fragment)
-                        .addToBackStack("secondary").commit();
+//                if (previousFragment != itemId) {
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                            .replace(R.id.frame_container, fragment)
+                            .addToBackStack("secondary").commit();
+//                    previousFragment = itemId;
+//                }
                 if (! isDrawerLocked)
                     drawerLayout.closeDrawer(navigationView);
                 return false;
@@ -159,7 +163,10 @@ public class MainActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, homeFragment).commit();
+//            previousFragment = R.id.home;
         }
+//        else
+//            previousFragment = savedInstanceState.getInt("previousFragment");
     }
 
     @Override
@@ -176,8 +183,13 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+//            && previousFragment != R.id.settings
             SettingsFragment settingsFragment = new SettingsFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, settingsFragment).addToBackStack("secondary").commit();
+            getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                    .replace(R.id.frame_container, settingsFragment)
+                    .addToBackStack("secondary").commit();
+//            previousFragment = R.id.settings;
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -280,6 +292,12 @@ public class MainActivity extends AppCompatActivity {
             context.stopService(intent);
     }
 
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putInt("previousFragment", previousFragment);
+//    }
+
     @Override
     public void onBackPressed(){
         Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
@@ -288,7 +306,9 @@ public class MainActivity extends AppCompatActivity {
             finish();
         else if (fm instanceof DayScreenSlidePagerFragment)
             getSupportFragmentManager().popBackStack();
-        else
+        else {
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//            previousFragment = R.id.home;
+        }
     }
 }
