@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     boolean isDrawerLocked = true;
-//    static int previousFragment;
+    static int previousFragment;
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
@@ -119,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         throw new IllegalArgumentException("No Fragment for the given item");
                 }
-//                if (previousFragment != itemId) {
+                if (previousFragment != itemId) {
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                             .replace(R.id.frame_container, fragment)
                             .addToBackStack("secondary").commit();
-//                    previousFragment = itemId;
-//                }
+                    previousFragment = itemId;
+                }
                 if (! isDrawerLocked)
                     drawerLayout.closeDrawer(navigationView);
                 return false;
@@ -163,10 +163,9 @@ public class MainActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, homeFragment).commit();
-//            previousFragment = R.id.home;
-        }
-//        else
-//            previousFragment = savedInstanceState.getInt("previousFragment");
+            previousFragment = R.id.home;
+        } else
+            previousFragment = savedInstanceState.getInt("previousFragment");
     }
 
     @Override
@@ -182,14 +181,13 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-//            && previousFragment != R.id.settings
+        if (id == R.id.action_settings && previousFragment != R.id.settings) {
             SettingsFragment settingsFragment = new SettingsFragment();
             getSupportFragmentManager().beginTransaction()
                     .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                     .replace(R.id.frame_container, settingsFragment)
                     .addToBackStack("secondary").commit();
-//            previousFragment = R.id.settings;
+            previousFragment = R.id.settings;
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -292,11 +290,11 @@ public class MainActivity extends AppCompatActivity {
             context.stopService(intent);
     }
 
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putInt("previousFragment", previousFragment);
-//    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("previousFragment", previousFragment);
+    }
 
     @Override
     public void onBackPressed(){
@@ -304,11 +302,12 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(fm);
         if (fm instanceof HomeFragment)
             finish();
-        else if (fm instanceof DayScreenSlidePagerFragment)
+        else if (fm instanceof DayScreenSlidePagerFragment) {
             getSupportFragmentManager().popBackStack();
-        else {
+            previousFragment = R.id.calendar;
+        } else {
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//            previousFragment = R.id.home;
+            previousFragment = R.id.home;
         }
     }
 }

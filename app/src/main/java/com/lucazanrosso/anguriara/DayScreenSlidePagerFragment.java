@@ -28,6 +28,8 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.pager_adapter, container, false);
 
+        MainActivity.previousFragment = R.id.day;
+
         Bundle args = this.getArguments();
         Calendar date = (Calendar) args.getSerializable("date");
         this.fab = (FloatingActionButton) view.findViewById(R.id.fab);
