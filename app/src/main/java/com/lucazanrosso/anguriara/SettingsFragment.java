@@ -20,6 +20,7 @@ public class SettingsFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.settings));
+        MainActivity.previousFragment = R.id.settings;
 
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 

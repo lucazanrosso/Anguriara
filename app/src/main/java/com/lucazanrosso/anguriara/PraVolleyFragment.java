@@ -19,6 +19,7 @@ public class PravolleyFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.pravolley));
+        MainActivity.previousFragment = R.id.pravolley;
 
         View view = inflater.inflate(R.layout.fragment_pravolley, container, false);
         TextView inscriptionsText = (TextView) view.findViewById(R.id.inscriptions_text);

@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.home));
+        MainActivity.previousFragment = R.id.home;
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 

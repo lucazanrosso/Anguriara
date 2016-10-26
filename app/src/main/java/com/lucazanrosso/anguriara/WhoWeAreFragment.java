@@ -15,6 +15,7 @@ public class WhoWeAreFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.who_we_are));
+        MainActivity.previousFragment = R.id.who_we_are;
 
         return inflater.inflate(R.layout.fragment_who_we_are, container, false);
     }

@@ -33,6 +33,7 @@ public class WhereWeAreFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.where_we_are));
+        MainActivity.previousFragment = R.id.where_we_are;
 
         View view = inflater.inflate(R.layout.fragment_where_we_are, container, false);
 

@@ -39,6 +39,7 @@ public class CalendarFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(getResources().getString(R.string.calendar));
+        MainActivity.previousFragment = R.id.calendar;
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 

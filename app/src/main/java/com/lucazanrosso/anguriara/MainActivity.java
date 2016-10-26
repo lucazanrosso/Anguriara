@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                             .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                             .replace(R.id.frame_container, fragment)
                             .addToBackStack("secondary").commit();
-                    previousFragment = itemId;
                 }
                 if (! isDrawerLocked)
                     drawerLayout.closeDrawer(navigationView);
@@ -155,9 +154,7 @@ public class MainActivity extends AppCompatActivity {
             HomeFragment homeFragment = new HomeFragment();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_container, homeFragment).commit();
-            previousFragment = R.id.home;
-        } else
-            previousFragment = savedInstanceState.getInt("previousFragment");
+        }
     }
 
     @Override
@@ -179,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                     .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                     .replace(R.id.frame_container, settingsFragment)
                     .addToBackStack("secondary").commit();
-            previousFragment = R.id.settings;
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -283,23 +279,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("previousFragment", previousFragment);
-    }
-
-    @Override
     public void onBackPressed(){
         Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
         System.out.println(fm);
         if (fm instanceof HomeFragment)
             finish();
-        else if (fm instanceof DayScreenSlidePagerFragment) {
+        else if (fm instanceof DayScreenSlidePagerFragment)
             getSupportFragmentManager().popBackStack();
-            previousFragment = R.id.calendar;
-        } else {
+        else
             getSupportFragmentManager().popBackStack("secondary", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            previousFragment = R.id.home;
-        }
     }
 }
