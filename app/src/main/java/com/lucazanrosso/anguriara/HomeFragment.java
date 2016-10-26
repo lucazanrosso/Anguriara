@@ -78,12 +78,10 @@ public class HomeFragment extends Fragment {
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
+                getActivity().getSupportFragmentManager().beginTransaction()
                         .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                         .replace(R.id.frame_container, new CalendarFragment())
-                        .addToBackStack("secondary")
-                        .commit();
+                        .addToBackStack("secondary").commit();
             }
         });
 
@@ -108,12 +106,10 @@ public class HomeFragment extends Fragment {
                     public void onClick(View v) {
                         DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
                         dayScreenSlidePagerFragment.setArguments(dayArgs);
-                        getActivity().getSupportFragmentManager()
-                                .beginTransaction()
+                        getActivity().getSupportFragmentManager().beginTransaction()
                                 .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
                                 .replace(R.id.frame_container, dayScreenSlidePagerFragment)
-                                .addToBackStack("secondary")
-                                .commit();
+                                .addToBackStack("secondary").commit();
                     }
                 });
             }

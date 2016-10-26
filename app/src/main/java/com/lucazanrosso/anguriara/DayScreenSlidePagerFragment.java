@@ -84,7 +84,6 @@ public class DayScreenSlidePagerFragment extends Fragment {
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
             toolbar.setTitle(title);
-//        MainActivity.toolbar.setTitle(title);
         title += " " + getResources().getString(R.string.share_title) + "\n" + CalendarFragment.setDateText(date, getContext()) + "\n\n" + getResources().getString(R.string.share_text) + "\n" + Uri.parse("https://play.google.com/store/apps/details?id=" + getContext().getPackageName()).toString();
 //        if (! MainActivity.calendar.get(date).get("event").isEmpty()) {
 //            title += "\n" + getResources().getString(R.string.event) + ": " + MainActivity.calendar.get(date).get("event");

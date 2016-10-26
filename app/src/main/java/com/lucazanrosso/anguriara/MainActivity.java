@@ -104,9 +104,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.pravolley:
                         fragment = new PravolleyFragment();
                         break;
-//                    case R.id.gallery:
-//                        fragment = new GalleryFragment();
-//                        break;
                     case R.id.where_we_are:
                         fragment = new WhereWeAreFragment();
                         break;
@@ -134,18 +131,13 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         MainActivity.months = getResources().getStringArray(R.array.months);
-
         MainActivity.calendar = setCalendar(this);
-
         days = new ArrayList<>(calendar.keySet());
-
         if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
             MainActivity.badDay = deserializeBadDay(this);
             if (!badDay.equals(MainActivity.today))
                 new File(this.getFilesDir(), "bad_day.ser").delete();
         }
-
-        days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         boolean firstStart = sharedPreferences.getBoolean("firstStart2016-6", true);

@@ -7,7 +7,7 @@
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
     <string name="calendar">Programma 2016</string>
     <string-array name="slide_text">
-        <item></item>
+        <item />
         <item name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</item>
         <item name="home_slide2">16 Live show, tutti i venerdì e i sabato.</item>
         <item name="home_slide3">Ricco menù, scopri gli appuntamenti con la nostra cucina.</item>
@@ -154,19 +154,19 @@
         <item>\nGenere: balli di gruppo e tormentoni</item>
         <item>\nGenere: rock &amp; blues</item>
         <item>&#160;con il succo e le verdure di Alessandro</item>
-        <item></item>
-        <item>\nGenere: rock anni \'70-80</item>
+        <item />
+        <item>\nGenere: rock anni \'70&#8211;80</item>
         <item>\nGenere: country rock</item>
-        <item></item>
+        <item />
         <item>&#160;con gli ortaggi di Stefano</item>
-        <item></item>
+        <item />
         <item>\nGenere: pop - rock acustico</item>
         <item>\nGenere: beach party and live</item>
-        <item></item>
+        <item />
         <item>\nGenere: pop acustico</item>
         <item>\nGenere: rock a 360°</item>
         <item>&#160;con le verdure di Luisella e Pino</item>
-        <item></item>
+        <item />
         <item>\nGenere: duo acustico - jazz</item>
         <item>\nGenere: AC/DC tribute band\n\nTorneo Pravolley</item>
         <item>\n\nTorneo Pravolley</item>
@@ -175,11 +175,11 @@
         <item>\nGenere: best old &amp; new pop/rock MTV hits</item>
         <item>\nGenere: rock classico</item>
         <item>&#160;con la carne e il succo di Davide</item>
-        <item></item>
+        <item />
         <item>\nGenere: Adele, Amy Whinehouse e soul moderno</item>
         <item>\nGenere: musica dagli anni \'70 ad oggi</item>
         <item>&#160;- Cena Km 0 su prenotazione</item>
-        <item></item>
+        <item />
         <item>\nGenere: rock blues cover band</item>
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
@@ -223,7 +223,7 @@
         <item>Panino rustego</item>
         <item>Grigliata mista</item>
         <item>Pizza</item>
-        <item></item>
+        <item />
         <item>Piatto a sorpresa con gli ortaggi di Stefano</item>
         <item>Panino rustego</item>
         <item>Panino facciavista</item>
@@ -235,7 +235,7 @@
         <item>Panino rustego</item>
         <item>Club sandwich</item>
         <item>Pizza</item>
-        <item></item>
+        <item />
         <item>Piatto a sorpresa con il miele e le confetture di Enrico</item>
         <item>Panino rustego</item>
         <item>Menù a sorpresa</item>
@@ -260,7 +260,7 @@
     <array name="day_food_image">
         <item>@drawable/club_sandwich</item>
         <item>@drawable/hot_dog</item>
-        <item></item>
+        <item />
         <item>@drawable/image_mockup</item>
         <item>@drawable/image_mockup</item>
         <item>@drawable/image_mockup</item>

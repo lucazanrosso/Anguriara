@@ -14,7 +14,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/home_background"/>
+                android:src="@drawable/home_background"
+                android:contentDescription="@null"/>
             <ImageView
                 android:layout_width="@dimen/card_view_width"
                 android:layout_height="wrap_content"
@@ -24,7 +25,8 @@
                 android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"
                 android:paddingLeft="64dp"
-                android:paddingRight="64dp" />
+                android:paddingRight="64dp"
+                android:contentDescription="@null"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -42,23 +44,28 @@
                 <ImageView
                     android:id="@+id/circle0"
                     style="@style/slide_circle"
-                    android:src="@drawable/circle" />
+                    android:src="@drawable/circle"
+                    android:contentDescription="@null"/>
                 <ImageView
                     android:id="@+id/circle1"
                     style="@style/slide_circle"
-                    android:src="@drawable/circle" />
+                    android:src="@drawable/circle"
+                    android:contentDescription="@null"/>
                 <ImageView
                     android:id="@+id/circle2"
                     style="@style/slide_circle"
-                    android:src="@drawable/circle" />
+                    android:src="@drawable/circle"
+                    android:contentDescription="@null"/>
                 <ImageView
                     android:id="@+id/circle3"
                     style="@style/slide_circle"
-                    android:src="@drawable/circle" />
+                    android:src="@drawable/circle"
+                    android:contentDescription="@null"/>
                 <ImageView
                     android:id="@+id/circle4"
                     style="@style/slide_circle"
-                    android:src="@drawable/circle" />
+                    android:src="@drawable/circle"
+                    android:contentDescription="@null"/>
             </LinearLayout>
         </RelativeLayout>
         <LinearLayout
@@ -76,23 +83,22 @@
                 android:layout_marginTop="8dp">
                 <RelativeLayout
                     style="@style/card_view_layout_with_button">
-                    <LinearLayout
-                        android:id="@+id/event_title_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
-                        <ImageView
-                            android:id="@+id/event_icon"
-                            style="@style/card_view_icon"
-                            android:src="@drawable/ic_today_black_24dp" />
-                        <TextView
-                            style="@style/card_view_subheading"
-                            android:text="@string/this_evening" />
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/event_icon"
+                        style="@style/card_view_icon"
+                        android:src="@drawable/ic_today_black_24dp"
+                        android:contentDescription="@null"/>
+                    <TextView
+                        style="@style/card_view_subheading"
+                        android:text="@string/this_evening"
+                        android:layout_toRightOf="@+id/event_icon"
+                        android:layout_toEndOf="@+id/event_icon"/>
                     <ImageView
                         android:id="@+id/event_image"
                         style="@style/card_view_image"
                         android:adjustViewBounds="true"
-                        android:layout_below="@id/event_title_layout"/>
+                        android:layout_below="@id/event_icon"
+                        android:contentDescription="@null"/>
                     <TextView
                         android:id="@+id/event_title"
                         style="@style/card_view_title"

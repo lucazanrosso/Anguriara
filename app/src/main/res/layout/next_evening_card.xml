@@ -10,7 +10,8 @@
         <ImageView
             android:id="@+id/next_evening_image"
             style="@style/card_view_image"
-            android:src="@drawable/image_mockup" />
+            android:src="@drawable/image_mockup"
+            android:contentDescription="@null"/>
         <TextView
             android:id="@+id/next_evening_text"
             style="@style/card_view_text" />
