@@ -1,5 +1,6 @@
 package com.lucazanrosso.anguriara;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 public class HomeSlideFragment extends Fragment {
 
     View view;
-    int [] slideImage = {R.drawable.slide0, R.drawable.slide1, R.drawable.slide2, R.drawable.slide3, R.drawable.slide4};
+    int [] slideImage;
     String [] slideText;
 
     @Override
@@ -20,6 +21,11 @@ public class HomeSlideFragment extends Fragment {
 
         view =  inflater.inflate(R.layout.fragment_home_slide, container, false);
 
+        TypedArray typedArray = getContext().getResources().obtainTypedArray(R.array.slide_image);
+        slideImage = new int[typedArray.length()];
+        for (int i = 0; i < typedArray.length(); i++)
+            slideImage[i] = typedArray.getResourceId(i, 0);
+        typedArray.recycle();
         slideText = getResources().getStringArray(R.array.slide_text);
 
         Bundle args = this.getArguments();

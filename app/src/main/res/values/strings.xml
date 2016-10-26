@@ -6,6 +6,13 @@
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
     <string name="calendar">Programma 2016</string>
+    <integer-array name="slide_image">
+        <item>@drawable/slide0</item>
+        <item>@drawable/slide1</item>
+        <item>@drawable/slide2</item>
+        <item>@drawable/slide3</item>
+        <item>@drawable/slide4</item>
+    </integer-array>
     <string-array name="slide_text">
         <item />
         <item name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</item>

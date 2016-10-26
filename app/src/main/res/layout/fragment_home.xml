@@ -39,34 +39,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/circles_container"
+                android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/circle0"
-                    style="@style/slide_circle"
-                    android:src="@drawable/circle"
-                    android:contentDescription="@null"/>
-                <ImageView
-                    android:id="@+id/circle1"
-                    style="@style/slide_circle"
-                    android:src="@drawable/circle"
-                    android:contentDescription="@null"/>
-                <ImageView
-                    android:id="@+id/circle2"
-                    style="@style/slide_circle"
-                    android:src="@drawable/circle"
-                    android:contentDescription="@null"/>
-                <ImageView
-                    android:id="@+id/circle3"
-                    style="@style/slide_circle"
-                    android:src="@drawable/circle"
-                    android:contentDescription="@null"/>
-                <ImageView
-                    android:id="@+id/circle4"
-                    style="@style/slide_circle"
-                    android:src="@drawable/circle"
-                    android:contentDescription="@null"/>
-            </LinearLayout>
+                android:gravity="center"
+                android:paddingBottom="8dp"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"

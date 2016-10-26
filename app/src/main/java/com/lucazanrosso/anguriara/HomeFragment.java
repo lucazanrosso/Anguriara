@@ -8,11 +8,13 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -20,7 +22,8 @@ import java.util.Calendar;
 public class HomeFragment extends Fragment {
 
     View view;
-    ImageView [] slide_circles = new ImageView[5];
+    ImageView [] slide_circles;
+    final int NUMBER_OF_SLIDES = 5;
     int currentPosition;
     int previousPosition;
 
@@ -36,11 +39,19 @@ public class HomeFragment extends Fragment {
             ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2016post);
         }
 
-        slide_circles[0] = (ImageView) view.findViewById(R.id.circle0);
-        slide_circles[1] = (ImageView) view.findViewById(R.id.circle1);
-        slide_circles[2] = (ImageView) view.findViewById(R.id.circle2);
-        slide_circles[3] = (ImageView) view.findViewById(R.id.circle3);
-        slide_circles[4] = (ImageView) view.findViewById(R.id.circle4);
+        slide_circles = new ImageView[NUMBER_OF_SLIDES];
+        LinearLayout circlesContainer = (LinearLayout) view.findViewById(R.id.circles_container);
+        LinearLayout.LayoutParams circleParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        int paddingLeftRight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getContext().getResources().getDisplayMetrics());
+        for (int i = 0; i < NUMBER_OF_SLIDES; i++) {
+            ImageView circleImage = new ImageView(getContext());
+            circleImage.setLayoutParams(circleParams);
+            circleImage.setImageResource(R.drawable.circle);
+            circleImage.setPadding(paddingLeftRight, 0, paddingLeftRight, 0);
+            slide_circles[i] = circleImage;
+            circlesContainer.addView(circleImage);
+        }
 
         ImageViewPager mPager = (ImageViewPager) view.findViewById(R.id.pager);
         PagerAdapter mPagerAdapter = new HomeFragment.ScreenSlidePagerAdapter(getChildFragmentManager());
@@ -137,7 +148,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 5;
+            return NUMBER_OF_SLIDES;
         }
     }
 
