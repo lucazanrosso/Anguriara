@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-6", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-7", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {

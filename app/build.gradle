@@ -7,12 +7,12 @@ android {
         applicationId "com.lucazanrosso.anguriara"
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 19
-        versionName "1.6.3"
+        versionCode 20
+        versionName "1.6.7"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
