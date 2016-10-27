@@ -24,11 +24,6 @@ import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -131,14 +126,10 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.daysOfWeek = getResources().getStringArray(R.array.days_of_week);
         MainActivity.months = getResources().getStringArray(R.array.months);
         MainActivity.calendar = setCalendar(this);
-        days = new ArrayList<>(calendar.keySet());
-        if (new File(this.getFilesDir(), "bad_day.ser").exists()) {
-            MainActivity.badDay = deserializeBadDay(this);
-            if (!badDay.equals(MainActivity.today))
-                new File(this.getFilesDir(), "bad_day.ser").delete();
-        }
+        MainActivity.days = new ArrayList<>(calendar.keySet());
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
+        MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
         boolean firstStart = sharedPreferences.getBoolean("firstStart2016-6", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
@@ -206,33 +197,6 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public static void serializeBadDay(Context context) {
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(context.getFilesDir(), "bad_day.ser"));
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(MainActivity.badDay);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static GregorianCalendar deserializeBadDay(Context context) {
-        GregorianCalendar badDay = new GregorianCalendar();
-        try {
-            FileInputStream fileInputStream = new FileInputStream(new File(context.getFilesDir(), "bad_day.ser"));
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            badDay = (GregorianCalendar) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return badDay;
-
-    }
-
     public static void setEveningsAlarm(Context context, LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar, boolean setAlarm, boolean isBootReceiver) {
         if (!isBootReceiver)
             MainActivity.sharedPreferences.edit().putBoolean("eveningsAlarmIsSet", setAlarm).apply();
@@ -253,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
 //                Test
-                alarmTime.set(2016, 8, 28, 12, i + 20);
+                alarmTime.set(2016, 9, 27, 18, i + 25);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
             } else

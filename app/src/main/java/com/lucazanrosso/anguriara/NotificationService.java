@@ -10,7 +10,6 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,7 +49,7 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("notification");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,13 +61,13 @@ public class NotificationService extends Service {
                             Intent notificationIntent = new Intent(context, MyNotification.class);
                             if (dataSnapshot.child("bad_weather").getValue(Boolean.class)) {
                                 MainActivity.badDay = notificationDay;
-                                MainActivity.serializeBadDay(context);
-                                notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
-                                notificationIntent.putExtra("notification_text", context.getResources().getString(R.string.bad_weather));
-                            } else {
-                                notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
-                                notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
-                            }
+                                sharedPreferences.edit().putInt("BadWeatherYear", dataSnapshot.child("year").getValue(Integer.class)).apply();
+                                sharedPreferences.edit().putInt("BadWeatherMonth", dataSnapshot.child("month").getValue(Integer.class)).apply();
+                                sharedPreferences.edit().putInt("BadWeatherDay", dataSnapshot.child("day").getValue(Integer.class)).apply();
+                            } else if (dataSnapshot.child("not_bad_weather").getValue(Boolean.class))
+                                MainActivity.badDay = null;
+                            notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
+                            notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
                             context.sendBroadcast(notificationIntent);
                             sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
                         }
