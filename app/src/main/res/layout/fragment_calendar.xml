@@ -67,8 +67,7 @@
                         style="@style/title"
                         android:layout_width="0dp"
                         android:layout_weight="5"
-                        android:textColor="@color/white"
-                        android:gravity="center" />
+                        android:textColor="@color/white" />
                     <ImageButton
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
