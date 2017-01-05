@@ -64,8 +64,12 @@ public class NotificationService extends Service {
                                 sharedPreferences.edit().putInt("BadWeatherYear", dataSnapshot.child("year").getValue(Integer.class)).apply();
                                 sharedPreferences.edit().putInt("BadWeatherMonth", dataSnapshot.child("month").getValue(Integer.class)).apply();
                                 sharedPreferences.edit().putInt("BadWeatherDay", dataSnapshot.child("day").getValue(Integer.class)).apply();
-                            } else if (dataSnapshot.child("not_bad_weather").getValue(Boolean.class))
+                            } else if (dataSnapshot.child("not_bad_weather").getValue(Boolean.class)) {
                                 MainActivity.badDay = null;
+                                sharedPreferences.edit().putInt("BadWeatherYear", 0).apply();
+                                sharedPreferences.edit().putInt("BadWeatherMonth", 0).apply();
+                                sharedPreferences.edit().putInt("BadWeatherDay", 0).apply();
+                            }
                             notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                             notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
                             context.sendBroadcast(notificationIntent);
