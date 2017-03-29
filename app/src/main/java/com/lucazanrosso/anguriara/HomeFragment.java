@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.LinkedHashMap;
 
 public class HomeFragment extends Fragment {
 
@@ -78,11 +79,15 @@ public class HomeFragment extends Fragment {
 
         setThisDay();
 
+        setNextEvenings(inflater, container);
+
         return view;
     }
 
     private void setThisDay() {
         ImageView todayImage = (ImageView) view.findViewById(R.id.event_image);
+        TextView todayDay = (TextView) view.findViewById(R.id.event_day);
+        todayDay.setText(CalendarFragment.setDateTitle(MainActivity.today));
         TextView todayTitle = (TextView) view.findViewById(R.id.event_title);
         TextView todayText = (TextView) view.findViewById(R.id.event_text);
         Button detailsButton = (Button) view.findViewById(R.id.details_button);
@@ -130,6 +135,44 @@ public class HomeFragment extends Fragment {
             todayImage.setVisibility(View.GONE);
             todayText.setVisibility(View.GONE);
             detailsButton.setVisibility(View.GONE);
+        }
+    }
+
+    private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
+        LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
+        int i = 0;
+        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
+            if (entry.getKey().get(Calendar.DAY_OF_YEAR) > MainActivity.today.get(Calendar.DAY_OF_YEAR) && i < 4) {
+                i++;
+                View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
+                TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
+                TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
+                Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
+                ImageView nextEveningImage = (ImageView) nextEveningCard.findViewById(R.id.next_evening_image);
+                nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
+                nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
+                int nextEveniningImageId = (int) entry.getValue().get("event_image");
+                nextEveningImage.setImageResource(nextEveniningImageId);
+                final Bundle dayArgs = new Bundle();
+                dayArgs.putSerializable("date", entry.getKey());
+                detailsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                        dayScreenSlidePagerFragment.setArguments(dayArgs);
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                                .replace(R.id.frame_container, dayScreenSlidePagerFragment)
+                                .addToBackStack("secondary")
+                                .commit();
+                    }
+                });
+                nextEvenings.addView(nextEveningCard);
+                if (i == 4) break;
+            }
+        if (i == 0) {
+            view.findViewById(R.id.next_evenings_title).setVisibility(View.GONE);
+            view.findViewById(R.id.next_evenings).setVisibility(View.GONE);
         }
     }
 
