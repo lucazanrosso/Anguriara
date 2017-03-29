@@ -7,30 +7,30 @@
         android:id="@+id/calendar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        <!--<TextView-->
-            <!--style="@style/headline"-->
-            <!--android:text="@string/next_evenings"-->
-            <!--android:id="@+id/next_evenings_title" />-->
-        <!--<HorizontalScrollView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/next_evenings"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:paddingBottom="8dp"-->
-            <!--android:layout_below="@id/next_evenings_title" >-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/next_evenings_layout"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:paddingRight="8dp"-->
-                <!--android:orientation="horizontal">-->
-            <!--</LinearLayout>-->
-        <!--</HorizontalScrollView>-->
+        <TextView
+            style="@style/headline"
+            android:text="@string/all_evenings"
+            android:id="@+id/all_evenings_title" />
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/all_evenings"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/all_evenings_title" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/all_evenings_layout"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
         <TextView
             android:id="@+id/calendar_title"
             style="@style/headline"
-            android:text="@string/complete_calendar" />
+            android:text="@string/complete_calendar"
+            android:layout_below="@id/all_evenings"/>
         <android.support.v7.widget.CardView
             style="@style/card_view"
             android:layout_centerHorizontal="true"

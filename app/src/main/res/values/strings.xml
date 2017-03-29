@@ -21,7 +21,9 @@
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
     <string name="next_evenings">Prossime serate</string>
-    <string name="complete_calendar">Programma completo</string>
+    <string name="complete_schedule">Programma completo</string>
+    <string name="all_evenings">Tutte le serate</string>
+    <string name="complete_calendar">Calendario</string>
     <string-array name="days_of_week">
         <item>Domenica</item>
         <item>Lunedì</item>
@@ -52,8 +54,6 @@
     <string name="close">Chiuso</string>
     <string name="bad_weather">Chiuso causa maltempo</string>
     <string name="details">DETTAGLI</string>
-    <string name="day_details">DETTAGLI SERATA</string>
-    <string name="complete_schedule">PROGRAMMA COMPLETO</string>
     <integer-array name="anguriara_days_of_month">
         <item>10</item>
         <item>11</item>
@@ -226,32 +226,32 @@
     <string-array name="day_foods">
         <item>Club sandwich</item>
         <item>Hot dog</item>
-        <item>Piatto a sorpresa con il succo e le verdure di Alessandro</item>
+        <item>Piatto a sorpresa</item>
         <item>Panino rustego</item>
         <item>Grigliata mista</item>
         <item>Pizza</item>
         <item />
-        <item>Piatto a sorpresa con gli ortaggi di Stefano</item>
+        <item>Piatto a sorpresa</item>
         <item>Panino rustego</item>
         <item>Panino facciavista</item>
         <item>Paella</item>
         <item>Panino rustego</item>
         <item>Piatto wurstel e patate</item>
         <item>Bruschetta</item>
-        <item>Piatto a sorpresa con le verdure di Luisella e Pino</item>
+        <item>Piatto a sorpresa</item>
         <item>Panino rustego</item>
         <item>Club sandwich</item>
         <item>Pizza</item>
         <item />
-        <item>Piatto a sorpresa con il miele e le confetture di Enrico</item>
+        <item>Piatto a sorpresa</item>
         <item>Panino rustego</item>
         <item>Menù a sorpresa</item>
         <item>Bruschetta</item>
-        <item>Piatto a sorpresa con la carne e il succo di Davide</item>
+        <item>Piatto a sorpresa</item>
         <item>Panino rustego</item>
         <item>Panino con porchetta</item>
         <item>Galletto e patate</item>
-        <item>Cena Km 0 preparata dalle persone del GiavenalFood</item>
+        <item>Cena Km 0</item>
         <item>Panino rustego</item>
         <item>Menù a sorpresa</item>
         <item>Paella</item>

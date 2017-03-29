@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/card_view"
+    android:layout_width="240dp">
+    <LinearLayout
+        style="@style/card_view_layout_with_button" >
+        <TextView
+            android:id="@+id/next_evening_title"
+            style="@style/card_view_subheading" />
+        <TextView
+            android:id="@+id/next_evening_text"
+            style="@style/card_view_text" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_button"
+            android:text="@string/details"
+            android:textColor="@color/accent"
+            android:background="@null"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp" />
+    </LinearLayout>
+</android.support.v7.widget.CardView>
