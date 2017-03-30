@@ -10,15 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.ViewHolder>{
-//    private String[] mDataset;
-    Context context;
-    FragmentActivity mActivity;
+class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.ViewHolder>{
+    private Context context;
+    private FragmentActivity mActivity;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         View card;
         ViewHolder(View v) {
@@ -28,7 +24,7 @@ public class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public AllEveningsAdapter(FragmentActivity mActivity) {
+    AllEveningsAdapter(FragmentActivity mActivity) {
         this.mActivity = mActivity;
     }
 
@@ -37,15 +33,9 @@ public class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.
     public AllEveningsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                             int viewType) {
         context = parent.getContext();
-
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(context)
                 .inflate(R.layout.all_evening_card, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-
-
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -53,7 +43,6 @@ public class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-//        holder.mTextView.setText(mDataset[position]);
         View card = holder.card;
         TextView nextEveningsTitle = (TextView) card.findViewById(R.id.next_evening_title);
         TextView nextEveningsText = (TextView) card.findViewById(R.id.next_evening_text);

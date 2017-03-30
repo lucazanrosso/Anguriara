@@ -13,12 +13,6 @@
             android:id="@+id/all_evenings_title"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"/>
-        <!--<HorizontalScrollView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/all_evenings"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_below="@id/all_evenings_title" >-->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/all_evenings_recycler_view"
                 android:layout_width="match_parent"
@@ -27,15 +21,6 @@
                 android:paddingRight="8dp"
                 android:clipToPadding="false"
                 android:layout_below="@id/all_evenings_title" />
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/all_evenings_layout"-->
-                <!--android:paddingLeft="8dp"-->
-                <!--android:paddingRight="8dp"-->
-                <!--android:orientation="horizontal">-->
-            <!--</LinearLayout>-->
-        <!--</HorizontalScrollView>-->
         <TextView
             android:id="@+id/calendar_title"
             style="@style/headline"

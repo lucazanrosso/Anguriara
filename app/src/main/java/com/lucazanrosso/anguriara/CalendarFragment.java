@@ -44,7 +44,6 @@ public class CalendarFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-//        setAllEvenings(inflater, container);
         setAllEvenings();
 
         juneButton = (ImageButton) view.findViewById(R.id.june_button);
@@ -109,33 +108,6 @@ public class CalendarFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
     }
-
-//    private void setAllEvenings (LayoutInflater inflater, ViewGroup container) {
-//        LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.all_evenings_layout);
-//        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet()) {
-//            View nextEveningCard = inflater.inflate(R.layout.all_evening_card, container, false);
-//            TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
-//            TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
-//            Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
-//            nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
-//            nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
-//            final Bundle dayArgs = new Bundle();
-//            dayArgs.putSerializable("date", entry.getKey());
-//            detailsButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-//                    dayScreenSlidePagerFragment.setArguments(dayArgs);
-//                    getActivity().getSupportFragmentManager().beginTransaction()
-//                            .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
-//                            .replace(R.id.frame_container, dayScreenSlidePagerFragment)
-//                            .addToBackStack("secondary")
-//                            .commit();
-//                }
-//            });
-//            nextEvenings.addView(nextEveningCard);
-//        }
-//    }
 
     private void setMonthCalendar(int month) {
         LinkedHashMap<Calendar, LinkedHashMap<String, Object>> monthCalendar = new LinkedHashMap<>();
