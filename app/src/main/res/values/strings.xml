@@ -21,7 +21,6 @@
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
     <string name="next_evenings">Prossime serate</string>
-    <string name="complete_schedule">Programma completo</string>
     <string name="all_evenings">Tutte le serate</string>
     <string name="complete_calendar">Calendario</string>
     <string-array name="days_of_week">
@@ -195,33 +194,33 @@
         <item>@drawable/outsiders</item>
         <item>@drawable/giavenalfood</item>
         <item>@drawable/hdemia</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
     </array>
     <string-array name="day_foods">
         <item>Club sandwich</item>
@@ -268,34 +267,34 @@
         <item>@drawable/club_sandwich</item>
         <item>@drawable/hot_dog</item>
         <item />
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
-        <item>@drawable/image_mockup</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
     </array>
     <string-array name="day_opening_time">
         <item>20:30</item>

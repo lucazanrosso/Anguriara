@@ -41,6 +41,16 @@ public class HomeFragment extends Fragment {
             ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2016post);
         }
 
+        setSlider();
+
+        setThisDay();
+
+        setNextEvenings(inflater, container);
+
+        return view;
+    }
+
+    private void setSlider() {
         slide_circles = new ImageView[NUMBER_OF_SLIDES];
         LinearLayout circlesContainer = (LinearLayout) view.findViewById(R.id.circles_container);
         LinearLayout.LayoutParams circleParams = new LinearLayout.LayoutParams(
@@ -76,12 +86,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-        setThisDay();
-
-        setNextEvenings(inflater, container);
-
-        return view;
     }
 
     private void setThisDay() {
