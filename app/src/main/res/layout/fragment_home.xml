@@ -118,8 +118,8 @@
                 android:id="@+id/next_evenings_title"
                 style="@style/headline"
                 android:text="@string/next_evenings"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"/>
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"/>
             <HorizontalScrollView
                 android:id="@+id/next_evenings"
                 android:layout_width="wrap_content"

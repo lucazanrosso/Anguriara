@@ -124,37 +124,37 @@
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
     <string-array name="day_events">
-        <item>Lucky Luke</item>
-        <item>Outsiders</item>
+        <item>Gruppo: Lucky Luke</item>
+        <item>Gruppo: Outsiders</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>SHB</item>
-        <item>Old Virginia</item>
+        <item>Gruppo: SHB</item>
+        <item>Gruppo: Old Virginia</item>
         <item>L\'aperitivo anguriaro</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>Acustic Fun</item>
-        <item>Demenzioni</item>
+        <item>Gruppo: Acustic Fun</item>
+        <item>Gruppo: Demenzioni</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>Mashuppers</item>
-        <item>Virna Marangoni</item>
+        <item>Gruppo: Mashuppers</item>
+        <item>Cantante: Virna Marangoni</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>A Bassa Voce</item>
-        <item>Beer Brothers</item>
+        <item>Gruppo: A Bassa Voce</item>
+        <item>Gruppo: Beer Brothers</item>
         <item>L\'aperitivo anguriaro</item>
         <item>GiavenalFood</item>
         <item>AnguriaRUN 9.0</item>
-        <item>Dallas</item>
-        <item>Flash Player</item>
+        <item>Gruppo: Dallas</item>
+        <item>Gruppo: Flash Player</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>Black Betty</item>
-        <item>Trixy</item>
+        <item>Gruppo: Black Betty</item>
+        <item>Gruppo: Trixy</item>
         <item>GiavenalFood</item>
         <item>I giovedì dell\'Hdemia</item>
-        <item>Lady Rock</item>
-        <item>Dj Battle</item>
+        <item>Gruppo: Lady Rock</item>
+        <item>Gruppo: Dj Battle</item>
     </string-array>
     <string-array name="day_event_details">
         <item>\nGenere: balli di gruppo e tormentoni</item>
