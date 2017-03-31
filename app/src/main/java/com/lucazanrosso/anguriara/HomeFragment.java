@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        if (MainActivity.calendar.containsKey(MainActivity.today)) {
+        if (MainActivity.days.contains(MainActivity.today)) {
             if(MainActivity.today.equals(MainActivity.badDay)) {
                 todayTitle.setText(getResources().getString(R.string.bad_weather));
                 todayImage.setVisibility(View.GONE);
