@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-10", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-11", false).apply();
         }
 
         if (savedInstanceState == null) {
