@@ -38,13 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
-    final static int YEAR = 2016;
-    final static int ANGURIARA_NUMBER_OF_DAYS = 31;
+    public final static int YEAR = 2016;
     public static String[] daysOfWeek;
     public static String[] months;
 //    public static Calendar todayInstance = new GregorianCalendar();
-    public static Calendar todayInstance = new GregorianCalendar(2016, 5, 25);
-    public static Calendar today = new GregorianCalendar(MainActivity.YEAR, todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
+    public static Calendar todayInstance = new GregorianCalendar(2017, 5, 25);
+    public static Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
 
     public static SharedPreferences sharedPreferences;
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         TypedArray dayFoodsImages = context.getResources().obtainTypedArray(R.array.day_food_image);
         String[] dayOpeningTimes = context.getResources().getStringArray(R.array.day_opening_time);
         LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
-        for (int i = 0; i < ANGURIARA_NUMBER_OF_DAYS; i++) {
+        for (int i = 0; i < dayEvents.length; i++) {
             LinkedHashMap<String, Object> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", dayEvents[i]);
             eveningMap.put("event_details", dayEventsDetails[i]);

@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
 
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        if (MainActivity.days.get(MainActivity.ANGURIARA_NUMBER_OF_DAYS - 1).get(Calendar.DAY_OF_YEAR) < MainActivity.today.get(Calendar.DAY_OF_YEAR)) {
+        if (MainActivity.days.get(MainActivity.days.size() - 1).get(Calendar.DAY_OF_YEAR) < MainActivity.today.get(Calendar.DAY_OF_YEAR)) {
             ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2016post);
         }
 
@@ -145,35 +145,36 @@ public class HomeFragment extends Fragment {
     private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
         LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
         int i = 0;
-        for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
-            if (entry.getKey().get(Calendar.DAY_OF_YEAR) > MainActivity.today.get(Calendar.DAY_OF_YEAR) && i < 4) {
-                i++;
-                View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
-                TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
-                TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
-                Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
-                ImageView nextEveningImage = (ImageView) nextEveningCard.findViewById(R.id.next_evening_image);
-                nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
-                nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
-                int nextEveniningImageId = (int) entry.getValue().get("event_image");
-                nextEveningImage.setImageResource(nextEveniningImageId);
-                final Bundle dayArgs = new Bundle();
-                dayArgs.putSerializable("date", entry.getKey());
-                detailsButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-                        dayScreenSlidePagerFragment.setArguments(dayArgs);
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
-                                .replace(R.id.frame_container, dayScreenSlidePagerFragment)
-                                .addToBackStack("secondary")
-                                .commit();
-                    }
-                });
-                nextEvenings.addView(nextEveningCard);
-                if (i == 4) break;
-            }
+        if (MainActivity.YEAR == MainActivity.today.get(Calendar.YEAR))
+            for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
+                if (entry.getKey().get(Calendar.DAY_OF_YEAR) > MainActivity.today.get(Calendar.DAY_OF_YEAR) && i < 4) {
+                    i++;
+                    View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
+                    TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
+                    TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
+                    Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
+                    ImageView nextEveningImage = (ImageView) nextEveningCard.findViewById(R.id.next_evening_image);
+                    nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
+                    nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
+                    int nextEveniningImageId = (int) entry.getValue().get("event_image");
+                    nextEveningImage.setImageResource(nextEveniningImageId);
+                    final Bundle dayArgs = new Bundle();
+                    dayArgs.putSerializable("date", entry.getKey());
+                    detailsButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
+                            dayScreenSlidePagerFragment.setArguments(dayArgs);
+                            getActivity().getSupportFragmentManager().beginTransaction()
+                                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                                    .replace(R.id.frame_container, dayScreenSlidePagerFragment)
+                                    .addToBackStack("secondary")
+                                    .commit();
+                        }
+                    });
+                    nextEvenings.addView(nextEveningCard);
+                    if (i == 4) break;
+                }
         if (i == 0) {
             view.findViewById(R.id.next_evenings_title).setVisibility(View.GONE);
             view.findViewById(R.id.next_evenings).setVisibility(View.GONE);

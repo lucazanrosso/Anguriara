@@ -75,7 +75,7 @@ public class DayScreenSlidePagerFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return MainActivity.ANGURIARA_NUMBER_OF_DAYS;
+            return MainActivity.days.size();
         }
     }
 
