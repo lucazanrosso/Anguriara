@@ -62,7 +62,8 @@ public class CalendarFragment extends Fragment {
         });
         if (savedInstanceState == null) {
             if (monthSelected == -1) {
-                if (MainActivity.today.get(Calendar.MONTH) < 6)
+                // I have to use this check due to a problem of Android Studio     if (MainActivity.YEAR == MainActivity.today.get(Calendar.YEAR) && MainActivity.today.get(Calendar.MONTH) == 6)
+                if ((MainActivity.YEAR < MainActivity.today.get(Calendar.YEAR) || MainActivity.YEAR > MainActivity.today.get(Calendar.YEAR)) || (MainActivity.today.get(Calendar.MONTH) < 6 || MainActivity.today.get(Calendar.MONTH) > 6))
                     monthSelected = 5;
                 else
                     monthSelected = 6;
@@ -97,12 +98,9 @@ public class CalendarFragment extends Fragment {
 
         int i = 0;
         for (Calendar evening : MainActivity.days) {
-            if (MainActivity.today.get(Calendar.DAY_OF_YEAR) > evening.get(Calendar.DAY_OF_YEAR)) {
+            if (MainActivity.today.after(evening))
                 i++;
-            } else {
-                break;
-            }
-
+            else break;
         }
         mLayoutManager.scrollToPosition(i);
         mRecyclerView.setLayoutManager(mLayoutManager);
