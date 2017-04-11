@@ -29,6 +29,8 @@ public class CalendarFragment extends Fragment {
     View view;
 
     private int monthSelected = -1;
+    private final int JUNE = 3;
+    private final int JULY = 4;
     public ImageButton juneButton;
     public ImageButton julyButton;
 
@@ -51,22 +53,22 @@ public class CalendarFragment extends Fragment {
         juneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setMonthSelected(5);
+                setMonthSelected(JUNE);
             }
         });
         julyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setMonthSelected(6);
+                setMonthSelected(JULY);
             }
         });
         if (savedInstanceState == null) {
             if (monthSelected == -1) {
                 // I have to use this check due to a problem of Android Studio     if (MainActivity.YEAR == MainActivity.today.get(Calendar.YEAR) && MainActivity.today.get(Calendar.MONTH) == 6)
-                if ((MainActivity.YEAR < MainActivity.today.get(Calendar.YEAR) || MainActivity.YEAR > MainActivity.today.get(Calendar.YEAR)) || (MainActivity.today.get(Calendar.MONTH) < 6 || MainActivity.today.get(Calendar.MONTH) > 6))
-                    monthSelected = 5;
+                if ((MainActivity.YEAR < MainActivity.today.get(Calendar.YEAR) || MainActivity.YEAR > MainActivity.today.get(Calendar.YEAR)) || (MainActivity.today.get(Calendar.MONTH) < JULY || MainActivity.today.get(Calendar.MONTH) > JULY))
+                    monthSelected = JUNE;
                 else
-                    monthSelected = 6;
+                    monthSelected = JULY;
             }
         } else {
             monthSelected = savedInstanceState.getInt("month_selected");
@@ -77,16 +79,16 @@ public class CalendarFragment extends Fragment {
     }
 
     public void setMonthSelected(int month) {
-        if (month == 5) {
-            setMonthCalendar2(5);
+        if (month == JUNE) {
+            setMonthCalendar2(JUNE);
             juneButton.setVisibility(View.INVISIBLE);
             julyButton.setVisibility(View.VISIBLE);
-            monthSelected = 5;
-        } else if (month == 6){
-            setMonthCalendar2(6);
+            monthSelected = JUNE;
+        } else if (month == JULY){
+            setMonthCalendar2(JULY);
             julyButton.setVisibility(View.INVISIBLE);
             juneButton.setVisibility(View.VISIBLE);
-            monthSelected = 6;
+            monthSelected = JULY;
         }
     }
 
