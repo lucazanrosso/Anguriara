@@ -49,7 +49,7 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("notification");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,8 +80,8 @@ public class NotificationService extends Service {
                             notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                             notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
                             context.sendBroadcast(notificationIntent);
-                            sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
                         }
+                        sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
                     }
                 }
 
