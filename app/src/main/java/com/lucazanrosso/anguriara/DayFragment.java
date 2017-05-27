@@ -41,25 +41,23 @@ public class DayFragment extends Fragment {
         ImageView foodImage = (ImageView) view.findViewById(R.id.food_image);
         String dayFood = (String) day.get("food");
         int dayFoodImage = (int) day.get("food_image");
-        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-            foodText.setText(getResources().getString(R.string.close));
+        if (dayFoodImage != 0)
+            foodImage.setImageResource(dayFoodImage);
+        else {
             ((ViewGroup) foodImage.getParent()).removeView(foodImage);
-            ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title);
             foodText.setLayoutParams(layoutParams);
+        }
+        if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            foodText.setText(getResources().getString(R.string.close));
+            ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
         } else {
             foodText.setText(dayFood);
-            foodImage.setImageResource(dayFoodImage);
             if (date.get(Calendar.DAY_OF_WEEK) != Calendar.WEDNESDAY)
                 foodSubtext.setText(getResources().getString(R.string.standard_foods));
-            else {
-                ((ViewGroup) foodImage.getParent()).removeView(foodImage);
+            else
                 ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title);
-                foodText.setLayoutParams(layoutParams);
-            }
         }
 //        else
 //            foodSubtext.setText(getResources().getString(R.string.standard_foods));

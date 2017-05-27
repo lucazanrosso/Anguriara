@@ -5,7 +5,7 @@
     <string name="drawer_close">close drawer</string>
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
-    <string name="calendar">Programma 2016</string>
+    <string name="calendar">Programma 2017</string>
     <integer-array name="slide_image">
         <item>@drawable/slide0</item>
         <item>@drawable/slide1</item>
@@ -54,13 +54,29 @@
     <string name="bad_weather">Chiuso causa maltempo</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
+        <item>9</item>
+        <item>10</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>28</item>
+        <item>30</item>
+        <item>27</item>
+        <item>29</item>
+        <item>1</item>
+        <item>5</item>
+        <item>6</item>
         <item>7</item>
         <item>8</item>
         <item>12</item>
         <item>13</item>
         <item>14</item>
         <item>15</item>
-        <item>16</item>
         <item>19</item>
         <item>20</item>
         <item>21</item>
@@ -68,56 +84,40 @@
         <item>26</item>
         <item>27</item>
         <item>28</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>24</item>
-        <item>25</item>
-        <item>26</item>
-        <item>27</item>
+        <item>29</item>
     </integer-array>
     <integer-array name="anguriara_months">
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>3</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
     </integer-array>
     <string name="event">Evento</string>
     <string name="open">Aperto</string>
@@ -190,10 +190,10 @@
         <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
     </string-array>
     <array name="day_event_image">
-        <item>@drawable/lucky_luke</item>
-        <item>@drawable/outsiders</item>
-        <item>@drawable/giavenalfood</item>
-        <item>@drawable/hdemia</item>
+        <item>@drawable/g09</item>
+        <item>@drawable/g10</item>
+        <item>@drawable/open</item>
+        <item>@drawable/g15</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
@@ -264,37 +264,37 @@
         \n\u2022 Gelato
     </string>
     <array name="day_food_image">
-        <item>@drawable/club_sandwich</item>
-        <item>@drawable/hot_dog</item>
         <item />
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
     </array>
     <string-array name="day_opening_time">
         <item>20:30</item>

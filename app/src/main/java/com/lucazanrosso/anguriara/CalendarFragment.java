@@ -29,8 +29,8 @@ public class CalendarFragment extends Fragment {
     View view;
 
     private int monthSelected = -1;
-    private final int JUNE = 3;
-    private final int JULY = 4;
+    private final int JUNE = 5;
+    private final int JULY = 6;
     public ImageButton juneButton;
     public ImageButton julyButton;
 
