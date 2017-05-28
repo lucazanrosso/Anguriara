@@ -59,15 +59,12 @@
         <item>14</item>
         <item>15</item>
         <item>16</item>
-        <item>17</item>
         <item>21</item>
         <item>22</item>
         <item>23</item>
         <item>24</item>
         <item>28</item>
         <item>30</item>
-        <item>27</item>
-        <item>29</item>
         <item>1</item>
         <item>5</item>
         <item>6</item>
@@ -77,6 +74,7 @@
         <item>13</item>
         <item>14</item>
         <item>15</item>
+        <item>16</item>
         <item>19</item>
         <item>20</item>
         <item>21</item>
@@ -98,9 +96,7 @@
         <item>5</item>
         <item>5</item>
         <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
+        <item>6</item>
         <item>6</item>
         <item>6</item>
         <item>6</item>
@@ -124,70 +120,66 @@
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
     <string-array name="day_events">
-        <item>Gruppo: Lucky Luke</item>
-        <item>Gruppo: Outsiders</item>
-        <item>GiavenalFood</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: SHB</item>
-        <item>Gruppo: Old Virginia</item>
-        <item>L\'aperitivo anguriaro</item>
-        <item>GiavenalFood</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: Acustic Fun</item>
-        <item>Gruppo: Demenzioni</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: Mashuppers</item>
-        <item>Cantante: Virna Marangoni</item>
-        <item>GiavenalFood</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: A Bassa Voce</item>
-        <item>Gruppo: Beer Brothers</item>
-        <item>L\'aperitivo anguriaro</item>
-        <item>GiavenalFood</item>
-        <item>AnguriaRUN 9.0</item>
-        <item>Gruppo: Dallas</item>
-        <item>Gruppo: Flash Player</item>
-        <item>GiavenalFood</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: Black Betty</item>
-        <item>Gruppo: Trixy</item>
-        <item>GiavenalFood</item>
-        <item>I giovedì dell\'Hdemia</item>
-        <item>Gruppo: Lady Rock</item>
-        <item>Gruppo: Dj Battle</item>
+        <item>Oneshots</item>
+        <item>Chotokoeu</item>
+        <item>Aperto</item>
+        <item>“OLTRE LA VETTA”</item>
+        <item>TeraKrua</item>
+        <item>Serata teorica con il Mastro Birraio</item>
+        <item>CoverTone</item>
+        <item>Saba De Rossi Divas Live Acoustic</item>
+        <item>Virna Marangoni</item>
+        <item>Storm Rock</item>
+        <item>Maximoff</item>
+        <item>K.I.G. 70/80/90</item>
+        <item>Degustazione birre artigianali</item>
+        <item>Federico Rossi</item>
+        <item>Jack and the Roses</item>
+        <item>The Zorma Parker Band</item>
+        <item>Tutti in pista! Serata Zumba!</item>
+        <item>Agritour dea Molonara</item>
+        <item>Il Volo</item>
+        <item>Chupacabra</item>
+        <item>PRAVOLLEY</item>
+        <item>Mastro Birraio</item>
+        <item>Un esperienza in Congo</item>
+        <item>Exploder the band</item>
+        <item>Jam Session Rrainy Valley</item>
+        <item>Lady Rock</item>
+        <item>Aperto</item>
+        <item>Trixy</item>
+        <item>SECRET NIGHT con DJ</item>
     </string-array>
     <string-array name="day_event_details">
-        <item>\nGenere: balli di gruppo e tormentoni</item>
-        <item>\nGenere: rock &amp; blues</item>
-        <item>&#160;con il succo e le verdure di Alessandro</item>
+        <item>\nGenere: pop anni 80</item>
+        <item>\nGenere: balkan, rock, swing, d\'n\'b</item>
         <item />
-        <item>\nGenere: rock anni \'70&#8211;80</item>
-        <item>\nGenere: country rock</item>
+        <item>&#160;di G. Sperotto.\nDubbi, paure, forti emozioni di una folle impresa: la realizzazione del Cristo in acciaio per il Summano.</item>
+        <item>\nGenere: rock italiano</item>
+        <item></item>
+        <item>\nGenere: new music acustic</item>
         <item />
-        <item>&#160;con gli ortaggi di Stefano</item>
+        <item>\nGenere: Duo, voce e chitarra</item>
+        <item>\nGenere: rock</item>
+        <item>\nGenere: elettronika</item>
         <item />
-        <item>\nGenere: pop - rock acustico</item>
-        <item>\nGenere: beach party and live</item>
-        <item />
-        <item>\nGenere: pop acustico</item>
-        <item>\nGenere: rock a 360°</item>
-        <item>&#160;con le verdure di Luisella e Pino</item>
-        <item />
-        <item>\nGenere: duo acustico - jazz</item>
-        <item>\nGenere: AC/DC tribute band\n\nTorneo Pravolley</item>
-        <item>\n\nTorneo Pravolley</item>
-        <item>&#160;con il miele e le confetture di Enrico</item>
-        <item>\nCorsa podistica dalle ore 18:00 con la Fondazione Città della Speranza</item>
-        <item>\nGenere: best old &amp; new pop/rock MTV hits</item>
-        <item>\nGenere: rock classico</item>
-        <item>&#160;con la carne e il succo di Davide</item>
-        <item />
-        <item>\nGenere: Adele, Amy Whinehouse e soul moderno</item>
-        <item>\nGenere: musica dagli anni \'70 ad oggi</item>
-        <item>&#160;- Cena Km 0 su prenotazione</item>
-        <item />
-        <item>\nGenere: rock blues cover band</item>
-        <item>\nPaolo PJ vs Deejay Berna, presenta Pietri Vocalist\nGenere: Dance music</item>
+        <item>&#160;con il Mastro Birraio</item>
+        <item>\nGenere: country</item>
+        <item>\nGenere: Live&amp;Love Tour 2017</item>
+        <item>&#160;from South with Spirit</item>
+        <item></item>
+        <item>\nCiò che non hai mai visto lo trovi dove sei sempre stato. Presentazione del progetto e delle aziende coinvolte con degustazione dei prodotti Agritour.</item>
+        <item>\nGenere: cover Litfiba</item>
+        <item>\nGenere: musica latina en vino\n\nPRAVOLLEY</item>
+        <item></item>
+        <item></item>
+        <item>\nRacconti di Diamante e Davide</item>
+        <item>\nGenere: alternative rock band</item>
+        <item>\nGenere: rock’roll, afro</item>
+        <item>\nGenere: rock and blues</item>
+        <item></item>
+        <item>\nGenere: rock band</item>
+        <item></item>
     </string-array>
     <array name="day_event_image">
         <item>@drawable/g09</item>
@@ -219,53 +211,58 @@
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
     </array>
     <string-array name="day_foods">
-        <item>Club sandwich</item>
-        <item>Hot dog</item>
-        <item>Piatto a sorpresa</item>
-        <item>Panino rustego</item>
+        <item></item>
+        <item>Panino faccia vista</item>
+        <item></item>
+        <item></item>
         <item>Grigliata mista</item>
-        <item>Pizza</item>
         <item />
-        <item>Piatto a sorpresa</item>
-        <item>Panino rustego</item>
-        <item>Panino facciavista</item>
-        <item>Paella</item>
-        <item>Panino rustego</item>
-        <item>Piatto wurstel e patate</item>
-        <item>Bruschetta</item>
-        <item>Piatto a sorpresa</item>
-        <item>Panino rustego</item>
+        <item></item>
+        <item></item>
+        <item>Panino porchetta</item>
+        <item></item>
+        <item></item>
         <item>Club sandwich</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>Bruschette</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>Galletti con patate</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
         <item>Pizza</item>
-        <item />
-        <item>Piatto a sorpresa</item>
-        <item>Panino rustego</item>
-        <item>Menù a sorpresa</item>
-        <item>Bruschetta</item>
-        <item>Piatto a sorpresa</item>
-        <item>Panino rustego</item>
-        <item>Panino con porchetta</item>
-        <item>Galletto e patate</item>
-        <item>Cena Km 0</item>
-        <item>Panino rustego</item>
-        <item>Menù a sorpresa</item>
+        <item></item>
+        <item></item>
+        <item></item>
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
-    <string name="standard_foods">Oltre al piatto della serata la cucina propone:
-        \n\u2022 Panino vegetariano
-        \n\u2022 Panino con sopressa
+    <string name="standard_foods_w">
+        \u2022 Panini freddi
         \n\u2022 Patatine fritte
-        \n\u2022 Fetta d\'anguria
+        \n\u2022 Fette d\'anguria
+        \n\u2022 Gelato
+    </string>
+    <string name="standard_foods">
+        \u2022 Panino rustego
+        \n\u2022 Panino vegetariano
+        \n\u2022 Patatine fritte
+        \n\u2022 Fette d\'anguria
+        \n\u2022 Gelato
+    </string>
+    <string name="standard_foods_s">Oltre al piatto della serata la cucina propone:
+        \n\u2022 Patatine fritte
+        \n\u2022 Fette d\'anguria
         \n\u2022 Gelato
     </string>
     <array name="day_food_image">
-        <item />
-        <item />
         <item />
         <item />
         <item />
@@ -302,12 +299,10 @@
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
-        <item>19:30</item>
-        <item>dalle 18:00 alle 21:00</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
-        <item>19:30</item>
+        <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>19:30</item>
@@ -315,11 +310,11 @@
         <item>20:30</item>
         <item>20:30</item>
         <item>19:30</item>
-        <item>dalle 18:00 alle 21:00</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>19:30</item>
+        <item>Da definire</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
@@ -382,9 +377,9 @@
     <string name="gallery">Galleria</string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
-    <string name="who_we_are_number_1">17</string>
+    <string name="who_we_are_number_1">19</string>
     <string name="who_we_are_title_1">Numero edizioni</string>
-    <string name="who_we_are_number_2">31</string>
+    <string name="who_we_are_number_2">28</string>
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
@@ -409,7 +404,7 @@
         \n\nSiamo gente molto pratica, usualmente cominciamo in marzo con picco, badile, seghe, trattori, saldatrici, telefonate e burocrazia e in giugno apriamo la baracca.
 
         \n\nLo staff Anguriara ti aspetta a Giavenale di Schio(VI), in un campo lungo Via Giavenale di Sopra, dal mercoled\u00ec al sabato.
-        \nPer contattarci puoi scrivere un\'email al nostro indirizzo (anguriara@gmail.com), mandare un messaggio alla nostra pagina Facebook oppure venire a trovarci direttamente al rocolo, nel periodo in cui siamo aperti per parlare di persona: potete chiedere di \"Mais\" o \"Salvia\".
+        \nPer contattarci puoi scrivere un\'email al nostro indirizzo (anguriara@gmail.com), mandare un messaggio alla nostra pagina Facebook oppure venire a trovarci direttamente al rocolo, nel periodo in cui siamo aperti per parlare di persona.
     </string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>

@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
         this.view = inflater.inflate(R.layout.fragment_home, container, false);
 
         if (MainActivity.days.get(MainActivity.days.size() - 1).get(Calendar.DAY_OF_YEAR) < MainActivity.today.get(Calendar.DAY_OF_YEAR)) {
-            ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2016post);
+            ((ImageView) view.findViewById(R.id.welcome_image)).setImageResource(R.drawable.anguriara2017post);
         }
 
         setSlider();

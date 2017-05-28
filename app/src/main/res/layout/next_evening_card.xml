@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/card_view"
-    android:layout_width="240dp">
+    android:layout_width="260dp">
     <LinearLayout
         style="@style/card_view_layout_with_button" >
         <TextView

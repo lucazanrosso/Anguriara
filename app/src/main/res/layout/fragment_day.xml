@@ -60,16 +60,16 @@
                     android:text="@string/food"
                     android:layout_toRightOf="@+id/food_icon"
                     android:layout_toEndOf="@+id/food_icon" />
-                <ImageView
-                    android:id="@+id/food_image"
-                    style="@style/card_view_image"
-                    android:adjustViewBounds="true"
-                    android:layout_below="@id/food_icon"
-                    android:contentDescription="@null"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/food_image"-->
+                    <!--style="@style/card_view_image"-->
+                    <!--android:adjustViewBounds="true"-->
+                    <!--android:layout_below="@id/food_icon"-->
+                    <!--android:contentDescription="@null"/>-->
                 <TextView
                     android:id="@+id/food_text"
                     style="@style/card_view_title"
-                    android:layout_below="@id/food_image"/>
+                    android:layout_below="@id/food_title"/>
                 <TextView
                     android:id="@+id/food_subtext"
                     style="@style/card_view_text"

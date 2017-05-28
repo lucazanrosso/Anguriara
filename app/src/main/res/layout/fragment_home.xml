@@ -19,7 +19,7 @@
                 android:layout_width="@dimen/card_view_width"
                 android:layout_height="wrap_content"
                 android:id="@+id/welcome_image"
-                android:src="@drawable/anguriara2016"
+                android:src="@drawable/anguriara2017"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:adjustViewBounds="true"

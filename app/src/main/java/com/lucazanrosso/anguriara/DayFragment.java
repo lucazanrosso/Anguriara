@@ -26,10 +26,14 @@ public class DayFragment extends Fragment {
         TextView eventText = (TextView) view.findViewById(R.id.event_text);
         ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
         String dayEvent = (String) day.get("event");
+        String dayEventDatails = (String) day.get("event_details");
         int dayEventImage = (int) day.get("event_image");
 //        if (!dayEvent.isEmpty()) {
             eventTitle.setText(getResources().getString(R.string.event));
-            eventText.setText(dayEvent + day.get("event_details"));
+            if (!dayEventDatails.isEmpty())
+                eventText.setText(dayEvent + day.get("event_details"));
+            else
+                eventText.setText(dayEvent);
             eventImage.setImageResource(dayEventImage);
 //        } else {
 //            eventTitle.setText(getResources().getString(R.string.open));
@@ -38,26 +42,34 @@ public class DayFragment extends Fragment {
 
         TextView foodText = (TextView) view.findViewById(R.id.food_text);
         TextView foodSubtext = (TextView) view.findViewById(R.id.food_subtext);
-        ImageView foodImage = (ImageView) view.findViewById(R.id.food_image);
+//        ImageView foodImage = (ImageView) view.findViewById(R.id.food_image);
         String dayFood = (String) day.get("food");
-        int dayFoodImage = (int) day.get("food_image");
-        if (dayFoodImage != 0)
-            foodImage.setImageResource(dayFoodImage);
-        else {
-            ((ViewGroup) foodImage.getParent()).removeView(foodImage);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title);
-            foodText.setLayoutParams(layoutParams);
-        }
+//        int dayFoodImage = (int) day.get("food_image");
+//        if (dayFoodImage != 0)
+//            foodImage.setImageResource(dayFoodImage);
+//        else {
+//            ((ViewGroup) foodImage.getParent()).removeView(foodImage);
+//            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//            layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title);
+//            foodText.setLayoutParams(layoutParams);
+//        }
         if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             foodText.setText(getResources().getString(R.string.close));
             ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
         } else {
             foodText.setText(dayFood);
-            if (date.get(Calendar.DAY_OF_WEEK) != Calendar.WEDNESDAY)
+            if (date.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
+                foodSubtext.setText(getResources().getString(R.string.standard_foods_w));
+            else if (date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY)
                 foodSubtext.setText(getResources().getString(R.string.standard_foods));
             else
-                ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
+                foodSubtext.setText(getResources().getString(R.string.standard_foods_s));
+        }
+        if (dayFood.equals("") && date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            ((ViewGroup) foodSubtext.getParent()).removeView(foodText);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.BELOW, R.id.food_title);
+            foodSubtext.setLayoutParams(layoutParams);
         }
 //        else
 //            foodSubtext.setText(getResources().getString(R.string.standard_foods));
