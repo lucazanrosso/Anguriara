@@ -60,8 +60,10 @@ public class NotificationService extends Service {
                         int year = dataSnapshot.child("year").getValue(Integer.class);
                         boolean badWeather = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                         Calendar notificationDay = new GregorianCalendar(year, month, day);
+                        Calendar todayInstance = new GregorianCalendar();
+                        Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
                         int localNotificationId = sharedPreferences.getInt("notificationId", 0);
-                        if (localNotificationId < currentNotificationId && MainActivity.today.equals(notificationDay)) {
+                        if (localNotificationId < currentNotificationId && today.equals(notificationDay)) {
                             Intent notificationIntent = new Intent(context, MyNotification.class);
                             if (sharedPreferences.getBoolean("previuosWeather", false) != badWeather) {
                                 sharedPreferences.edit().putBoolean("previuosWeather", badWeather).apply();
