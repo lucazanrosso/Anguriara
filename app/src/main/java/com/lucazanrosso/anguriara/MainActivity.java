@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-13", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-17", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-13", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-17", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -245,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Fragment fm = getSupportFragmentManager().findFragmentById(R.id.frame_container);
-        System.out.println(fm);
         if (fm instanceof HomeFragment)
             finish();
         else if (fm instanceof DayScreenSlidePagerFragment)

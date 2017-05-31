@@ -49,7 +49,7 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("beta");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -61,23 +61,21 @@ public class NotificationService extends Service {
                         boolean badWeather = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                         Calendar notificationDay = new GregorianCalendar(year, month, day);
                         Calendar todayInstance = new GregorianCalendar();
+//                        Calendar todayInstance = new GregorianCalendar(2017, 5, 10);
                         Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
                         int localNotificationId = sharedPreferences.getInt("notificationId", 0);
                         if (localNotificationId < currentNotificationId && today.equals(notificationDay)) {
                             Intent notificationIntent = new Intent(context, MyNotification.class);
-                            if (sharedPreferences.getBoolean("previuosWeather", false) != badWeather) {
-                                sharedPreferences.edit().putBoolean("previuosWeather", badWeather).apply();
-                                if (badWeather) {
-                                    MainActivity.badDay = notificationDay;
-                                    sharedPreferences.edit().putInt("BadWeatherYear", year).apply();
-                                    sharedPreferences.edit().putInt("BadWeatherMonth", month).apply();
-                                    sharedPreferences.edit().putInt("BadWeatherDay", day).apply();
-                                } else {
-                                    MainActivity.badDay = null;
-                                    sharedPreferences.edit().putInt("BadWeatherYear", 0).apply();
-                                    sharedPreferences.edit().putInt("BadWeatherMonth", 0).apply();
-                                    sharedPreferences.edit().putInt("BadWeatherDay", 0).apply();
-                                }
+                            if (badWeather) {
+                                MainActivity.badDay = notificationDay;
+                                sharedPreferences.edit().putInt("BadWeatherYear", year).apply();
+                                sharedPreferences.edit().putInt("BadWeatherMonth", month).apply();
+                                sharedPreferences.edit().putInt("BadWeatherDay", day).apply();
+                            } else {
+                                MainActivity.badDay = null;
+                                sharedPreferences.edit().putInt("BadWeatherYear", 0).apply();
+                                sharedPreferences.edit().putInt("BadWeatherMonth", 0).apply();
+                                sharedPreferences.edit().putInt("BadWeatherDay", 0).apply();
                             }
                             notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                             notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
