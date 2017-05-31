@@ -15,9 +15,9 @@
     </integer-array>
     <string-array name="slide_text">
         <item />
-        <item name="home_slide1">Dal 10 giugno al 30 luglio, tutte le settimane.</item>
-        <item name="home_slide2">16 Live show, tutti i venerdì e i sabato.</item>
-        <item name="home_slide3">Ricco menù, scopri gli appuntamenti con la nostra cucina.</item>
+        <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 9 giugno al 29 luglio</item>
+        <item name="home_slide2">16 Live show</item>
+        <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
     <string name="next_evenings">Prossime serate</string>
@@ -156,7 +156,7 @@
         <item />
         <item>&#160;di G. Sperotto.\nDubbi, paure, forti emozioni di una folle impresa: la realizzazione del Cristo in acciaio per il Summano.</item>
         <item>\nGenere: rock italiano</item>
-        <item></item>
+        <item />
         <item>\nGenere: new music acustic</item>
         <item />
         <item>\nGenere: Duo, voce e chitarra</item>
@@ -167,19 +167,19 @@
         <item>\nGenere: country</item>
         <item>\nGenere: Live&amp;Love Tour 2017</item>
         <item>&#160;from South with Spirit</item>
-        <item></item>
+        <item />
         <item>\nCiò che non hai mai visto lo trovi dove sei sempre stato. Presentazione del progetto e delle aziende coinvolte con degustazione dei prodotti Agritour.</item>
         <item>\nGenere: cover Litfiba</item>
         <item>\nGenere: musica latina en vino\n\nPRAVOLLEY</item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
         <item>\nRacconti di Diamante e Davide</item>
         <item>\nGenere: alternative rock band</item>
         <item>\nGenere: rock’roll, afro</item>
         <item>\nGenere: rock and blues</item>
-        <item></item>
+        <item />
         <item>\nGenere: rock band</item>
-        <item></item>
+        <item />
     </string-array>
     <array name="day_event_image">
         <item>@drawable/g09</item>
@@ -213,34 +213,34 @@
         <item>@drawable/image_mockup2</item>
     </array>
     <string-array name="day_foods">
-        <item></item>
-        <item>Panino faccia vista</item>
-        <item></item>
-        <item></item>
+        <item />
+        <item>Panino facciavista</item>
+        <item />
+        <item />
         <item>Grigliata mista</item>
         <item />
-        <item></item>
-        <item></item>
-        <item>Panino porchetta</item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
+        <item>Panino con porchetta</item>
+        <item />
+        <item />
         <item>Club sandwich</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
+        <item />
         <item>Bruschette</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
+        <item />
         <item>Galletti con patate</item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
+        <item />
+        <item />
         <item>Pizza</item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item />
+        <item />
+        <item />
         <item>Paella</item>
     </string-array>
     <string name="day_food">(piatto della serata)</string>
@@ -342,36 +342,37 @@
     <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2016 dell\'Anguriara.</string>
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
-    <string name="pravolley_schedule">Sabato 9 luglio:
-    \n\u2022 13:15 Accettazione scquadre;
-    \n\u2022 14:00 Inizio gare con Dj Set By Jeje;
-    \n\u2022 19:00 Fine gare;
-    \n\u2022 19:30 Apertura serale con pizza;
-    \n\u2022 21:30 Beer Brothers Live Show (AC/DC Tribute Band).
-    \n\nDomenica 12 luglio:
-    \n\u2022 8:30 Colazione;
-    \n\u2022 9:00 Inizio gare con Dj Set By Jeje;
-    \n\u2022 12:00 - 13:00 Pranzo con hot dog;
-    \n\u2022 15:30 Finali;
-    \n\u2022 18:00 Premiazioni + aperitivo anguriara fino alle 21:00 con gli Old Virginia.
-    </string>
-    <string name="pravolley_schedule_2016">Sabato 9 luglio
-        \nDomenica 10 luglio
+    <!--<string name="pravolley_schedule">Sabato 9 luglio:-->
+    <!--\n\u2022 13:15 Accettazione scquadre;-->
+    <!--\n\u2022 14:00 Inizio gare con Dj Set By Jeje;-->
+    <!--\n\u2022 19:00 Fine gare;-->
+    <!--\n\u2022 19:30 Apertura serale con pizza;-->
+    <!--\n\u2022 21:30 Beer Brothers Live Show (AC/DC Tribute Band).-->
+    <!--\n\nDomenica 12 luglio:-->
+    <!--\n\u2022 8:30 Colazione;-->
+    <!--\n\u2022 9:00 Inizio gare con Dj Set By Jeje;-->
+    <!--\n\u2022 12:00 - 13:00 Pranzo con hot dog;-->
+    <!--\n\u2022 15:30 Finali;-->
+    <!--\n\u2022 18:00 Premiazioni + aperitivo anguriara fino alle 21:00 con gli Old Virginia.-->
+    <!--</string>-->
+    <string name="pravolley_schedule">Sabato 15 luglio
+        \nDomenica 16 luglio
     </string>
     <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
         \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi;
         \n\u2022 Ogni squadra dovrà portarsi un pallone da pallavolo;
         \n\u2022 Le squadre inoltre dovranno arbitrare a rotazione;
-        \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie break;
+        \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie-break;
         \n\u2022 Il punteggio durante i gironi corrisponderà al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti.
     </string>
     <string name="inscriptions">Iscrizioni</string>
-    <string name="pravolley_inscriptions">\u2022 Apertura iscrizioni: venerdì 15 giugno
-        \n\u2022 Chiusura iscrizioni: mercoledì 30 giugno
+    <string name="pravolley_inscriptions">\u2022 Apertura iscrizioni: mercoledì 21 giugno
+        \n\u2022 Chiusura iscrizioni: sabato 1 luglio
         \n\u2022 Numero squadre: 21
         \n\u2022 Iscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e invialo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
         \n\u2022 Il costo di iscrizione è di 10 euro, comprensivi di un buono colazione (caffè + brioche) e della maglietta del pravolley!
+        \n\u2022 In caso un componente della squadra non possa partecipare chiediamo ugualmente una quota di partecipazione di 6 euro per la fornitura della maglietta
         \n\u2022 Premi per i prime tre classificati!
     </string>
     <string name="gallery">Galleria</string>
@@ -379,7 +380,7 @@
     <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_number_1">19</string>
     <string name="who_we_are_title_1">Numero edizioni</string>
-    <string name="who_we_are_number_2">28</string>
+    <string name="who_we_are_number_2">29</string>
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
