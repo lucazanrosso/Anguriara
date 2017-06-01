@@ -208,7 +208,7 @@
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/open</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
     </array>
@@ -375,6 +375,7 @@
         \n\u2022 In caso un componente della squadra non possa partecipare chiediamo ugualmente una quota di partecipazione di 6 euro per la fornitura della maglietta
         \n\u2022 Premi per i prime tre classificati!
     </string>
+    <string name="container_description">Dall\’esigenza di presentare qualcosa di nuovo, di riciclare l’usato, di proporre prodotti locali e degustare birre artigianali seduti su comodi divanetti nasce il Container, un nuovo chiosco ricavato da un container navale grande 6 x 3 metri</string>
     <string name="gallery">Galleria</string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>

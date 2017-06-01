@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-39", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2016-40", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-39", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2016-40", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 17, 0);
+                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 15, 0);
 //                Test
 //                alarmTime.set(2017, 5, 22, 10, i + 4);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
