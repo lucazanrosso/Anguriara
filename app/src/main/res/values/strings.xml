@@ -243,7 +243,6 @@
         <item />
         <item>Paella</item>
     </string-array>
-    <string name="day_food">(piatto della serata)</string>
     <string name="standard_foods_w">
         \u2022 Panini freddi
         \n\u2022 Patatine fritte
@@ -258,6 +257,7 @@
         \n\u2022 Gelato
     </string>
     <string name="standard_foods_s">Oltre al piatto della serata la cucina propone:
+        \n\u2022 Panino vegetariano
         \n\u2022 Patatine fritte
         \n\u2022 Fette d\'anguria
         \n\u2022 Gelato
