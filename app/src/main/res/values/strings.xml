@@ -16,7 +16,7 @@
     <string-array name="slide_text">
         <item />
         <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 9 giugno al 29 luglio</item>
-        <item name="home_slide2">16 Live show</item>
+        <item name="home_slide2">18 Live show</item>
         <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
@@ -339,7 +339,7 @@
     <string name="evenings_notifications">Notifiche serate</string>
     <string name="firebase_notifications">Notifiche maltempo e cambiamenti</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
-    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2016 dell\'Anguriara.</string>
+    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2017 dell\'Anguriara.</string>
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
     <!--<string name="pravolley_schedule">Sabato 9 luglio:-->
@@ -384,7 +384,7 @@
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
-    <string name="who_we_are_number_4">16</string>
+    <string name="who_we_are_number_4">18</string>
     <string name="who_we_are_title_4">Live band</string>
     <string name="who_we_are_text">L\' Anguriara nasce nel \"lontano\" 1999 nel nostro caro paesino di Giavenale (frazione del comune di Schio).
         \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.

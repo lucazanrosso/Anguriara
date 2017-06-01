@@ -49,7 +49,7 @@ public class NotificationService extends Service {
 //            stopSelf(msg.arg1);
 
             sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("beta");
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
