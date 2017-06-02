@@ -46,7 +46,7 @@
                 <ImageView
                     android:id="@+id/agritour_image"
                     style="@style/card_view_image"
-                    android:src="@drawable/image_mockup2"
+                    android:src="@drawable/agritour"
                     android:layout_below="@id/agritour_title"
                     android:contentDescription="@null"/>
                 <TextView
