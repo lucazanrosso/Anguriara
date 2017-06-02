@@ -20,6 +20,12 @@
             android:orderInCategory="100"
             android:title="@string/pravolley" />
         <item
+            android:id="@+id/news"
+            android:checkable="true"
+            android:icon="@drawable/ic_fiber_new_black_24dp"
+            android:orderInCategory="100"
+            android:title="@string/news" />
+        <item
             android:id="@+id/where_we_are"
             android:checkable="true"
             android:icon="@drawable/ic_place_black_24dp"

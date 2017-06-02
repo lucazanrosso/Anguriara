@@ -99,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.pravolley:
                         fragment = new PravolleyFragment();
                         break;
+                    case R.id.news:
+                        fragment = new NewsFragment();
+                        break;
                     case R.id.where_we_are:
                         fragment = new WhereWeAreFragment();
                         break;
@@ -215,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 15, 0);
+                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
 //                alarmTime.set(2017, 5, 22, 10, i + 4);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
