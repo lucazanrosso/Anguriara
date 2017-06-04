@@ -186,6 +186,15 @@
         <item>@drawable/g10</item>
         <item>@drawable/open</item>
         <item>@drawable/g15</item>
+        <item>@drawable/g16</item>
+        <item>@drawable/mastro_birraio</item>
+        <item>@drawable/g22</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/image_mockup2</item>
+        <item>@drawable/mastro_birraio</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
@@ -194,16 +203,7 @@
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/mastro_birraio</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
         <item>@drawable/image_mockup2</item>
@@ -384,7 +384,7 @@
     <string name="agritour_title">Agritour</string>
     <string name="agritour_description">Agritour è un progetto dedicato al viaggiare lento creato per tornare a vivere la campagna vicentina tra Vicenza e le Piccole Dolomiti attraverso percorsi su strade secondarie e incontri con le aziende agricole, i loro prodotti e il loro lavoro.
         \nL\'Agritour dea Molonara è un percorso di 24 km accessibile a tutti e aperto tutto l\'anno attraverso la campagna di Schio, Marano Vicentino e Zanè per ri-scoprire che \"ciò che non siamo più abituati a vedere\" lo troviamo a pochi passi da casa.
-        \nAlcuni prodotti utilizzati in Anguriara sono delle aziende di agritour
+        \nAlcuni prodotti utilizzati in Anguriara sono delle aziende di agritour.
     </string>
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
