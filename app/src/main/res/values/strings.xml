@@ -189,28 +189,28 @@
         <item>@drawable/g16</item>
         <item>@drawable/mastro_birraio</item>
         <item>@drawable/g22</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
         <item>@drawable/mastro_birraio</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
         <item>@drawable/mastro_birraio</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
         <item>@drawable/open</item>
-        <item>@drawable/image_mockup2</item>
-        <item>@drawable/image_mockup2</item>
+        <item>@drawable/comingsoon</item>
+        <item>@drawable/comingsoon</item>
     </array>
     <string-array name="day_foods">
         <item />
@@ -339,7 +339,7 @@
     <string name="evenings_notifications">Notifiche serate</string>
     <string name="firebase_notifications">Notifiche maltempo e cambiamenti</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
-    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara per Android. Tieni sempre a portata di smartphone il programma 2017 dell\'Anguriara.</string>
+    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara 2017 per Android.</string>
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
     <!--<string name="pravolley_schedule">Sabato 9 luglio:-->

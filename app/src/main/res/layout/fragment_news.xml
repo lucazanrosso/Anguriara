@@ -24,7 +24,7 @@
                 <ImageView
                     android:id="@+id/pravolley_image"
                     style="@style/card_view_image"
-                    android:src="@drawable/image_mockup2"
+                    android:src="@drawable/container"
                     android:layout_below="@id/container_title"
                     android:contentDescription="@null"/>
                 <TextView
