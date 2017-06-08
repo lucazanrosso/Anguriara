@@ -16,7 +16,7 @@
     <string-array name="slide_text">
         <item />
         <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 9 giugno al 29 luglio</item>
-        <item name="home_slide2">18 Live show</item>
+        <item name="home_slide2">19 Live show</item>
         <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
@@ -142,7 +142,7 @@
         <item>Chupacabra</item>
         <item>PRAVOLLEY</item>
         <item>Mastro Birraio</item>
-        <item>Un esperienza in Congo</item>
+        <item>Aperto</item>
         <item>Exploder the band</item>
         <item>Jam Session Rrainy Valley</item>
         <item>Lady Rock</item>
@@ -165,7 +165,7 @@
         <item />
         <item>&#160;con il Mastro Birraio</item>
         <item>\nGenere: country</item>
-        <item>\nGenere: Live&amp;Love Tour 2017</item>
+        <item>\nLive&amp;Love Tour 2017</item>
         <item>&#160;from South with Spirit</item>
         <item />
         <item>\nCiò che non hai mai visto lo trovi dove sei sempre stato. Presentazione del progetto e delle aziende coinvolte con degustazione dei prodotti Agritour.</item>
@@ -173,13 +173,13 @@
         <item>\nGenere: musica latina en vino\n\nPRAVOLLEY</item>
         <item />
         <item />
-        <item>\nRacconti di Diamante e Davide</item>
+        <item />
         <item>\nGenere: alternative rock band</item>
         <item>\nGenere: rock’roll, afro</item>
         <item>\nGenere: rock and blues</item>
         <item />
         <item>\nGenere: rock band</item>
-        <item />
+        <item>\n\nSCHIUMA PARTY</item>
     </string-array>
     <array name="day_event_image">
         <item>@drawable/g09</item>
@@ -189,28 +189,28 @@
         <item>@drawable/g16</item>
         <item>@drawable/mastro_birraio</item>
         <item>@drawable/g22</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
+        <item>@drawable/g23</item>
+        <item>@drawable/g24</item>
+        <item>@drawable/g28</item>
+        <item>@drawable/g30</item>
+        <item>@drawable/l01</item>
         <item>@drawable/mastro_birraio</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
+        <item>@drawable/l06</item>
+        <item>@drawable/l07</item>
+        <item>@drawable/l08</item>
+        <item>@drawable/l12</item>
+        <item>@drawable/l13</item>
+        <item>@drawable/l14</item>
+        <item>@drawable/l15</item>
+        <item>@drawable/l16</item>
         <item>@drawable/mastro_birraio</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
         <item>@drawable/open</item>
-        <item>@drawable/comingsoon</item>
-        <item>@drawable/comingsoon</item>
+        <item>@drawable/l21</item>
+        <item>@drawable/l22</item>
+        <item>@drawable/l26</item>
+        <item>@drawable/open</item>
+        <item>@drawable/l28</item>
+        <item>@drawable/l29</item>
     </array>
     <string-array name="day_foods">
         <item />
@@ -314,7 +314,7 @@
         <item>20:30</item>
         <item>20:30</item>
         <item>19:30</item>
-        <item>Da definire</item>
+        <item>Aperto tutto il giorno fino alla conclusione del torneo</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
@@ -394,7 +394,7 @@
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
-    <string name="who_we_are_number_4">18</string>
+    <string name="who_we_are_number_4">19</string>
     <string name="who_we_are_title_4">Live band</string>
     <string name="who_we_are_text">L\' Anguriara nasce nel \"lontano\" 1999 nel nostro caro paesino di Giavenale (frazione del comune di Schio).
         \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.

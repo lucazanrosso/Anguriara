@@ -2,6 +2,7 @@ package com.lucazanrosso.anguriara;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +55,10 @@ public class DayFragment extends Fragment {
 //            foodText.setLayoutParams(layoutParams);
 //        }
         if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-            foodText.setText(getResources().getString(R.string.close));
-            ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
+//            foodText.setText(getResources().getString(R.string.close));
+//            ((ViewGroup) foodSubtext.getParent()).removeView(foodSubtext);
+            CardView foodCardView = (CardView) view.findViewById(R.id.food_card_view);
+            ((ViewGroup) foodCardView.getParent()).removeView(foodCardView);
         } else {
             foodText.setText(dayFood);
             if (date.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)

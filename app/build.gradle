@@ -48,8 +48,8 @@ android {
         applicationId "com.lucazanrosso.anguriara"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 24
-        versionName "1.8.1"
+        versionCode 25
+        versionName "2.0.0"
     }
     buildTypes {
         release {
