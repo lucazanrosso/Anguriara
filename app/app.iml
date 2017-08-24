@@ -111,6 +111,7 @@
     <orderEntry type="library" name="support-core-ui-26.0.1" level="project" />
     <orderEntry type="library" name="support-media-compat-26.0.1" level="project" />
     <orderEntry type="library" name="play-services-basement-11.2.0" level="project" />
+    <orderEntry type="library" name="constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="firebase-iid-11.2.0" level="project" />
     <orderEntry type="library" name="recyclerview-v7-26.0.1" level="project" />
     <orderEntry type="library" name="support-vector-drawable-26.0.1" level="project" />
@@ -120,6 +121,7 @@
     <orderEntry type="library" name="play-services-base-11.2.0" level="project" />
     <orderEntry type="library" name="firebase-database-11.2.0" level="project" />
     <orderEntry type="library" name="support-compat-26.0.1" level="project" />
+    <orderEntry type="library" name="constraint-layout-solver-1.0.2" level="project" />
     <orderEntry type="library" name="firebase-database-connection-11.2.0" level="project" />
     <orderEntry type="library" name="support-annotations-26.0.1" level="project" />
     <orderEntry type="library" name="play-services-maps-11.2.0" level="project" />

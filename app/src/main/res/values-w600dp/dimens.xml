@@ -1,4 +1,3 @@
 <resources>
     <dimen name="card_view_width">540dp</dimen>
-    <dimen name="pravolley_logo">400dp</dimen>
 </resources>

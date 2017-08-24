@@ -7,23 +7,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="@dimen/card_view_width"
-                android:layout_height="wrap_content"
-                android:id="@+id/welcome_image"
-                android:src="@drawable/anguriara2017"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:paddingLeft="64dp"
-                android:paddingRight="64dp"
-                android:paddingTop="32dp"
-                android:paddingBottom="32dp"
-                android:contentDescription="@null"/>
-        </RelativeLayout>
+        <ImageView
+            android:layout_width="@dimen/card_view_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/welcome_image"
+            android:src="@drawable/anguriara2017"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="64dp"
+            android:paddingRight="64dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:contentDescription="@null" />
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
