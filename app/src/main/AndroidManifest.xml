@@ -60,9 +60,6 @@
             </intent-filter>
         </service>
 
-        <service
-            android:name=".NotificationService"
-            android:exported="false" />
     </application>
 
 </manifest>

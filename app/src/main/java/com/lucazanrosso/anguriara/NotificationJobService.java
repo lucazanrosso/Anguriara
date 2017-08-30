@@ -23,7 +23,7 @@ public class NotificationJobService extends JobService {
     public boolean onStartJob(JobParameters job) {
         // Do some work here
         sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("notification");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

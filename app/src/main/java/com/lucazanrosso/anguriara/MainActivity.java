@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2017", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2017-2", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2017", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2017-2", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-//                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
+                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
                 alarmTime.set(2017, 7, 25, 14, i + 10);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
@@ -245,7 +245,6 @@ public class MainActivity extends AppCompatActivity {
     public static void setFirebaseAlarm (Context context, boolean setAlarm, boolean isBootReceiver) {
         if (!isBootReceiver)
             MainActivity.sharedPreferences.edit().putBoolean("firebaseAlarmIsSet", setAlarm).apply();
-//        Intent intent = new Intent(context, NotificationService.class);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
         if (setAlarm) {
             Job myJob = dispatcher.newJobBuilder()
