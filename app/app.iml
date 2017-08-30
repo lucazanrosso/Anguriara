@@ -120,6 +120,7 @@
     <orderEntry type="library" name="play-services-base-11.2.0" level="project" />
     <orderEntry type="library" name="firebase-database-11.2.0" level="project" />
     <orderEntry type="library" name="support-compat-26.0.1" level="project" />
+    <orderEntry type="library" name="firebase-jobdispatcher-0.8.0" level="project" />
     <orderEntry type="library" name="firebase-database-connection-11.2.0" level="project" />
     <orderEntry type="library" name="support-annotations-26.0.1" level="project" />
     <orderEntry type="library" name="play-services-maps-11.2.0" level="project" />

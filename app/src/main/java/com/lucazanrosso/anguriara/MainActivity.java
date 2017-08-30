@@ -1,13 +1,16 @@
 package com.lucazanrosso.anguriara;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -23,6 +26,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
+
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -218,9 +225,9 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
+//                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
-//                alarmTime.set(2017, 5, 22, 10, i + 4);
+                alarmTime.set(2017, 7, 25, 14, i + 10);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
             } else
@@ -238,11 +245,16 @@ public class MainActivity extends AppCompatActivity {
     public static void setFirebaseAlarm (Context context, boolean setAlarm, boolean isBootReceiver) {
         if (!isBootReceiver)
             MainActivity.sharedPreferences.edit().putBoolean("firebaseAlarmIsSet", setAlarm).apply();
-        Intent intent = new Intent(context, NotificationService.class);
-        if (setAlarm)
-            context.startService(intent);
-        else
-            context.stopService(intent);
+//        Intent intent = new Intent(context, NotificationService.class);
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
+        if (setAlarm) {
+            Job myJob = dispatcher.newJobBuilder()
+                    .setService(NotificationJobService.class) // the JobService that will be called
+                    .setTag("my-unique-tag")        // uniquely identifies the job
+                    .build();
+            dispatcher.mustSchedule(myJob);
+        } else
+            dispatcher.cancel("my-unique-tag");
     }
 
     @Override
