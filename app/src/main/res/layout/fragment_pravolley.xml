@@ -51,17 +51,17 @@
                     style="@style/card_view_icon"
                     android:src="@drawable/ic_assignment_black_24dp"
                     android:contentDescription="@null"/>
-                    <TextView
-                        android:id="@+id/regulation_title"
-                        style="@style/card_view_subheading"
-                        android:text="@string/regulation"
-                        android:layout_toRightOf="@+id/regulation_icon"
-                        android:layout_toEndOf="@+id/regulation_icon"/>
-                    <TextView
-                        android:id="@+id/regulation_text"
-                        style="@style/card_view_text"
-                        android:layout_below="@id/regulation_icon"
-                        android:text="@string/pravolley_ragulation" />
+                <TextView
+                    android:id="@+id/regulation_title"
+                    style="@style/card_view_subheading"
+                    android:text="@string/regulation"
+                    android:layout_toRightOf="@+id/regulation_icon"
+                    android:layout_toEndOf="@+id/regulation_icon"/>
+                <TextView
+                    android:id="@+id/regulation_text"
+                    style="@style/card_view_text"
+                    android:layout_below="@id/regulation_icon"
+                    android:text="@string/pravolley_ragulation" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
