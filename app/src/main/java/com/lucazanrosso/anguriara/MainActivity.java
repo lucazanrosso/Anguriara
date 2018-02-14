@@ -48,14 +48,13 @@ public class MainActivity extends AppCompatActivity {
     public final static int YEAR = 2017;
     public static String[] daysOfWeek;
     public static String[] months;
-    public static Calendar todayInstance = new GregorianCalendar();
-//    public static Calendar todayInstance = new GregorianCalendar(2017, 7, 10);
+//    public static Calendar todayInstance = new GregorianCalendar();
+    public static Calendar todayInstance = new GregorianCalendar(2017, 6, 27);
     public static Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
 
     public static SharedPreferences sharedPreferences;
-    private static PendingIntent notificationPendingIntent;
-    private static AlarmManager notificationAlarmManager;
+    public static AlarmManager notificationAlarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
         if (!isBootReceiver)
             MainActivity.sharedPreferences.edit().putBoolean("eveningsAlarmIsSet", setAlarm).apply();
         int i = 0;
+
+        MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : calendar.entrySet()) {
             String notificationText = (String) entry.getValue().get("event");
             String notificationFood = (String) entry.getValue().get("food");
@@ -219,19 +220,18 @@ public class MainActivity extends AppCompatActivity {
             Intent notificationIntent = new Intent(context, MyNotification.class);
             notificationIntent.putExtra("notification_title", context.getResources().getString(R.string.this_evening));
             notificationIntent.putExtra("notification_text", notificationText);
-            MainActivity.notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(context, i, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
+//                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
-                alarmTime.set(2017, 7, 25, 14, i + 10);
+                alarmTime.set(2018, 1, 1, 0, i + 15);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
-                    MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), MainActivity.notificationPendingIntent);
+                    MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), notificationPendingIntent);
             } else
-                MainActivity.notificationAlarmManager.cancel(MainActivity.notificationPendingIntent);
+                MainActivity.notificationAlarmManager.cancel(notificationPendingIntent);
             i++;
         }
 

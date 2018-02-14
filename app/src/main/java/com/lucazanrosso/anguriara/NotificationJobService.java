@@ -1,8 +1,11 @@
 package com.lucazanrosso.anguriara;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
@@ -23,7 +26,7 @@ public class NotificationJobService extends JobService {
     public boolean onStartJob(JobParameters job) {
         // Do some work here
         sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("notification");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -34,8 +37,8 @@ public class NotificationJobService extends JobService {
                     int year = dataSnapshot.child("year").getValue(Integer.class);
                     boolean badWeather = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                     Calendar notificationDay = new GregorianCalendar(year, month, day);
-                    Calendar todayInstance = new GregorianCalendar();
-//                        Calendar todayInstance = new GregorianCalendar(2017, 5, 10);
+//                    Calendar todayInstance = new GregorianCalendar();
+                    Calendar todayInstance = new GregorianCalendar(2017, 6, 27);
                     Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
                     int localNotificationId = sharedPreferences.getInt("notificationId", 0);
                     if (localNotificationId < currentNotificationId && today.equals(notificationDay)) {
@@ -45,6 +48,13 @@ public class NotificationJobService extends JobService {
                             sharedPreferences.edit().putInt("BadWeatherYear", year).apply();
                             sharedPreferences.edit().putInt("BadWeatherMonth", month).apply();
                             sharedPreferences.edit().putInt("BadWeatherDay", day).apply();
+
+                            // FUNZIONERA'?
+                            PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 25, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//                            Toast.makeText(getApplicationContext(), MainActivity.days.indexOf(today), Toast.LENGTH_SHORT).show();
+                            MainActivity.notificationAlarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+                            MainActivity.notificationAlarmManager.cancel(notificationPendingIntent);
+
                         } else {
                             MainActivity.badDay = null;
                             sharedPreferences.edit().putInt("BadWeatherYear", 0).apply();
