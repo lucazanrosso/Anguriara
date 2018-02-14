@@ -2,11 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/calendar_scroll_view">
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingBottom="8dp">
         <ImageView
             android:layout_width="@dimen/card_view_width"
             android:layout_height="wrap_content"
@@ -18,10 +19,15 @@
             android:paddingRight="64dp"
             android:paddingTop="32dp"
             android:paddingBottom="32dp"
-            android:contentDescription="@null" />
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
         <RelativeLayout
+            android:id="@+id/pager_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/welcome_image">
             <com.lucazanrosso.anguriara.ImageViewPager
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/pager"
@@ -36,97 +42,103 @@
                 android:gravity="center"
                 android:paddingBottom="8dp"/>
         </RelativeLayout>
-        <LinearLayout
+        <TextView
+            style="@style/headline"
+            android:text="@string/this_evening"
+            android:id="@+id/this_evening_title"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginRight="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin_with_card_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pager_layout"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/event_card_view"
+            style="@style/card_view"
+            android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin_with_card_view"
-                android:paddingRight="@dimen/activity_horizontal_margin_with_card_view">
+            android:layout_marginStart="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginRight="@dimen/activity_horizontal_margin_with_card_view"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin_with_card_view"
+            app:layout_constraintTop_toBottomOf="@id/this_evening_title">
+            <android.support.constraint.ConstraintLayout
+                style="@style/card_view_layout_with_button">
                 <TextView
-                    style="@style/headline"
-                    android:text="@string/this_evening"
-                    android:id="@+id/this_evening_title" />
-                <android.support.v7.widget.CardView
-                    android:id="@+id/event_card_view"
-                    style="@style/card_view"
-                    android:layout_gravity="center_horizontal">
-                    <RelativeLayout
-                        style="@style/card_view_layout_with_button">
-                        <TextView
-                            android:id="@+id/event_day"
-                            style="@style/card_view_subheading" />
-                        <ImageView
-                            android:id="@+id/event_image"
-                            style="@style/card_view_image"
-                            android:adjustViewBounds="true"
-                            android:layout_below="@id/event_day"
-                            android:contentDescription="@null"/>
-                        <TextView
-                            android:id="@+id/event_title"
-                            style="@style/card_view_title"
-                            android:paddingTop="8dp"
-                            android:layout_below="@id/event_image"/>
-                        <TextView
-                            android:id="@+id/event_text"
-                            style="@style/card_view_text"
-                            android:layout_below="@id/event_title"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/event_text">
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/details_button"
-                                android:text="@string/details"
-                                android:textColor="@color/accent"
-                                android:background="@null"
-                                android:paddingLeft="12dp"
-                                android:paddingRight="12dp"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginRight="4dp" />
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/schedule_button"
-                                android:text="@string/calendar"
-                                android:textColor="@color/accent"
-                                android:background="@null"
-                                android:paddingLeft="12dp"
-                                android:paddingRight="12dp"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginRight="4dp" />
-                        </LinearLayout>
-                    </RelativeLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/next_evenings_title"
-                style="@style/headline"
-                android:text="@string/next_evenings"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"/>
-            <HorizontalScrollView
-                android:id="@+id/next_evenings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:scrollbars="none">
-                <LinearLayout
+                    android:id="@+id/event_day"
+                    style="@style/card_view_subheading"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/event_image"
+                    style="@style/card_view_image"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_day"/>
+                <TextView
+                    android:id="@+id/event_title"
+                    style="@style/card_view_title"
+                    android:paddingTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_image"/>
+                <TextView
+                    android:id="@+id/event_text"
+                    style="@style/card_view_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_title"/>
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/next_evenings_layout"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp">
-                </LinearLayout>
-            </HorizontalScrollView>
-        </LinearLayout>
-    </LinearLayout>
+                    android:id="@+id/details_button"
+                    android:text="@string/details"
+                    android:textColor="@color/accent"
+                    android:background="@null"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_text"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/schedule_button"
+                    android:text="@string/calendar"
+                    android:textColor="@color/accent"
+                    android:background="@null"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    app:layout_constraintStart_toEndOf="@id/details_button"
+                    app:layout_constraintTop_toBottomOf="@id/event_text"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/next_evenings_title"
+            style="@style/headline"
+            android:text="@string/next_evenings"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/event_card_view"/>
+        <HorizontalScrollView
+            android:id="@+id/next_evenings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/next_evenings_title">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/next_evenings_layout"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+            </LinearLayout>
+        </HorizontalScrollView>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

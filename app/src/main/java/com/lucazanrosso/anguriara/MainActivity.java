@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public static String[] daysOfWeek;
     public static String[] months;
 //    public static Calendar todayInstance = new GregorianCalendar();
-    public static Calendar todayInstance = new GregorianCalendar(2017, 6, 27);
+    public static Calendar todayInstance = new GregorianCalendar(2017, 6, 26);
     public static Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
 
