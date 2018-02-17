@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
@@ -15,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,6 +27,16 @@ public class NotificationJobService extends JobService {
         // Do some work here
         sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("test");
+
+        final Context context = getApplicationContext();
+
+        final ArrayList<Calendar> days = new ArrayList<>();
+        int[] anguriaraMonths = context.getResources().getIntArray(R.array.anguriara_months);
+        int[] anguriaraDaysOfMonth = context.getResources().getIntArray(R.array.anguriara_days_of_month);
+        for (int i = 0; i < anguriaraMonths.length; i++) {
+            days.add(new GregorianCalendar(MainActivity.YEAR, anguriaraMonths[i], anguriaraDaysOfMonth[i]));
+        }
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -38,23 +48,19 @@ public class NotificationJobService extends JobService {
                     boolean badWeather = dataSnapshot.child("bad_weather").getValue(Boolean.class);
                     Calendar notificationDay = new GregorianCalendar(year, month, day);
 //                    Calendar todayInstance = new GregorianCalendar();
-                    Calendar todayInstance = new GregorianCalendar(2017, 6, 27);
+                    Calendar todayInstance = new GregorianCalendar(2017, 5, 14);
                     Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
                     int localNotificationId = sharedPreferences.getInt("notificationId", 0);
                     if (localNotificationId < currentNotificationId && today.equals(notificationDay)) {
-                        Intent notificationIntent = new Intent(getApplicationContext(), MyNotification.class);
+                        Intent notificationIntent = new Intent(context, MyNotification.class);
                         if (badWeather) {
                             MainActivity.badDay = notificationDay;
                             sharedPreferences.edit().putInt("BadWeatherYear", year).apply();
                             sharedPreferences.edit().putInt("BadWeatherMonth", month).apply();
                             sharedPreferences.edit().putInt("BadWeatherDay", day).apply();
-
-                            // FUNZIONERA'?
-                            PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 25, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                            Toast.makeText(getApplicationContext(), MainActivity.days.indexOf(today), Toast.LENGTH_SHORT).show();
-                            MainActivity.notificationAlarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+                            PendingIntent notificationPendingIntent = PendingIntent.getBroadcast(context, days.indexOf(today), notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                            MainActivity.notificationAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                             MainActivity.notificationAlarmManager.cancel(notificationPendingIntent);
-
                         } else {
                             MainActivity.badDay = null;
                             sharedPreferences.edit().putInt("BadWeatherYear", 0).apply();
@@ -63,7 +69,7 @@ public class NotificationJobService extends JobService {
                         }
                         notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                         notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
-                        getApplicationContext().sendBroadcast(notificationIntent);
+                        context.sendBroadcast(notificationIntent);
                     }
                     sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
                 }
