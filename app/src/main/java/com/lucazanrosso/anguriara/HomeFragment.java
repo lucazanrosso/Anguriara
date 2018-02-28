@@ -1,5 +1,7 @@
 package com.lucazanrosso.anguriara;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,6 +10,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
 public class HomeFragment extends Fragment {
@@ -27,6 +31,8 @@ public class HomeFragment extends Fragment {
     final int NUMBER_OF_SLIDES = 5;
     int currentPosition;
     int previousPosition;
+
+    SharedPreferences sharedPreferences;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -42,6 +48,8 @@ public class HomeFragment extends Fragment {
         }
 
         setSlider();
+
+        setNews();
 
         setThisDay();
 
@@ -88,14 +96,27 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    private void setNews() {
+        sharedPreferences = getActivity().getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
+        GregorianCalendar newsDay = new GregorianCalendar(sharedPreferences.getInt("NewsYear", 0), sharedPreferences.getInt("NewsMonth", 0), sharedPreferences.getInt("NewsDay", 0));
+        if (sharedPreferences.getBoolean("News", false) && MainActivity.today.equals(newsDay)) {
+            TextView newsTitle = view.findViewById(R.id.news_title);
+            CardView newsCardView = view.findViewById(R.id.news_card_view);
+            TextView newsText = view.findViewById(R.id.news_text);
+            newsText.setText(sharedPreferences.getString("NotificationText", null));
+            newsTitle.setVisibility(View.VISIBLE);
+            newsCardView.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void setThisDay() {
-        ImageView todayImage = (ImageView) view.findViewById(R.id.event_image);
-        TextView todayDay = (TextView) view.findViewById(R.id.event_day);
+        ImageView todayImage = view.findViewById(R.id.event_image);
+        TextView todayDay = view.findViewById(R.id.event_day);
         todayDay.setText(CalendarFragment.setDateTitle(MainActivity.today));
-        TextView todayTitle = (TextView) view.findViewById(R.id.event_title);
-        TextView todayText = (TextView) view.findViewById(R.id.event_text);
-        Button detailsButton = (Button) view.findViewById(R.id.details_button);
-        Button scheduleButton = (Button) view.findViewById(R.id.schedule_button);
+        TextView todayTitle = view.findViewById(R.id.event_title);
+        TextView todayText = view.findViewById(R.id.event_text);
+        Button detailsButton = view.findViewById(R.id.details_button);
+        Button scheduleButton = view.findViewById(R.id.schedule_button);
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,16 +164,16 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNextEvenings (LayoutInflater inflater, ViewGroup container) {
-        LinearLayout nextEvenings = (LinearLayout) view.findViewById(R.id.next_evenings_layout);
+        LinearLayout nextEvenings = view.findViewById(R.id.next_evenings_layout);
         int i = 0;
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
             if (MainActivity.today.before(entry.getKey())) {
                 i++;
                 View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
-                TextView nextEveningsTitle = (TextView) nextEveningCard.findViewById(R.id.next_evening_title);
-                TextView nextEveningsText = (TextView) nextEveningCard.findViewById(R.id.next_evening_text);
-                Button detailsButton = (Button) nextEveningCard.findViewById(R.id.details_button);
-                ImageView nextEveningImage = (ImageView) nextEveningCard.findViewById(R.id.next_evening_image);
+                TextView nextEveningsTitle = nextEveningCard.findViewById(R.id.next_evening_title);
+                TextView nextEveningsText = nextEveningCard.findViewById(R.id.next_evening_text);
+                Button detailsButton = nextEveningCard.findViewById(R.id.details_button);
+                ImageView nextEveningImage = nextEveningCard.findViewById(R.id.next_evening_image);
                 nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
                 nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
                 int nextEveniningImageId = (int) entry.getValue().get("event_image");

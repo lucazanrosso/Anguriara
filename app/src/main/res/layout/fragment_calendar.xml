@@ -10,9 +10,7 @@
         <TextView
             style="@style/headline"
             android:text="@string/all_evenings"
-            android:id="@+id/all_evenings_title"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"/>
+            android:id="@+id/all_evenings_title" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/all_evenings_recycler_view"
                 android:layout_width="match_parent"
@@ -25,8 +23,6 @@
             android:id="@+id/calendar_title"
             style="@style/headline"
             android:text="@string/complete_calendar"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
             android:layout_below="@id/all_evenings_recycler_view"/>
         <android.support.v7.widget.CardView
             style="@style/card_view"

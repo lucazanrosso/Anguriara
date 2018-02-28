@@ -44,15 +44,39 @@
         </RelativeLayout>
         <TextView
             style="@style/headline"
-            android:text="@string/this_evening"
-            android:id="@+id/this_evening_title"
-            android:layout_marginTop="8dp"
+            android:text="@string/news"
+            android:id="@+id/news_title"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pager_layout"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/news_card_view"
+            style="@style/card_view"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/accent"
+            android:visibility="gone"
             android:layout_marginStart="@dimen/activity_horizontal_margin_with_card_view"
             android:layout_marginLeft="@dimen/activity_horizontal_margin_with_card_view"
             android:layout_marginRight="@dimen/activity_horizontal_margin_with_card_view"
             android:layout_marginEnd="@dimen/activity_horizontal_margin_with_card_view"
+            app:layout_constraintTop_toBottomOf="@id/news_title">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/news_text"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:padding="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.v7.widget.CardView>
+        <TextView
+            style="@style/headline"
+            android:text="@string/this_evening"
+            android:id="@+id/this_evening_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pager_layout"/>
+            app:layout_constraintTop_toBottomOf="@id/news_card_view"/>
         <android.support.v7.widget.CardView
             android:id="@+id/event_card_view"
             style="@style/card_view"
@@ -120,8 +144,6 @@
             android:id="@+id/next_evenings_title"
             style="@style/headline"
             android:text="@string/next_evenings"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/event_card_view"/>
         <HorizontalScrollView

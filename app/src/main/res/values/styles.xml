@@ -11,8 +11,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/text</item>
-        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingLeft">@dimen/headline</item>
+        <item name="android:paddingRight">@dimen/headline</item>
         <item name="android:paddingTop">24dp</item>
     </style>
     <style name="title" parent="@android:style/TextAppearance">

@@ -20,6 +20,7 @@
         <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
+    <string name="news">News</string>
     <string name="next_evenings">Prossime serate</string>
     <string name="all_evenings">Tutte le serate</string>
     <string name="complete_calendar">Calendario</string>
@@ -337,7 +338,7 @@
     <string name="this_evening">Questa sera</string>
     <string name="notifications">Notifiche</string>
     <string name="evenings_notifications">Notifiche serate</string>
-    <string name="firebase_notifications">Notifiche maltempo e cambiamenti</string>
+    <string name="firebase_notifications">Notifiche maltempo, notizie e cambiamenti</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
     <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara 2017 per Android.</string>
     <string name="pravolley">Pravolley</string>
@@ -375,7 +376,7 @@
         \n\u2022 In caso un componente della squadra non possa partecipare chiediamo ugualmente una quota di partecipazione di 6 euro per la fornitura della maglietta
         \n\u2022 Premi per i prime tre classificati!
     </string>
-    <string name="news">Novità</string>
+    <string name="container">El Conteiner</string>
     <string name="container_title">Il Container</string>
     <!--<string name="container_description">Dall\'esigenza di presentare qualcosa di nuovo, di riciclare l’usato, di proporre prodotti locali e degustare birre artigianali seduti su comodi divanetti fatti con bancali nasce \"El Conteiner\", un nuovo chiosco ricavato da un container navale di 6 x 3 metri.-->
         <!--\n\"El Conteiner\" sarà aperto tutti i venerdì e i sabati dalle ore 21:30.</string>-->

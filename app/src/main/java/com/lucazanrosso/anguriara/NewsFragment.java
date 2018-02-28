@@ -16,7 +16,7 @@ public class NewsFragment extends Fragment {
 
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
-            toolbar.setTitle(getResources().getString(R.string.news));
+            toolbar.setTitle(getResources().getString(R.string.container));
         MainActivity.previousFragment = R.id.news;
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);

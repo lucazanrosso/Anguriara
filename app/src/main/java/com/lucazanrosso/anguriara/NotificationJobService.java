@@ -46,6 +46,7 @@ public class NotificationJobService extends JobService {
                     int month = dataSnapshot.child("month").getValue(Integer.class);
                     int year = dataSnapshot.child("year").getValue(Integer.class);
                     boolean badWeather = dataSnapshot.child("bad_weather").getValue(Boolean.class);
+                    boolean news = dataSnapshot.child("news").getValue(Boolean.class);
                     Calendar notificationDay = new GregorianCalendar(year, month, day);
 //                    Calendar todayInstance = new GregorianCalendar();
                     Calendar todayInstance = new GregorianCalendar(2017, 5, 14);
@@ -67,8 +68,20 @@ public class NotificationJobService extends JobService {
                             sharedPreferences.edit().putInt("BadWeatherMonth", 0).apply();
                             sharedPreferences.edit().putInt("BadWeatherDay", 0).apply();
                         }
+                        if (news) {
+                            sharedPreferences.edit().putBoolean("News", true).apply();
+                            sharedPreferences.edit().putInt("NewsYear", year).apply();
+                            sharedPreferences.edit().putInt("NewsMonth", month).apply();
+                            sharedPreferences.edit().putInt("NewsDay", day).apply();
+                        } else {
+                            sharedPreferences.edit().putBoolean("News", false).apply();
+                            sharedPreferences.edit().putInt("NewsYear", 0).apply();
+                            sharedPreferences.edit().putInt("NewsMonth", 0).apply();
+                            sharedPreferences.edit().putInt("NewsDay", 0).apply();
+                        }
                         notificationIntent.putExtra("notification_title", dataSnapshot.child("title").getValue(String.class));
                         notificationIntent.putExtra("notification_text", dataSnapshot.child("text").getValue(String.class));
+                        sharedPreferences.edit().putString("NotificationText",dataSnapshot.child("text").getValue(String.class)).apply();
                         context.sendBroadcast(notificationIntent);
                     }
                     sharedPreferences.edit().putInt("notificationId", currentNotificationId).apply();
