@@ -382,11 +382,43 @@
         <!--\n\"El Conteiner\" sarà aperto tutti i venerdì e i sabati dalle ore 21:30.</string>-->
     <string name="container_description">Quest\'anno noi del team Anguriara abbiamo sentito l\'esigenza di presentare qualcosa di nuovo, di diverso e magari anche più giovanile, cercando di riciclare l’usato (e facendoci anche il mazzo), per proporre prodotti locali e soprattutto far degustare birre artigianali seduti su comodi divanetti fatti con bancali. Nasce così \"Il Container\", un nuovo chiosco ricavato da un container navale di 6 x 3 metri.
     \n\"Il Container\" sarà aperto tutti i venerdì e i sabati dalle ore 21:30.</string>
+
+    <string-array name="breweries">
+        <item>brewery1</item>
+        <item>brewery2</item>
+        <item>brewery3</item>
+    </string-array>
+
+    <string-array name="breweries_related">
+        <item>brewery1</item>
+        <item>brewery1</item>
+        <item>brewery1</item>
+        <item>brewery2</item>
+        <item>brewery2</item>
+        <item>brewery3</item>
+        <item>brewery3</item>
+        <item>brewery3</item>
+    </string-array>
+
+    <array name="biers_images">
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+        <item>@drawable/mockup</item>
+    </array>
+
+
     <string name="agritour_title">Agritour</string>
     <string name="agritour_description">Agritour è un progetto dedicato al viaggiare lento creato per tornare a vivere la campagna vicentina tra Vicenza e le Piccole Dolomiti attraverso percorsi su strade secondarie e incontri con le aziende agricole, i loro prodotti e il loro lavoro.
         \nL\'Agritour dea Molonara è un percorso di 24 km accessibile a tutti e aperto tutto l\'anno attraverso la campagna di Schio, Marano Vicentino e Zanè per ri-scoprire che \"ciò che non siamo più abituati a vedere\" lo troviamo a pochi passi da casa.
         \nAlcuni prodotti utilizzati in Anguriara sono delle aziende di agritour.
     </string>
+
+
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
     <string name="who_we_are_number_1">19</string>

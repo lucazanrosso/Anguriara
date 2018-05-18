@@ -44,9 +44,9 @@ class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.ViewHol
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         View card = holder.card;
-        TextView nextEveningsTitle = (TextView) card.findViewById(R.id.next_evening_title);
-        TextView nextEveningsText = (TextView) card.findViewById(R.id.next_evening_text);
-        Button detailsButton = (Button) card.findViewById(R.id.details_button);
+        TextView nextEveningsTitle = card.findViewById(R.id.next_evening_title);
+        TextView nextEveningsText = card.findViewById(R.id.next_evening_text);
+        Button detailsButton = card.findViewById(R.id.details_button);
         nextEveningsTitle.setText(CalendarFragment.setDateTitle(MainActivity.days.get(position)));
         nextEveningsText.setText(CalendarFragment.setDateText(MainActivity.days.get(position), context));
         final Bundle dayArgs = new Bundle();
