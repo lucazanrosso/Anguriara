@@ -24,18 +24,18 @@ public class NewsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
-        RecyclerView mRecyclerView = view.findViewById(R.id.breweries_recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-
-        String[] breweries = getContext().getResources().getStringArray(R.array.breweries);
-        String[] breweriesRelated = getContext().getResources().getStringArray(R.array.breweries_related);
-        TypedArray biersImages = getContext().getResources().obtainTypedArray(R.array.biers_images);
-
-        RecyclerView.Adapter mAdapter = new BreweriesAdapter(breweries, breweriesRelated, biersImages);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView.setAdapter(mAdapter);
+//        RecyclerView mRecyclerView = view.findViewById(R.id.breweries_recycler_view);
+//        mRecyclerView.setHasFixedSize(true);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+//
+//        String[] breweries = getContext().getResources().getStringArray(R.array.breweries);
+//        String[] breweriesRelated = getContext().getResources().getStringArray(R.array.breweries_related);
+//        TypedArray biersImages = getContext().getResources().obtainTypedArray(R.array.biers_images);
+//
+//        RecyclerView.Adapter mAdapter = new BreweriesAdapter(breweries, breweriesRelated, biersImages);
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.setNestedScrollingEnabled(false);
+//        mRecyclerView.setAdapter(mAdapter);
 
         return view;
     }
