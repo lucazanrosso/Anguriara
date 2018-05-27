@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
-    public final static int YEAR = 2017;
+    public final static int YEAR = 2018;
     public static String[] daysOfWeek;
     public static String[] months;
 //    public static Calendar todayInstance = new GregorianCalendar();
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
 //                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
-                alarmTime.set(2018, 1, 17, 12, i+30);
+                alarmTime.set(2018, 4, 19, 15, i+24);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), notificationPendingIntent);
             } else
