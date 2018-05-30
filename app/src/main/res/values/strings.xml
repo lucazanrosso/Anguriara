@@ -5,7 +5,7 @@
     <string name="drawer_close">close drawer</string>
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
-    <string name="calendar">Programma 2017</string>
+    <string name="calendar">Programma 2018</string>
     <integer-array name="slide_image">
         <item>@drawable/slide0</item>
         <item>@drawable/slide1</item>
@@ -15,8 +15,8 @@
     </integer-array>
     <string-array name="slide_text">
         <item />
-        <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 9 giugno al 29 luglio</item>
-        <item name="home_slide2">19 Live show</item>
+        <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 8 giugno al 28 luglio</item>
+        <item name="home_slide2">22 Live show</item>
         <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
@@ -128,7 +128,7 @@
         <item>Laquidara</item>
         <item>Torneo Beer Pong</item>
         <item>Bulldozer Band</item>
-        <item>STARWELL DJ</item>
+        <item>Vent\'anni a 2000!</item>
         <item>Zumba! Tutti in pista!</item>
         <item>Aperto</item>
         <item>Pmi trio</item>
@@ -160,7 +160,7 @@
         <item>\nMilagro lettura e canzoni</item>
         <item />
         <item>\nGenere: Bud Spencer &amp; Terence Hill</item>
-        <item>\nVent\'anni a 2000!</item>
+        <item>\nSTARWELL DJ</item>
         <item />
         <item />
         <item>\nGenere: pop rock italiano</item>
@@ -170,7 +170,7 @@
         <item>\nGenere: pop rock anni 80</item>
         <item>\nDegustazione birre a cura del Mastro Birraio</item>
         <item>\nGenere: acustic pop rock</item>
-        <item />
+        <item>\nGenere: rock band</item>
         <item>\nGenere: pop rock e tormentoni\n\nPRAVOLLEY</item>
         <item>\nGenere: pop rock acustico\n\nPRAVOLEEY</item>
         <item />
@@ -365,25 +365,22 @@
     <!--\n\u2022 15:30 Finali;-->
     <!--\n\u2022 18:00 Premiazioni + aperitivo anguriara fino alle 21:00 con gli Old Virginia.-->
     <!--</string>-->
-    <string name="pravolley_schedule">Sabato 15 luglio
-        \nDomenica 16 luglio
+    <string name="pravolley_schedule">Sabato 7 luglio
+        \nDomenica 8 luglio
     </string>
     <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
-        \n\u2022 In campo dovranno esserci sempre minimo 2 ragazze, e, se non possibile, 1 ragazza e solo 2 ragazzi;
+        \n\u2022 Minimo 2 ragazze in campo, e, se questo non risulta possibile, 1 ragazza e solo 2 ragazzi;
         \n\u2022 Ogni squadra dovrà portarsi un pallone da pallavolo;
         \n\u2022 Le squadre inoltre dovranno arbitrare a rotazione;
         \n\u2022 Durante i gironi iniziali si svolgeranno 2 set a 21 punti, senza tie-break;
         \n\u2022 Il punteggio durante i gironi corrisponderà al numero di punti fatti durante i 2 set, e per le squadre che vincono entrambi i set un oltre bonus di 5 punti.
+        \n\u2022 Premi per le prime 3 squadre classificate!
     </string>
     <string name="inscriptions">Iscrizioni</string>
-    <string name="pravolley_inscriptions">\u2022 Apertura iscrizioni: mercoledì 21 giugno
-        \n\u2022 Chiusura iscrizioni: sabato 1 luglio
-        \n\u2022 Numero squadre: 21
-        \n\u2022 Iscriviti compilando il modulo che trovi <a href="https://docs.google.com/document/d/1e84H1gWMIpFdfONF5ySgbUadbTvP2yiwhySGDiKPWfk/edit">qui</a> e invialo per email all\'indirizzo anguriara@gmail.com, oppure rivolgiti direttamente in anguriara nei giorni d\'apertura.
-        \n\u2022 Il costo di iscrizione è di 10 euro, comprensivi di un buono colazione (caffè + brioche) e della maglietta del pravolley!
-        \n\u2022 In caso un componente della squadra non possa partecipare chiediamo ugualmente una quota di partecipazione di 6 euro per la fornitura della maglietta
-        \n\u2022 Premi per i prime tre classificati!
+    <string name="pravolley_inscriptions"> \u2022 Potete iscrivervi al Pra Volley 2018 compilando il modulo che trovate <a href="https://docs.google.com/document/d/15g3Io-7opO07G6PfC53sqpPpzvf2LyNEN2FFHYV8vsU/edit">qui</a> e inviandolo tramite email a anguriara@gmail.com, oppure consegnandolo direttamente in cassa durante le serate d\'apertura.
+        \n\u2022 Il costo d\'iscrizione è pari a 10 euro a persona ed è comprensivo di t-shirt firmata PraVolley - Anguriara 2018 e buono colazione (caffè + brioche) della domenica mattina.
+        \n\u2022 Le iscrizioni sono aperte dal 07 al 20 Giugno.
     </string>
     <string name="container">El Conteiner</string>
     <string name="container_title">Il Container</string>
@@ -430,14 +427,14 @@
 
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
-    <string name="who_we_are_number_1">19</string>
+    <string name="who_we_are_number_1">20</string>
     <string name="who_we_are_title_1">Numero edizioni</string>
-    <string name="who_we_are_number_2">29</string>
+    <string name="who_we_are_number_2">30</string>
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
-    <string name="who_we_are_number_4">19</string>
-    <string name="who_we_are_title_4">Live band</string>
+    <string name="who_we_are_number_4">22</string>
+    <string name="who_we_are_title_4">Live show</string>
     <string name="who_we_are_text">L\' Anguriara nasce nel \"lontano\" 1999 nel nostro caro paesino di Giavenale (frazione del comune di Schio).
         \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.
         \nEra un periodo buio di stagnazione in paese, e le giovani generazioni cominciavano a prendere strade un po\' rischiose.
