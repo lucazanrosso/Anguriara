@@ -3,17 +3,21 @@ package com.lucazanrosso.anguriara;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>{
     private Context context;
+    private FragmentActivity mActivity;
     private String[] breweries;
     private String[] breweriesRelated;
     private String[] biers;
@@ -36,8 +40,8 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    BreweriesAdapter(Context context, String[] breweries, String[] breweriesRelated, String[] biers, TypedArray biersImages, String[] biersDetails) {
-//        this.context = context;
+    BreweriesAdapter(FragmentActivity mActivity, Context context, String[] breweries, String[] breweriesRelated, String[] biers, TypedArray biersImages, String[] biersDetails) {
+        this.mActivity = mActivity;
         this.breweries = breweries;
         this.breweriesRelated = breweriesRelated;
         this.biers = biers;
@@ -101,10 +105,24 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                     TextView bierTitle = bierCard.findViewById(R.id.next_evening_title);
                     TextView bierText = bierCard.findViewById(R.id.next_evening_text);
                     ImageView bierImage = bierCard.findViewById(R.id.next_evening_image);
+                    Button detailsButton = bierCard.findViewById(R.id.details_button);
                     bierTitle.setText(biers[i]);
                     bierText.setText(biersDetails[i]);
                     int bierImageId = biersImages.getResourceId(i, 0);
                     bierImage.setImageResource(bierImageId);
+                    final Bundle dayArgs = new Bundle();
+                    dayArgs.putSerializable("index", i);
+                    detailsButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BierFragment bierFragment = new BierFragment();
+                            bierFragment.setArguments(dayArgs);
+                            mActivity.getSupportFragmentManager().beginTransaction()
+                                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                                    .replace(R.id.frame_container, bierFragment)
+                                    .addToBackStack("secondary").commit();
+                        }
+                    });
 
                     biersLayout.addView(bierCard);
                 }

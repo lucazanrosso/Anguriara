@@ -34,7 +34,7 @@ public class NewsFragment extends Fragment {
         String[] biersDetails = getContext().getResources().getStringArray(R.array.biers_details);
         TypedArray biersImages = getContext().getResources().obtainTypedArray(R.array.biers_images);
 
-        RecyclerView.Adapter mAdapter = new BreweriesAdapter(getContext(), breweries, breweriesRelated, biers, biersImages, biersDetails);
+        RecyclerView.Adapter mAdapter = new BreweriesAdapter(getActivity(), getContext(), breweries, breweriesRelated, biers, biersImages, biersDetails);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setAdapter(mAdapter);
