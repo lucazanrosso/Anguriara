@@ -94,19 +94,19 @@
                     style="@style/card_view_subheading"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--<ImageView-->
-                    <!--android:id="@+id/event_image"-->
-                    <!--style="@style/card_view_image"-->
-                    <!--android:adjustViewBounds="true"-->
-                    <!--android:contentDescription="@null"-->
-                    <!--app:layout_constraintStart_toStartOf="parent"-->
-                    <!--app:layout_constraintTop_toBottomOf="@id/event_day"/>-->
+                <ImageView
+                    android:id="@+id/event_image"
+                    style="@style/card_view_image"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_day"/>
                 <TextView
                     android:id="@+id/event_title"
                     style="@style/card_view_title"
                     android:paddingTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/event_day"/>
+                    app:layout_constraintTop_toBottomOf="@id/event_image"/>
                 <TextView
                     android:id="@+id/event_text"
                     style="@style/card_view_text"

@@ -17,10 +17,14 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
     private String[] breweries;
     private String[] breweriesRelated;
     private String[] biers;
+    private String[] biersDetails;
     private TypedArray biersImages;
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
+
+    private int cardWidth;
+    private int biersLayoutPadding;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -32,12 +36,26 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    BreweriesAdapter(Context context, String[] breweries, String[] breweriesRelated, String[] biers, TypedArray biersImages) {
+    BreweriesAdapter(Context context, String[] breweries, String[] breweriesRelated, String[] biers, TypedArray biersImages, String[] biersDetails) {
 //        this.context = context;
         this.breweries = breweries;
         this.breweriesRelated = breweriesRelated;
         this.biers = biers;
+        this.biersDetails = biersDetails;
         this.biersImages = biersImages;
+
+        Resources r = context.getResources();
+        cardWidth = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                150,
+                r.getDisplayMetrics()
+        );
+
+        biersLayoutPadding = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                8,
+                r.getDisplayMetrics()
+        );
     }
 
     // Create new views (invoked by the layout manager)
@@ -70,19 +88,6 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
 
             LinearLayout biersLayout = breweryLayout.findViewById(R.id.biers_layout);
 
-            Resources r = context.getResources();
-            int cardWidth = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    150,
-                    r.getDisplayMetrics()
-            );
-
-            int biersLayoutPadding = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    8,
-                    r.getDisplayMetrics()
-            );
-
             biersLayout.setPadding(biersLayoutPadding, biersLayoutPadding, biersLayoutPadding,0);
 
             for (int i = 0; i < breweriesRelated.length; i++) {
@@ -93,44 +98,18 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                             .inflate(R.layout.next_evening_card, null);
                     bierCard.setLayoutParams(new ViewGroup.LayoutParams(cardWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-                    TextView nextEveningsTitle = bierCard.findViewById(R.id.next_evening_title);
-                    TextView nextEveningsText = bierCard.findViewById(R.id.next_evening_text);
+                    TextView bierTitle = bierCard.findViewById(R.id.next_evening_title);
+                    TextView bierText = bierCard.findViewById(R.id.next_evening_text);
                     ImageView bierImage = bierCard.findViewById(R.id.next_evening_image);
-                    nextEveningsTitle.setText(biers[i]);
-                    nextEveningsText.setText("ciao2");
+                    bierTitle.setText(biers[i]);
+                    bierText.setText(biersDetails[i]);
                     int bierImageId = biersImages.getResourceId(i, 0);
                     bierImage.setImageResource(bierImageId);
 
-
                     biersLayout.addView(bierCard);
-
-                    System.out.println("hey");
                 }
-
             }
         }
-
-//        TextView nextEveningsTitle = breweryLayout.findViewById(R.id.next_evening_title);
-//        TextView nextEveningsText = breweryLayout.findViewById(R.id.next_evening_text);
-//        Button detailsButton = breweryLayout.findViewById(R.id.details_button);
-//        nextEveningsTitle.setText(CalendarFragment.setDateTitle(MainActivity.days.get(position)));
-//        nextEveningsText.setText(CalendarFragment.setDateText(MainActivity.days.get(position), context));
-//        final Bundle dayArgs = new Bundle();
-//        dayArgs.putSerializable("date", MainActivity.days.get(position));
-//        detailsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                DayScreenSlidePagerFragment dayScreenSlidePagerFragment = new DayScreenSlidePagerFragment();
-//                dayScreenSlidePagerFragment.setArguments(dayArgs);
-//                mActivity.getSupportFragmentManager().beginTransaction()
-//                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
-//                        .replace(R.id.frame_container, dayScreenSlidePagerFragment)
-//                        .addToBackStack("secondary")
-//                        .commit();
-//            }
-//        });
-//        }
-
     }
 
     @Override

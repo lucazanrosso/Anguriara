@@ -26,16 +26,16 @@
                     style="@style/card_view_subheading"
                     android:layout_toRightOf="@+id/event_icon"
                     android:layout_toEndOf="@+id/event_icon" />
-                <!--<ImageView-->
-                    <!--android:id="@+id/event_image"-->
-                    <!--style="@style/card_view_image"-->
-                    <!--android:adjustViewBounds="true"-->
-                    <!--android:layout_below="@id/event_icon"-->
-                    <!--android:contentDescription="@null"/>-->
+                <ImageView
+                    android:id="@+id/event_image"
+                    style="@style/card_view_image"
+                    android:adjustViewBounds="true"
+                    android:layout_below="@id/event_icon"
+                    android:contentDescription="@null"/>
                 <TextView
                     android:id="@+id/event_text"
                     style="@style/card_view_title"
-                    android:layout_below="@id/event_title"/>
+                    android:layout_below="@id/event_image"/>
                 <!--<TextView-->
                     <!--android:id="@+id/event_subtext"-->
                     <!--style="@style/card_view_text"-->
