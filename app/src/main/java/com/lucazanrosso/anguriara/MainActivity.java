@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
     public final static int YEAR = 2018;
     public static String[] daysOfWeek;
     public static String[] months;
-//    public static Calendar todayInstance = new GregorianCalendar();
-    public static Calendar todayInstance = new GregorianCalendar(2017, 5, 8);
+    public static Calendar todayInstance = new GregorianCalendar();
+    // Test
+//    public static Calendar todayInstance = new GregorianCalendar(2018, 5, 8);
     public static Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
     public static Calendar badDay;
 
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivity.sharedPreferences = getSharedPreferences("PREFERENCES", Context.MODE_PRIVATE);
         MainActivity.badDay = new GregorianCalendar(sharedPreferences.getInt("BadWeatherYear", 0), sharedPreferences.getInt("BadWeatherMonth", 0),sharedPreferences.getInt("BadWeatherDay", 0));
-        boolean firstStart = sharedPreferences.getBoolean("firstStart2017-2", true);
+        boolean firstStart = sharedPreferences.getBoolean("firstStart2018", true);
         boolean eveningsAlarmIsSet = sharedPreferences.getBoolean("eveningsAlarmIsSet", true);
         boolean firebaseAlarmIsSet = sharedPreferences.getBoolean("firebaseAlarmIsSet", true);
         if (firstStart) {
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.setEveningsAlarm(this, MainActivity.calendar, true, false);
             if (firebaseAlarmIsSet)
                 MainActivity.setFirebaseAlarm(this, true, false);
-            MainActivity.sharedPreferences.edit().putBoolean("firstStart2017-2", false).apply();
+            MainActivity.sharedPreferences.edit().putBoolean("firstStart2018", false).apply();
         }
 
         if (savedInstanceState == null) {
@@ -222,9 +223,9 @@ public class MainActivity extends AppCompatActivity {
             if (setAlarm) {
                 Calendar alarmTime = Calendar.getInstance();
                 alarmTime.setTimeInMillis(System.currentTimeMillis());
-//                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
+                alarmTime.set(MainActivity.YEAR, entry.getKey().get(Calendar.MONTH), entry.getKey().get(Calendar.DAY_OF_MONTH), 16, 0);
 //                Test
-                alarmTime.set(2018, 4, 19, 15, i+24);
+//                alarmTime.set(2018, 4, 19, 15, i+24);
                 if (!(alarmTime.getTimeInMillis() < System.currentTimeMillis()))
                     MainActivity.notificationAlarmManager.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), notificationPendingIntent);
             } else

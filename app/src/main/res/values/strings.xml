@@ -389,18 +389,18 @@
     <string name="container_description">Anche quest\'anno noi del team Anguriara abbiamo sentito l\'esigenza di presentare qualcosa di diverso e più giovanile, cercando di riciclare l’usato (e facendoci anche il mazzo), per proporre prodotti locali e soprattutto far degustare birre artigianali, il tutto seduti su comodi divanetti fatti con bancali. Ritorna \"Il Container\", un chiosco ricavato da un container navale di 6 x 3 metri.</string>
 
     <string-array name="breweries">
-        <item>Acelum</item>
-        <item>Otus</item>
-        <item>Hibu</item>
-        <item>Giusto spirito</item>
-        <item>Doppio malto</item>
+        <item>Birrificio Acelum</item>
+        <item>Birrificio Otus</item>
+        <item>Birrificio Hibu</item>
+        <item>Birrificio Giusto spirito</item>
+        <item>Birrificio Doppio malto</item>
     </string-array>
 
     <string-array name="biers">
         <item>Twenty</item>
         <item>Freya</item>
         <item>Sour Germana</item>
-        <item>Anarkika</item>
+        <item>Anarkica</item>
         <item>Side B</item>
         <item>Red Volution</item>
         <item>Ambranera</item>
@@ -414,20 +414,20 @@
     </string-array>
 
     <string-array name="breweries_related">
-        <item>Acelum</item>
-        <item>Acelum</item>
-        <item>Acelum</item>
-        <item>Acelum</item>
-        <item>Otus</item>
-        <item>Otus</item>
-        <item>Otus</item>
-        <item>Hibu</item>
-        <item>Giusto spirito</item>
-        <item>Giusto spirito</item>
-        <item>Giusto spirito</item>
-        <item>Doppio malto</item>
-        <item>Doppio malto</item>
-        <item>Doppio malto</item>
+        <item>Birrificio Acelum</item>
+        <item>Birrificio Acelum</item>
+        <item>Birrificio Acelum</item>
+        <item>Birrificio Acelum</item>
+        <item>Birrificio Otus</item>
+        <item>Birrificio Otus</item>
+        <item>Birrificio Otus</item>
+        <item>Birrificio Hibu</item>
+        <item>Birrificio Giusto spirito</item>
+        <item>Birrificio Giusto spirito</item>
+        <item>Birrificio Giusto spirito</item>
+        <item>Birrificio Doppio malto</item>
+        <item>Birrificio Doppio malto</item>
+        <item>Birrificio Doppio malto</item>
     </string-array>
 
     <array name="biers_images">
@@ -448,20 +448,20 @@
     </array>
 
     <string-array name="biers_details">
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
-        <item>Tipo</item>
+        <item>Tipo: Golden Ale</item>
+        <item>Tipo: Special Ale al Farro</item>
+        <item>Tipo: Berliner Weisse</item>
+        <item>Tipo: Summer Ale</item>
+        <item>Tipo: Blanche</item>
+        <item>Tipo: Bock</item>
+        <item>Tipo: Oatmeal Stout</item>
+        <item>Tipo: Triple Belga</item>
+        <item>Tipo: Nippon Pale Ale</item>
+        <item>Tipo: I.P.A.</item>
+        <item>Tipo: White I.P.A.</item>
+        <item>Tipo: Ginger Ale Speziata</item>
+        <item>Tipo: Weiss Bier</item>
+        <item>Tipo: Bitter</item>
     </string-array>
 
     <array name="biers_images_details">

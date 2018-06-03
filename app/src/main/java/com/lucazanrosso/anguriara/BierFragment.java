@@ -25,8 +25,8 @@ public class BierFragment extends Fragment {
 
         ActionBar toolbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         if (toolbar != null)
-            toolbar.setTitle(biers[i]);
-        MainActivity.previousFragment = R.id.home;
+            toolbar.setTitle("Birra: " + biers[i]);
+        MainActivity.previousFragment = R.id.bier;
 
         ImageView bierImage = view.findViewById(R.id.bier_image);
         int bierImageId = biersImages.getResourceId(i, 0);

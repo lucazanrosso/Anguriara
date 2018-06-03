@@ -7,8 +7,8 @@ android {
         applicationId "com.lucazanrosso.anguriara"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 27
-        versionName "2.1.2"
+        versionCode 28
+        versionName "2.2.0"
     }
     buildTypes {
         release {
@@ -27,7 +27,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.android.support:support-v4:27.1.1'
 //    implementation 'com.google.firebase:firebase-core:15.0.2'
-    implementation 'com.google.firebase:firebase-database:15.0.1'
+    implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 }
