@@ -18,7 +18,7 @@ public class BierFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bier, container, false);
 
         String[] biers = getContext().getResources().getStringArray(R.array.biers);
-        TypedArray biersImages = getContext().getResources().obtainTypedArray(R.array.biers_images);
+        TypedArray biersImages = getContext().getResources().obtainTypedArray(R.array.biers_images_details);
 
         Bundle args = this.getArguments();
         int i = args.getInt("index");

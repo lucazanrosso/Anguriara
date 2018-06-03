@@ -408,9 +408,9 @@
         <item>Fei Mi</item>
         <item>Bad Girl</item>
         <item>Spice Girl</item>
-        <item>Zingi Beer</item>
+        <item>Zingibeer</item>
         <item>Brass Weiss</item>
-        <item>Bitter Land</item>
+        <item>Bitterland</item>
     </string-array>
 
     <string-array name="breweries_related">
@@ -442,9 +442,9 @@
         <item>@drawable/fei_mi</item>
         <item>@drawable/bad_girl</item>
         <item>@drawable/spice_girl</item>
-        <item>@drawable/zingi_beer</item>
+        <item>@drawable/zingibeer</item>
         <item>@drawable/brass_weiss</item>
-        <item>@drawable/bitter_land</item>
+        <item>@drawable/bitterland</item>
     </array>
 
     <string-array name="biers_details">
@@ -463,6 +463,23 @@
         <item>Tipo</item>
         <item>Tipo</item>
     </string-array>
+
+    <array name="biers_images_details">
+        <item>@drawable/twenty2</item>
+        <item>@drawable/freya2</item>
+        <item>@drawable/suor_germana2</item>
+        <item>@drawable/anarkica2</item>
+        <item>@drawable/side_b2</item>
+        <item>@drawable/red_volution2</item>
+        <item>@drawable/ambranera2</item>
+        <item>@drawable/gotha2</item>
+        <item>@drawable/fei_mi2</item>
+        <item>@drawable/bad_girl2</item>
+        <item>@drawable/spice_girl2</item>
+        <item>@drawable/zingibeer2</item>
+        <item>@drawable/brass_weiss2</item>
+        <item>@drawable/bitterland2</item>
+    </array>
 
     <string name="agritour_title">Agritour</string>
     <string name="agritour_description">Agritour è un progetto dedicato al viaggiare lento creato per tornare a vivere la campagna vicentina tra Vicenza e le Piccole Dolomiti attraverso percorsi su strade secondarie e incontri con le aziende agricole, i loro prodotti e il loro lavoro.
