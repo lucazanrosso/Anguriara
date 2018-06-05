@@ -34,7 +34,7 @@ class AllEveningsAdapter extends RecyclerView.Adapter<AllEveningsAdapter.ViewHol
                                                             int viewType) {
         context = parent.getContext();
         View v = LayoutInflater.from(context)
-                .inflate(R.layout.all_evening_card, parent, false);
+                .inflate(R.layout.card_all_evenings, parent, false);
         return new ViewHolder(v);
     }
 

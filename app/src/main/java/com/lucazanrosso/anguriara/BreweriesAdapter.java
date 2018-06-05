@@ -91,6 +91,7 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
             breweryName.setText(breweries[position - 1]);
 
             LinearLayout biersLayout = breweryLayout.findViewById(R.id.biers_layout);
+            biersLayout.removeAllViews();
 
             biersLayout.setPadding(biersLayoutPadding, biersLayoutPadding, biersLayoutPadding,0);
 
@@ -99,7 +100,7 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                 if (breweries[position - 1].equals(breweriesRelated[i])) {
 
                     View bierCard = LayoutInflater.from(context)
-                            .inflate(R.layout.next_evening_card, null);
+                            .inflate(R.layout.card_next_evening, null);
                     bierCard.setLayoutParams(new ViewGroup.LayoutParams(cardWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
 
                     TextView bierTitle = bierCard.findViewById(R.id.next_evening_title);
@@ -111,7 +112,7 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                     int bierImageId = biersImages.getResourceId(i, 0);
                     bierImage.setImageResource(bierImageId);
                     final Bundle dayArgs = new Bundle();
-                    dayArgs.putSerializable("index", i);
+                    dayArgs.putInt("index", i);
                     detailsButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

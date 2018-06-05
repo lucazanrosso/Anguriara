@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
         for (LinkedHashMap.Entry<Calendar, LinkedHashMap<String, Object>> entry : MainActivity.calendar.entrySet())
             if (MainActivity.today.before(entry.getKey())) {
                 i++;
-                View nextEveningCard = inflater.inflate(R.layout.next_evening_card, container, false);
+                View nextEveningCard = inflater.inflate(R.layout.card_next_evening, container, false);
                 TextView nextEveningsTitle = nextEveningCard.findViewById(R.id.next_evening_title);
                 TextView nextEveningsText = nextEveningCard.findViewById(R.id.next_evening_text);
                 Button detailsButton = nextEveningCard.findViewById(R.id.details_button);
