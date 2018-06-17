@@ -63,10 +63,14 @@ public class DayFragment extends Fragment {
             foodText.setText(dayFood);
             if (date.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
                 foodSubtext.setText(getResources().getString(R.string.standard_foods_w));
-            else if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || (date.get(Calendar.DAY_OF_MONTH) == 16 && date.get(Calendar.MONTH) == 5))
+            else if (date.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || (date.get(Calendar.DAY_OF_MONTH) == 15 && date.get(Calendar.MONTH) == 5))
                 foodSubtext.setText(getResources().getString(R.string.standard_foods_s));
-            else
-                foodSubtext.setText(getResources().getString(R.string.standard_foods));
+            else if (date.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+                foodSubtext.setText(getResources().getString(R.string.standard_foods_t));
+            else if (date.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
+                foodSubtext.setText(getResources().getString(R.string.standard_foods_f));
+//            else
+//                foodSubtext.setText(getResources().getString(R.string.standard_foods));
         }
         if (dayFood.equals("") && date.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
             ((ViewGroup) foodSubtext.getParent()).removeView(foodText);

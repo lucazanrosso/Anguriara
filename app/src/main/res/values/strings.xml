@@ -125,12 +125,12 @@
     <string-array name="day_events">
         <item>B.P.M.</item>
         <item>Demenzioni</item>
-        <item>Laquidara</item>
+        <item>Aperto</item>
         <item>Torneo Beer Pong</item>
         <item>Bulldozer Band</item>
         <item>Vent\'anni a 2000!</item>
         <item>Zumba! Tutti in pista!</item>
-        <item>Aperto</item>
+        <item>MILAGROS</item>
         <item>Pmi trio</item>
         <item>Chupacabra</item>
         <item>Aniep Onlus Vicenza</item>
@@ -157,12 +157,12 @@
     <string-array name="day_event_details">
         <item>\nDj Berna + Paolo Pj + Pietri + Dj Mark1</item>
         <item>\nLa grande skitarrata dell\'estate</item>
-        <item>\nMilagro lettura e canzoni</item>
+        <item />
         <item />
         <item>\nGenere: Bud Spencer &amp; Terence Hill</item>
         <item>\nSTARWELL DJ</item>
         <item />
-        <item />
+        <item>: un racconto di Pit Formento</item>
         <item>\nGenere: pop rock italiano</item>
         <item>\nGenere: rock latino</item>
         <item>&#160;parla Maura Fontana (associazione per la disabilità)</item>
@@ -189,10 +189,15 @@
     <array name="day_event_image">
         <item>@drawable/g08</item>
         <item>@drawable/g09</item>
-        <item>@drawable/g13</item>
+        <item>@drawable/aperto</item>
         <item>@drawable/g14</item>
         <item>@drawable/g15</item>
         <item>@drawable/g16</item>
+        <item>@drawable/zumba</item>
+        <item>@drawable/g21</item>
+        <item>@drawable/g22</item>
+        <item>@drawable/g23</item>
+        <item>@drawable/g27</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
@@ -204,15 +209,10 @@
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
+        <item>@drawable/zumba</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
-        <item>@drawable/comingsoon2</item>
+        <item>@drawable/j21</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
@@ -256,8 +256,15 @@
         \n\u2022 Fette d\'anguria
         \n\u2022 Gelato
     </string>
-    <string name="standard_foods">
+    <string name="standard_foods_t">
         \u2022 Panino rustego
+        \n\u2022 Panino vegetariano
+        \n\u2022 Patatine fritte
+        \n\u2022 Fette d\'anguria
+        \n\u2022 Gelato
+    </string>
+    <string name="standard_foods_f">
+        \u2022 Panino facciavista
         \n\u2022 Panino vegetariano
         \n\u2022 Patatine fritte
         \n\u2022 Fette d\'anguria
@@ -265,7 +272,6 @@
     </string>
     <string name="standard_foods_s">Oltre al piatto della serata la cucina propone:
         \n\u2022 Panino vegetariano
-        \n\u2022 Panino facciavista
         \n\u2022 Patatine fritte
         \n\u2022 Fette d\'anguria
         \n\u2022 Gelato
