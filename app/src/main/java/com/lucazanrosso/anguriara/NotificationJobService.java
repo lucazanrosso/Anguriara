@@ -50,7 +50,7 @@ public class NotificationJobService extends JobService {
                     Calendar notificationDay = new GregorianCalendar(year, month, day);
                     Calendar todayInstance = new GregorianCalendar();
                     // Test
-//                    Calendar todayInstance = new GregorianCalendar(2018, 5, 8);
+//                    Calendar todayInstance = new GregorianCalendar(2019, 5, 14);
                     Calendar today = new GregorianCalendar(todayInstance.get(Calendar.YEAR), todayInstance.get(Calendar.MONTH), todayInstance.get(Calendar.DAY_OF_MONTH));
                     int localNotificationId = sharedPreferences.getInt("notificationId", 0);
                     if (localNotificationId < currentNotificationId && today.equals(notificationDay)) {
