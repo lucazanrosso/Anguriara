@@ -12,7 +12,7 @@
             android:layout_width="@dimen/card_view_width"
             android:layout_height="wrap_content"
             android:id="@+id/welcome_image"
-            android:src="@drawable/anguriara2018"
+            android:src="@drawable/anguriara2019"
             android:adjustViewBounds="true"
             android:layout_gravity="center_horizontal"
             android:paddingLeft="64dp"
@@ -94,19 +94,19 @@
                     style="@style/card_view_subheading"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <ImageView
-                    android:id="@+id/event_image"
-                    style="@style/card_view_image"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@null"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/event_day"/>
+                <!--<ImageView-->
+                    <!--android:id="@+id/event_image"-->
+                    <!--style="@style/card_view_image"-->
+                    <!--android:adjustViewBounds="true"-->
+                    <!--android:contentDescription="@null"-->
+                    <!--app:layout_constraintStart_toStartOf="parent"-->
+                    <!--app:layout_constraintTop_toBottomOf="@id/event_day"/>-->
                 <TextView
                     android:id="@+id/event_title"
                     style="@style/card_view_title"
                     android:paddingTop="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/event_image"/>
+                    app:layout_constraintTop_toBottomOf="@id/event_day"/>
                 <TextView
                     android:id="@+id/event_text"
                     style="@style/card_view_text"

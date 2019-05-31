@@ -5,7 +5,7 @@
     <string name="drawer_close">close drawer</string>
     <string name="home">Home</string>
     <string name="home_string">\nall\'Anguriara al rocolo di Giavenale:</string>
-    <string name="calendar">Programma 2018</string>
+    <string name="calendar">Programma 2019</string>
     <integer-array name="slide_image">
         <item>@drawable/slide0</item>
         <item>@drawable/slide1</item>
@@ -15,8 +15,8 @@
     </integer-array>
     <string-array name="slide_text">
         <item />
-        <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 8 giugno al 28 luglio</item>
-        <item name="home_slide2">22 Live show</item>
+        <item name="home_slide1">Anguriara al rocolo di Giavenale\ndal 14 giugno al 27 luglio</item>
+        <item name="home_slide2">13 Live show</item>
         <item name="home_slide3">Ricco menù e serate speciali.</item>
         <item name="home_slide4">Tanta sete? Ordina il tuo metro di birra!</item>
     </string-array>
@@ -55,36 +55,27 @@
     <string name="bad_weather">Chiuso causa maltempo</string>
     <string name="details">DETTAGLI</string>
     <integer-array name="anguriara_days_of_month">
-        <item>8</item>
-        <item>9</item>
-        <item>13</item>
         <item>14</item>
         <item>15</item>
-        <item>16</item>
         <item>20</item>
         <item>21</item>
         <item>22</item>
-        <item>23</item>
         <item>27</item>
         <item>28</item>
-        <item>30</item>
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>7</item>
-        <item>8</item>
         <item>11</item>
         <item>12</item>
         <item>13</item>
         <item>14</item>
+        <item>17</item>
         <item>18</item>
         <item>19</item>
         <item>20</item>
-        <item>21</item>
         <item>25</item>
         <item>26</item>
         <item>27</item>
-        <item>28</item>
     </integer-array>
     <integer-array name="anguriara_months">
         <item>5</item>
@@ -94,15 +85,6 @@
         <item>5</item>
         <item>5</item>
         <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>5</item>
-        <item>6</item>
-        <item>6</item>
-        <item>6</item>
         <item>6</item>
         <item>6</item>
         <item>6</item>
@@ -123,81 +105,82 @@
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
     <string-array name="day_events">
-        <item>B.P.M.</item>
-        <item>Demenzioni</item>
+        <item>DJ Marco Festa</item>
+        <item>Get a Funk</item>
         <item>Aperto</item>
-        <item>Torneo Beer Pong</item>
-        <item>Bulldozer Band</item>
-        <item>Vent\'anni a 2000!</item>
-        <item>Zumba! Tutti in pista!</item>
-        <item>MILAGROS</item>
-        <item>Pmi trio</item>
-        <item>Chupacabra</item>
-        <item>Aniep Onlus Vicenza</item>
-        <item>La Teoria</item>
-        <item>Black Velvet</item>
-        <item>Serata esclusiva su prenotazione</item>
-        <item>Black To Noise</item>
-        <item>Trixy</item>
-        <item>Lucky Luke</item>
-        <item>Sofia Acustic Project</item>
-        <item>Trekking Nepal 2017 GAM Schio</item>
-        <item>Piccola orchestra Tientisaldomarcolongo</item>
-        <item>Fingers</item>
-        <item>DJ Kris T e Lele Silver</item>
-        <item>Zumba! Tutti in pista!</item>
-        <item>Cap Girls</item>
+        <item>Chupa Cabra</item>
+        <item>Spiritual Seasons</item>
+        <item>Aperto</item>
         <item>Lady Rock</item>
-        <item>Get on Funk</item>
+        <item>Aperto</item>
+        <item>Sound System</item>
+        <item>DJ Nesh</item>
+        <item>Aperto</item>
+        <item>London</item>
+        <item>Glories</item>
+        <item>Torneo PRAVOLLEY</item>
+        <item>ANGURIA RUN</item>
         <item>Serata Agritour</item>
-        <item>Silvia Gavasso with Frank De Franceschi</item>
-        <item>Toni ti Anima la Macchina</item>
-        <item>LA.FINE CLOSING PARTY</item>
+        <item>Paolo Rossi</item>
+        <item>Double M</item>
+        <item>Aperto</item>
+        <item>Black Velvet</item>
+        <item>CLOSING PARTY</item>
     </string-array>
     <string-array name="day_event_details">
-        <item>\nDj Berna + Paolo Pj + Pietri + Dj Mark1</item>
-        <item>\nLa grande skitarrata dell\'estate</item>
+        <item>\nGenere: anni 90</item>
+        <item>\nGenere: Red Hot Chili Peppers</item>
+        <item>\n\nCorso di Running</item>
+        <item>\nGenere: Rock Latino</item>
+        <item>\nGenere: Musica Celtica</item>
+        <item>\n\nCorso Running - Chiesetta S. Giustina</item>
+        <item>\nGenere: Rock</item>
+        <item>\n\nCorso di Running</item>
+        <item>\nGenere: Musica Reggae</item>
+        <item>\nGenere: HipHop R&amp;B\n\nTorneo BEERPONG su iscrizione</item>
+        <item>\n\nCorso Running - Chiesetta S. Giustina</item>
+        <item>\nGenere: Rock anni 60 70 80</item>
+        <item>\nGenere: hit anni 2000, DJ Thomas Dalla Costa e Lele Silver\n\nTorneo PRAVOLLEY</item>
+        <item />
+        <item>\nCorsa Podistica dalle 20:30 organizzata da Città della Speranza</item>
+        <item>\ncon piatti a km 0 e passeggiata al chiaror di luna, partenza ore 20:00</item>
+        <item>\nGenere: Super serata Afro</item>
+        <item>\nGenere: duo femminile acustico dagli anni 70</item>
+        <item />
+        <item>\nGenere: Pop Rock</item>
+        <item />
+    </string-array>
+    <string-array name="day_event_sub_details">
         <item />
         <item />
-        <item>\nGenere: Bud Spencer &amp; Terence Hill</item>
-        <item>\nSTARWELL DJ</item>
-        <item />
-        <item>: un racconto di Pit Formento</item>
-        <item>\nGenere: pop rock italiano</item>
-        <item>\nGenere: rock latino</item>
-        <item>&#160;parla Maura Fontana (associazione per la disabilità)</item>
-        <item>\nGenere: rock acustico</item>
-        <item>\nGenere: pop rock anni 80</item>
-        <item>\nDegustazione birre a cura del Mastro Birraio</item>
-        <item>\nGenere: acustic pop rock</item>
-        <item>\nGenere: rock band</item>
-        <item>\nGenere: pop rock e tormentoni\n\nPRAVOLLEY</item>
-        <item>\nGenere: pop rock acustico\n\nPRAVOLEEY</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)</item>
         <item />
         <item />
-        <item>\nGenere: Police &amp; Sting\n\nANGURIA RUN - Città della speranza</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20.15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
+        <item />
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)</item>
         <item />
         <item />
-        <item>\nGenere: duo acustico</item>
-        <item>\nGenere: misto rock</item>
-        <item>\nGenere: Red Hot Chilli Peppers Tribute</item>
-        <item>, produttori in cucina</item>
-        <item>\nGenere: acustica</item>
-        <item>\nGenere: canzoni cartoni animati</item>
-        <item>\nDJ + Dancing under the stars</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20.15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
+        <item />
+        <item />
+        <item />
+        <item>Si chiama ANGURIARUN ed è la terza tappa del progetto \“Facciamoci in 4\”, la staffetta benefica che, per la
+        prima volta, vede in sinergia le quattro più importanti manifestazioni podistiche non competitive dell\’Altovicentino
+        (Stragiaxà Race, RAR, Anguria Ran e Alberto Race) per dare una speranza in più ai bambini e ragazzi con malattie rare.
+        \nI fondi raccolti, saranno devoluti alla Fondazione Città della Speranza per cofinanziare il dottorato di ricerca della
+        dott.ssa Concetta De Filippis su un particolare sottogruppo di malattie genetiche rare: le Mucopolisaccaridosi,
+        caratterizzate dall\’accumulo patologico di alcuni zuccheri complessi che causa una progressiva degenerazione di tutti
+        gli organi e, nei casi più gravi, anche del cervello. Il progetto, è sviluppato nei laboratori dell\’Istituto di
+            Ricerca Pediatrica Città della Speranza a Padova.</item>
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
+        <item />
     </string-array>
     <array name="day_event_image">
-        <item>@drawable/g08</item>
-        <item>@drawable/g09</item>
-        <item>@drawable/aperto</item>
-        <item>@drawable/g14</item>
-        <item>@drawable/g15</item>
-        <item>@drawable/g16</item>
-        <item>@drawable/zumba</item>
-        <item>@drawable/g21</item>
-        <item>@drawable/g22</item>
-        <item>@drawable/g23</item>
-        <item>@drawable/g27</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
@@ -209,10 +192,12 @@
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
-        <item>@drawable/zumba</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
-        <item>@drawable/j21</item>
+        <item>@drawable/comingsoon2</item>
+        <item>@drawable/comingsoon2</item>
+        <item>@drawable/comingsoon2</item>
+        <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
         <item>@drawable/comingsoon2</item>
@@ -220,32 +205,23 @@
     </array>
     <string-array name="day_foods">
         <item />
-        <item>Club sandwich</item>
+        <item>Panino facciavista</item>
         <item />
         <item />
-        <item>Grigliata mista</item>
-        <item>Bruschetta</item>
-        <item />
-        <item />
-        <item />
-        <item>Galletti + patate</item>
-        <item />
-        <item />
-        <item>Hamburger</item>
-        <item />
-        <item />
-        <item />
-        <item>Porchetta al piatto</item>
+        <item>Galletti</item>
         <item />
         <item />
         <item />
         <item />
-        <item>Hot Dog</item>
+        <item>Bruschette</item>
+        <item />
+        <item />
+        <item>Panino facciavista</item>
         <item />
         <item />
         <item />
-        <item>Pizza</item>
         <item />
+        <item>Polenta e laganeghe</item>
         <item />
         <item />
         <item>Paella</item>
@@ -253,39 +229,28 @@
     <string name="standard_foods_w">
         \u2022 Panini freddi
         \n\u2022 Patatine fritte
-        \n\u2022 Fette d\'anguria
-        \n\u2022 Gelato
+        \n\u2022 Fetti d\'anguria
+        \n\u2022 Gelati
     </string>
     <string name="standard_foods_t">
-        \u2022 Panino rustego
-        \n\u2022 Panino vegetariano
-        \n\u2022 Patatine fritte
+        \u2022 Panini freddi
         \n\u2022 Fette d\'anguria
-        \n\u2022 Gelato
+        \n\u2022 Gelati
     </string>
     <string name="standard_foods_f">
-        \u2022 Panino facciavista
-        \n\u2022 Panino vegetariano
+        \u2022 Panini rusteghi
+        \n\u2022 Panini freddi
         \n\u2022 Patatine fritte
         \n\u2022 Fette d\'anguria
-        \n\u2022 Gelato
+        \n\u2022 Gelati
     </string>
     <string name="standard_foods_s">Oltre al piatto della serata la cucina propone:
-        \n\u2022 Panino vegetariano
+        \n\u2022 Panini freddi
         \n\u2022 Patatine fritte
         \n\u2022 Fette d\'anguria
-        \n\u2022 Gelato
+        \n\u2022 Gelati
     </string>
     <array name="day_food_image">
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
-        <item />
         <item />
         <item />
         <item />
@@ -313,12 +278,8 @@
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
-        <item>20:30</item>
         <item>19:30</item>
         <item>20:30</item>
-        <item>20:30</item>
-        <item>20:30</item>
-        <item>19:30</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
@@ -330,11 +291,6 @@
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
-        <item>20:30</item>
-        <item>20:30</item>
-        <item>20:30</item>
-        <item>20:30</item>
-        <item>19:30</item>
         <item>20:30</item>
         <item>20:30</item>
         <item>20:30</item>
@@ -371,8 +327,8 @@
     <!--\n\u2022 15:30 Finali;-->
     <!--\n\u2022 18:00 Premiazioni + aperitivo anguriara fino alle 21:00 con gli Old Virginia.-->
     <!--</string>-->
-    <string name="pravolley_schedule">Sabato 7 luglio
-        \nDomenica 8 luglio
+    <string name="pravolley_schedule">Sabato 13 luglio
+        \nDomenica 14 luglio
     </string>
     <string name="regulation">Regolamento</string>
     <string name="pravolley_ragulation">\u2022 Torneo misto 4 contro 4 su manto erboso;
@@ -384,9 +340,8 @@
         \n\u2022 Premi per le prime 3 squadre classificate!
     </string>
     <string name="inscriptions">Iscrizioni</string>
-    <string name="pravolley_inscriptions"> \u2022 Potete iscrivervi al Pra Volley 2018 compilando il modulo che trovate <a href="https://docs.google.com/document/d/15g3Io-7opO07G6PfC53sqpPpzvf2LyNEN2FFHYV8vsU/edit">qui</a> e inviandolo tramite email a anguriara@gmail.com, oppure consegnandolo direttamente in cassa durante le serate d\'apertura.
-        \n\u2022 Il costo d\'iscrizione è pari a 10 euro a persona ed è comprensivo di t-shirt firmata PraVolley - Anguriara 2018 e buono colazione (caffè + brioche) della domenica mattina.
-        \n\u2022 Le iscrizioni sono aperte dal 07 al 20 Giugno.
+    <string name="pravolley_inscriptions">Le iscrizioni del torneo PraVolley 2019 saranno aperte dal 1 giugno al 22 giugno 2019 compilando l\'apposito form disponibile dal 1 giugno nel nostro sito internet.
+        Non si accettano prenotazioni o altri tipi d\'iscrizioni. Per qualsiasi informazione scrivete all\'indirizzo email: pravolley.anguriara@gmail.com
     </string>
     <string name="container">El Conteiner</string>
     <string name="container_title">Il Container</string>
@@ -495,13 +450,13 @@
 
     <string name="where_we_are">Dove Siamo</string>
     <string name="who_we_are">Chi Siamo</string>
-    <string name="who_we_are_number_1">20</string>
+    <string name="who_we_are_number_1">21</string>
     <string name="who_we_are_title_1">Numero edizioni</string>
-    <string name="who_we_are_number_2">30</string>
+    <string name="who_we_are_number_2">21</string>
     <string name="who_we_are_title_2">Giorni di apertura</string>
     <string name="who_we_are_number_3">80</string>
     <string name="who_we_are_title_3">Volontari dello staff</string>
-    <string name="who_we_are_number_4">22</string>
+    <string name="who_we_are_number_4">13</string>
     <string name="who_we_are_title_4">Live show</string>
     <string name="who_we_are_text">L\' Anguriara nasce nel \"lontano\" 1999 nel nostro caro paesino di Giavenale (frazione del comune di Schio).
         \nUn paese un po\' campagnolo, ma non per questo dimenticato da Dio e dagli uomini.

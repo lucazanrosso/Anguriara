@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static LinkedHashMap<Calendar, LinkedHashMap<String, Object>> calendar = new LinkedHashMap<>();
     public static ArrayList<Calendar> days;
-    public final static int YEAR = 2018;
+    public final static int YEAR = 2019;
     public static String[] daysOfWeek;
     public static String[] months;
     public static Calendar todayInstance = new GregorianCalendar();
@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         int[] anguriaraDaysOfMonth = context.getResources().getIntArray(R.array.anguriara_days_of_month);
         String[] dayEvents = context.getResources().getStringArray(R.array.day_events);
         String[] dayEventsDetails = context.getResources().getStringArray(R.array.day_event_details);
+        String[] dayEventsSubDetails = context.getResources().getStringArray(R.array.day_event_sub_details);
         TypedArray dayEventsImages = context.getResources().obtainTypedArray(R.array.day_event_image);
         String[] dayFoods = context.getResources().getStringArray(R.array.day_foods);
         TypedArray dayFoodsImages = context.getResources().obtainTypedArray(R.array.day_food_image);
@@ -193,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
             LinkedHashMap<String, Object> eveningMap = new LinkedHashMap<>();
             eveningMap.put("event", dayEvents[i]);
             eveningMap.put("event_details", dayEventsDetails[i]);
+            eveningMap.put("event_sub_details", dayEventsSubDetails[i]);
             eveningMap.put("event_image", dayEventsImages.getResourceId(i, 0));
             eveningMap.put("food", dayFoods[i]);
             eveningMap.put("food_image", dayFoodsImages.getResourceId(i, 0));

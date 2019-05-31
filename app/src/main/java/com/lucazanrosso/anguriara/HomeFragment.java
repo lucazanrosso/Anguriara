@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setThisDay() {
-        ImageView todayImage = view.findViewById(R.id.event_image);
+//        ImageView todayImage = view.findViewById(R.id.event_image);
         TextView todayDay = view.findViewById(R.id.event_day);
         todayDay.setText(CalendarFragment.setDateTitle(MainActivity.today));
         TextView todayTitle = view.findViewById(R.id.event_title);
@@ -130,12 +130,12 @@ public class HomeFragment extends Fragment {
         if (MainActivity.days.contains(MainActivity.today)) {
             if(MainActivity.today.equals(MainActivity.badDay)) {
                 todayTitle.setText(getResources().getString(R.string.bad_weather));
-                todayImage.setVisibility(View.GONE);
+//                todayImage.setVisibility(View.GONE);
                 todayText.setVisibility(View.GONE);
                 detailsButton.setVisibility(View.GONE);
             } else {
                 todayTitle.setText((String) MainActivity.calendar.get(MainActivity.today).get("event"));
-                todayImage.setImageResource((int) MainActivity.calendar.get(MainActivity.today).get("event_image"));
+//                todayImage.setImageResource((int) MainActivity.calendar.get(MainActivity.today).get("event_image"));
                 String foodString = (String) MainActivity.calendar.get(MainActivity.today).get("food");
                 if (!foodString.isEmpty())
                     todayText.setText(getResources().getString(R.string.food) + ": " + foodString + "\n" + getResources().getString(R.string.opening_time) + ": " + MainActivity.calendar.get(MainActivity.today).get("openingTime"));
@@ -157,7 +157,7 @@ public class HomeFragment extends Fragment {
             }
         } else {
             todayTitle.setText(getResources().getString(R.string.close));
-            todayImage.setVisibility(View.GONE);
+//            todayImage.setVisibility(View.GONE);
             todayText.setVisibility(View.GONE);
             detailsButton.setVisibility(View.GONE);
         }
@@ -174,10 +174,12 @@ public class HomeFragment extends Fragment {
                 TextView nextEveningsText = nextEveningCard.findViewById(R.id.next_evening_text);
                 Button detailsButton = nextEveningCard.findViewById(R.id.details_button);
                 ImageView nextEveningImage = nextEveningCard.findViewById(R.id.next_evening_image);
+                // Da rimuovere se arrivano immagini
+                ((ViewGroup) nextEveningImage.getParent()).removeView(nextEveningImage);
                 nextEveningsTitle.setText(CalendarFragment.setDateTitle(entry.getKey()));
                 nextEveningsText.setText(CalendarFragment.setDateText(entry.getKey(), getContext()));
                 int nextEveniningImageId = (int) entry.getValue().get("event_image");
-                nextEveningImage.setImageResource(nextEveniningImageId);
+//                nextEveningImage.setImageResource(nextEveniningImageId);
                 final Bundle dayArgs = new Bundle();
                 dayArgs.putSerializable("date", entry.getKey());
                 detailsButton.setOnClickListener(new View.OnClickListener() {

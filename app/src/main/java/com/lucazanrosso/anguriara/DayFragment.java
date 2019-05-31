@@ -25,17 +25,23 @@ public class DayFragment extends Fragment {
 
         TextView eventTitle = (TextView) view.findViewById(R.id.event_title);
         TextView eventText = (TextView) view.findViewById(R.id.event_text);
-        ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
+        TextView eventSubText = (TextView) view.findViewById(R.id.event_subtext);
+//        ImageView eventImage = (ImageView) view.findViewById(R.id.event_image);
         String dayEvent = (String) day.get("event");
         String dayEventDatails = (String) day.get("event_details");
-        int dayEventImage = (int) day.get("event_image");
+        String dayEventSubDatails = (String) day.get("event_sub_details");
+//        int dayEventImage = (int) day.get("event_image");
 //        if (!dayEvent.isEmpty()) {
             eventTitle.setText(getResources().getString(R.string.event));
             if (!dayEventDatails.isEmpty())
-                eventText.setText(dayEvent + day.get("event_details"));
+                eventText.setText(dayEvent + dayEventDatails);
             else
                 eventText.setText(dayEvent);
-            eventImage.setImageResource(dayEventImage);
+            if (!dayEventSubDatails.isEmpty())
+                eventSubText.setText(dayEventSubDatails);
+            else
+                ((ViewGroup) eventSubText.getParent()).removeView(eventSubText);
+//            eventImage.setImageResource(dayEventImage);
 //        } else {
 //            eventTitle.setText(getResources().getString(R.string.open));
 //            ((ViewGroup) eventText.getParent()).removeView(eventText);
