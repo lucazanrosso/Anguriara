@@ -352,26 +352,18 @@
     <string-array name="breweries">
         <item>Birrificio Acelum</item>
         <item>Birrificio Otus</item>
-        <item>Birrificio Hibu</item>
-        <item>Birrificio Giusto spirito</item>
-        <item>Birrificio Doppio malto</item>
+        <item>Birrificio Theresianer</item>
     </string-array>
 
     <string-array name="biers">
         <item>Twenty</item>
         <item>Freya</item>
-        <item>Sour Germana</item>
-        <item>Anarkica</item>
+        <item>Bela Lugosi</item>
+        <item>Duse</item>
         <item>Side B</item>
-        <item>Red Volution</item>
-        <item>Ambranera</item>
-        <item>Gotha</item>
-        <item>Fei Mi</item>
-        <item>Bad Girl</item>
-        <item>Spice Girl</item>
-        <item>Zingibeer</item>
-        <item>Brass Weiss</item>
-        <item>Bitterland</item>
+        <item>Senza Glutine</item>
+        <item>Pils</item>
+        <item>IPA</item>
     </string-array>
 
     <string-array name="breweries_related">
@@ -380,32 +372,20 @@
         <item>Birrificio Acelum</item>
         <item>Birrificio Acelum</item>
         <item>Birrificio Otus</item>
-        <item>Birrificio Otus</item>
-        <item>Birrificio Otus</item>
-        <item>Birrificio Hibu</item>
-        <item>Birrificio Giusto spirito</item>
-        <item>Birrificio Giusto spirito</item>
-        <item>Birrificio Giusto spirito</item>
-        <item>Birrificio Doppio malto</item>
-        <item>Birrificio Doppio malto</item>
-        <item>Birrificio Doppio malto</item>
+        <item>Birrificio Theresianer</item>
+        <item>Birrificio Theresianer</item>
+        <item>Birrificio Theresianer</item>
     </string-array>
 
     <array name="biers_images">
         <item>@drawable/twenty</item>
         <item>@drawable/freya</item>
-        <item>@drawable/suor_germana</item>
-        <item>@drawable/anarkica</item>
+        <item>@drawable/belalugosi</item>
+        <item>@drawable/duse</item>
         <item>@drawable/side_b</item>
-        <item>@drawable/red_volution</item>
-        <item>@drawable/ambranera</item>
-        <item>@drawable/gotha</item>
-        <item>@drawable/fei_mi</item>
-        <item>@drawable/bad_girl</item>
-        <item>@drawable/spice_girl</item>
-        <item>@drawable/zingibeer</item>
-        <item>@drawable/brass_weiss</item>
-        <item>@drawable/bitterland</item>
+        <item>@drawable/senzaglutine</item>
+        <item>@drawable/pils</item>
+        <item>@drawable/ipa</item>
     </array>
 
     <string-array name="biers_details">
@@ -414,32 +394,20 @@
         <item>Tipo: Berliner Weisse</item>
         <item>Tipo: Summer Ale</item>
         <item>Tipo: Blanche</item>
-        <item>Tipo: Bock</item>
-        <item>Tipo: Oatmeal Stout</item>
-        <item>Tipo: Triple Belga</item>
-        <item>Tipo: Nippon Pale Ale</item>
-        <item>Tipo: I.P.A.</item>
-        <item>Tipo: White I.P.A.</item>
-        <item>Tipo: Ginger Ale Speziata</item>
-        <item>Tipo: Weiss Bier</item>
-        <item>Tipo: Bitter</item>
+        <item>Tipo: Lager senza glutine</item>
+        <item>Tipo: Pilsner</item>
+        <item>Tipo: IPA</item>
     </string-array>
 
     <array name="biers_images_details">
         <item>@drawable/twenty2</item>
         <item>@drawable/freya2</item>
-        <item>@drawable/suor_germana2</item>
-        <item>@drawable/anarkica2</item>
+        <item />
+        <item />
         <item>@drawable/side_b2</item>
-        <item>@drawable/red_volution2</item>
-        <item>@drawable/ambranera2</item>
-        <item>@drawable/gotha2</item>
-        <item>@drawable/fei_mi2</item>
-        <item>@drawable/bad_girl2</item>
-        <item>@drawable/spice_girl2</item>
-        <item>@drawable/zingibeer2</item>
-        <item>@drawable/brass_weiss2</item>
-        <item>@drawable/bitterland2</item>
+        <item />
+        <item />
+        <item />
     </array>
 
     <string name="agritour_title">Agritour</string>

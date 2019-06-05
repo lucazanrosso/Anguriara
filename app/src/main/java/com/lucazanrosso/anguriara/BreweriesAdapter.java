@@ -23,12 +23,17 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
     private String[] biers;
     private String[] biersDetails;
     private TypedArray biersImages;
+    private TypedArray biersImagesDetails;
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
     private int cardWidth;
     private int biersLayoutPadding;
+    private float scale;
+    private int letfRightPadding;
+    private int topPadding;
+    private int bottomPadding;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -40,13 +45,14 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    BreweriesAdapter(FragmentActivity mActivity, Context context, String[] breweries, String[] breweriesRelated, String[] biers, TypedArray biersImages, String[] biersDetails) {
+    BreweriesAdapter(FragmentActivity mActivity, Context context, String[] breweries, String[] breweriesRelated, String[] biers,  String[] biersDetails, TypedArray biersImages, TypedArray biersImagesDetails) {
         this.mActivity = mActivity;
         this.breweries = breweries;
         this.breweriesRelated = breweriesRelated;
         this.biers = biers;
         this.biersDetails = biersDetails;
         this.biersImages = biersImages;
+        this.biersImagesDetails = biersImagesDetails;
 
         Resources r = context.getResources();
         cardWidth = (int) TypedValue.applyDimension(
@@ -60,6 +66,11 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                 8,
                 r.getDisplayMetrics()
         );
+
+        scale = context.getResources().getDisplayMetrics().density; //altro metodo per dp?
+        letfRightPadding = (int) (16*scale + 0.5f);
+        topPadding = (int) (8*scale + 0.5f);
+        bottomPadding = (int) (14*scale + 0.5f);
     }
 
     // Create new views (invoked by the layout manager)
@@ -111,19 +122,26 @@ class BreweriesAdapter extends RecyclerView.Adapter<BreweriesAdapter.ViewHolder>
                     bierText.setText(biersDetails[i]);
                     int bierImageId = biersImages.getResourceId(i, 0);
                     bierImage.setImageResource(bierImageId);
-                    final Bundle dayArgs = new Bundle();
-                    dayArgs.putInt("index", i);
-                    detailsButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            BierFragment bierFragment = new BierFragment();
-                            bierFragment.setArguments(dayArgs);
-                            mActivity.getSupportFragmentManager().beginTransaction()
-                                    .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
-                                    .replace(R.id.frame_container, bierFragment)
-                                    .addToBackStack("secondary").commit();
-                        }
-                    });
+                    int bierImageDetailsId = biersImagesDetails.getResourceId(i, 0);
+                    if (!(bierImageDetailsId == 0)) {
+                        final Bundle dayArgs = new Bundle();
+                        dayArgs.putInt("index", i);
+                        detailsButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                BierFragment bierFragment = new BierFragment();
+                                bierFragment.setArguments(dayArgs);
+                                mActivity.getSupportFragmentManager().beginTransaction()
+                                        .setCustomAnimations(R.anim.enter_animation, R.anim.exit_animation, R.anim.enter_animation, R.anim.exit_animation)
+                                        .replace(R.id.frame_container, bierFragment)
+                                        .addToBackStack("secondary").commit();
+                            }
+                        });
+                    } else {
+
+                        bierText.setPadding(letfRightPadding, topPadding, letfRightPadding, bottomPadding);
+                        ((ViewGroup) detailsButton.getParent()).removeView(detailsButton);
+                    }
 
                     biersLayout.addView(bierCard);
                 }
