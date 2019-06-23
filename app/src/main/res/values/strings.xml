@@ -100,7 +100,7 @@
         <item>6</item>
         <item>6</item>
     </integer-array>
-    <string name="event">Evento</string>
+    <string name="event">Serata</string>
     <string name="open">Aperto</string>
     <string name="food">Cucina</string>
     <string name="opening_time">Orario di apertura</string>
@@ -123,14 +123,14 @@
         <item>Serata Agritour</item>
         <item>Paolo Rossi</item>
         <item>Double M</item>
-        <item>Aperto</item>
+        <item>#gamenight</item>
         <item>Black Velvet</item>
         <item>CLOSING PARTY</item>
     </string-array>
     <string-array name="day_event_details">
         <item>\nGenere: anni 90</item>
         <item>\nGenere: Red Hot Chili Peppers</item>
-        <item>\n\nCorso di Running</item>
+        <item>\n\nCorso di Running - #gamenight</item>
         <item>\nGenere: Rock Latino</item>
         <item>\nGenere: Musica Celtica</item>
         <item>\n\nCorso Running - Chiesetta S. Giustina</item>
@@ -143,7 +143,7 @@
         <item>\nGenere: hit anni 2000, DJ Thomas Dalla Costa e Lele Silver\n\nTorneo PRAVOLLEY</item>
         <item />
         <item>\nCorsa Podistica dalle 20:30 organizzata da Città della Speranza</item>
-        <item>\ncon piatti a km 0 e passeggiata al chiaror di luna, partenza ore 20:00</item>
+        <item>\ncon piatti a km 0 e passeggiata al chiaror di luna, partenza alle ore 20:00</item>
         <item>\nGenere: Super serata Afro</item>
         <item>\nGenere: duo femminile acustico dagli anni 70</item>
         <item />
@@ -153,15 +153,15 @@
     <string-array name="day_event_sub_details">
         <item />
         <item />
-        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione dalle ore 20:15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\n#gamenight con Il Colore del Grano. Durante l\'evento puoi provare originali giochi da tavolo e giochi di carte. Per una serata divertente all\'insegna dell\'allegria.</item>
         <item />
         <item />
-        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20.15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione dalle ore 20:15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20:15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
         <item />
-        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione dalle ore 20:15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)</item>
         <item />
         <item />
-        <item>\"Un corso di corsa\". Il giovedì su prenotazione DALLE 20.15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20.15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
+        <item>\"Un corso di corsa\". Il giovedì su prenotazione dalle ore 20:15. Le basi per correre correttamente con istruttore A.S.C., contributo di 2 euro che si devolveranno in beneficienza a Citta della Speranza (abbigliamento fluo e pila frontale!)\n\nVisita guidata alla Chiesetta S. Giustina. Partenza dall\'Anguriara alle ore 20:15. Gruppo di massimo 20 persone, su prenotazione al sito www.chiesasantagiustina.it</item>
         <item />
         <item />
         <item />
@@ -176,7 +176,7 @@
         <item />
         <item />
         <item />
-        <item />
+        <item>#gamenight con Il Colore del Grano. Durante l\'evento puoi provare originali giochi da tavolo e giochi di carte. Per una serata divertente all\'insegna dell\'allegria.</item>
         <item />
         <item />
     </string-array>
@@ -221,34 +221,41 @@
         <item />
         <item />
         <item />
-        <item>Polenta e laganeghe</item>
+        <item>Polenta e luganeghe</item>
         <item />
         <item />
         <item>Paella</item>
     </string-array>
     <string name="standard_foods_w">
-        \u2022 Panini freddi
-        \n\u2022 Patatine fritte
-        \n\u2022 Fetti d\'anguria
-        \n\u2022 Gelati
+        \u2022 Panino caldo verde e speck
+        \n\u2022 Panino caldo vegetariano
+        \n\u2022 Tostone
+        \n\u2022 Trancio di pizza
+        \n\u2022 Fetta d\'anguria
+        \n\u2022 Gelato
     </string>
     <string name="standard_foods_t">
-        \u2022 Panini freddi
-        \n\u2022 Fette d\'anguria
-        \n\u2022 Gelati
+        \u2022 Panino caldo verde e speck
+        \n\u2022 Panino caldo vegetariano
+        \n\u2022 Tostone
+        \n\u2022 Trancio di pizza
+        \n\u2022 Fetta d\'anguria
+        \n\u2022 Gelato
     </string>
     <string name="standard_foods_f">
-        \u2022 Panini rusteghi
-        \n\u2022 Panini freddi
+        \u2022 Panino rustego
+        \n\u2022 Panino caldo vegetariano
+        \n\u2022 Bocconcini del Conteiner
         \n\u2022 Patatine fritte
-        \n\u2022 Fette d\'anguria
-        \n\u2022 Gelati
+        \n\u2022 Fetta d\'anguria
+        \n\u2022 Gelato
     </string>
     <string name="standard_foods_s">Oltre al piatto della serata la cucina propone:
-        \n\u2022 Panini freddi
+        \n\u2022 Panino caldo vegetariano
+        \n\u2022 Bocconcini del Conteiner
         \n\u2022 Patatine fritte
-        \n\u2022 Fette d\'anguria
-        \n\u2022 Gelati
+        \n\u2022 Fetta d\'anguria
+        \n\u2022 Gelato
     </string>
     <array name="day_food_image">
         <item />
@@ -311,7 +318,7 @@
     <string name="evenings_notifications">Notifiche serate</string>
     <string name="firebase_notifications">Notifiche maltempo, notizie e cambiamenti</string>
     <string name="share_title">in Anguriara al rocolo di Giavenale:</string>
-    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara 2017 per Android.</string>
+    <string name="share_text">Scarica gratuitamente l\'app ufficiale Anguriara 2019 per Android.</string>
     <string name="pravolley">Pravolley</string>
     <string name="schedule">Programma</string>
     <!--<string name="pravolley_schedule">Sabato 9 luglio:-->
@@ -347,7 +354,7 @@
     <string name="container_title">Il Container</string>
     <!--<string name="container_description">Dall\'esigenza di presentare qualcosa di nuovo, di riciclare l’usato, di proporre prodotti locali e degustare birre artigianali seduti su comodi divanetti fatti con bancali nasce \"El Conteiner\", un nuovo chiosco ricavato da un container navale di 6 x 3 metri.-->
         <!--\n\"El Conteiner\" sarà aperto tutti i venerdì e i sabati dalle ore 21:30.</string>-->
-    <string name="container_description">Anche quest\'anno noi del team Anguriara abbiamo sentito l\'esigenza di presentare qualcosa di diverso e più giovanile, cercando di riciclare l’usato (e facendoci anche il mazzo), per proporre prodotti locali e soprattutto far degustare birre artigianali, il tutto seduti su comodi divanetti fatti con bancali. Ritorna \"El Conteiner\", un chiosco ricavato da un container navale di 6 x 3 metri.</string>
+    <string name="container_description">Noi del team Anguriara abbiamo sentito l\'esigenza di presentare qualcosa di diverso e più giovanile, cercando di riciclare l’usato (e facendoci anche il mazzo), per proporre prodotti locali e soprattutto far degustare birre artigianali, il tutto seduti su comodi divanetti fatti con bancali. Ritorna \"El Conteiner\", un chiosco ricavato da un container navale di 6 x 3 metri. E da quest\'anno ci sono anche i cocktail!</string>
 
     <string-array name="breweries">
         <item>Birrificio Acelum</item>
